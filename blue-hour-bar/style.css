@@ -1,63 +1,85 @@
-/* style.css for Blue Hour Bar */
-body {
+/* Blue Hour Bar styles */
+body.bar {
+  margin: 0; font-family: 'Open Sans', sans-serif; color: #eee; background: #111;
+}
+/* Hero */
+.hero {
+  position: relative;
+  height: 320px;
+  background: url('bar1.jpg') center/cover no-repeat;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero .overlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,0.6);
+}
+.hero h1 {
+  position: relative;
   font-family: 'Oswald', sans-serif;
-  margin: 0;
-  background: #111;
-  color: #fff;
+  font-size: 3rem;
+  color: #00e5ff;
+  text-shadow: 0 0 8px rgba(0,229,255,0.7);
 }
-#hero {
-  background: url('bar-hero.jpg') no-repeat center/cover;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+/* Events */
+.events {
+  padding: 40px 20px; background: #1a1a1a; text-align: center;
 }
-#hero h1 {
-  font-size: 3em;
-  color: #ff6347; /* tomato accent */
+.events h2 { color: #fff; margin-bottom: 1rem; }
+.cards {
+  display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
 }
-section {
-  padding: 20px;
-  margin: 10px;
-  background: #222;
-  border-radius: 8px;
+.card {
+  background: #222; border-radius: 8px; padding: 20px; width: 220px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
-h2 {
-  border-bottom: 2px solid #444;
-  padding-bottom: 5px;
+.card h3 { margin: 0 0 0.5rem; font-family: 'Oswald', sans-serif; }
+.card p { margin: 0; font-size: 0.9rem; }
+
+/* Menu Panels */
+.menu {
+  padding: 40px 20px; background: #111;
+  display: flex; flex-direction: column; align-items: center;
 }
-.gallery {
-  display: flex;
+.menu h2 { color: #00e5ff; margin-bottom: 1rem; }
+.menu-panels {
+  display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+}
+.panel {
+  background: #222; padding: 20px; border-radius: 8px; width: 220px;
+}
+.panel h4 { margin-top: 0; color: #00e5ff; }
+.panel ul { list-style: none; padding: 0; margin: 0; }
+.panel li { margin: 6px 0; font-size: 0.9rem; }
+
+/* Gallery */
+.gallery { padding: 40px 20px; text-align: center; }
+.gallery h2 { color: #fff; margin-bottom: 1rem; }
+.gallery .grid {
+  display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
   gap: 10px;
-  justify-content: center;
 }
 .gallery img {
-  width: 30%;
-  border-radius: 5px;
+  width: 100%; border-radius: 6px; object-fit: cover;
+  transition: transform .3s;
 }
-ul {
-  list-style: none;
-  padding: 0;
+.gallery img:hover { transform: scale(1.05); }
+
+/* Contact */
+.contact {
+  padding: 40px 20px; background: #1a1a1a; text-align: center;
 }
-li {
-  margin: 6px 0;
+.contact h2 { color: #fff; margin-bottom: 1rem; }
+.contact form {
+  max-width: 400px; margin: auto; display: flex; flex-direction: column; gap: 12px;
 }
-#contact form input,
-#contact form textarea {
-  width: 100%;
-  margin: 5px 0;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
+.contact input, .contact textarea {
+  padding: 10px; border: none; border-radius: 6px;
+  font-size: 0.95rem;
 }
-#contact form button {
-  background: #ff6347;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.contact button {
+  padding: 12px; background: #00e5ff; color: #111; border: none; border-radius: 6px;
+  font-weight: bold; cursor: pointer;
 }
-#contact form button:hover {
-  background: #e5533d;
+.contact button:hover {
+  background: #00c7d4;
 }
