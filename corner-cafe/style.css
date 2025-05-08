@@ -35,20 +35,24 @@ body {
 }
 
 /* ===== Scrolling Gallery ===== */
+/* ===== Scrolling Gallery – full-width ===== */
 .scrolling-gallery {
   padding: 20px 0;
 }
+
 .scroll-window {
   overflow: hidden;
-  border-radius: 8px;
-  margin: 0 auto 20px;
-  max-width: 960px;
+  width: 100vw;        /* full viewport width */
+  margin: 0;           /* remove centering */
 }
+
 .scroll-content {
   display: flex;
-  width: 3200px; /* 10 images × (280px + 40px) */
+  /* total width remains number_of_images × (280px + 40px) = 3200px */
+  width: 3200px;
   animation: scrollLeft 15s linear infinite;
 }
+
 .scroll-content img {
   width: 280px;
   height: 200px;
@@ -56,6 +60,7 @@ body {
   margin-right: 40px;
   border-radius: 6px;
 }
+
 @keyframes scrollLeft {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-1600px); }
