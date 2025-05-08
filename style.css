@@ -7,6 +7,11 @@
   --muted-bg: #f9f7f3;
   --font-heading: 'Playfair Display', serif;
   --font-body: 'Open Sans', sans-serif;
+  /* in style.css, near :root */
+body.bar    { --accent-color: #a84e31; /* warm terracotta for the bar */ }
+body.cafe   { --accent-color: #6b8e23; /* olive-green for the café */ }
+body.restaurant { --accent-color: #8b0054; /* deep magenta for the restaurant */ }
+
 }
 * {
   margin: 0;
