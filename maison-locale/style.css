@@ -1,75 +1,64 @@
-/* style.css for Maison Locale */
+/* Maison Locale styles */
 body {
-  font-family: 'Lato', sans-serif;
-  margin: 0;
-  background: #fafafa;
-  color: #333;
+  margin: 0; font-family: 'Lato', sans-serif; color: #333;
 }
-header#hero {
-  background: url('rest-hero.jpg') no-repeat center/cover;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+/* Parallax hero */
+.hero {
+  height: 280px;
+  background: url('rest-hero.jpg') center/cover fixed no-repeat;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
-header#hero h1 {
+.hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 3em;
-  margin: 0;
+  font-size: 3rem; margin: 0;
 }
-header#hero p {
-  font-size: 1.2em;
-  margin: 5px 0 0;
+.hero p {
+  font-size: 1.2rem; margin: 10px 0 0;
 }
+
+/* Specials */
 .specials {
-  display: flex;
+  padding: 40px 20px; text-align: center;
+  background: #fafafa;
 }
-.special {
-  flex: 1;
-  background-size: cover;
-  background-position: center;
-  color: #fff;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 200px;
+.specials h2 { margin-bottom: 30px; font-family: 'Playfair Display', serif; }
+.cards {
+  display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
 }
-.special h3 {
-  background: rgba(0,0,0,0.5);
-  margin: 0;
-  padding: 10px;
+.card {
+  position: relative; width: 260px; height: 180px;
+  background-size: cover; background-position: center; border-radius: 12px;
+  overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform .3s;
 }
-.special p {
-  background: rgba(0,0,0,0.5);
-  padding: 8px 10px;
-  margin: 5px 0 0;
+.card:hover { transform: translateY(-6px) scale(1.02); }
+.card .info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 15px; background: rgba(0,0,0,0.5); color: #fff;
 }
-#hours-contact {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding: 20px;
+.card h3 { margin: 0; }
+.card p { margin: 5px 0 0; }
+
+/* Reservations */
+.reserve {
+  padding: 40px 20px; text-align: center; background: #fff;
 }
-.hours, .contact {
-  flex: 1 1 40%;
-  background: #fff;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.reserve h2 { margin-bottom: 20px; font-family: 'Playfair Display', serif; }
+.reserve-button {
+  display: inline-block; padding: 12px 24px; background: #b22222; color: #fff;
+  text-decoration: none; border-radius: 6px; font-weight: bold;
+  transition: background .2s;
 }
-h2 {
-  border-bottom: 2px solid #eee;
-  padding-bottom: 5px;
+.reserve-button:hover { background: #8b1a1a; }
+
+/* Info */
+.info {
+  display: flex; flex-wrap: wrap; gap: 30px;
+  justify-content: center; padding: 40px 20px; background: #fafafa;
 }
-.contact a {
-  color: #3498db;
-  text-decoration: none;
+.info > div {
+  flex: 1 1 200px; text-align: center;
 }
-.contact a:hover {
-  text-decoration: underline;
-}
+.hours h2,
+.contact h2 { margin-bottom: 10px; }
