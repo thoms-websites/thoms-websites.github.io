@@ -1,5 +1,4 @@
-/* Corner Café – no overlays, 3×2 menu grid */
-
+/* ===== Base ===== */
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
@@ -7,30 +6,40 @@ body {
   background: url('outdoors.jpg') center/cover fixed no-repeat;
 }
 
-/* HERO */
+/* ===== Glass Morphism ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 30px 20px;
+  margin: 20px auto;
+  max-width: 960px;
+}
+
+/* ===== Hero ===== */
 .hero {
   text-align: center;
-  padding: 80px 20px;
 }
 .hero h1 {
   font-family: 'Pacifico', cursive;
   font-size: 3rem;
   margin: 0;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
 }
 .hero p {
   font-size: 1.2rem;
   margin: 10px 0 0;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
 
-/* SCROLLING GALLERY */
+/* ===== Scrolling Gallery ===== */
 .scrolling-gallery {
   padding: 20px 0;
 }
 .scroll-window {
   overflow: hidden;
   border-radius: 8px;
+  margin: 0 auto;
+  max-width: 960px;
 }
 .scroll-content {
   display: flex;
@@ -49,25 +58,20 @@ body {
   100% { transform: translateX(-1600px); }
 }
 
-/* MENU – 3 across, 2 down */
+/* ===== Menu ===== */
 .menu {
-  padding: 40px 20px;
   text-align: center;
 }
 .menu h2 {
   margin-bottom: 20px;
-  color: #fff;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  max-width: 900px;
-  margin: 0 auto;
 }
 .card {
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.5);
@@ -76,22 +80,18 @@ body {
 .card h3 {
   margin: 0 0 5px;
   color: #ffd27f;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
 }
 .card p {
   margin: 0;
   font-weight: bold;
-  color: #fff;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 
-/* INFO */
+/* ===== Info ===== */
 .info {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
   justify-content: center;
-  padding: 40px 20px;
 }
 .info > div {
   flex: 1 1 200px;
@@ -99,13 +99,10 @@ body {
 }
 .info h2 {
   margin-bottom: 10px;
-  color: #fff;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
 .info a {
   color: #ffd27f;
   text-decoration: none;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 .info a:hover {
   text-decoration: underline;
