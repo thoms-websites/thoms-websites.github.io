@@ -27,31 +27,31 @@ body {
 }
 
 /* SCROLLING GALLERY */
+/* SCROLLING GALLERY – doubled size */
 .scrolling-gallery {
   position: relative;
   overflow: hidden;
-  height: 140px;
+  height: 200px;       /* match new image height */
   margin: 20px 0;
 }
 
 .scroll-content {
   display: flex;
-  /* 4 images × (140px width + 20px margin) = 640px total */
-  width: 640px;             
-  animation: scrollLeft 10s linear infinite;
+  width: 1280px;       /* 4 images × (280px width + 40px margin) */
+  animation: scrollLeft 15s linear infinite;
 }
 
 .scroll-content img {
-  width: 140px;
-  height: 100px;
+  width: 280px;
+  height: 200px;
   object-fit: cover;
-  margin-right: 20px;
+  margin-right: 40px;
   border-radius: 6px;
 }
 
 @keyframes scrollLeft {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-640px); }
+  100% { transform: translateX(-1280px); }
 }
 
 /* MENU */
