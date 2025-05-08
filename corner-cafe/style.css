@@ -27,17 +27,17 @@ body {
 }
 
 /* SCROLLING GALLERY */
-/* SCROLLING GALLERY – doubled size */
+/* SCROLLING GALLERY – seamless loop for 5 images */
 .scrolling-gallery {
   position: relative;
   overflow: hidden;
-  height: 200px;       /* match new image height */
+  height: 200px;       /* match your image height */
   margin: 20px 0;
 }
 
 .scroll-content {
   display: flex;
-  width: 1280px;       /* 4 images × (280px width + 40px margin) */
+  width: 3200px;       /* 10 images × (280px width + 40px margin) */
   animation: scrollLeft 15s linear infinite;
 }
 
@@ -51,7 +51,7 @@ body {
 
 @keyframes scrollLeft {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-1280px); }
+  100% { transform: translateX(-1600px); } /* move half the strip */
 }
 
 /* MENU */
