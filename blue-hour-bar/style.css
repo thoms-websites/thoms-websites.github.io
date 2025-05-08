@@ -1,85 +1,206 @@
-/* Blue Hour Bar styles */
-body.bar {
-  margin: 0; font-family: 'Open Sans', sans-serif; color: #eee; background: #111;
+/* Base */
+body.bar-body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  color: #eee;
+  background: #000;
 }
+
 /* Hero */
-.hero {
+.bar-hero {
   position: relative;
-  height: 320px;
+  height: 70vh;
   background: url('bar1.jpg') center/cover no-repeat;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
-.hero .overlay {
-  position: absolute; inset: 0; background: rgba(0,0,0,0.6);
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.9));
 }
-.hero h1 {
+.hero-content {
   position: relative;
-  font-family: 'Oswald', sans-serif;
+  z-index: 1;
+}
+.hero-content h1 {
+  font-family: 'Orbitron', sans-serif;
   font-size: 3rem;
-  color: #00e5ff;
-  text-shadow: 0 0 8px rgba(0,229,255,0.7);
+  letter-spacing: 2px;
+  color: #0ff;
+  text-shadow: 0 0 8px #0ff, 0 0 16px #00a;
+  margin: 0 0 0.5rem;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  margin: 0 0 1.5rem;
+}
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #0ff;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s, transform 0.3s;
+}
+.btn:hover {
+  background: #0cc;
+  transform: translateY(-3px);
 }
 
-/* Events */
-.events {
-  padding: 40px 20px; background: #1a1a1a; text-align: center;
+/* Events Timeline */
+.bar-events {
+  padding: 60px 20px;
+  background: #111;
+  text-align: center;
 }
-.events h2 { color: #fff; margin-bottom: 1rem; }
-.cards {
-  display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+.bar-events h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #0ff;
+  text-shadow: 0 0 6px #0ff;
+  margin-bottom: 2rem;
 }
-.card {
-  background: #222; border-radius: 8px; padding: 20px; width: 220px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+.timeline {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: auto;
 }
-.card h3 { margin: 0 0 0.5rem; font-family: 'Oswald', sans-serif; }
-.card p { margin: 0; font-size: 0.9rem; }
-
-/* Menu Panels */
-.menu {
-  padding: 40px 20px; background: #111;
-  display: flex; flex-direction: column; align-items: center;
+.timeline li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
 }
-.menu h2 { color: #00e5ff; margin-bottom: 1rem; }
-.menu-panels {
-  display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+.time {
+  flex: 0 0 120px;
+  font-weight: bold;
+  color: #0ff;
 }
-.panel {
-  background: #222; padding: 20px; border-radius: 8px; width: 220px;
+.event-info h3 {
+  margin: 0 0 0.25rem;
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
 }
-.panel h4 { margin-top: 0; color: #00e5ff; }
-.panel ul { list-style: none; padding: 0; margin: 0; }
-.panel li { margin: 6px 0; font-size: 0.9rem; }
-
-/* Gallery */
-.gallery { padding: 40px 20px; text-align: center; }
-.gallery h2 { color: #fff; margin-bottom: 1rem; }
-.gallery .grid {
-  display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
-  gap: 10px;
-}
-.gallery img {
-  width: 100%; border-radius: 6px; object-fit: cover;
-  transition: transform .3s;
-}
-.gallery img:hover { transform: scale(1.05); }
-
-/* Contact */
-.contact {
-  padding: 40px 20px; background: #1a1a1a; text-align: center;
-}
-.contact h2 { color: #fff; margin-bottom: 1rem; }
-.contact form {
-  max-width: 400px; margin: auto; display: flex; flex-direction: column; gap: 12px;
-}
-.contact input, .contact textarea {
-  padding: 10px; border: none; border-radius: 6px;
+.event-info p {
+  margin: 0;
   font-size: 0.95rem;
+  color: #ccc;
 }
-.contact button {
-  padding: 12px; background: #00e5ff; color: #111; border: none; border-radius: 6px;
-  font-weight: bold; cursor: pointer;
+
+/* Drink Menu Grid */
+.bar-menu {
+  padding: 60px 20px;
+  background: #000;
+  text-align: center;
 }
-.contact button:hover {
-  background: #00c7d4;
+.bar-menu h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #0ff;
+  text-shadow: 0 0 6px #0ff;
+  margin-bottom: 2rem;
+}
+.drink-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+.drink-card {
+  background: #111;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+  transition: transform 0.3s;
+}
+.drink-card img {
+  width: 100%; display: block;
+  height: 140px; object-fit: cover;
+}
+.drink-card h4 {
+  margin: 0; padding: 12px;
+  font-family: 'Orbitron', sans-serif;
+  color: #0ff;
+  background: #111;
+}
+.drink-card:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+/* Mosaic Gallery */
+.bar-gallery {
+  padding: 60px 20px;
+  background: #111;
+  text-align: center;
+}
+.bar-gallery h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #0ff;
+  text-shadow: 0 0 6px #0ff;
+  margin-bottom: 2rem;
+}
+.mosaic {
+  display: grid;
+  grid-template-areas:
+    "m1 m2 m3"
+    "m4 m5 m6";
+  grid-gap: 10px;
+  max-width: 900px;
+  margin: auto;
+}
+.mosaic .m1 { grid-area: m1; }
+.mosaic .m2 { grid-area: m2; }
+.mosaic .m3 { grid-area: m3; }
+.mosaic .m4 { grid-area: m4; }
+.mosaic .m5 { grid-area: m5; }
+.mosaic .m6 { grid-area: m6; }
+.mosaic div img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+/* Contact Form */
+.bar-contact {
+  padding: 60px 20px;
+  background: #000;
+  text-align: center;
+}
+.bar-contact h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #0ff;
+  text-shadow: 0 0 6px #0ff;
+  margin-bottom: 1.5rem;
+}
+.bar-contact form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.bar-contact input,
+.bar-contact textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.bar-contact button {
+  padding: 12px;
+  background: #0ff;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.bar-contact button:hover {
+  background: #0cc;
 }
