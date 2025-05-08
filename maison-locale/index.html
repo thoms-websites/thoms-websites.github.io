@@ -1,27 +1,47 @@
-<!-- Maison Locale: maison-locale/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Maison Locale</title>
-  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="restaurant">
-  <header class="demo-header">
+<body>
+  <header id="hero">
     <h1>Maison Locale</h1>
-    <p>Modern restaurant website with daily specials and reservations.</p>
+    <p>Elegant &amp; Modern Dining</p>
   </header>
-  <div class="container">
-    <div class="placeholder">Dining Room Photo</div>
-    <section>
-      <h2>Daily Specials</h2>
-      <p>Check back each day for our chef’s selected dishes made with local ingredients.</p>
-    </section>
-    <section>
+
+  <section id="specials">
+    <h2>Menu Specials</h2>
+    <div class="specials">
+      <div class="special" style="background-image:url('rest1.jpg')">
+        <h3>Seared Salmon – $22</h3>
+        <p>Served with seasonal vegetables</p>
+      </div>
+      <div class="special" style="background-image:url('rest2.jpg')">
+        <h3>Ribeye Steak – $30</h3>
+        <p>With garlic butter and fries</p>
+      </div>
+      <div class="special" style="background-image:url('rest3.jpg')">
+        <h3>Chocolate Lava Cake – $8</h3>
+        <p>With vanilla ice cream</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="hours-contact">
+    <div class="hours">
+      <h2>Opening Hours</h2>
+      <p>Tue–Sun: 5pm – 11pm</p>
+      <p>Closed on Mondays</p>
+    </div>
+    <div class="contact">
       <h2>Reservations</h2>
-      <p>Call us at +33 1 23 45 67 89 or email reservations@maisonlocale.com to book your table.</p>
-    </section>
-  </div>
+      <p>Call us at (555) 123-4567 or email <a href="mailto:reservations@maisonlocale.example">reservations@maisonlocale.example</a></p>
+    </div>
+  </section>
 </body>
 </html>
