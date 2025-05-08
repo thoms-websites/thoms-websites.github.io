@@ -4,77 +4,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Blue Hour Bar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <!-- Google Fonts for neon & body text -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bar">
-  <!-- HERO -->
-  <header class="hero">
-    <div class="overlay"></div>
-    <h1>The Blue Hour Bar</h1>
+<body class="bar-body">
+  <!-- HERO with gradient overlay -->
+  <header class="bar-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>The Blue Hour Bar</h1>
+      <p>Experience the night in style</p>
+      <a href="#events" class="btn">View Events</a>
+    </div>
   </header>
 
-  <!-- EVENTS -->
-  <section class="events">
-    <h2>Upcoming Events</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Live Jazz Night</h3>
-        <p>Wednesdays • 8pm–11pm</p>
+  <!-- EVENTS as timeline -->
+  <section id="events" class="bar-events">
+    <h2>Upcoming Nights</h2>
+    <ul class="timeline">
+      <li>
+        <span class="time">Wed • 8–11pm</span>
+        <div class="event-info">
+          <h3>Live Jazz</h3>
+          <p>Smooth tunes to set the mood.</p>
+        </div>
+      </li>
+      <li>
+        <span class="time">Fri • 9pm–12am</span>
+        <div class="event-info">
+          <h3>Karaoke Fridays</h3>
+          <p>Sing your heart out on our neon stage.</p>
+        </div>
+      </li>
+      <li>
+        <span class="time">1st Mon • 7pm</span>
+        <div class="event-info">
+          <h3>Mixology Class</h3>
+          <p>Learn to craft our signature cocktails.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- DRINK MENU as icon grid -->
+  <section id="menu" class="bar-menu">
+    <h2>Signature Drinks</h2>
+    <div class="drink-grid">
+      <div class="drink-card">
+        <img src="bar2.jpg" alt="Old Fashioned" />
+        <h4>Old Fashioned</h4>
       </div>
-      <div class="card">
-        <h3>Karaoke Fridays</h3>
-        <p>Fridays • 9pm–12am</p>
+      <div class="drink-card">
+        <img src="bar3.jpg" alt="Blue Lagoon" />
+        <h4>Blue Lagoon</h4>
       </div>
-      <div class="card">
-        <h3>Mixology Class</h3>
-        <p>1st Monday of the month • 7pm</p>
+      <div class="drink-card">
+        <img src="bar4.jpg" alt="Negroni" />
+        <h4>Negroni</h4>
+      </div>
+      <div class="drink-card">
+        <img src="bar1.jpg" alt="Craft Beer" />
+        <h4>Craft Beer</h4>
       </div>
     </div>
   </section>
 
-  <!-- MENU -->
-  <section class="menu">
-    <h2>Drink &amp; Snack Menu</h2>
-    <div class="menu-panels">
-      <div class="panel">
-        <h4>Cocktails</h4>
-        <ul>
-          <li>Old Fashioned — $12</li>
-          <li>Blue Lagoon — $14</li>
-          <li>Negroni — $13</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <h4>Bar Bites</h4>
-        <ul>
-          <li>Truffle Fries — $8</li>
-          <li>Sliders — $10</li>
-          <li>Cheese Board — $15</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="gallery">
+  <!-- IMAGE MOSAIC -->
+  <section class="bar-gallery">
     <h2>Gallery</h2>
-    <div class="grid">
-      <img src="bar1.jpg" alt="">
-      <img src="bar2.jpg" alt="">
-      <img src="bar3.jpg" alt="">
-      <img src="bar4.jpg" alt="">
+    <div class="mosaic">
+      <div class="m1"><img src="bar1.jpg" alt=""></div>
+      <div class="m2"><img src="bar2.jpg" alt=""></div>
+      <div class="m3"><img src="bar3.jpg" alt=""></div>
+      <div class="m4"><img src="bar4.jpg" alt=""></div>
+      <div class="m5"><img src="bar1.jpg" alt=""></div>
+      <div class="m6"><img src="bar3.jpg" alt=""></div>
     </div>
   </section>
 
-  <!-- CONTACT FORM -->
-  <section class="contact">
-    <h2>Get in Touch</h2>
+  <!-- CONTACT -->
+  <section class="bar-contact">
+    <h2>Book an Event</h2>
     <form action="mailto:thom.creates.websites@gmail.com" method="post" enctype="text/plain">
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="email" name="email" placeholder="Your email" required>
-      <textarea name="message" rows="4" placeholder="Tell me what you need…" required></textarea>
-      <button type="submit">Send Message</button>
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="email" name="email" placeholder="Your email" required />
+      <textarea name="message" rows="4" placeholder="Message..." required></textarea>
+      <button type="submit">Send Inquiry</button>
     </form>
   </section>
 </body>
