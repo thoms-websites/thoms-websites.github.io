@@ -1,74 +1,59 @@
-/* Corner Café revamped with outdoors.jpg hero */
+/* Corner Café — full-page background & scrolling gallery */
 
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
   color: #333;
+  /* full-page background */
+  background: url('outdoors.jpg') center/cover fixed no-repeat;
 }
 
-/* HERO SECTION */
+/* HERO */
 .hero {
-  position: relative;
-  height: 360px;
-  background: url('outdoors.jpg') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   text-align: center;
+  padding: 80px 20px;
+  background: rgba(255, 255, 255, 0.8);
 }
-.hero .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-}
-.hero-text {
-  position: relative;
-  z-index: 1;
-  color: #fff;
-}
-.hero-text h1 {
+.hero h1 {
   font-family: 'Pacifico', cursive;
   font-size: 3rem;
   margin: 0;
+  color: #5a3e1b;
 }
-.hero-text p {
+.hero p {
   font-size: 1.2rem;
   margin: 10px 0 0;
+  color: #5a3e1b;
 }
 
-/* SECTION DIVIDER */
-section + section {
-  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%);
+/* SCROLLING GALLERY */
+.scrolling-gallery {
+  position: relative;
+  overflow: hidden;
+  height: 140px;
+  margin: 20px 0;
 }
-
-/* GALLERY */
-.gallery {
-  padding: 40px 20px;
-  background: #fff8f0;
-  text-align: center;
-}
-.gallery h2 {
-  margin-bottom: 20px;
-}
-.grid {
+.scroll-content {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+  width: calc(8 * 160px); /* number_of_images * image_width */
+  animation: scrollLeft 20s linear infinite;
 }
-.grid img {
-  width: calc(50% - 15px);
-  border-radius: 8px;
-  transition: transform 0.3s;
+.scroll-content img {
+  width: 140px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 6px;
 }
-.grid img:hover {
-  transform: scale(1.05);
+@keyframes scrollLeft {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-1 * (4 * 160px))); }
 }
 
 /* MENU */
 .menu {
   padding: 40px 20px;
-  background: #fdf4eb;
+  background: rgba(255, 255, 255, 0.9);
   text-align: center;
 }
 .menu h2 {
@@ -104,7 +89,7 @@ section + section {
   gap: 30px;
   justify-content: center;
   padding: 40px 20px;
-  background: #fff8f0;
+  background: rgba(255, 255, 255, 0.9);
 }
 .info > div {
   flex: 1 1 200px;
