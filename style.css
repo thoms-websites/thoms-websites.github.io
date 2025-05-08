@@ -1,26 +1,38 @@
-/* General */
-body {
+/* Background animation */
+body, html {
   margin: 0;
+  padding: 0;
   font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(135deg, #f5f7fa, #dfe9f3);
-  color: #333;
+  height: 100%;
+  overflow-x: hidden;
 }
 
-/* Hero Section */
+.gradient-bg {
+  background: linear-gradient(270deg, #89f7fe, #66a6ff, #fcb69f, #ff9472);
+  background-size: 800% 800%;
+  animation: gradientShift 20s ease infinite;
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Hero */
 .hero {
   padding: 60px 20px;
   text-align: center;
 }
 .intro-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
   max-width: 800px;
   margin: auto;
   padding: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 .intro-card img {
   width: 140px;
@@ -41,7 +53,7 @@ body {
   line-height: 1.6;
 }
 
-/* Demo Section */
+/* Demos */
 .demo-section {
   padding: 40px 20px;
   text-align: center;
@@ -80,4 +92,42 @@ body {
 .demo-card p {
   font-size: 0.95rem;
   line-height: 1.4;
+}
+
+/* Contact Form */
+.contact-section {
+  padding: 60px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+.contact-section h2 {
+  font-size: 1.6rem;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 20px;
+}
+form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+form input,
+form textarea {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+form button {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+form button:hover {
+  background: #555;
 }
