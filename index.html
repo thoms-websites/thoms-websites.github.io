@@ -8,32 +8,44 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="hero">
-    <div class="intro-card">
-      <img src="prof-photo.jpeg" alt="Thom’s Photo" />
-      <div class="bio-text">
-        <h1>Hi, I’m Thom</h1>
-        <p>I create beautiful, responsive websites for cafés, bars, and restaurants. Take a look at my demo sites below — I’d love to build something great for your venue.</p>
+  <div class="gradient-bg">
+    <div class="hero">
+      <div class="intro-card">
+        <img src="prof-photo.jpeg" alt="Thom’s Photo" />
+        <div class="bio-text">
+          <h1>Hi, I’m Thom</h1>
+          <p>I build fast, stylish websites for cafés, bars, and restaurants. Check out the demos below — then let’s make one for your place.</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <section class="demo-section">
-    <h2>Demo Websites</h2>
-    <div class="demo-grid">
-      <a class="demo-card" href="blue-hour-bar/index.html">
-        <h3>The Blue Hour Bar</h3>
-        <p>Elegant, moody design with events and drinks menus.</p>
-      </a>
-      <a class="demo-card" href="corner-cafe/index.html">
-        <h3>The Corner Café</h3>
-        <p>Bright and welcoming design with menus and hours.</p>
-      </a>
-      <a class="demo-card" href="maison-locale/index.html">
-        <h3>Maison Locale</h3>
-        <p>Modern restaurant site with reservations and specials.</p>
-      </a>
-    </div>
-  </section>
+    <section class="demo-section">
+      <h2>Demo Websites</h2>
+      <div class="demo-grid">
+        <a class="demo-card" href="blue-hour-bar/index.html">
+          <h3>The Blue Hour Bar</h3>
+          <p>Moody, elegant site with drink menus and events.</p>
+        </a>
+        <a class="demo-card" href="corner-cafe/index.html">
+          <h3>The Corner Café</h3>
+          <p>Bright and welcoming with menus and open hours.</p>
+        </a>
+        <a class="demo-card" href="maison-locale/index.html">
+          <h3>Maison Locale</h3>
+          <p>Modern dining experience with specials and bookings.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <h2>Let’s Chat</h2>
+      <form action="https://formspree.io/f/xoqgzegg" method="POST">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+        <textarea name="message" rows="5" placeholder="Tell me about your venue..." required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </div>
 </body>
 </html>
