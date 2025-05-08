@@ -1,30 +1,60 @@
-<!-- Blue Hour Bar: blue-hour-bar/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Blue Hour Bar</title>
-  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bar">
-  <header class="demo-header">
+<body>
+  <header id="hero">
     <h1>The Blue Hour Bar</h1>
-    <p>Elegant and moody, perfect for evening drinks and events.</p>
   </header>
-  <div class="container">
-    <div class="placeholder">Hero Image</div>
-    <section>
-      <h2>About</h2>
-      <p>Step into the Blue Hour Bar, where twilight meets taste. Enjoy our curated cocktails and live jazz nights every Friday.</p>
-    </section>
-    <section>
-      <h2>Events</h2>
-      <ul>
-        <li>Live Jazz: Every Friday, 8pm–11pm</li>
-        <li>Wine Tasting: 2nd Saturday Monthly</li>
-      </ul>
-    </section>
-  </div>
+
+  <section id="gallery">
+    <h2>Photo Gallery</h2>
+    <div class="gallery">
+      <img src="bar1.jpg" alt="Bar Interior">
+      <img src="bar2.jpg" alt="Cocktails on Bar">
+      <img src="bar3.jpg" alt="Live Music Night">
+    </div>
+  </section>
+
+  <section id="events">
+    <h2>Events</h2>
+    <ul>
+      <li>Live Jazz Night – Every Wednesday at 8 PM</li>
+      <li>Karaoke Fridays – Every Friday at 9 PM</li>
+      <li>Mixology Class – Monthly on the first Monday</li>
+    </ul>
+  </section>
+
+  <section id="menu">
+    <h2>Menu</h2>
+    <ul>
+      <li>Classic Old Fashioned – $12</li>
+      <li>Blue Lagoon Martini – $14</li>
+      <li>Signature Craft Burger – $16</li>
+      <li>Truffle Parmesan Fries – $8</li>
+    </ul>
+  </section>
+
+  <section id="hours">
+    <h2>Opening Hours</h2>
+    <p>Mon–Thu: 5pm – 12am</p>
+    <p>Fri–Sat: 5pm – 2am</p>
+    <p>Sun: 6pm – 12am</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form action="mailto:thom.creates.websites@gmail.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 </body>
 </html>
