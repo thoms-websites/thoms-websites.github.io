@@ -1,0 +1,75 @@
+/* style.css for Maison Locale */
+body {
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  background: #fafafa;
+  color: #333;
+}
+header#hero {
+  background: url('rest-hero.jpg') no-repeat center/cover;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+header#hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3em;
+  margin: 0;
+}
+header#hero p {
+  font-size: 1.2em;
+  margin: 5px 0 0;
+}
+.specials {
+  display: flex;
+}
+.special {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 200px;
+}
+.special h3 {
+  background: rgba(0,0,0,0.5);
+  margin: 0;
+  padding: 10px;
+}
+.special p {
+  background: rgba(0,0,0,0.5);
+  padding: 8px 10px;
+  margin: 5px 0 0;
+}
+#hours-contact {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+.hours, .contact {
+  flex: 1 1 40%;
+  background: #fff;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+h2 {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
+}
+.contact a {
+  color: #3498db;
+  text-decoration: none;
+}
+.contact a:hover {
+  text-decoration: underline;
+}
