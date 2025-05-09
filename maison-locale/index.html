@@ -4,68 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maison Locale</title>
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-inner">
-      <h1>Maison Locale</h1>
-      <p>Where Elegance Meets Flavor</p>
-      <a href="#specials" class="btn-reserve">Explore Specials</a>
-    </div>
+  <!-- STICKY NAV -->
+  <header class="main-nav">
+    <div class="logo">Maison Locale</div>
+    <ul class="menu">
+      <li class="dropdown">
+        <a href="#menu">Menu ▾</a>
+        <ul class="submenu">
+          <li><a href="#entrées">Entrées</a></li>
+          <li><a href="#mains">Mains</a></li>
+          <li><a href="#desserts">Desserts</a></li>
+        </ul>
+      </li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reserve">Reservations</a></li>
+    </ul>
   </header>
 
-  <!-- SPECIALS -->
-  <section id="specials" class="specials">
-    <h2>Chef’s Signature Specials</h2>
-    <div class="special-cards">
-      <div class="special-card" style="background-image:url('seared-salmon.jpg')">
-        <div class="card-content">
-          <h3>Seared Salmon</h3>
-          <p>$22</p>
-        </div>
+  <!-- HERO PARALLAX -->
+  <section class="parallax-hero" id="home"></section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about section">
+    <div class="about-text">
+      <h2>About Us</h2>
+      <p>At Maison Locale we blend tradition and innovation...</p>
+    </div>
+    <div class="about-img">
+      <img src="chef.jpg" alt="Chef Portrait">
+      <p class="caption">Meet our chef, Jean Dupont</p>
+    </div>
+  </section>
+
+  <!-- SPECIALS CAROUSEL -->
+  <section id="specials" class="section specials">
+    <h2>Chef’s Specials</h2>
+    <div class="special-carousel">
+      <div class="slide" style="background-image:url('seared-salmon.jpg')">
+        <div class="slide-info"><h3>Seared Salmon</h3><p>$22</p></div>
       </div>
-      <div class="special-card" style="background-image:url('steak.jpg')">
-        <div class="card-content">
-          <h3>Ribeye Steak</h3>
-          <p>$30</p>
-        </div>
+      <div class="slide" style="background-image:url('steak.jpg')">
+        <div class="slide-info"><h3>Ribeye Steak</h3><p>$30</p></div>
       </div>
-      <div class="special-card" style="background-image:url('choc-lava.jpg')">
-        <div class="card-content">
-          <h3>Chocolate Lava Cake</h3>
-          <p>$8</p>
-        </div>
+      <div class="slide" style="background-image:url('choc-lava.jpg')">
+        <div class="slide-info"><h3>Chocolate Lava Cake</h3><p>$8</p></div>
       </div>
     </div>
   </section>
 
-  <!-- RESERVATIONS -->
-  <section class="reserve">
-    <h2>Reserve Your Table</h2>
-    <p>Experience fine dining in an intimate setting.</p>
-    <a href="mailto:reservations@maisonlocale.example" class="btn-reserve-alt">Book Now</a>
-  </section>
-
-  <!-- HOURS & CONTACT -->
-  <section class="info">
-    <div class="info-block hours">
-      <h2>Opening Hours</h2>
-      <ul>
-        <li>Tue–Sun: 5pm – 11pm</li>
-        <li>Closed on Mondays</li>
-      </ul>
-    </div>
-    <div class="info-block contact">
-      <h2>Contact Us</h2>
-      <p>Phone: <a href="tel:+5551234567">(555) 123-4567</a></p>
-      <p>Email: <a href="mailto:info@maisonlocale.example">info@maisonlocale.example</a></p>
-    </div>
+  <!-- RESERVE -->
+  <section id="reserve" class="section reserve">
+    <h2>Reservations</h2>
+    <p>Book via email or phone</p>
+    <a href="mailto:reservations@maisonlocale.example" class="btn">Book Now</a>
   </section>
 </body>
 </html>
