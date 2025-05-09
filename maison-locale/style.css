@@ -1,64 +1,189 @@
-/* Maison Locale styles */
-body {
-  margin: 0; font-family: 'Lato', sans-serif; color: #333;
+/* ===== Base ===== */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  color: #f5f5f5;
 }
-/* Parallax hero */
+
+/* Accent color */
+:root {
+  --gold: #d4af37;
+  --dark-bg: #111;
+}
+
+/* ===== HERO ===== */
 .hero {
-  height: 280px;
-  background: url('rest-hero.jpg') center/cover fixed no-repeat;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  position: relative;
+  height: 80vh;
+  background: url('rest-hero.jpg') center/cover no-repeat fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
-.hero h1 {
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 20px;
+}
+.hero-inner h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 3rem; margin: 0;
+  font-size: 3.5rem;
+  margin: 0 0 0.5rem;
+  color: var(--gold);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
 }
-.hero p {
-  font-size: 1.2rem; margin: 10px 0 0;
+.hero-inner p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+.btn-reserve {
+  display: inline-block;
+  background: var(--gold);
+  color: #111;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-reserve:hover {
+  background: #b3942e;
+  transform: translateY(-3px);
 }
 
-/* Specials */
+/* ===== SPECIALS ===== */
 .specials {
-  padding: 40px 20px; text-align: center;
-  background: #fafafa;
+  background: var(--dark-bg);
+  padding: 60px 20px;
+  text-align: center;
 }
-.specials h2 { margin-bottom: 30px; font-family: 'Playfair Display', serif; }
-.cards {
-  display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+.specials h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--gold);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
 }
-.card {
-  position: relative; width: 260px; height: 180px;
-  background-size: cover; background-position: center; border-radius: 12px;
-  overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: transform .3s;
+.special-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
-.card:hover { transform: translateY(-6px) scale(1.02); }
-.card .info {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 15px; background: rgba(0,0,0,0.5); color: #fff;
+.special-card {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
-.card h3 { margin: 0; }
-.card p { margin: 5px 0 0; }
+.special-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+.special-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.7);
+}
+.card-content {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  color: #f5f5f5;
+}
+.card-content h3 {
+  margin: 0 0 5px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+}
+.card-content p {
+  margin: 0;
+  font-size: 1rem;
+}
 
-/* Reservations */
+/* ===== RESERVATIONS ===== */
 .reserve {
-  padding: 40px 20px; text-align: center; background: #fff;
+  background: #222;
+  padding: 60px 20px;
+  text-align: center;
 }
-.reserve h2 { margin-bottom: 20px; font-family: 'Playfair Display', serif; }
-.reserve-button {
-  display: inline-block; padding: 12px 24px; background: #b22222; color: #fff;
-  text-decoration: none; border-radius: 6px; font-weight: bold;
-  transition: background .2s;
+.reserve h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--gold);
 }
-.reserve-button:hover { background: #8b1a1a; }
+.reserve p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #ccc;
+}
+.btn-reserve-alt {
+  display: inline-block;
+  background: var(--gold);
+  color: #111;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-reserve-alt:hover {
+  background: #b3942e;
+  transform: translateY(-3px);
+}
 
-/* Info */
+/* ===== INFO ===== */
 .info {
-  display: flex; flex-wrap: wrap; gap: 30px;
-  justify-content: center; padding: 40px 20px; background: #fafafa;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  background: var(--dark-bg);
+  padding: 60px 20px;
 }
 .info > div {
-  flex: 1 1 200px; text-align: center;
+  flex: 1 1 250px;
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  text-align: center;
 }
-.hours h2,
-.contact h2 { margin-bottom: 10px; }
+.info h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #ddd;
+}
+.info ul li {
+  margin: 8px 0;
+}
+.info a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: bold;
+}
+.info a:hover {
+  text-decoration: underline;
+}
