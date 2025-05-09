@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <!-- OFF-CANVAS NAV TOGGLE -->
+<body class="bar-body">
+  <!-- OFF-CANVAS NAV -->
   <button class="nav-toggle">&#9776;</button>
   <nav class="offcanvas">
     <ul>
@@ -19,9 +19,9 @@
     </ul>
   </nav>
 
-  <!-- HERO WITH VIDEO -->
+  <!-- HERO WITH VIDEO + POSTER -->
   <section id="home" class="video-hero">
-    <video src="bar-live.mp4" autoplay muted loop></video>
+    <video poster="bar-poster.jpg" src="bar-live.mp4" autoplay muted loop></video>
     <div class="overlay"></div>
     <div class="hero-text">
       <h1>The Blue Hour Bar</h1>
@@ -39,22 +39,23 @@
     </div>
   </section>
 
-  <!-- DRINKS SECTION -->
+  <!-- DRINKS FILTERABLE GRID -->
   <section id="drinks" class="section drinks">
     <h2>Our Drinks</h2>
     <div class="drink-filters">
-      <button>All</button><button>Cocktails</button><button>Beer</button><button>Wine</button>
+      <button data-filter="all">All</button>
+      <button data-filter="cocktail">Cocktails</button>
+      <button data-filter="beer">Beer</button>
+      <button data-filter="wine">Wine</button>
     </div>
     <div class="drink-grid">
-      <div class="card"><img src="old-fashioned.jpg" alt=""><h4>Old Fashioned</h4></div>
-      <div class="card"><img src="blue-lagoon.jpg" alt=""><h4>Blue Lagoon</h4></div>
-      <div class="card"><img src="negroni.jpg" alt=""><h4>Negroni</h4></div>
-      <div class="card"><img src="craft-beer.jpg" alt=""><h4>Craft Beer</h4></div>
+      <div class="card" data-type="cocktail"><img src="old-fashioned.jpg" alt=""><h4>Old Fashioned</h4></div>
+      <div class="card" data-type="cocktail"><img src="blue-lagoon.jpg" alt=""><h4>Blue Lagoon</h4></div>
+      <div class="card" data-type="cocktail"><img src="negroni.jpg" alt=""><h4>Negroni</h4></div>
+      <div class="card" data-type="beer"><img src="craft-beer.jpg" alt=""><h4>Craft Beer</h4></div>
     </div>
-    <!-- Menu PDF link -->
-    <div class="menu-link">
-      <a href="menu.pdf" target="_blank" rel="noopener">View Full Menu (PDF)</a>
-    </div>
+    <!-- Floating PDF button -->
+    <a href="menu.pdf" target="_blank" rel="noopener" class="pdf-btn">View Menu (PDF)</a>
   </section>
 
   <!-- BOOK FORM -->
@@ -68,10 +69,20 @@
     </form>
   </section>
 
+  <!-- Filter JS & Nav Toggle -->
   <script>
-    // Off-canvas nav toggle
     document.querySelector('.nav-toggle').onclick = () =>
       document.querySelector('.offcanvas').classList.toggle('open');
+
+    // Drink filter
+    document.querySelectorAll('.drink-filters button').forEach(btn => {
+      btn.onclick = () => {
+        const type = btn.dataset.filter;
+        document.querySelectorAll('.drink-grid .card').forEach(card => {
+          card.style.display = (type === 'all' || card.dataset.type === type) ? 'block' : 'none';
+        });
+      };
+    });
   </script>
 </body>
 </html>
