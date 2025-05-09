@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Corner Café — Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="logo">Corner Café</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- MENU PAGE -->
+  <section class="section menu">
+    <h2>Our Menu</h2>
+    <p>
+      <a href="menu.pdf" target="_blank" rel="noopener">Download Full Menu (PDF)</a>
+    </p>
+    <div class="tabs">
+      <button data-tab="coffee" class="active">Coffee</button>
+      <button data-tab="pastries">Pastries</button>
+      <button data-tab="savory">Savory</button>
+    </div>
+
+    <div id="coffee" class="tab-content active">
+      <ul>
+        <li>Espresso – $3</li>
+        <li>Latte – $4</li>
+        <li>Cappuccino – $4.50</li>
+        <li>Americano – $3.50</li>
+      </ul>
+    </div>
+
+    <div id="pastries" class="tab-content">
+      <ul>
+        <li>Blueberry Muffin – $3</li>
+        <li>Croissant – $2.50</li>
+        <li>Chocolate Cake – $4</li>
+        <li>Banana Bread – $3.50</li>
+      </ul>
+    </div>
+
+    <div id="savory" class="tab-content">
+      <ul>
+        <li>Avocado Toast – $6</li>
+        <li>Ham &amp; Cheese Sandwich – $7</li>
+        <li>Quiche – $5</li>
+        <li>Panini – $6.50</li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    // Tabs JS
+    document.querySelectorAll('.tabs button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tabs button, .tab-content').forEach(el => el.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
