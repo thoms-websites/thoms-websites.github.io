@@ -91,9 +91,14 @@ body, html {
   position: absolute; inset: 0;
   background: rgba(0,0,0,0.35);
 }
+/* ===== SPECIALS: center text in cards ===== */
 .card-content {
-  position: absolute; bottom: 12px; left: 12px;
-  color: #fff;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  text-align: center;             /* center h3 & p */
 }
 .card-content h3 {
   margin: 0; font-family: 'Dancing Script', cursive;
