@@ -1,189 +1,53 @@
-/* ===== Base ===== */
-body, html {
-  margin: 0; padding: 0;
-  font-family: 'Lato', sans-serif;
-  background: #faf8f5;
-  color: #333;
+/* Base */
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Lato',sans-serif; color:#333; }
+
+/* Sticky Nav */
+.main-nav {
+  position:sticky; top:0; display:flex; justify-content:space-between; align-items:center;
+  background:#fff; padding:1rem 2rem; box-shadow:0 2px 6px rgba(0,0,0,0.1); z-index:10;
+}
+.main-nav .logo { font-family:'Dancing Script',cursive; font-size:1.6rem; color:#d4af37;}
+.menu { list-style:none; display:flex; gap:1.5rem; }
+.menu a { text-decoration:none; color:#333; font-weight:600; position:relative;}
+.dropdown:hover .submenu { display:block; }
+.submenu {
+  display:none; position:absolute; top:110%; left:0; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  list-style:none; padding:0.5rem 0;
+}
+.submenu li a { display:block; padding:0.5rem 1rem; white-space:nowrap; }
+
+/* Parallax Hero */
+.parallax-hero {
+  height:60vh; background:url('interior.jpg') center/cover fixed;
 }
 
-/* Accent colors */
-:root {
-  --gold: #d4af37;
-  --panel-bg: rgba(255,255,255,0.6);
-  --text-dark: #222;
-}
+/* About */
+.section { padding:4rem 2rem; }
+.about { display:flex; flex-wrap:wrap; gap:2rem; align-items:center; }
+.about-text { flex:1 1 300px; }
+.about-img { flex:1 1 300px; text-align:center; }
+.about-img img { width:100%; border-radius:8px; }
+.caption { font-style:italic; margin-top:0.5rem; }
 
-/* ===== HERO ===== */
-.hero {
-  position: relative;
-  height: 75vh;
-  background: url('interior.jpg') center/cover no-repeat fixed;
-  display: flex; align-items: center; justify-content: center;
+/* Specials Carousel */
+.specials { background:#faf8f5; text-align:center; }
+.specials h2 { font-family:'Dancing Script',cursive; font-size:2.5rem; color:#d4af37; margin-bottom:2rem; }
+.special-carousel { display:flex; overflow-x:auto; gap:1rem; padding-bottom:1rem; }
+.special-carousel .slide {
+  min-width:300px; height:200px; background-size:cover; background-position:center;
+  border-radius:8px; position:relative; flex-shrink:0;
 }
-.hero-overlay {
-  position: absolute; inset: 0;
-  background: rgba(255,255,255,0.3);
+.slide-info {
+  position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.4);
+  color:#fff; padding:0.75rem; border-bottom-left-radius:8px; border-bottom-right-radius:8px;
 }
-.hero-inner {
-  position: relative; z-index: 1;
-  text-align: center;
-  background: var(--panel-bg);
-  padding: 40px 30px;
-  border: 1px solid var(--gold);
-  border-radius: 10px;
-  max-width: 650px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-.hero-inner h1 {
-  margin: 0 0 10px;
-  font-family: 'Dancing Script', cursive;
-  font-size: 3.8rem;
-  color: var(--gold);
-}
-.hero-inner p {
-  font-size: 1.2rem;
-  margin: 0 0 20px;
-  color: var(--text-dark);
-}
-.btn-reserve {
-  background: var(--gold);
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background 0.3s, transform 0.3s;
-}
-.btn-reserve:hover {
-  background: #b3942e;
-  transform: translateY(-2px);
-}
+.slide-info h3 { margin:0; }
+.slide-info p { margin:5px 0 0; }
 
-/* ===== SPECIALS ===== */
-.specials {
-  background: #fff;
-  padding: 60px 20px;
-  text-align: center;
-}
-.specials h2 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 2.8rem;
-  color: var(--gold);
-  margin-bottom: 40px;
-}
-.special-cards {
-  display: flex; flex-wrap: wrap; gap: 20px;
-  justify-content: center;
-}
-.special-card {
-  position: relative;
-  width: 280px; height: 180px;
-  background-size: cover; background-position: center;
-  border-radius: 8px; overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-.special-card:hover {
-  transform: translateY(-4px) scale(1.03);
-}
-.special-card::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: rgba(0,0,0,0.35);
-}
-/* ===== SPECIALS: center text in cards ===== */
-.card-content {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  text-align: center;             /* center h3 & p */
-  color: #fff;  
-}
-.card-content h3 {
-  margin: 0; font-family: 'Dancing Script', cursive;
-  font-size: 1.4rem;
-}
-.card-content p {
-  margin: 0; font-size: 1rem;
-  color: #fff; 
-}
-
-/* ===== RESERVATIONS ===== */
-.reserve {
-  background: var(--panel-bg);
-  padding: 60px 20px;
-  text-align: center;
-  border-top: 1px solid var(--gold);
-  border-bottom: 1px solid var(--gold);
-}
-.reserve h2 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 2.5rem;
-  color: var(--gold);
-  margin-bottom: 10px;
-}
-.reserve p {
-  margin-bottom: 20px;
-  color: var(--text-dark);
-}
-.btn-reserve-alt {
-  background: var(--gold);
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background 0.3s, transform 0.3s;
-}
-.btn-reserve-alt:hover {
-  background: #b3942e;
-  transform: translateY(-2px);
-}
-
-/* ===== INFO ===== */
-/* ===== INFO: equalize and center hours & contact ===== */
-.info {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;        /* center both blocks */
-  align-items: stretch;           /* make children equal height */
-  background: #fff;
-  padding: 60px 20px;
-}
-
-.info-block {
-  flex: 0 1 300px;                /* fixed basis for equal width */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;        /* vertical centering inside */
-  text-align: center;             /* center text */
-  background: var(--panel-bg);
-  border: 1px solid var(--gold);
-  border-radius: 8px;
-  padding: 25px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-.info-block h2 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.8rem;
-  color: var(--gold);
-  margin-bottom: 10px;
-}
-.info-block ul {
-  list-style: none; padding: 0; margin: 0 0 10px;
-  color: var(--text-dark);
-}
-.info-block ul li {
-  margin: 6px 0;
-}
-.info-block p, .info-block a {
-  color: var(--text-dark);
-  text-decoration: none;
-  font-weight: bold;
-}
-.info-block a:hover {
-  text-decoration: underline;
-}
+/* Reserve */
+.reserve { text-align:center; }
+.reserve h2 { font-family:'Dancing Script',cursive; font-size:2rem; color:#d4af37; margin-bottom:1rem; }
+.btn { display:inline-block; padding:0.75rem 1.5rem; background:#d4af37; color:#fff; text-decoration:none;
+  border-radius:4px; font-weight:bold; transition:background .3s; }
+.btn:hover { background:#b3942e; }
