@@ -9,8 +9,8 @@ body, html {
 /* Accent colors */
 :root {
   --gold: #d4af37;
-  --white-panel: #ffffffee;
-  --dark-text: #333;
+  --panel-bg: rgba(255,255,255,0.6);
+  --text-dark: #222;
 }
 
 /* ===== HERO ===== */
@@ -22,29 +22,28 @@ body, html {
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255,255,255,0.3);
 }
 .hero-inner {
   position: relative; z-index: 1;
   text-align: center;
-  background: var(--white-panel);
-  padding: 30px 20px;
-  border: 2px solid var(--gold);
-  border-radius: 8px;
-  max-width: 700px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  background: var(--panel-bg);
+  padding: 40px 30px;
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  max-width: 650px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 .hero-inner h1 {
   margin: 0 0 10px;
   font-family: 'Dancing Script', cursive;
-  font-size: 3.5rem;
+  font-size: 3.8rem;
   color: var(--gold);
-  line-height: 1;
 }
 .hero-inner p {
   font-size: 1.2rem;
-  margin: 0 0 1.5rem;
-  color: var(--dark-text);
+  margin: 0 0 20px;
+  color: var(--text-dark);
 }
 .btn-reserve {
   background: var(--gold);
@@ -57,7 +56,7 @@ body, html {
 }
 .btn-reserve:hover {
   background: #b3942e;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 /* ===== SPECIALS ===== */
@@ -78,27 +77,27 @@ body, html {
 }
 .special-card {
   position: relative;
-  width: 300px; height: 200px;
+  width: 280px; height: 180px;
   background-size: cover; background-position: center;
-  border-radius: 6px; overflow: hidden;
+  border-radius: 8px; overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s;
 }
 .special-card:hover {
-  transform: translateY(-6px) scale(1.02);
+  transform: translateY(-4px) scale(1.03);
 }
 .special-card::before {
   content: '';
   position: absolute; inset: 0;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.35);
 }
 .card-content {
-  position: absolute; bottom: 15px; left: 15px;
+  position: absolute; bottom: 12px; left: 12px;
   color: #fff;
 }
 .card-content h3 {
   margin: 0; font-family: 'Dancing Script', cursive;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 .card-content p {
   margin: 0; font-size: 1rem;
@@ -106,11 +105,11 @@ body, html {
 
 /* ===== RESERVATIONS ===== */
 .reserve {
-  background: var(--white-panel);
+  background: var(--panel-bg);
   padding: 60px 20px;
   text-align: center;
-  border-top: 2px solid var(--gold);
-  border-bottom: 2px solid var(--gold);
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
 }
 .reserve h2 {
   font-family: 'Dancing Script', cursive;
@@ -120,8 +119,7 @@ body, html {
 }
 .reserve p {
   margin-bottom: 20px;
-  color: var(--dark-text);
-  font-size: 1rem;
+  color: var(--text-dark);
 }
 .btn-reserve-alt {
   background: var(--gold);
@@ -134,7 +132,7 @@ body, html {
 }
 .btn-reserve-alt:hover {
   background: #b3942e;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 /* ===== INFO ===== */
@@ -143,10 +141,10 @@ body, html {
   justify-content: center; background: #fff; padding: 60px 20px;
 }
 .info-block {
-  background: var(--white-panel);
+  background: var(--panel-bg);
   border: 1px solid var(--gold);
-  border-radius: 6px;
-  padding: 20px;
+  border-radius: 8px;
+  padding: 25px;
   max-width: 300px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -158,14 +156,14 @@ body, html {
   margin-bottom: 10px;
 }
 .info-block ul {
-  list-style: none; padding: 0; margin: 0;
-  color: var(--dark-text);
+  list-style: none; padding: 0; margin: 0 0 10px;
+  color: var(--text-dark);
 }
 .info-block ul li {
   margin: 6px 0;
 }
 .info-block p, .info-block a {
-  color: var(--dark-text);
+  color: var(--text-dark);
   text-decoration: none;
   font-weight: bold;
 }
