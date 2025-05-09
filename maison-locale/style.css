@@ -16,7 +16,7 @@ body, html {
 .hero {
   position: relative;
   height: 80vh;
-  background: url('rest-hero.jpg') center/cover no-repeat fixed;
+  background: url('interior.jpg') center/cover no-repeat fixed;
   display: flex;
   align-items: center;
   justify-content: center;
