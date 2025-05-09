@@ -8,62 +8,58 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- HERO with semi-transparent panel -->
-  <header class="hero">
-    <div class="text-panel hero-panel">
-      <h1>The Corner Café</h1>
-      <p>A cozy haven for coffee &amp; pastries</p>
-    </div>
-  </header>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="logo">Corner Café</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-  <!-- Scrolling Gallery (no panel) -->
-  <section class="scrolling-gallery">
-    <div class="scroll-window">
-      <div class="scroll-content">
-        <img src="pouring-coffee.jpg" alt="">
-        <img src="interior.jpg" alt="">
-        <img src="table-outside.jpg" alt="">
-        <img src="poured-coffee.jpg" alt="">
-        <img src="coffee-pouring.jpg" alt="">
-        <!-- repeats -->
-        <img src="pouring-coffee.jpg" alt="">
-        <img src="interior.jpg" alt="">
-        <img src="table-outside.jpg" alt="">
-        <img src="poured-coffee.jpg" alt="">
-        <img src="coffee-pouring.jpg" alt="">
-      </div>
+  <!-- HOME -->
+  <section id="home" class="hero">
+    <div class="hero-inner">
+      <h1>Welcome to Corner Café</h1>
+      <p>Your cozy spot for coffee &amp; pastries.</p>
+      <a href="#menu" class="btn">See Our Menu</a>
     </div>
   </section>
 
-  <!-- MENU with semi-transparent panel -->
-  <section class="menu">
-    <div class="text-panel menu-panel">
-      <h2>Menu Highlights</h2>
-      <div class="cards">
-        <div class="card"><h3>Espresso</h3><p>$3</p></div>
-        <div class="card"><h3>Latte</h3><p>$4</p></div>
-        <div class="card"><h3>Blueberry Muffin</h3><p>$3</p></div>
-        <div class="card"><h3>Avocado Toast</h3><p>$6</p></div>
-        <div class="card"><h3>Matcha Latte</h3><p>$5</p></div>
-        <div class="card"><h3>Chai Tea</h3><p>$4</p></div>
-      </div>
+  <!-- MENU -->
+  <section id="menu" class="section menu">
+    <h2>Our Menu</h2>
+    <p><a href="menu.pdf" download>Download our menu (PDF)</a></p>
+    <div class="menu-grid">
+      <div><h3>Coffee</h3><img src="cafe1.jpg" alt=""><p>Espresso, Latte &amp; more</p></div>
+      <div><h3>Pastries</h3><img src="cafe2.jpg" alt=""><p>Freshly baked daily</p></div>
+      <div><h3>Savory</h3><img src="cafe3.jpg" alt=""><p>Sandwiches &amp; Toasts</p></div>
     </div>
   </section>
 
-  <!-- INFO with semi-transparent panel -->
-  <section class="info">
-    <div class="text-panel info-panel">
-      <div class="hours">
-        <h2>Opening Hours</h2>
-        <p>Mon–Fri: 7am–7pm</p>
-        <p>Sat–Sun: 8am–5pm</p>
-      </div>
-      <div class="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:info@cornercafe.example">info@cornercafe.example</a></p>
-        <p>Phone: (123) 456-7890</p>
-      </div>
+  <!-- GALLERY -->
+  <section id="gallery" class="section gallery">
+    <h2>Photo Gallery</h2>
+    <div class="gallery-grid">
+      <img src="cafe1.jpg"><img src="cafe2.jpg"><img src="cafe3.jpg"><img src="cafe4.jpg">
     </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p><strong>Hours:</strong> Mon–Fri 7am–7pm<br>Sat–Sun 8am–5pm</p>
+      <p><strong>Email:</strong> info@cornercafe.example<br><strong>Phone:</strong> (123) 456-7890</p>
+    </div>
+    <form action="https://formspree.io/forms/mldbnvdn/" method="POST" class="contact-form">
+      <input name="name" type="text" placeholder="Your name" required>
+      <input name="email" type="email" placeholder="Your email" required>
+      <textarea name="message" rows="4" placeholder="Message..." required></textarea>
+      <button type="submit">Send</button>
+    </form>
   </section>
 </body>
 </html>
