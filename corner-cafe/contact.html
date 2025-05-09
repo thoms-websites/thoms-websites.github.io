@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Corner Café — Contact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="logo">Corner Café</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- CONTACT PAGE -->
+  <section class="section contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p><strong>Hours:</strong><br>
+         Mon–Fri: 7 am–7 pm<br>
+         Sat–Sun: 8 am–5 pm
+      </p>
+      <p><strong>Email:</strong><br>
+         <a href="mailto:info@cornercafe.example">info@cornercafe.example</a><br>
+         <strong>Phone:</strong><br>
+         (123) 456-7890
+      </p>
+    </div>
+
+    <!-- Google Map Embed -->
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!2m..."
+        width="100%" height="300" frameborder="0" style="border:0;"
+        allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+
+    <!-- Contact Form -->
+    <form action="https://formspree.io/forms/mldbnvdn/" method="POST" class="contact-form">
+      <input name="name"    type="text"     placeholder="Your name"  required>
+      <input name="email"   type="email"    placeholder="Your email" required>
+      <textarea name="message" rows="4"    placeholder="Message..." required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+</body>
+</html>
