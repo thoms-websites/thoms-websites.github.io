@@ -2,52 +2,71 @@
 * { box-sizing:border-box; margin:0; padding:0; }
 body { font-family:'Lato',sans-serif; color:#333; }
 
-/* Sticky Nav */
+/* Sticky Nav + Mega-Menu */
 .main-nav {
   position:sticky; top:0; display:flex; justify-content:space-between; align-items:center;
   background:#fff; padding:1rem 2rem; box-shadow:0 2px 6px rgba(0,0,0,0.1); z-index:10;
 }
-.main-nav .logo { font-family:'Dancing Script',cursive; font-size:1.6rem; color:#d4af37;}
-.menu { list-style:none; display:flex; gap:1.5rem; }
-.menu a { text-decoration:none; color:#333; font-weight:600; position:relative;}
-.dropdown:hover .submenu { display:block; }
-.submenu {
-  display:none; position:absolute; top:110%; left:0; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.1);
-  list-style:none; padding:0.5rem 0;
+.main-nav .logo { font-family:'Dancing Script',cursive; font-size:1.6rem; color:#d4af37; }
+.menu { list-style:none; display:flex; gap:1.5rem; position:relative; }
+.menu > li { position:relative; }
+.menu a { text-decoration:none; color:#333; font-weight:600; padding:.5rem; }
+.dropdown:hover .mega-menu { display:grid; }
+.mega-menu {
+  display:none; position:absolute; top:100%; left:0; background:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1); grid-template-columns:repeat(4,1fr);
+  padding:1rem; gap:1rem; z-index:10;
 }
-.submenu li a { display:block; padding:0.5rem 1rem; white-space:nowrap; }
+.mega-menu h4 { margin-bottom:.5rem; font-weight:700; color:#d4af37; }
+.mega-menu ul { list-style:none; padding:0; }
+.mega-menu li { margin:.25rem 0; }
 
 /* Parallax Hero */
 .parallax-hero {
   height:60vh; background:url('interior.jpg') center/cover fixed;
 }
 
-/* About */
+/* Sections */
 .section { padding:4rem 2rem; }
+h2 { font-family:'Dancing Script',cursive; font-size:2.5rem; color:#d4af37; text-align:center; margin-bottom:2rem; }
+
+/* About */
 .about { display:flex; flex-wrap:wrap; gap:2rem; align-items:center; }
 .about-text { flex:1 1 300px; }
 .about-img { flex:1 1 300px; text-align:center; }
 .about-img img { width:100%; border-radius:8px; }
-.caption { font-style:italic; margin-top:0.5rem; }
+.caption { font-style:italic; margin-top:.5rem; }
 
 /* Specials Carousel */
-.specials { background:#faf8f5; text-align:center; }
-.specials h2 { font-family:'Dancing Script',cursive; font-size:2.5rem; color:#d4af37; margin-bottom:2rem; }
-.special-carousel { display:flex; overflow-x:auto; gap:1rem; padding-bottom:1rem; }
-.special-carousel .slide {
+.special-carousel {
+  display:flex; overflow-x:auto; gap:1rem; padding-bottom:1rem;
+}
+.slide {
   min-width:300px; height:200px; background-size:cover; background-position:center;
-  border-radius:8px; position:relative; flex-shrink:0;
+  border-radius:8px; position:relative; flex-shrink:0; box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 .slide-info {
-  position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.4);
-  color:#fff; padding:0.75rem; border-bottom-left-radius:8px; border-bottom-right-radius:8px;
+  position:absolute; bottom:0; left:0; right:0;
+  background:rgba(0,0,0,0.4); color:#fff; padding:.75rem;
+  border-bottom-left-radius:8px; border-bottom-right-radius:8px;
 }
-.slide-info h3 { margin:0; }
-.slide-info p { margin:5px 0 0; }
 
 /* Reserve */
 .reserve { text-align:center; }
-.reserve h2 { font-family:'Dancing Script',cursive; font-size:2rem; color:#d4af37; margin-bottom:1rem; }
-.btn { display:inline-block; padding:0.75rem 1.5rem; background:#d4af37; color:#fff; text-decoration:none;
-  border-radius:4px; font-weight:bold; transition:background .3s; }
-.btn:hover { background:#b3942e; }
+.reserve iframe { border:none; border-radius:8px; }
+
+/* Footer */
+.footer {
+  background:#222; color:#fff; padding:2rem; display:flex;
+  flex-wrap:wrap; justify-content:space-between; gap:2rem;
+}
+.newsletter h4 { margin-bottom:.5rem; color:#d4af37; }
+.newsletter form { display:flex; gap:.5rem; }
+.newsletter input {
+  padding:.5rem; border:none; border-radius:4px; flex:1;
+}
+.newsletter button {
+  padding:.5rem 1rem; background:#d4af37; border:none; border-radius:4px;
+  cursor:pointer; font-weight:bold;
+}
+.socials a { font-size:1.5rem; margin-right:1rem; color:#fff; text-decoration:none; }
