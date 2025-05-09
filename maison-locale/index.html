@@ -4,49 +4,67 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maison Locale</title>
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- PARALLAX HERO -->
+  <!-- HERO -->
   <header class="hero">
-    <h1>Maison Locale</h1>
-    <p>Elegant &amp; Modern Dining</p>
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <h1>Maison Locale</h1>
+      <p>Where Elegance Meets Flavor</p>
+      <a href="#specials" class="btn-reserve">Explore Specials</a>
+    </div>
   </header>
 
   <!-- SPECIALS -->
-  <section class="specials">
-    <h2>Chef’s Specials</h2>
-    <div class="cards">
-      <div class="card" style="background-image:url('seared-salmon.jpg')">
-        <div class="info"><h3>Seared Salmon</h3><p>$22</p></div>
+  <section id="specials" class="specials">
+    <h2>Chef’s Signature Specials</h2>
+    <div class="special-cards">
+      <div class="special-card" style="background-image:url('rest1.jpg')">
+        <div class="card-content">
+          <h3>Seared Salmon</h3>
+          <p>$22</p>
+        </div>
       </div>
-      <div class="card" style="background-image:url('steak.jpg')">
-        <div class="info"><h3>Ribeye Steak</h3><p>$30</p></div>
+      <div class="special-card" style="background-image:url('rest2.jpg')">
+        <div class="card-content">
+          <h3>Ribeye Steak</h3>
+          <p>$30</p>
+        </div>
       </div>
-      <div class="card" style="background-image:url('choc-lava.jpg')">
-        <div class="info"><h3>Chocolate Lava Cake</h3><p>$8</p></div>
+      <div class="special-card" style="background-image:url('rest3.jpg')">
+        <div class="card-content">
+          <h3>Chocolate Lava Cake</h3>
+          <p>$8</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- RESERVATIONS -->
   <section class="reserve">
-    <h2>Reserve a Table</h2>
-    <a href="mailto:reservations@maisonlocale.example" class="reserve-button">Book Now</a>
+    <h2>Reserve Your Table</h2>
+    <p>Experience fine dining in an intimate setting.</p>
+    <a href="mailto:reservations@maisonlocale.example" class="btn-reserve-alt">Book Now</a>
   </section>
 
   <!-- HOURS & CONTACT -->
   <section class="info">
     <div class="hours">
       <h2>Opening Hours</h2>
-      <p>Tue–Sun: 5pm–11pm</p>
-      <p>Closed Mondays</p>
+      <ul>
+        <li>Tue–Sun: 5pm – 11pm</li>
+        <li>Closed on Mondays</li>
+      </ul>
     </div>
     <div class="contact">
-      <h2>Contact</h2>
-      <p>Phone: (555) 123-4567</p>
-      <p>Email: info@maisonlocale.example</p>
+      <h2>Contact Us</h2>
+      <p>Phone: <a href="tel:+5551234567">(555) 123-4567</a></p>
+      <p>Email: <a href="mailto:info@maisonlocale.example">info@maisonlocale.example</a></p>
     </div>
   </section>
 </body>
