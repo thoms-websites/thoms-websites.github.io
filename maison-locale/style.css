@@ -141,17 +141,27 @@ body, html {
 }
 
 /* ===== INFO ===== */
+/* ===== INFO: equalize and center hours & contact ===== */
 .info {
-  display: flex; flex-wrap: wrap; gap: 40px;
-  justify-content: center; background: #fff; padding: 60px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;        /* center both blocks */
+  align-items: stretch;           /* make children equal height */
+  background: #fff;
+  padding: 60px 20px;
 }
+
 .info-block {
+  flex: 0 1 300px;                /* fixed basis for equal width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;        /* vertical centering inside */
+  text-align: center;             /* center text */
   background: var(--panel-bg);
   border: 1px solid var(--gold);
   border-radius: 8px;
   padding: 25px;
-  max-width: 300px;
-  text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .info-block h2 {
