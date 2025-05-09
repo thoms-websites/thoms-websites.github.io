@@ -1,58 +1,58 @@
 /* ===== Base ===== */
 body, html {
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
   font-family: 'Lato', sans-serif;
-  color: #f5f5f5;
+  background: #faf8f5;
+  color: #333;
 }
 
-/* Accent color */
+/* Accent colors */
 :root {
   --gold: #d4af37;
-  --dark-bg: #111;
+  --white-panel: #ffffffee;
+  --dark-text: #333;
 }
 
 /* ===== HERO ===== */
 .hero {
   position: relative;
-  height: 80vh;
+  height: 75vh;
   background: url('interior.jpg') center/cover no-repeat fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  display: flex; align-items: center; justify-content: center;
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(255, 255, 255, 0.5);
 }
 .hero-inner {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
-  padding: 0 20px;
+  position: relative; z-index: 1;
+  text-align: center;
+  background: var(--white-panel);
+  padding: 30px 20px;
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  max-width: 700px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 .hero-inner h1 {
-  font-family: 'Playfair Display', serif;
+  margin: 0 0 10px;
+  font-family: 'Dancing Script', cursive;
   font-size: 3.5rem;
-  margin: 0 0 0.5rem;
   color: var(--gold);
-  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+  line-height: 1;
 }
 .hero-inner p {
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
-  color: #fff;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  font-size: 1.2rem;
+  margin: 0 0 1.5rem;
+  color: var(--dark-text);
 }
 .btn-reserve {
-  display: inline-block;
   background: var(--gold);
-  color: #111;
+  color: #fff;
   padding: 0.75rem 1.5rem;
-  font-weight: bold;
   text-decoration: none;
   border-radius: 4px;
+  font-weight: bold;
   transition: background 0.3s, transform 0.3s;
 }
 .btn-reserve:hover {
@@ -62,85 +62,74 @@ body, html {
 
 /* ===== SPECIALS ===== */
 .specials {
-  background: var(--dark-bg);
+  background: #fff;
   padding: 60px 20px;
   text-align: center;
 }
 .specials h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  margin-bottom: 40px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.8rem;
   color: var(--gold);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+  margin-bottom: 40px;
 }
 .special-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  display: flex; flex-wrap: wrap; gap: 20px;
   justify-content: center;
 }
 .special-card {
   position: relative;
-  width: 300px;
-  height: 200px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+  width: 300px; height: 200px;
+  background-size: cover; background-position: center;
+  border-radius: 6px; overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.special-card:hover {
+  transform: translateY(-6px) scale(1.02);
 }
 .special-card::before {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-}
-.special-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 30px rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.3);
 }
 .card-content {
-  position: absolute;
-  bottom: 15px;
-  left: 20px;
-  color: #f5f5f5;
+  position: absolute; bottom: 15px; left: 15px;
+  color: #fff;
 }
 .card-content h3 {
-  margin: 0 0 5px;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
+  margin: 0; font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
 }
 .card-content p {
-  margin: 0;
-  font-size: 1rem;
+  margin: 0; font-size: 1rem;
 }
 
 /* ===== RESERVATIONS ===== */
 .reserve {
-  background: #222;
+  background: var(--white-panel);
   padding: 60px 20px;
   text-align: center;
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
 }
 .reserve h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  margin-bottom: 10px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
   color: var(--gold);
+  margin-bottom: 10px;
 }
 .reserve p {
   margin-bottom: 20px;
+  color: var(--dark-text);
   font-size: 1rem;
-  color: #ccc;
 }
 .btn-reserve-alt {
-  display: inline-block;
   background: var(--gold);
-  color: #111;
+  color: #fff;
   padding: 0.75rem 1.5rem;
-  font-weight: bold;
   text-decoration: none;
   border-radius: 4px;
+  font-weight: bold;
   transition: background 0.3s, transform 0.3s;
 }
 .btn-reserve-alt:hover {
@@ -150,40 +139,36 @@ body, html {
 
 /* ===== INFO ===== */
 .info {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-  background: var(--dark-bg);
-  padding: 60px 20px;
+  display: flex; flex-wrap: wrap; gap: 40px;
+  justify-content: center; background: #fff; padding: 60px 20px;
 }
-.info > div {
-  flex: 1 1 250px;
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
+.info-block {
+  background: var(--white-panel);
+  border: 1px solid var(--gold);
   border-radius: 6px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  padding: 20px;
+  max-width: 300px;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
-.info h2 {
-  font-family: 'Playfair Display', serif;
+.info-block h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
   color: var(--gold);
   margin-bottom: 10px;
 }
-.info ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  color: #ddd;
+.info-block ul {
+  list-style: none; padding: 0; margin: 0;
+  color: var(--dark-text);
 }
-.info ul li {
-  margin: 8px 0;
+.info-block ul li {
+  margin: 6px 0;
 }
-.info a {
-  color: var(--gold);
+.info-block p, .info-block a {
+  color: var(--dark-text);
   text-decoration: none;
   font-weight: bold;
 }
-.info a:hover {
+.info-block a:hover {
   text-decoration: underline;
 }
