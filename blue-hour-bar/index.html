@@ -4,94 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Blue Hour Bar</title>
-  <!-- Google Fonts for neon & body text -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bar-body">
-  <!-- HERO with gradient overlay -->
-  <header class="bar-hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
+<body>
+  <!-- OFF-CANVAS NAV TOGGLE -->
+  <button class="nav-toggle">&#9776;</button>
+  <nav class="offcanvas">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#drinks">Drinks</a></li>
+      <li><a href="#book">Book</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO WITH VIDEO -->
+  <section id="home" class="video-hero">
+    <video src="hero.mp4" autoplay muted loop></video>
+    <div class="overlay"></div>
+    <div class="hero-text">
       <h1>The Blue Hour Bar</h1>
       <p>Experience the night in style</p>
-      <a href="#events" class="btn">View Events</a>
     </div>
-  </header>
+  </section>
 
-  <!-- EVENTS as timeline -->
-  <section id="events" class="bar-events">
+  <!-- EVENTS CAROUSEL (static markup placeholder) -->
+  <section id="events" class="section events">
     <h2>Upcoming Nights</h2>
-    <ul class="timeline">
-      <li>
-        <span class="time">Wed • 8–11pm</span>
-        <div class="event-info">
-          <h3>Live Jazz</h3>
-          <p>Smooth tunes to set the mood.</p>
-        </div>
-      </li>
-      <li>
-        <span class="time">Fri • 9pm–12am</span>
-        <div class="event-info">
-          <h3>Karaoke Fridays</h3>
-          <p>Sing your heart out on our neon stage.</p>
-        </div>
-      </li>
-      <li>
-        <span class="time">1st Mon • 7pm</span>
-        <div class="event-info">
-          <h3>Mixology Class</h3>
-          <p>Learn to craft our signature cocktails.</p>
-        </div>
-      </li>
-    </ul>
+    <div class="carousel">
+      <div class="slide">Live Jazz • Wed 8–11pm</div>
+      <div class="slide">Karaoke Fridays • 9pm–12am</div>
+      <div class="slide">Mixology Class • 1st Mon 7pm</div>
+    </div>
   </section>
 
-  <!-- DRINK MENU as icon grid -->
-  <section id="menu" class="bar-menu">
-    <h2>Signature Drinks</h2>
+  <!-- DRINKS FILTER GRID -->
+  <section id="drinks" class="section drinks">
+    <h2>Our Drinks</h2>
+    <div class="drink-filters">
+      <button>All</button><button>Cocktails</button><button>Beer</button><button>Wine</button>
+    </div>
     <div class="drink-grid">
-      <div class="drink-card">
-        <img src="old-fashioned.jpg" alt="Old Fashioned" />
-        <h4>Old Fashioned</h4>
-      </div>
-      <div class="drink-card">
-        <img src="blue-lagoon.jpg" alt="Blue Lagoon" />
-        <h4>Blue Lagoon</h4>
-      </div>
-      <div class="drink-card">
-        <img src="negroni.jpg" alt="Negroni" />
-        <h4>Negroni</h4>
-      </div>
-      <div class="drink-card">
-        <img src="craft-beer.jpg" alt="Craft Beer" />
-        <h4>Craft Beer</h4>
-      </div>
+      <div class="card"><img src="bar1.jpg" alt=""><h4>Old Fashioned</h4></div>
+      <div class="card"><img src="bar2.jpg" alt=""><h4>Blue Lagoon</h4></div>
+      <div class="card"><img src="bar3.jpg" alt=""><h4>Negroni</h4></div>
+      <div class="card"><img src="bar4.jpg" alt=""><h4>Craft Beer</h4></div>
     </div>
   </section>
 
-  <!-- IMAGE MOSAIC -->
-  <section class="bar-gallery">
-    <h2>Gallery</h2>
-    <div class="mosaic">
-      <div class="m1"><img src="bar-stools.jpg" alt=""></div>
-      <div class="m2"><img src="cheers.jpg" alt=""></div>
-      <div class="m3"><img src="drinks-behind-bar.jpg" alt=""></div>
-      <div class="m4"><img src="exterior.jpg" alt=""></div>
-      <div class="m5"><img src="pool.jpg" alt=""></div>
-      <div class="m6"><img src="taps.jpg" alt=""></div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="bar-contact">
-    <h2>Book an Event</h2>
+  <!-- BOOK FORM -->
+  <section id="book" class="section book">
+    <h2>Book Your Night</h2>
     <form action="mailto:thom.creates.websites@gmail.com" method="post" enctype="text/plain">
-      <input type="text" name="name" placeholder="Your name" required />
-      <input type="email" name="email" placeholder="Your email" required />
-      <textarea name="message" rows="4" placeholder="Message..." required></textarea>
+      <input name="name" type="text" placeholder="Your name" required>
+      <input name="email" type="email" placeholder="Your email" required>
+      <textarea name="message" rows="4" placeholder="Your request..." required></textarea>
       <button type="submit">Send Inquiry</button>
     </form>
   </section>
+
+  <script>
+    // Off-canvas nav toggle
+    document.querySelector('.nav-toggle').onclick = () =>
+      document.querySelector('.offcanvas').classList.toggle('open');
+  </script>
 </body>
 </html>
