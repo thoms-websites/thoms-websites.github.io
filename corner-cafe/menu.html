@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Corner Café — Menu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Corner Café — Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- NAV -->
@@ -22,50 +22,40 @@
   <!-- MENU PAGE -->
   <section class="section menu">
     <h2>Our Menu</h2>
-    <p><a href="menu.pdf" target="_blank" rel="noopener">Download Full Menu (PDF)</a></p>
-    <div class="tabs">
-      <button data-tab="coffee" class="active">Coffee</button>
-      <button data-tab="pastries">Pastries</button>
-      <button data-tab="savory">Savory</button>
-    </div>
+    <p><a href="menu.pdf" target="_blank" rel="noopener" class="btn">Download Full Menu (PDF)</a></p>
 
-    <div id="coffee" class="tab-content active">
-      <ul>
-        <li>Espresso – $3</li>
-        <li>Latte – $4</li>
-        <li>Cappuccino – $4.50</li>
-        <li>Americano – $3.50</li>
-      </ul>
-    </div>
-
-    <div id="pastries" class="tab-content">
-      <ul>
-        <li>Blueberry Muffin – $3</li>
-        <li>Croissant – $2.50</li>
-        <li>Chocolate Cake – $4</li>
-        <li>Banana Bread – $3.50</li>
-      </ul>
-    </div>
-
-    <div id="savory" class="tab-content">
-      <ul>
-        <li>Avocado Toast – $6</li>
-        <li>Ham &amp; Cheese Sandwich – $7</li>
-        <li>Quiche – $5</li>
-        <li>Panini – $6.50</li>
-      </ul>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="latte.jpg" alt="Latte">
+        <h3>Latte</h3>
+        <p>$4</p>
+      </div>
+      <div class="menu-item">
+        <img src="americano.jpg" alt="Americano">
+        <h3>Americano</h3>
+        <p>$3.50</p>
+      </div>
+      <div class="menu-item">
+        <img src="quiche.jpg" alt="Quiche">
+        <h3>Quiche</h3>
+        <p>$5</p>
+      </div>
+      <div class="menu-item">
+        <img src="croissant.jpg" alt="Croissant">
+        <h3>Croissant</h3>
+        <p>$2.50</p>
+      </div>
+      <div class="menu-item">
+        <img src="blueberry-muffin.jpg" alt="Blueberry Muffin">
+        <h3>Blueberry Muffin</h3>
+        <p>$3</p>
+      </div>
+      <div class="menu-item">
+        <img src="avocado-toast.jpg" alt="Avocado Toast">
+        <h3>Avocado Toast</h3>
+        <p>$6</p>
+      </div>
     </div>
   </section>
-
-  <script>
-    document.querySelectorAll('.tabs button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tabs button, .tab-content')
-          .forEach(el => el.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
-      });
-    });
-  </script>
 </body>
 </html>
