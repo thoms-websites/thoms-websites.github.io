@@ -191,7 +191,6 @@ footer .social-icons img {
   width: 24px;
   height: 24px;
   /* ensure the SVGs show up on dark bg */
-  filter: brightness(0) invert(1);
   object-fit: contain;
 }
 
