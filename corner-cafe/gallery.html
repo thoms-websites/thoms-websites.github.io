@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Corner Café — Gallery</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,
+    <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 72 72%22>
+      <text y=%22.9em%22 font-size=%2290%22>👨‍💻</text>
+    </svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- NAV -->
   <nav class="nav">
-    <div class="logo">Corner Café</div>
+    <div class="logo"><a href="index.html">Corner Café</a></div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="menu.html">Menu</a></li>
@@ -19,23 +22,16 @@
     </ul>
   </nav>
 
-  <!-- GALLERY PAGE -->
-  <section class="section gallery">
-    <h2>Photo Gallery</h2>
+  <section class="gallery">
     <div class="gallery-masonry">
-      <div class="masonry-item"><img src="coffee-pouring.jpg"   alt="Coffee Pouring"   loading="lazy" onclick="openLightbox(0)"></div>
-      <div class="masonry-item"><img src="interior.jpg"         alt="Cafe Interior"     loading="lazy" onclick="openLightbox(1)"></div>
-      <div class="masonry-item"><img src="poured-coffee.jpg"    alt="Poured Coffee"     loading="lazy" onclick="openLightbox(2)"></div>
-      <div class="masonry-item"><img src="pouring-coffee.jpg"   alt="Pouring Coffee"    loading="lazy" onclick="openLightbox(3)"></div>
-      <div class="masonry-item"><img src="table-outside.jpg"    alt="Outdoor Table"     loading="lazy" onclick="openLightbox(4)"></div>
-      <div class="masonry-item"><img src="corner1.jpg"   alt="Coffee Pouring"   loading="lazy" onclick="openLightbox(0)"></div>
-      <div class="masonry-item"><img src="corner2.jpg"        alt="Cafe Interior"     loading="lazy" onclick="openLightbox(1)"></div>
-      <div class="masonry-item"><img src="corner3.jpg"    alt="Poured Coffee"     loading="lazy" onclick="openLightbox(2)"></div>
-      <div class="masonry-item"><img src="corner4.jpg"   alt="Pouring Coffee"    loading="lazy" onclick="openLightbox(3)"></div>
-      <div class="masonry-item"><img src="corner5.jpg"    alt="Outdoor Table"     loading="lazy" onclick="openLightbox(4)"></div>
+      <!-- five images -->
+      <div class="masonry-item"><img src="coffee-pouring.jpg" loading="lazy" onclick="openLightbox(0)"></div>
+      <div class="masonry-item"><img src="interior.jpg"         loading="lazy" onclick="openLightbox(1)"></div>
+      <div class="masonry-item"><img src="poured-coffee.jpg"    loading="lazy" onclick="openLightbox(2)"></div>
+      <div class="masonry-item"><img src="pouring-coffee.jpg"   loading="lazy" onclick="openLightbox(3)"></div>
+      <div class="masonry-item"><img src="table-outside.jpg"    loading="lazy" onclick="openLightbox(4)"></div>
     </div>
 
-    <!-- Lightbox -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
       <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
       <button class="lightbox-prev" onclick="prevImage(event)">‹</button>
@@ -44,6 +40,18 @@
     </div>
   </section>
 
+  <footer>
+    <div class="logo">Corner Café</div>
+    <div class="social-icons">
+      <a href="#"><img src="icons/facebook.svg" alt="Facebook" width="24"></a>
+      <a href="#"><img src="icons/instagram.svg" alt="Instagram" width="24"></a>
+    </div>
+    <div>
+      <p>123 Rue de Coin, 75000 Paris</p>
+      <p><a href="mailto:hello@cornercafe.paris">hello@cornercafe.paris</a> · <a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
+    </div>
+  </footer>
+
   <script>
     const images = [
       'coffee-pouring.jpg',
@@ -51,37 +59,16 @@
       'poured-coffee.jpg',
       'pouring-coffee.jpg',
       'table-outside.jpg'
-      'corner1.jpg',
-      'corner2.jpg',
-      'corner3.jpg',
-      'corner4.jpg',
-      'corner5.jpg'
     ];
     let currentIndex = 0;
-
-    function openLightbox(index) {
-      currentIndex = index;
-      const lb = document.getElementById('lightbox');
-      document.getElementById('lightbox-img').src = images[currentIndex];
-      lb.style.display = 'flex';
+    function openLightbox(i) {
+      currentIndex = i;
+      document.getElementById('lightbox-img').src = images[i];
+      document.getElementById('lightbox').style.display = 'flex';
     }
-
-    function closeLightbox(e) {
-      e.stopPropagation();
-      document.getElementById('lightbox').style.display = 'none';
-    }
-
-    function prevImage(e) {
-      e.stopPropagation();
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      document.getElementById('lightbox-img').src = images[currentIndex];
-    }
-
-    function nextImage(e) {
-      e.stopPropagation();
-      currentIndex = (currentIndex + 1) % images.length;
-      document.getElementById('lightbox-img').src = images[currentIndex];
-    }
+    function closeLightbox(e) { e.stopPropagation(); document.getElementById('lightbox').style.display = 'none'; }
+    function prevImage(e) { e.stopPropagation(); openLightbox((currentIndex-1+images.length)%images.length); }
+    function nextImage(e) { e.stopPropagation(); openLightbox((currentIndex+1)%images.length); }
   </script>
 </body>
 </html>
