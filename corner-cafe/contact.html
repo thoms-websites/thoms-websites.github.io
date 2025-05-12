@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Corner Café — Contact</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,
+    <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 72 72%22>
+      <text y=%22.9em%22 font-size=%2290%22>👨‍💻</text>
+    </svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <nav class="nav">
-    <div class="logo">Corner Café</div>
+    <div class="logo"><a href="index.html">Corner Café</a></div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="menu.html">Menu</a></li>
@@ -18,32 +22,35 @@
     </ul>
   </nav>
 
-  <section class="section contact">
-    <h2>Contact Us</h2>
-    <div class="contact-info">
-      <p><strong>Hours:</strong><br>
-         Mon–Fri: 7 am–7 pm<br>
-         Sat–Sun: 8 am–5 pm
-      </p>
-      <p><strong>Email:</strong><br>
-         <a href="mailto:info@cornercafe.example">info@cornercafe.example</a><br>
-         <strong>Phone:</strong><br>
-         (123) 456-7890
+  <section class="section">
+    <div class="contact-info-box">
+      <p><strong>Address:</strong> 123 Rue de Coin, 75000 Paris, France</p>
+      <p><strong>Email:</strong> hello@cornercafe.paris</p>
+      <p><strong>Phone:</strong> +33 1 23 45 67 89</p>
+      <p><strong>Opening Hours:</strong><br>
+        Mon–Fri: 7 am–7 pm<br>
+        Sat–Sun: 8 am–5 pm
       </p>
     </div>
-
-    <p style="text-align:center; margin:2rem 0;">
-      <a href="https://www.google.com/maps?q=48.8566,2.3522" target="_blank" rel="noopener" class="btn">
-        View on Google Maps
-      </a>
-    </p>
 
     <form action="https://formspree.io/forms/mldbnvdn/" method="POST" class="contact-form">
       <input name="name" type="text" placeholder="Your name" required>
       <input name="email" type="email" placeholder="Your email" required>
       <textarea name="message" rows="4" placeholder="Message..." required></textarea>
-      <button type="submit">Send</button>
+      <button type="submit" class="btn">Send</button>
     </form>
   </section>
+
+  <footer>
+    <div class="logo">Corner Café</div>
+    <div class="social-icons">
+      <a href="#"><img src="icons/facebook.svg" alt="Facebook" width="24"></a>
+      <a href="#"><img src="icons/instagram.svg" alt="Instagram" width="24"></a>
+    </div>
+    <div>
+      <p>123 Rue de Coin, 75000 Paris</p>
+      <p><a href="mailto:hello@cornercafe.paris">hello@cornercafe.paris</a> · <a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
+    </div>
+  </footer>
 </body>
 </html>
