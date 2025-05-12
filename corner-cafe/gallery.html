@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Corner Café — Gallery</title>
   <link rel="icon" href="data:image/svg+xml,
-    <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 72 72%22>
-      <text y=%22.9em%22 font-size=%2290%22>👨‍💻</text>
-    </svg>" />
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -24,33 +22,27 @@
 
   <section class="gallery">
     <div class="gallery-masonry">
-      <!-- five images -->
-      <div class="masonry-item"><img src="coffee-pouring.jpg" loading="lazy" onclick="openLightbox(0)"></div>
+      <!-- original five -->
+      <div class="masonry-item"><img src="coffee-pouring.jpg"   loading="lazy" onclick="openLightbox(0)"></div>
       <div class="masonry-item"><img src="interior.jpg"         loading="lazy" onclick="openLightbox(1)"></div>
       <div class="masonry-item"><img src="poured-coffee.jpg"    loading="lazy" onclick="openLightbox(2)"></div>
       <div class="masonry-item"><img src="pouring-coffee.jpg"   loading="lazy" onclick="openLightbox(3)"></div>
       <div class="masonry-item"><img src="table-outside.jpg"    loading="lazy" onclick="openLightbox(4)"></div>
+      <!-- your five -->
+      <div class="masonry-item"><img src="corner1.jpg"          loading="lazy" onclick="openLightbox(5)"></div>
+      <div class="masonry-item"><img src="corner2.jpg"          loading="lazy" onclick="openLightbox(6)"></div>
+      <div class="masonry-item"><img src="corner3.jpg"          loading="lazy" onclick="openLightbox(7)"></div>
+      <div class="masonry-item"><img src="corner4.jpg"          loading="lazy" onclick="openLightbox(8)"></div>
+      <div class="masonry-item"><img src="corner5.jpg"          loading="lazy" onclick="openLightbox(9)"></div>
     </div>
 
     <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
       <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
-      <button class="lightbox-prev" onclick="prevImage(event)">‹</button>
+      <button class="lightbox-prev"  onclick="prevImage(event)">‹</button>
       <img id="lightbox-img" src="" alt="">
-      <button class="lightbox-next" onclick="nextImage(event)">›</button>
+      <button class="lightbox-next"  onclick="nextImage(event)">›</button>
     </div>
   </section>
-
-  <footer>
-    <div class="logo">Corner Café</div>
-    <div class="social-icons">
-      <a href="#"><img src="icons/facebook.svg" alt="Facebook" width="24"></a>
-      <a href="#"><img src="icons/instagram.svg" alt="Instagram" width="24"></a>
-    </div>
-    <div>
-      <p>123 Rue de Coin, 75000 Paris</p>
-      <p><a href="mailto:hello@cornercafe.paris">hello@cornercafe.paris</a> · <a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
-    </div>
-  </footer>
 
   <script>
     const images = [
@@ -58,7 +50,12 @@
       'interior.jpg',
       'poured-coffee.jpg',
       'pouring-coffee.jpg',
-      'table-outside.jpg'
+      'table-outside.jpg',
+      'corner1.jpg',
+      'corner2.jpg',
+      'corner3.jpg',
+      'corner4.jpg',
+      'corner5.jpg'
     ];
     let currentIndex = 0;
     function openLightbox(i) {
@@ -66,9 +63,18 @@
       document.getElementById('lightbox-img').src = images[i];
       document.getElementById('lightbox').style.display = 'flex';
     }
-    function closeLightbox(e) { e.stopPropagation(); document.getElementById('lightbox').style.display = 'none'; }
-    function prevImage(e) { e.stopPropagation(); openLightbox((currentIndex-1+images.length)%images.length); }
-    function nextImage(e) { e.stopPropagation(); openLightbox((currentIndex+1)%images.length); }
+    function closeLightbox(e) {
+      e.stopPropagation();
+      document.getElementById('lightbox').style.display = 'none';
+    }
+    function prevImage(e) {
+      e.stopPropagation();
+      openLightbox((currentIndex - 1 + images.length) % images.length);
+    }
+    function nextImage(e) {
+      e.stopPropagation();
+      openLightbox((currentIndex + 1) % images.length);
+    }
   </script>
 </body>
 </html>
