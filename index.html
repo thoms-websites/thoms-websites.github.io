@@ -1,45 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Corner Café — Home</title>
-  <link rel="icon" href="data:image/svg+xml,
-    <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 72 72%22>
-      <text y=%22.9em%22 font-size=%2290%22>👨‍💻</text>
-    </svg>" />
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thom Creates Websites</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav class="nav">
-    <div class="logo"><a href="index.html">Corner Café</a></div>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="menu.html">Menu</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-
+  <div class="background"></div>
+  <!-- HERO with blob decoration -->
   <section class="hero">
-    <div class="hero-inner">
-      <h1>Step Into <span style="font-style:italic; color:#5c3a1a">Corner Café</span></h1>
-      <p>Where every cup tells a story — artisan coffee, fresh pastries, and the friendliest neighborhood vibes.</p>
-      <a href="menu.html" class="btn">Browse the Menu</a>
+    <div class="blob blob-top"></div>
+    <div class="hero-content">
+      <img src="prof-photo.jpeg" alt="Thom’s Photo" class="hero-photo" />
+      <h1 class="hero-title">Hi, I’m Thom</h1>
+      <p class="hero-subtitle">
+        I build vibrant, responsive websites for cafés, bars &amp; restaurants that stand out—and bring in customers.
+      </p>
+    </div>
+    <div class="blob blob-bottom"></div>
+  </section>
+
+  <main class="content">
+    <section class="hero">
+      <img src="prof-photo.jpeg" alt="Thom’s Photo" />
+      <h1>Thom Creates Websites</h1>
+      <p>I build modern, responsive websites for cafés, bars, and restaurants—designed to impress and bring in customers.</p>
+    </section>
+  <!-- DEMOS with image‐backed cards -->
+  <section class="demos">
+    <h2 class="section-title">Demo Projects</h2>
+    <div class="demo-grid">
+      <a href="blue-hour-bar/index.html" class="demo-card" style="background-image:url('blue-hour-bar/bar1.jpg')">
+        <div class="overlay"></div>
+        <h3>The Blue Hour Bar</h3>
+        <p>Moody, elegant site with event listings &amp; menus</p>
+      </a>
+
+    <section class="demos">
+      <h2>Demo Projects</h2>
+      <div class="demo-links">
+        <a href="blue-hour-bar/index.html" class="demo-button">Blue Hour Bar</a>
+        <a href="corner-cafe/index.html" class="demo-button">Corner Café</a>
+        <a href="maison-locale/index.html" class="demo-button">Maison Locale</a>
+      </div>
+    </section>
+      <a href="corner-cafe/index.html" class="demo-card" style="background-image:url('corner-cafe/cafe1.jpg')">
+        <div class="overlay"></div>
+        <h3>The Corner Café</h3>
+        <p>Bright, cozy layout perfect for coffee lovers</p>
+      </a>
+
+      <a href="maison-locale/index.html" class="demo-card" style="background-image:url('maison-locale/rest1.jpg')">
+        <div class="overlay"></div>
+        <h3>Maison Locale</h3>
+        <p>Modern dining site with specials &amp; reservations</p>
+      </a>
     </div>
   </section>
 
-  <footer>
-    <div class="logo">Corner Café</div>
-    <div class="social-icons">
-      <a href="#"><img src="icons/facebook.svg" alt="Facebook" width="24"></a>
-      <a href="#"><img src="icons/instagram.svg" alt="Instagram" width="24"></a>
-    </div>
-    <div>
-      <p>123 Rue de Coin, 75000 Paris</p>
-      <p><a href="mailto:hello@cornercafe.paris">hello@cornercafe.paris</a> · <a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
-    </div>
-  </footer>
+    <section class="contact">
+      <h2>Contact</h2>
+      <form action="https://formspree.io/forms/mldbnvdn/" method="POST">
+  <!-- CONTACT with angled divider -->
+  <section class="contact">
+    <div class="divider"></div>
+    <h2 class="section-title">Let’s Chat</h2>
+    <form action="https://formspree.io/forms/mldbnvdn/" method="POST">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+        <textarea name="message" rows="5" placeholder="Tell me about your venue..." required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+      </div>
+      <textarea name="message" rows="4" placeholder="Tell me about your venue..." required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 </body>
 </html>
