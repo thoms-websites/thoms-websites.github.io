@@ -6,7 +6,6 @@ body.bar-body {
   font-family: 'Open Sans', sans-serif;
   background: linear-gradient(to bottom, #0a0a0a, #0f111a),
               radial-gradient(rgba(255,255,255,0.02) 1px, transparent 0) 0/40px 40px repeat;
-    radial-gradient(rgba(255,255,255,0.02) 1px, transparent 0) 0/40px 40px repeat;
   color: #eee;
   overflow-x: hidden;
 }
@@ -15,29 +14,35 @@ body.bar-body {
 .nav-toggle {
   position: fixed; top: 20px; left: 20px; z-index: 50;
   background: rgba(0,0,0,0.6); color: #0ff;
+  border: none; padding: .5rem; font-size: 1.5rem;
+  cursor: pointer; border-radius: 4px;
   border: none; padding: .5rem; font-size: 1.5rem; border-radius: 4px;
   cursor: pointer;
 }
 .offcanvas {
   position: fixed; top: 0; left: -250px; width: 250px; height: 100%;
   background: rgba(17,17,17,0.85); backdrop-filter: blur(8px);
+  padding-top: 60px; transition: left .3s; z-index: 40;
   padding-top: 0; transition: left .3s; z-index: 40;
-  padding-top: 4rem; /* increased top padding */
-  transition: left .3s; z-index: 40;
 }
 .offcanvas.open { left: 0; }
-.offcanvas ul { list-style: none; margin-top: 3rem; }
 .offcanvas ul { list-style: none; }
+.offcanvas li { margin: 1.5rem 0; }
+.offcanvas ul { list-style: none; margin-top: 3rem; }
 .offcanvas li { margin: 0; }
 .offcanvas a {
+  color: #0ff; text-decoration: none; padding-left: 1.5rem; display: block;
   display: block;
   padding: 1rem 1.5rem;        /* full-height hover area */
-  padding: 1rem 1.5rem; /* full-height hover */
   color: #0ff;
   text-decoration: none;
 }
 .offcanvas a:hover { background: rgba(0,255,255,0.1); }
 
+/* HERO VIDEO */
+.video-hero {
+  position: relative; height: 75vh; overflow: hidden;
+}
 /* HERO */
 .video-hero { position: relative; height: 75vh; overflow: hidden; }
 .video-hero video {
@@ -56,11 +61,16 @@ body.bar-body {
   color: #0ff;
   font-size: 3rem;
   letter-spacing: 2px;
-  font-size: 3rem; letter-spacing: 2px;
+  text-shadow:
+    0 0 8px #0ff,
+    0 0 16px #008,
+    0 0 24px #0ff;
   text-shadow: 0 0 8px #0ff, 0 0 16px #008;
   animation: flicker 2s infinite;
 }
 @keyframes flicker {
+  0%, 19.9%, 22%, 62.9%, 64%, 100% { opacity:1; }
+  20%, 21%, 63%, 63.5% { opacity:0.4; }
   0%,19.9%,22%,62.9%,64%,100%{opacity:1}
   20%,21%,63%,63.5%{opacity:0.4}
 }
@@ -72,33 +82,33 @@ body.bar-body {
 }
 .tagline {
   font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  color: #0ff;
   font-size: 1.2rem; color: #0ff;
   margin-top: .5rem;
-  font-size: 1.2rem; color: #0ff; margin-top: .5rem;
 }
 
+/* SECTION BASE */
 /* SECTION SPACING & HEADERS */
 .section {
   padding: 4rem 2rem;
   margin-bottom: 2rem;
-  padding: 4rem 2rem; margin-bottom: 2rem;
 }
 .section h2 {
   font-family: 'Orbitron', sans-serif;
   color: #0ff;
   text-align: center;
+  margin-bottom: 1.5rem;
   margin-bottom: 1rem;    /* slightly less gap */
-  color: #0ff; text-align: center;
-  margin-bottom: 1rem; /* reduced gap */
 }
 
 /* EVENTS CAROUSEL */
 .carousel {
+  display: flex; overflow-x: auto; gap: 1rem;
+  padding: 0 1rem;
   display: flex; overflow-x: auto;
   gap: 1rem; padding: 0 1rem;
   scroll-snap-type: x mandatory;
-  display: flex; overflow-x: auto; gap: 1rem;
-  padding: 0 1rem; scroll-snap-type: x mandatory;
   justify-content: center;
 }
 .slide {
@@ -108,11 +118,11 @@ body.bar-body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   scroll-snap-align: start;
   text-align: center;
-  scroll-snap-align: start; text-align: center;
 }
 
 /* DRINK FILTERS */
 .drink-filters {
+  text-align: center; margin-bottom: 1.5rem;
   text-align: center; margin-bottom: 1rem;
 }
 .drink-filters button {
@@ -140,10 +150,14 @@ body.bar-body {
 }
 .menu-item-content {
   padding: 1rem; flex-grow: 1;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
   display: flex; flex-direction: column; justify-content: space-between;
 }
 .menu-item-content h3 {
   margin: 0 0 .5rem;
+  font-family: 'Orbitron', sans-serif;
+  color: #0ff;
   font-family: 'Orbitron', sans-serif; color: #0ff;
 }
 .menu-item-content p {
@@ -160,20 +174,84 @@ body.bar-body {
   transition: background .2s;
 }
 .pdf-btn:hover { background: #0cc; }
-/* ... existing drink-grid, menu-item, etc. ... */
 
+/* BOOK FORM */
+.book-section .book form {
+  max-width: 500px; margin: auto;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.book-section input, .book-section textarea {
+  padding: .75rem; border: none; border-radius: 4px;
+}
+.book-section button {
+  background: #0ff; color: #000;
+  padding: .75rem; border: none; border-radius: 4px;
+  font-weight: bold; cursor: pointer; transition: background .2s;
+}
+.book-section button:hover { background: #0cc; }
+
+/* FOOTER */
+.site-footer {
+  background: #111827; color: #fff;
+  text-align: center; padding: 1rem 2rem;
+}
+.footer-content {
+  display: flex; flex-direction: column;
+  align-items: center; gap: .5rem;
+}
+.footer-content p {
+  margin: 0; font-size: .9rem;
+}
+.social-icons a {
+  color: #0ff; font-size: 1.5rem; margin: 0 .5rem;
+  transition: color .2s;
+}
+.social-icons a:hover { color: #0cc; }
+
+/* --- existing styles above --- */
+
+/* SECTION SPACING */
+.section { padding: 5rem 2rem; margin-bottom: 3rem; }
+
+/* CENTERED HEADERS */
+.section h2 {
+  text-align: center;
+}
+
+/* EVENTS CAROUSEL CENTERING */
+.carousel { justify-content: center; }
+
+/* BOOKING FORM: STACKED FULL-WIDTH INPUTS */
 /* BOOKING FORM */
 .booking-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   max-width: 500px; margin: 0 auto;
   display: flex; flex-direction: column; gap: 1rem;
 }
 .booking-form input,
 .booking-form textarea {
-.booking-form input, .booking-form textarea {
+  width: 100%;
+  display: block;
+  padding: .75rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
   width: 100%; padding: .75rem; border: none; border-radius: 4px;
 }
 .booking-form button {
   width: 100%;
+  padding: .75rem;
+  background: #0ff;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background .2s;
   background: #0ff; color: #000;
   padding: .75rem; border: none; border-radius: 4px;
   font-weight: bold; cursor: pointer; transition: background .2s;
@@ -182,41 +260,48 @@ body.bar-body {
 
 /* STICKY, CENTERED FOOTER */
 .social-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(17,17,17,0.9);
+  padding: 1rem 0;
+  z-index: 100;
   position: fixed; bottom: 0; left: 0;
   width: 100%; background: rgba(17,17,17,0.9);
   padding: 1rem 0; z-index: 100;
 }
 .footer-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
   max-width: 1000px; margin: 0 auto; text-align: center;
 }
+.social-icons {
+  display: inline-flex;
+  gap: 1.5rem;
+  margin-bottom: 0.5rem;
 .footer-inner .social-icons {
   display: inline-flex; gap: 1.5rem; margin-bottom: .5rem;
 }
+.social-icons a {
+  transition: transform 0.3s, color 0.3s;
+}
+.social-icons a svg {
+  display: block;
 .footer-inner .social-icons a {
   color: #0ff; font-size: 1.5rem;
   transition: transform .3s, color .3s;
 }
+.social-icons a:hover svg {
+  transform: scale(1.2);
+  fill: #0cc;
 .footer-inner .social-icons a:hover {
   color: #0cc; transform: scale(1.2);
 }
 .footer-inner p {
-  margin: 0; color: #ccc; font-size: .9rem;
-.footer-inner .social-icons a svg {
-  display: block;
-  vertical-align: middle; /* fix cut-off */
-  transition: transform .3s, fill .3s;
-}
-.footer-inner .social-icons a:hover svg {
-  transform: scale(1.2);
-  fill: #0cc;
-}
-.footer-inner .footer-address {
-  margin: 0.5rem 0 0;
+  margin: 0;
   color: #ccc;
   font-size: 0.9rem;
-}
-.footer-inner p:last-of-type {
-  margin: 0.25rem 0 0;
-  color: #ccc;
-  font-size: 0.75rem;
+  margin: 0; color: #ccc; font-size: .9rem;
 }
