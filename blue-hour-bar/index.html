@@ -6,6 +6,7 @@
   <title>The Blue Hour Bar</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body class="bar-body">
   <!-- OFF-CANVAS NAV -->
@@ -54,7 +55,6 @@
       <div class="card" data-type="cocktail"><img src="negroni.jpg" alt=""><h4>Negroni</h4></div>
       <div class="card" data-type="beer"><img src="craft-beer.jpg" alt=""><h4>Craft Beer</h4></div>
     </div>
-    <!-- Floating PDF button -->
     <a href="menu.pdf" target="_blank" rel="noopener" class="pdf-btn">View Menu (PDF)</a>
   </section>
 
@@ -69,7 +69,17 @@
     </form>
   </section>
 
-  <!-- Filter JS & Nav Toggle -->
+  <!-- STICKY SOCIAL FOOTER -->
+  <footer class="footer">
+    <a href="https://www.instagram.com/thebluehourbar" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.facebook.com/thebluehourbar" target="_blank" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+  </footer>
+
+  <!-- Scripts -->
   <script>
     document.querySelector('.nav-toggle').onclick = () =>
       document.querySelector('.offcanvas').classList.toggle('open');
