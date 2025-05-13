@@ -4,43 +4,66 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Blue Hour Bar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- FAVICON -->
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+
+  <!-- FONTS & ICONS -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- STYLES -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bar-body">
 
-  <!-- Hero Section -->
+  <!-- HERO WITH VIDEO -->
   <div class="video-hero">
     <video autoplay muted loop playsinline>
-      <source src="blue-hour-bar/bar-ambience.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
+      <source src="bar-ambience.mp4" type="video/mp4" />
+      Your browser doesn't support HTML5 video.
     </video>
     <div class="overlay"></div>
     <div class="hero-text">
-      <h1>The Blue Hour Bar</h1>
-      <p>Where twilight meets taste</p>
+      <img src="logo.svg" alt="The Blue Hour Bar logo" class="logo">
+      <p class="tagline">Where twilight meets taste</p>
     </div>
   </div>
 
-  <!-- Drinks Section -->
-  <section class="section drinks">
+  <!-- DRINKS SECTION -->
+  <section id="drinks" class="section drinks">
     <h2>Our Signature Drinks</h2>
     <div class="drink-grid">
-      <div class="card" data-type="cocktail"><img src="margarita.jpg" alt="Margarita"><h4>Margarita</h4></div>
-      <div class="card" data-type="cocktail"><img src="blue-lagoon.jpg" alt="Blue Lagoon"><h4>Blue Lagoon</h4></div>
-      <div class="card" data-type="cocktail"><img src="negroni.jpg" alt="Negroni"><h4>Negroni</h4></div>
-      <div class="card" data-type="beer"><img src="craft-beer.jpg" alt="Craft Beer"><h4>Craft Beer</h4></div>
-      <div class="card" data-type="beer"><img src="ale.jpg" alt="Ale"><h4>Ale</h4></div>
-      <div class="card" data-type="beer"><img src="guinness.jpg" alt="Guinness"><h4>Guinness</h4></div>
-      <div class="card" data-type="wine"><img src="white-wine.jpg" alt="White Wine"><h4>White Wine</h4></div>
-      <div class="card" data-type="wine"><img src="red-wine.jpg" alt="Red Wine"><h4>Red Wine</h4></div>
-      <div class="card" data-type="wine"><img src="prosecco.jpg" alt="Prosecco"><h4>Prosecco</h4></div>
+      <div class="card" data-type="cocktail">
+        <img src="margarita.jpg" alt="Margarita">
+        <h4>Margarita</h4>
+      </div>
+      <div class="card" data-type="beer">
+        <img src="ale.jpg" alt="Ale">
+        <h4>Ale</h4>
+      </div>
+      <div class="card" data-type="beer">
+        <img src="guinness.jpg" alt="Guinness">
+        <h4>Guinness</h4>
+      </div>
+      <div class="card" data-type="wine">
+        <img src="white-wine.jpg" alt="White Wine">
+        <h4>White Wine</h4>
+      </div>
+      <div class="card" data-type="wine">
+        <img src="red-wine.jpg" alt="Red Wine">
+        <h4>Red Wine</h4>
+      </div>
+      <div class="card" data-type="wine">
+        <img src="prosecco.jpg" alt="Prosecco">
+        <h4>Prosecco</h4>
+      </div>
     </div>
+    <a href="menu.pdf" target="_blank" rel="noopener" class="pdf-btn">View Menu (PDF)</a>
   </section>
 
-  <!-- Events Section -->
-  <section class="section events-section">
+  <!-- EVENTS CAROUSEL -->
+  <section id="events" class="section events-section">
     <h2>Events</h2>
     <div class="carousel">
       <div class="slide">Live Jazz • Wed 8–11pm</div>
@@ -49,19 +72,24 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- BOOK FORM -->
+  <section id="book" class="section book">
+    <h2>Book Your Night</h2>
+    <form action="mailto:thom.creates.websites@gmail.com" method="post" enctype="text/plain">
+      <input name="name" type="text" placeholder="Your name" required>
+      <input name="email" type="email" placeholder="Your email" required>
+      <textarea name="message" rows="4" placeholder="Your request..." required></textarea>
+      <button type="submit">Send Inquiry</button>
+    </form>
+  </section>
+
+  <!-- STICKY SOCIAL FOOTER -->
   <footer class="social-footer">
-    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
-      <svg width="24" height="24" fill="#0ff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07..." />
-        <path d="M12 5.838a6.162 6.162 0 1 0 0 12.324..." />
-        <circle cx="18.406" cy="5.594" r="1.44"/>
-      </svg>
+    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
     </a>
-    <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
-      <svg width="24" height="24" fill="#0ff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M22.675 0h-21.35C.6 0 0 .6..." />
-      </svg>
+    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
     </a>
   </footer>
 
