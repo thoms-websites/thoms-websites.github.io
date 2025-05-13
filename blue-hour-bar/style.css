@@ -2,11 +2,64 @@
 
 body.bar-body {
   font-family: 'Open Sans', sans-serif;
-  background: linear-gradient(to bottom right, #000814, #001F3F);
+  background: linear-gradient(to bottom, #0a0a0a, #0f111a);
   color: #eee;
   overflow-x: hidden;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 0);
+  background-size: 40px 40px;
+  padding-bottom: 60px; /* space for sticky footer */
+}
+/* Drink Cards */
+.drink-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 2rem 0;
 }
 
+.card {
+  background: #111;
+  border: 1px solid #0ff;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 160px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card h4 {
+  margin: 0.5rem 0;
+}
+/* Scrollable Events */
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel .slide {
+  flex: 0 0 auto;
+  min-width: 200px;
+  background: #111;
+  padding: 1rem;
+  border: 1px solid #0ff;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  scroll-snap-align: start;
+  white-space: nowrap;
+}
 /* Off-Canvas Nav */
 .nav-toggle {
   position: fixed;
@@ -195,4 +248,24 @@ body.bar-body {
 }
 .footer .social-icons a:hover {
   color: #0cc;
+}
+/* Sticky Social Footer */
+.social-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(17, 17, 17, 0.9);
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+  z-index: 100;
+}
+
+.social-footer a {
+  margin: 0 1rem;
+  transition: transform 0.3s;
+}
+
+.social-footer a:hover {
+  transform: scale(1.2);
 }
