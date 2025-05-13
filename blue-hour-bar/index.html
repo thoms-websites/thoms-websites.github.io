@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Blue Hour Bar</title>
 
-  <!-- Favicon -->
-  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-  
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -27,7 +25,7 @@
     </ul>
   </nav>
 
-  <!-- HERO WITH VIDEO -->
+  <!-- HERO WITH VIDEO & NEON LOGO -->
   <section id="home" class="video-hero">
     <video autoplay muted loop playsinline>
       <source src="bar-ambience.mp4" type="video/mp4">
@@ -35,23 +33,23 @@
     </video>
     <div class="overlay"></div>
     <div class="hero-text">
-      <img src="logo.svg" alt="The Blue Hour Bar logo" class="logo" />
+      <h1 class="logo-text">THE BLUE HOUR BAR</h1>
       <p class="tagline">Where twilight meets taste</p>
     </div>
   </section>
 
-  <!-- EVENTS SECTION (now above Drinks) -->
+  <!-- EVENTS SECTION -->
   <section id="events" class="section events-section">
     <h2>Events</h2>
     <div class="carousel">
-      <div class="slide">Live Jazz • Wed 8–11pm</div>
-      <div class="slide">Karaoke Fridays • 9pm–12am</div>
-      <div class="slide">Mixology Class • 1st Mon 7pm</div>
+      <div class="slide">Live Jazz • Wed 8–11 pm</div>
+      <div class="slide">Karaoke Fridays • 9 pm–12 am</div>
+      <div class="slide">Mixology Class • 1st Mon 7 pm</div>
     </div>
   </section>
 
   <!-- DRINKS SECTION -->
-  <section id="drinks" class="section drinks">
+  <section id="drinks" class="section drinks-section">
     <h2>Our Drinks</h2>
     <div class="drink-filters">
       <button data-filter="all">All</button>
@@ -61,75 +59,75 @@
     </div>
     <div class="drink-grid">
       <!-- Cocktails -->
-      <div class="card" data-type="cocktail">
+      <div class="menu-item" data-type="cocktail">
         <img src="margarita.jpg" alt="Margarita">
-        <div class="card-content">
-          <h4>Margarita</h4>
+        <div class="menu-item-content">
+          <h3>Margarita</h3>
           <p>Tequila, triple sec, lime</p>
         </div>
       </div>
-      <div class="card" data-type="cocktail">
+      <div class="menu-item" data-type="cocktail">
         <img src="blue-lagoon.jpg" alt="Blue Lagoon">
-        <div class="card-content">
-          <h4>Blue Lagoon</h4>
+        <div class="menu-item-content">
+          <h3>Blue Lagoon</h3>
           <p>Vodka, blue curaçao, lemonade</p>
         </div>
       </div>
-      <div class="card" data-type="cocktail">
+      <div class="menu-item" data-type="cocktail">
         <img src="negroni.jpg" alt="Negroni">
-        <div class="card-content">
-          <h4>Negroni</h4>
+        <div class="menu-item-content">
+          <h3>Negroni</h3>
           <p>Campari, gin, sweet vermouth</p>
         </div>
       </div>
-      <div class="card" data-type="cocktail">
+      <div class="menu-item" data-type="cocktail">
         <img src="old-fashioned.jpg" alt="Old Fashioned">
-        <div class="card-content">
-          <h4>Old Fashioned</h4>
+        <div class="menu-item-content">
+          <h3>Old Fashioned</h3>
           <p>Bourbon, sugar, bitters</p>
         </div>
       </div>
       <!-- Beers -->
-      <div class="card" data-type="beer">
+      <div class="menu-item" data-type="beer">
         <img src="craft-beer.jpg" alt="Craft Beer">
-        <div class="card-content">
-          <h4>Craft Beer</h4>
+        <div class="menu-item-content">
+          <h3>Craft Beer</h3>
           <p>Local brewery special</p>
         </div>
       </div>
-      <div class="card" data-type="beer">
+      <div class="menu-item" data-type="beer">
         <img src="ale.jpg" alt="Ale">
-        <div class="card-content">
-          <h4>Ale</h4>
+        <div class="menu-item-content">
+          <h3>Ale</h3>
           <p>Rich amber ale</p>
         </div>
       </div>
-      <div class="card" data-type="beer">
+      <div class="menu-item" data-type="beer">
         <img src="guinness.jpg" alt="Guinness">
-        <div class="card-content">
-          <h4>Guinness</h4>
+        <div class="menu-item-content">
+          <h3>Guinness</h3>
           <p>Classic stout</p>
         </div>
       </div>
       <!-- Wines -->
-      <div class="card" data-type="wine">
+      <div class="menu-item" data-type="wine">
         <img src="white-wine.jpg" alt="White Wine">
-        <div class="card-content">
-          <h4>White Wine</h4>
+        <div class="menu-item-content">
+          <h3>White Wine</h3>
           <p>Crisp chardonnay</p>
         </div>
       </div>
-      <div class="card" data-type="wine">
+      <div class="menu-item" data-type="wine">
         <img src="red-wine.jpg" alt="Red Wine">
-        <div class="card-content">
-          <h4>Red Wine</h4>
+        <div class="menu-item-content">
+          <h3>Red Wine</h3>
           <p>Full-bodied merlot</p>
         </div>
       </div>
-      <div class="card" data-type="wine">
+      <div class="menu-item" data-type="wine">
         <img src="prosecco.jpg" alt="Prosecco">
-        <div class="card-content">
-          <h4>Prosecco</h4>
+        <div class="menu-item-content">
+          <h3>Prosecco</h3>
           <p>Light sparkling</p>
         </div>
       </div>
@@ -138,7 +136,7 @@
   </section>
 
   <!-- BOOK FORM -->
-  <section id="book" class="section book">
+  <section id="book" class="section book-section">
     <h2>Book Your Night</h2>
     <form action="mailto:thom.creates.websites@gmail.com" method="post" enctype="text/plain">
       <input name="name" type="text" placeholder="Your name" required>
@@ -148,14 +146,18 @@
     </form>
   </section>
 
-  <!-- STICKY SOCIAL FOOTER -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-content">
-      <p>&copy; 2025 The Blue Hour Bar</p>
       <div class="social-icons">
-        <a href="https://instagram.com" target="_blank"><img src="instagram.svg" alt="Instagram"></a>
-        <a href="https://facebook.com" target="_blank"><img src="facebook.svg" alt="Facebook"></a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
       </div>
+      <p>&copy; 2025 The Blue Hour Bar</p>
     </div>
   </footer>
 
@@ -167,8 +169,8 @@
     document.querySelectorAll('.drink-filters button').forEach(btn => {
       btn.onclick = () => {
         const type = btn.dataset.filter;
-        document.querySelectorAll('.drink-grid .card').forEach(card => {
-          card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
+        document.querySelectorAll('.drink-grid .menu-item').forEach(item => {
+          item.style.display = (type === 'all' || item.dataset.type === type) ? 'flex' : 'none';
         });
       };
     });
