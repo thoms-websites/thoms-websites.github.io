@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Blue Hour Bar</title>
 
-  <!-- Favicon (your SVG wordmark) -->
+  <!-- Favicon -->
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
 
-  <!-- Google Fonts & FontAwesome -->
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-  <!-- Styles -->
+  
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bar-body">
@@ -22,8 +21,8 @@
   <nav class="offcanvas">
     <ul>
       <li><a href="#home">Home</a></li>
-      <li><a href="#drinks">Drinks</a></li>
       <li><a href="#events">Events</a></li>
+      <li><a href="#drinks">Drinks</a></li>
       <li><a href="#book">Book</a></li>
     </ul>
   </nav>
@@ -36,18 +35,18 @@
     </video>
     <div class="overlay"></div>
     <div class="hero-text">
-      <img src="logo.svg" alt="The Blue Hour Bar logo" class="logo">
+      <img src="logo.svg" alt="The Blue Hour Bar logo" class="logo" />
       <p class="tagline">Where twilight meets taste</p>
     </div>
   </section>
 
-  <!-- EVENTS SECTION -->
-  <section id="events" class="section events">
+  <!-- EVENTS SECTION (now above Drinks) -->
+  <section id="events" class="section events-section">
     <h2>Events</h2>
     <div class="carousel">
-      <div class="slide">Live Jazz &bull; Wed 8&ndash;11pm</div>
-      <div class="slide">Karaoke Fridays &bull; 9pm&ndash;12am</div>
-      <div class="slide">Mixology Class &bull; 1st Mon 7pm</div>
+      <div class="slide">Live Jazz • Wed 8–11pm</div>
+      <div class="slide">Karaoke Fridays • 9pm–12am</div>
+      <div class="slide">Mixology Class • 1st Mon 7pm</div>
     </div>
   </section>
 
@@ -62,18 +61,78 @@
     </div>
     <div class="drink-grid">
       <!-- Cocktails -->
-      <div class="card" data-type="cocktail"><img src="margarita.jpg" alt="Margarita"><h4>Margarita</h4></div>
-      <div class="card" data-type="cocktail"><img src="blue-lagoon.jpg" alt="Blue Lagoon"><h4>Blue Lagoon</h4></div>
-      <div class="card" data-type="cocktail"><img src="negroni.jpg" alt="Negroni"><h4>Negroni</h4></div>
-      <div class="card" data-type="cocktail"><img src="old-fashioned.jpg" alt="Old Fashioned"><h4>Old Fashioned</h4></div>
+      <div class="card" data-type="cocktail">
+        <img src="margarita.jpg" alt="Margarita">
+        <div class="card-content">
+          <h4>Margarita</h4>
+          <p>Tequila, triple sec, lime</p>
+        </div>
+      </div>
+      <div class="card" data-type="cocktail">
+        <img src="blue-lagoon.jpg" alt="Blue Lagoon">
+        <div class="card-content">
+          <h4>Blue Lagoon</h4>
+          <p>Vodka, blue curaçao, lemonade</p>
+        </div>
+      </div>
+      <div class="card" data-type="cocktail">
+        <img src="negroni.jpg" alt="Negroni">
+        <div class="card-content">
+          <h4>Negroni</h4>
+          <p>Campari, gin, sweet vermouth</p>
+        </div>
+      </div>
+      <div class="card" data-type="cocktail">
+        <img src="old-fashioned.jpg" alt="Old Fashioned">
+        <div class="card-content">
+          <h4>Old Fashioned</h4>
+          <p>Bourbon, sugar, bitters</p>
+        </div>
+      </div>
       <!-- Beers -->
-      <div class="card" data-type="beer"><img src="craft-beer.jpg" alt="Craft Beer"><h4>Craft Beer</h4></div>
-      <div class="card" data-type="beer"><img src="ale.jpg" alt="Ale"><h4>Ale</h4></div>
-      <div class="card" data-type="beer"><img src="guinness.jpg" alt="Guinness"><h4>Guinness</h4></div>
+      <div class="card" data-type="beer">
+        <img src="craft-beer.jpg" alt="Craft Beer">
+        <div class="card-content">
+          <h4>Craft Beer</h4>
+          <p>Local brewery special</p>
+        </div>
+      </div>
+      <div class="card" data-type="beer">
+        <img src="ale.jpg" alt="Ale">
+        <div class="card-content">
+          <h4>Ale</h4>
+          <p>Rich amber ale</p>
+        </div>
+      </div>
+      <div class="card" data-type="beer">
+        <img src="guinness.jpg" alt="Guinness">
+        <div class="card-content">
+          <h4>Guinness</h4>
+          <p>Classic stout</p>
+        </div>
+      </div>
       <!-- Wines -->
-      <div class="card" data-type="wine"><img src="white-wine.jpg" alt="White Wine"><h4>White Wine</h4></div>
-      <div class="card" data-type="wine"><img src="red-wine.jpg" alt="Red Wine"><h4>Red Wine</h4></div>
-      <div class="card" data-type="wine"><img src="prosecco.jpg" alt="Prosecco"><h4>Prosecco</h4></div>
+      <div class="card" data-type="wine">
+        <img src="white-wine.jpg" alt="White Wine">
+        <div class="card-content">
+          <h4>White Wine</h4>
+          <p>Crisp chardonnay</p>
+        </div>
+      </div>
+      <div class="card" data-type="wine">
+        <img src="red-wine.jpg" alt="Red Wine">
+        <div class="card-content">
+          <h4>Red Wine</h4>
+          <p>Full-bodied merlot</p>
+        </div>
+      </div>
+      <div class="card" data-type="wine">
+        <img src="prosecco.jpg" alt="Prosecco">
+        <div class="card-content">
+          <h4>Prosecco</h4>
+          <p>Light sparkling</p>
+        </div>
+      </div>
     </div>
     <a href="menu.pdf" target="_blank" rel="noopener" class="pdf-btn">View Menu (PDF)</a>
   </section>
@@ -90,24 +149,26 @@
   </section>
 
   <!-- STICKY SOCIAL FOOTER -->
-  <footer class="social-footer">
-    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 The Blue Hour Bar</p>
+      <div class="social-icons">
+        <a href="https://instagram.com" target="_blank"><img src="instagram.svg" alt="Instagram"></a>
+        <a href="https://facebook.com" target="_blank"><img src="facebook.svg" alt="Facebook"></a>
+      </div>
+    </div>
   </footer>
-
 
   <!-- SCRIPTS -->
   <script>
-    // Off-canvas nav toggle
     document.querySelector('.nav-toggle').onclick = () =>
       document.querySelector('.offcanvas').classList.toggle('open');
 
-    // Drink filter
     document.querySelectorAll('.drink-filters button').forEach(btn => {
       btn.onclick = () => {
         const type = btn.dataset.filter;
         document.querySelectorAll('.drink-grid .card').forEach(card => {
-          card.style.display = (type === 'all' || card.dataset.type === type) ? 'block' : 'none';
+          card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
         });
       };
     });
