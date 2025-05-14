@@ -18,14 +18,18 @@ body.bar-body::before {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgba(255,255,255,0.015) 1px, transparent 1px);
-  background-size: 120px 120px;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,50,0.3), rgba(0,0,0,0.9));
+  background-size: 120px 120px, cover;
+  background-blend-mode: overlay;
   background-repeat: repeat;
   z-index: 50;
   mix-blend-mode: soft-light;
 }
+
 body.bar-body {
-  background-color: #000; /* ensures the noise has dark context to blend with */
+  background-color: #02020a;
 }
 
 /* OFF-CANVAS NAV */
@@ -123,11 +127,12 @@ body.bar-body {
 }
 .slide {
   flex: 0 0 auto; min-width: 220px;
-  background: #111; padding: 1rem;
+  background: rgba(17,17,17,0.95); padding: 1rem;
   border: 1px solid #0ff; border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   scroll-snap-align: start; text-align: center;
 }
+
 /* scroll hint chevron */
 .scroll-hint {
   position: absolute; bottom: 1.5rem; right: 1.5rem;
@@ -183,8 +188,10 @@ body.bar-body {
   width: 100%; height: 180px; object-fit: cover;
 }
 .menu-item-content {
-  padding: 1rem; flex-grow: 1;
-  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 1rem;
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.4); /* added background for readability */
+  color: #fff;
 }
 
 /* PDF BUTTON */
