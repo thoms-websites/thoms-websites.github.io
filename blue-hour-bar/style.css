@@ -13,23 +13,18 @@
 
 /* BODY & BACKGROUND */
 /* VERY SUBTLE FILM GRAIN OVERLAY */
-body.bar-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,50,0.3), rgba(0,0,0,0.9));
-  background-size: 120px 120px, cover;
-  background-blend-mode: overlay;
-  background-repeat: repeat;
-  z-index: 50;
-  mix-blend-mode: soft-light;
-}
-
 body.bar-body {
-  background-color: #02020a;
+  font-family: 'Open Sans', sans-serif;
+  /* dark navy base, subtle blue-to-black gradient, then grain */
+  background:
+    /* film grain layer */
+    radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px) 0/120px 120px repeat,
+    /* blue-black tint */
+    linear-gradient(to bottom, rgba(0,0,50,0.3), rgba(0,0,0,0.9)),
+    /* fallback base */
+    #02020a;
+  color: #eee;
+  overflow-x: hidden;
 }
 
 /* OFF-CANVAS NAV */
