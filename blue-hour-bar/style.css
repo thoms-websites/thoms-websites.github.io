@@ -132,6 +132,17 @@ body.bar-body {
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(8px); }
 }
+/* Hide the scroll-hint arrow on desktops */
+.scroll-hint {
+  display: none;
+}
+
+/* If you still want it on small touch devices, re-enable under a breakpoint: */
+@media (max-width: 768px) {
+  .scroll-hint {
+    display: block;
+  }
+}
 
 /* DRINK FILTERS */
 .drink-filters {
@@ -240,13 +251,13 @@ body.bar-body {
 .footer-right .social-icon {
   width: 24px;
   height: 24px;
-  fill: #0ff;
+  fill: #0ff !important;
   transition: transform .3s, fill .3s;
   vertical-align: middle;
 }
 
 .footer-right a:hover .social-icon {
-  fill: #0cc;
+  fill: #0cc !important;
   transform: scale(1.2);
 }
 
