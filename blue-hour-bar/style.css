@@ -18,12 +18,14 @@ body.bar-body::before {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   pointer-events: none;
-  /* tiny white dots at 2% opacity, spaced widely */
-  background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 100px 100px;
-  /* blend mode so it doesn’t cover dark areas completely */
-  mix-blend-mode: overlay;
+  background-image: radial-gradient(rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 120px 120px;
+  background-repeat: repeat;
   z-index: 50;
+  mix-blend-mode: soft-light;
+}
+body.bar-body {
+  background-color: #000; /* ensures the noise has dark context to blend with */
 }
 
 /* OFF-CANVAS NAV */
