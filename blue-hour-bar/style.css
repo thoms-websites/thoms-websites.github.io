@@ -231,3 +231,28 @@ body.bar-body {
 @media (min-width: 1200px) {
   .footer-right a svg { width: 32px; height: 32px; }
 }
+/* Footer social icons */
+.footer-right a {
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.footer-right .social-icon {
+  width: 24px;
+  height: 24px;
+  fill: #0ff;
+  transition: transform .3s, fill .3s;
+  vertical-align: middle;
+}
+
+.footer-right a:hover .social-icon {
+  fill: #0cc;
+  transform: scale(1.2);
+}
+
+/* Larger on wide screens */
+@media (min-width: 1200px) {
+  .footer-right .social-icon {
+    width: 32px;
+    height: 32px;
+  }
