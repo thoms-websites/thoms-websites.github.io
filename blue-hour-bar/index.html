@@ -10,7 +10,7 @@
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50%25' font-size='48'%3E🍸%3C/text%3E%3C/svg%3E"
         type="image/svg+xml" />
 
-  <!-- Google Fonts & FontAwesome (deduplicated) -->
+  <!-- Google Fonts & FontAwesome (deduped) -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400&display=swap"
         rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -138,7 +138,6 @@
           <p>Light sparkling</p>
         </div>
       </div>
-      <!-- ... other .menu-item blocks unchanged ... -->
     </div>
     <a href="menu.pdf" target="_blank" rel="noopener" class="pdf-btn">View Menu (PDF)</a>
   </section>
@@ -173,18 +172,29 @@
         <p>&copy; 2025 The Blue Hour Bar</p>
       </div>
       <div class="footer-right">
+        <!-- Instagram SVG -->
         <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
           <svg width="24" height="24" fill="#0ff" viewBox="0 0 24 24">
-            <!-- Instagram paths -->
-            <path d="M12 2.163c3.204 0 3.584..." />
-            <path d="M12 5.838a6.162 6.162 0 1 0..." />
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975
+                     1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062
+                     1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07
+                     s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608
+                     C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.332-2.633
+                     1.308-3.608C4.787 2.495 6.054 2.224 7.42 2.162 8.686 2.104 9.066 2.163 12 2.163z"/>
+            <path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162
+                     0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998
+                     3.999 3.999 0 0 1 0 7.998z"/>
             <circle cx="18.406" cy="5.594" r="1.44"/>
           </svg>
         </a>
+        <!-- Facebook SVG -->
         <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
           <svg width="24" height="24" fill="#0ff" viewBox="0 0 24 24">
-            <!-- Facebook path -->
-            <path d="M22.675 0h-21.35C.6 0..." />
+            <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.325v21.351C0 23.4.6 24
+                     1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1
+                     1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001
+                     c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116
+                     C23.4 24 24 23.4 24 22.675V1.325C24 .6 23.4 0 22.675 0z"/>
           </svg>
         </a>
       </div>
@@ -194,17 +204,28 @@
   <!-- Scripts -->
   <script>
     // Off-canvas toggle
-    document.querySelector('.nav-toggle').onclick = () =>
-      document.querySelector('.offcanvas').classList.toggle('open');
+    const navToggle = document.querySelector('.nav-toggle');
+    const offcanvas = document.querySelector('.offcanvas');
+    navToggle.onclick = e => {
+      e.stopPropagation();
+      offcanvas.classList.toggle('open');
+    };
+
+    // Close when clicking outside
+    document.addEventListener('click', e => {
+      if (offcanvas.classList.contains('open') &&
+          !offcanvas.contains(e.target) &&
+          e.target !== navToggle) {
+        offcanvas.classList.remove('open');
+      }
+    });
 
     // Drink filter + active state
     document.querySelectorAll('.drink-filters button').forEach(btn => {
       btn.onclick = () => {
-        // active class
         document.querySelectorAll('.drink-filters button')
                 .forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        // filtering
         const type = btn.dataset.filter;
         document.querySelectorAll('.drink-grid .menu-item').forEach(item => {
           item.style.display = (type === 'all' || item.dataset.type === type)
