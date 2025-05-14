@@ -11,12 +11,15 @@
   border: 0;
 }
 
-/* BODY & BACKGROUND: grain + tint in two layers */
+/* BODY & BACKGROUND */
 body.bar-body {
   font-family: 'Open Sans', sans-serif;
+  background:
+    linear-gradient(to bottom, #0a0a0a, #0f111a),
+    radial-gradient(rgba(255,255,255,0.02) 1px, transparent 0)
+      0/40px 40px repeat;
   color: #eee;
   overflow-x: hidden;
-  background-color: #02020a;
 }
 
 /* OFF-CANVAS NAV */
@@ -42,11 +45,11 @@ body.bar-body {
   color: #0ff;
   text-decoration: none;
 }
-.offcanvas a:focus,
-.offcanvas a:hover {
-  outline: none; /* remove dashed box */
-  box-shadow: inset 0 0 0 3px rgba(0,255,255,0.4);
+.offcanvas a:hover,
+.offcanvas a:focus {
   background: rgba(0,255,255,0.1);
+  outline: 2px dashed #0ff;
+  outline-offset: 4px;
 }
 
 /* HERO & OVERLAY */
@@ -114,12 +117,11 @@ body.bar-body {
 }
 .slide {
   flex: 0 0 auto; min-width: 220px;
-  background: rgba(17,17,17,0.95); padding: 1rem;
+  background: #111; padding: 1rem;
   border: 1px solid #0ff; border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   scroll-snap-align: start; text-align: center;
 }
-
 /* scroll hint chevron */
 .scroll-hint {
   position: absolute; bottom: 1.5rem; right: 1.5rem;
@@ -129,16 +131,6 @@ body.bar-body {
 @keyframes bounce {
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(8px); }
-}
-@media (min-width: 769px) {
-  .scroll-hint { display: none; }
-}
-
-/* If you still want it on small touch devices, re-enable under a breakpoint: */
-@media (max-width: 768px) {
-  .scroll-hint {
-    display: block;
-  }
 }
 
 /* DRINK FILTERS */
@@ -175,10 +167,8 @@ body.bar-body {
   width: 100%; height: 180px; object-fit: cover;
 }
 .menu-item-content {
-  padding: 1rem;
-  flex-grow: 1;
-  background: rgba(0, 0, 0, 0.4); /* added background for readability */
-  color: #fff;
+  padding: 1rem; flex-grow: 1;
+  display: flex; flex-direction: column; justify-content: space-between;
 }
 
 /* PDF BUTTON */
@@ -250,13 +240,13 @@ body.bar-body {
 .footer-right .social-icon {
   width: 24px;
   height: 24px;
-  fill: #0ff !important;
+  fill: #0ff;
   transition: transform .3s, fill .3s;
   vertical-align: middle;
 }
 
 .footer-right a:hover .social-icon {
-  fill: #0cc !important;
+  fill: #0cc;
   transform: scale(1.2);
 }
 
@@ -266,27 +256,3 @@ body.bar-body {
     width: 32px;
     height: 32px;
   }
-}
-
-/* ─── FILM-GRAIN OVERLAY ─── */
-body.bar-body {
-  position: relative; /* establish stacking context */
-}
-body.bar-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none; /* click‐through */
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB00lEQVQokWNSsUoDQRSGn7OuHROFi42mFhJeIgUqJiQiOA6MRVYGLrZsJDY2Mj7+AxCRi4kLSzk6YlEZiYEjVyg2tzS4XD5vDi8P3nXO/Hj+f8fv+7x37GQUCyD2BcZDkEWwT6C116C4h8QQRFVkXcgI+AHRhjC/coIU6YuApoGMAx+K4BpYwb4Da0ITT3IH0E1C3oaQ/wiH4gYzIcYDboiT4pEUENWKJsaIf4ARaMD8gUfYKMH4E2iMeEDlpAmaFPoHB/mNAK+wb2QC5iO5iO5gdkiOHiPgTsIuQEnEJyCjGAqwbNAjOBG4h3EA24icgiDIv4LB4gPWHcYEQx8Fw+ggr1Tmw4St0Vk5llhrhIvoyXBJMC7zBy/y4BOB0+gLgU3I+/dmtIjaIitYsJX5Flwa1YVatYLVMtOK7sq/Qpzr6ARwWly/RK/4nfpUu6Hoo+4SZUcN2CN4lGhyGusFiZd+Ns4oXwGwAGYLuoYWy1N0iFrFW462otwzPacEfsHtANMR3EG3lfoVeoE98A+Ioz7+ZCj0MugeaWHJBtsAAAAASUVORK5CYII=") repeat;
-  opacity: 0.15; /* adjust grain intensity */
-  z-index: 5;    /* just above background, below all content */
-}
-/* ─── FILM GRAIN OVERLAY ─── */
-.grain-overlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB00lEQVQokWNSsUoDQRSGn7OuHROFi42mFhJeIgUqJiQiOA6MRVYGLrZsJDY2Mj7+AxCRi4kLSzk6YlEZiYEjVyg2tzS4XD5vDi8P3nXO/Hj+f8fv+7x37GQUCyD2BcZDkEWwT6C116C4h8QQRFVkXcgI+AHRhjC/coIU6YuApoGMAx+K4BpYwb4Da0ITT3IH0E1C3oaQ/wiH4gYzIcYDboiT4pEUENWKJsaIf4ARaMD8gUfYKMH4E2iMeEDlpAmaFPoHB/mNAK+wb2QC5iO5iO5gdkiOHiPgTsIuQEnEJyCjGAqwbNAjOBG4h3EA24icgiDIv4LB4gPWHcYEQx8Fw+ggr1Tmw4St0Vk5llhrhIvoyXBJMC7zBy/y4BOB0+gLgU3I+/dmtIjaIitYsJX5Flwa1YVatYLVMtOK7sq/Qpzr6ARwWly/RK/4nfpUu6Hoo+4SZUcN2CN4lGhyGusFiZd+Ns4oXwGwAGYLuoYWy1N0iFrFW462otwzPacEfsHtANMR3EG3lfoVeoE98A+Ioz7+ZCj0MugeaWHJBtsAAAAASUVORK5CYII=") repeat;
-  opacity: 0.12;   /* dial back to taste between 0.05–0.2 */
-  z-index: 1;      /* behind everything except background */
-}
