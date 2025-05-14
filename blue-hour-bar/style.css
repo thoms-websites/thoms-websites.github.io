@@ -231,3 +231,23 @@ body.bar-body {
 @media (min-width: 1200px) {
   .footer-right a svg { width: 32px; height: 32px; }
 }
+/* FontAwesome icons in footer */
+.footer-right a i {
+  font-size: 1.5rem;      /* match prior 24px SVG */
+  color: #0ff;            /* neon blue */
+  transition: transform .3s, color .3s;
+}
+
+/* hover state */
+.footer-right a:hover i {
+  color: #0cc;
+  transform: scale(1.2);
+}
+
+/* larger on wide screens */
+@media (min-width: 1200px) {
+  .footer-right a i {
+    font-size: 2rem;      /* scale up to match 32px SVG */
+  }
+}
+
