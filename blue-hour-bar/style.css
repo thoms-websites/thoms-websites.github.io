@@ -12,18 +12,18 @@
 }
 
 /* BODY & BACKGROUND */
-/* 2. Add a pure-CSS grain/noise overlay */
+/* VERY SUBTLE FILM GRAIN OVERLAY */
 body.bar-body::before {
   content: "";
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   pointer-events: none;
-  background-image:
-    /* tiny random dots: white at 1% opacity */
-    radial-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
-    radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
-  background-size: 3px 3px, 5px 5px;
-  z-index: 50; /* above background, below all content */
+  /* tiny white dots at 2% opacity, spaced widely */
+  background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 100px 100px;
+  /* blend mode so it doesn’t cover dark areas completely */
+  mix-blend-mode: overlay;
+  z-index: 50;
 }
 
 /* OFF-CANVAS NAV */
