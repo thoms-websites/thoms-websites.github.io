@@ -33,13 +33,14 @@ body.bar-body {
   position: fixed; top: 0; left: -250px;
   width: 250px; height: 100%;
   background: rgba(17,17,17,0.85); backdrop-filter: blur(8px);
-  padding-top: 60px; transition: left .3s; z-index: 40;
+  padding-top: 100px; /* pushed down for no overlap */
+  transition: left .3s; z-index: 40;
 }
 .offcanvas.open { left: 0; }
 .offcanvas ul { list-style: none; }
 .offcanvas a {
   display: block;
-  padding: 1.2rem 1.5rem;
+  padding: 1rem 1.5rem;
   line-height: 1.6;
   color: #0ff;
   text-decoration: none;
@@ -51,21 +52,14 @@ body.bar-body {
   outline-offset: 4px;
 }
 
-/* HERO VIDEO & FALLBACK */
-@media (prefers-reduced-motion: reduce) {
-  .video-hero video { display: none; }
-  .video-hero {
-    background: url('bar-poster.jpg') center/cover no-repeat;
-  }
-}
+/* HERO & OVERLAY */
 .video-hero {
   position: relative; height: 75vh; overflow: hidden;
 }
 .video-hero video {
   position: absolute; top: 50%; left: 50%;
   min-width: 100%; min-height: 100%;
-  transform: translate(-50%,-50%);
-  object-fit: cover;
+  transform: translate(-50%,-50%); object-fit: cover;
 }
 .video-hero .overlay {
   position: absolute; inset: 0;
@@ -77,26 +71,25 @@ body.bar-body {
   font-family: 'Orbitron', sans-serif;
   color: #0ff; font-size: 3rem; letter-spacing: 2px;
   text-shadow: 0 0 8px #0ff, 0 0 16px #008, 0 0 24px #0ff;
-  animation: flicker 3s infinite; /* slowed flicker */
+  animation: flicker 3s infinite;
 }
 @keyframes flicker {
   0%,19.9%,22%,62.9%,64%,100% { opacity:1 }
   20%,21%,63%,63.5%       { opacity:0.5 }
 }
 
-/* HERO TAGLINE */
+/* TAGLINE */
 .hero-text { position: relative; z-index:1; text-align: center;
   top:50%; transform: translateY(-50%);
 }
 .tagline {
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.4rem; /* increased */
-  color: #0ff;
+  font-size: 1.4rem; color: #0ff;
   text-shadow: 0 0 4px rgba(0,0,0,0.7);
   margin-top: .5rem;
 }
 
-/* SECTION SPACING & HEADERS */
+/* SECTION HEADERS */
 .section {
   padding: 4rem 2rem; margin-bottom: 2rem;
 }
@@ -109,9 +102,7 @@ body.bar-body {
   content: '';
   display: block;
   margin: .5rem auto 0;
-  width: 0;
-  height: 2px;
-  background: #0ff;
+  width: 0; height: 2px; background: #0ff;
   animation: grow-underline 1s ease-out forwards;
 }
 @keyframes grow-underline {
@@ -150,7 +141,7 @@ body.bar-body {
   background: #111; color: #0ff;
   border: none; border-radius: 4px;
   padding: .5rem 1rem; margin: 0 .5rem;
-  cursor: pointer; transition: background .2s;
+  cursor: pointer; transition: background .1s;
 }
 .drink-filters button:hover { background: #0cc; }
 .drink-filters button.active {
@@ -166,7 +157,7 @@ body.bar-body {
   background: rgba(255,255,255,0.05);
   border-radius: 8px; overflow: hidden;
   width: 250px; display: flex; flex-direction: column;
-  transition: transform .3s, box-shadow .3s;
+  transition: transform .15s, box-shadow .15s; /* snappier */
 }
 .menu-item:hover {
   transform: translateY(-4px);
@@ -179,8 +170,6 @@ body.bar-body {
   padding: 1rem; flex-grow: 1;
   display: flex; flex-direction: column; justify-content: space-between;
 }
-.menu-item-content h3 { margin:0 . ; color:#0ff; }
-.menu-item-content p  { margin:0; color:#ccc; }
 
 /* PDF BUTTON */
 .pdf-btn {
@@ -214,7 +203,7 @@ body.bar-body {
 
 /* STICKY FOOTER LAYOUT */
 .social-footer {
-  position: sticky; bottom: 0; /* sticky instead of fixed */
+  position: sticky; bottom: 0;
   left: 0; width: 100%;
   background: rgba(17,17,17,0.9);
   z-index: 100;
@@ -223,7 +212,6 @@ body.bar-body {
   display: flex; justify-content: space-between; align-items: center;
   max-width: 1000px; margin: 0 auto; padding: .75rem 1rem;
 }
-/* footer zones */
 .footer-left  { flex:1; text-align: left; }
 .footer-center{ flex:1; text-align: center; }
 .footer-right { flex:1; text-align: right; }
@@ -236,12 +224,10 @@ body.bar-body {
 .footer-right a svg {
   vertical-align: middle; transition: transform .3s, fill .3s;
 }
-/* scale up on hover */
 .footer-right a:hover svg {
   transform: scale(1.2); fill: #0cc;
 }
-
-/* increase social icon size on large viewports */
+/* larger icons on big screens */
 @media (min-width: 1200px) {
   .footer-right a svg { width: 32px; height: 32px; }
 }
