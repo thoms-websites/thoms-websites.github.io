@@ -12,14 +12,18 @@
 }
 
 /* BODY & BACKGROUND */
-body.bar-body {
-  font-family: 'Open Sans', sans-serif;
-  background:
-    linear-gradient(to bottom, #0a0a0a, #0f111a),
-    radial-gradient(rgba(255,255,255,0.02) 1px, transparent 0)
-      0/40px 40px repeat;
-  color: #eee;
-  overflow-x: hidden;
+/* 2. Add a pure-CSS grain/noise overlay */
+body.bar-body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background-image:
+    /* tiny random dots: white at 1% opacity */
+    radial-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 3px 3px, 5px 5px;
+  z-index: 50; /* above background, below all content */
 }
 
 /* OFF-CANVAS NAV */
