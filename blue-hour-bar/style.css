@@ -280,3 +280,26 @@ background-size: 20px 20px, cover;
     width: 32px;
     height: 32px;
   }
+/* ─────────────────────────────────────────────────── */
+/* FILM GRAIN + BLUE→BLACK TINT (force at very bottom) */
+body.bar-body {
+  /* Base color in case the image fails */
+  background-color: #02020a !important;
+
+  /* Single shorthand: layer-1 is the grain tile,
+     layer-2 is the gradient tint. */
+  background:
+    /* 1) film grain: tiny white dot, transparent around it, tiled */
+    radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px)
+      repeat  /* repeat the grain across X & Y */
+      0 0      /* position origin */
+      /120px 120px,  /* size of each tile */
+
+    /* 2) blue→black tint underneath, full screen */
+    linear-gradient(to bottom, rgba(0,0,50,0.3), rgba(0,0,0,0.9))
+      no-repeat center/cover  /* cover the entire area */
+    !important;
+
+  /* ensure no other background properties sneak in */
+  background-blend-mode: overlay !important;
+}
