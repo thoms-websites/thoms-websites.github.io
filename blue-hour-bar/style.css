@@ -45,11 +45,11 @@ body.bar-body {
   color: #0ff;
   text-decoration: none;
 }
-.offcanvas a:hover,
-.offcanvas a:focus {
+.offcanvas a:focus,
+.offcanvas a:hover {
+  outline: none; /* remove dashed box */
+  box-shadow: inset 0 0 0 3px rgba(0,255,255,0.4);
   background: rgba(0,255,255,0.1);
-  outline: 2px dashed #0ff;
-  outline-offset: 4px;
 }
 
 /* HERO & OVERLAY */
