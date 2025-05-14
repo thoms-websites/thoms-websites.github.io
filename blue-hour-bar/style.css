@@ -23,10 +23,10 @@ body.bar-body {
   /* two layered backgrounds:
      1) grain (on top)
      2) tinted gradient underneath */
-  background-image:
-    /* 2% opaque white dot, 2px radius, transparent outside */
-    radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px) !important,
-    linear-gradient(to bottom, rgba(0,0,50,0.3), rgba(0,0,0,0.9)) !important;
+background-image:
+  radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
+  linear-gradient(to bottom, rgba(0,0,50,0.3), rgba(0,0,0,0.9));
+background-size: 20px 20px, cover;
 
   background-repeat: repeat !important, no-repeat !important;
   background-size: 120px 120px !important, cover !important;
