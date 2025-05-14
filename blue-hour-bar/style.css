@@ -15,13 +15,10 @@
 /* VERY SUBTLE FILM GRAIN OVERLAY */
 body.bar-body {
   font-family: 'Open Sans', sans-serif;
-  /* dark navy base, subtle blue-to-black gradient, then grain */
   background:
-    /* film grain layer */
-    radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px) 0/120px 120px repeat,
-    /* blue-black tint */
+    radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px)
+      0 0 /120px 120px repeat,
     linear-gradient(to bottom, rgba(0,0,50,0.3), rgba(0,0,0,0.9)),
-    /* fallback base */
     #02020a;
   color: #eee;
   overflow-x: hidden;
