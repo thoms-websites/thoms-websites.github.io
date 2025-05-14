@@ -11,26 +11,28 @@
   border: 0;
 }
 
-/* BODY & BACKGROUND */
-/* VERY SUBTLE FILM GRAIN OVERLAY + BLUE→BLACK GRADIENT */
+/* BODY & BACKGROUND: grain + tint in two layers */
 body.bar-body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #02020a; /* solid fallback */
+  color: #eee;
+  overflow-x: hidden;
 
-  /* two-layer background-image: grain first, tint second */
+  /* solid fallback */
+  background-color: #02020a;
+
+  /* two-layer background: 
+     1) tiny white dots repeated  
+     2) blue→black gradient          */
   background-image:
     radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0,0,50,0.3), rgba(0,0,0,0.9));
 
-  /* grain should tile; tint should cover whole */
+  /* tile the dots; stretch the gradient */
   background-repeat: repeat, no-repeat;
   background-size: 120px 120px, cover;
 
-  /* ensure stacking order (first listed is on top) */
+  /* blend grain on top of gradient */
   background-blend-mode: overlay;
-
-  color: #eee;
-  overflow-x: hidden;
 }
 
 /* OFF-CANVAS NAV */
