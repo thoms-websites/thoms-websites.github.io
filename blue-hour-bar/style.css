@@ -136,9 +136,8 @@ body.bar-body::before {
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(8px); }
 }
-/* Hide the scroll-hint arrow on desktops */
-.scroll-hint {
-  display: none;
+@media (min-width: 769px) {
+  .scroll-hint { display: none; }
 }
 
 /* If you still want it on small touch devices, re-enable under a breakpoint: */
