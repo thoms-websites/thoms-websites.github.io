@@ -268,17 +268,18 @@ body.bar-body {
   }
 }
 
-/* ─────────────────────────────────────────────────── */
-/* FINAL OVERRIDE: DENSE GRAIN OVER SOLID NAVY */
+/* FINAL OVERRIDE: real noise PNG over solid navy */
 body.bar-body {
-  /* 1) Film grain only – tiny white dots at 5% opacity, very dense */
-  background: 
-    radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)
-      repeat 0 0 / 3px 3px,
-    /* 2) Solid dark navy base beneath */
-    #02020a
-    !important;
+  /* solid navy base */
+  background-color: #02020a !important;
 
-  /* no blending needed, we want normal stacking */
+  /* 1) noise layer: small embedded PNG, repeats everywhere */
+  /* 2) second layer: same solid navy (redundant but keeps stacking) */
+  background-image:
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB00lEQVQokWNSsUoDQRSGn7OuHROFi42mFhJeIgUqJiQiOA6MRVYGLrZsJDY2Mj7+AxCRi4kLSzk6YlEZiYEjVyg2tzS4XD5vDi8P3nXO/Hj+f8fv+7x37GQUCyD2BcZDkEWwT6C116C4h8QQRFVkXcgI+AHRhjC/coIU6YuApoGMAx+K4BpYwb4Da0ITT3IH0E1C3oaQ/wiH4gYzIcYDboiT4pEUENWKJsaIf4ARaMD8gUfYKMH4E2iMeEDlpAmaFPoHB/mNAK+wb2QC5iO5iO5gdkiOHiPgTsIuQEnEJyCjGAqwbNAjOBG4h3EA24icgiDIv4LB4gPWHcYEQx8Fw+ggr1Tmw4St0Vk5llhrhIvoyXBJMC7zBy/y4BOB0+gLgU3I+/dmtIjaIitYsJX5Flwa1YVatYLVMtOK7sq/Qpzr6ARwWly/RK/4nfpUu6Hoo+4SZUcN2CN4lGhyGusFiZd+Ns4oXwGwAGYLuoYWy1N0iFrFW462otwzPacEfsHtANMR3EG3lfoVeoE98A+Ioz7+ZCj0MugeaWHJBtsAAAAASUVORK5CYII="),
+    #02020a !important;
+
+  background-repeat: repeat, no-repeat !important;
+  background-size: auto, cover !important;
   background-blend-mode: normal !important;
 }
