@@ -188,5 +188,67 @@
     if (e.target === modal) modal.style.display = 'none';
   });
 </script>
+  <script>
+(function() {
+  const carousel = document.getElementById('special-carousel');
+  const slides = Array.from(carousel.children);
+  const count = slides.length;
+  const slideWidth = slides[0].getBoundingClientRect().width;
+  
+  // 1) Duplicate slides for infinite scroll
+  slides.forEach(slide => carousel.appendChild(slide.cloneNode(true)));
+  slides.forEach(slide => carousel.insertBefore(slide.cloneNode(true), carousel.firstChild));
+
+  // 2) Start in the middle
+  carousel.scrollLeft = count * slideWidth;
+  
+  // 3) on scroll, wrap around
+  carousel.addEventListener('scroll', () => {
+    if (carousel.scrollLeft <= 0) {
+      carousel.scrollLeft += count * slideWidth;
+    } else if (carousel.scrollLeft >= (count*2) * slideWidth) {
+      carousel.scrollLeft -= count * slideWidth;
+    }
+  });
+
+  // 4) Pause scrolling on hover
+  let isHover = false;
+  carousel.addEventListener('mouseenter', () => isHover = true);
+  carousel.addEventListener('mouseleave', () => isHover = false);
+
+  // 5) Auto-scroll
+  function autoScroll() {
+    if (!isHover) {
+      carousel.scrollLeft += 1;  // adjust speed here
+    }
+    requestAnimationFrame(autoScroll);
+  }
+  requestAnimationFrame(autoScroll);
+
+  // 6) Modal logic
+  const modal = document.getElementById('slide-modal');
+  const modalImage = document.getElementById('modal-image');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDesc  = document.getElementById('modal-desc');
+  const closeBtn   = document.getElementById('close-modal');
+
+  carousel.querySelectorAll('.slide').forEach(slide => {
+    slide.style.cursor = 'pointer';
+    slide.addEventListener('click', () => {
+      // pull in the background-image URL
+      const bg = slide.style.backgroundImage.slice(5, -2);
+      modalImage.src = bg;
+      modalTitle.textContent = slide.querySelector('h3').textContent;
+      modalDesc.textContent  = slide.dataset.desc;
+      modal.classList.add('open');
+    });
+  });
+
+  closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
+})();
+</script>
 </body>
 </html>
