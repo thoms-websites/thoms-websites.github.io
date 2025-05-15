@@ -13,23 +13,15 @@
 
 /* BODY & BACKGROUND: grain + tint using grain.jpg */
 body.bar-body {
-  font-family: 'Open Sans', sans-serif;
-  color: #eee;
-  overflow-x: hidden;
-
-  /* 1) grain image on top, tiled
-     2) dark navy→black gradient underneath
-     3) solid fallback color */
-background-image:
-  linear-gradient(to bottom, #0a0a0a, #0f111a),    /* layer 1 */
-  url("grain.jpg");                                  /* layer 2 */
-
-  /* gradient covers viewport; grain tiles at its natural size */
-  background-repeat: repeat, no-repeat, no-repeat;
-  background-size: auto, cover, auto;
-
-  /* blend the grain layer over the gradient */
-  background-blend-mode: overlay, normal, normal;
+  background-image:
+    /* gradient at the bottom */
+    linear-gradient(to bottom, #0a0a0a, #0f111a),
+    /* grain on top */
+    url("grain.jpg");
+  background-repeat: no-repeat, repeat;
+  background-size: cover, auto;
+  /* soften the grain blend */
+  background-blend-mode: normal, soft-light;
 }
 
 /* OFF-CANVAS NAV */
