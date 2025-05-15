@@ -14,22 +14,10 @@
 /* BODY & BACKGROUND: grain + tint using grain.jpg */
 body.bar-body {
   font-family: 'Open Sans', sans-serif;
+  /* full-screen background image: */
+  background: url("background.jpg") center center / cover no-repeat;
   color: #eee;
   overflow-x: hidden;
-
-  /* 1) grain image on top, tiled
-     2) dark navy→black gradient underneath
-     3) solid fallback color */
-  background-image:
-    url("grain.jpg"),
-    linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)),
-    linear-gradient(to bottom, #0a0a0a, #0f111a);
-
-  background-repeat: repeat, repeat, no-repeat;
-  background-size: auto, 3px 3px, cover;
-
-  /* soft-light the grain into the tint+gradient below */
-  background-blend-mode: soft-light, normal, normal;
 }
 
 body.bar-body::after {
