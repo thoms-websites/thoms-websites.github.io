@@ -25,11 +25,11 @@ background-image:
   url("grain.jpg");                                  /* layer 2 */
 
   /* gradient covers viewport; grain tiles at its natural size */
-  background-repeat: repeat, no-repeat, no-repeat;
-  background-size: auto, cover, auto;
+  background-repeat: no-repeat, repeat;
+  background-size: cover, auto;
 
   /* blend the grain layer over the gradient */
-  background-blend-mode: overlay, normal, normal;
+  background-blend-mode: normal, soft-light;
 }
 
 /* OFF-CANVAS NAV */
