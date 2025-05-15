@@ -20,10 +20,9 @@ body.bar-body {
   /* 1) grain image on top, tiled
      2) dark navy→black gradient underneath
      3) solid fallback color */
-  background:
-    url("grain.jpg") repeat,
-    linear-gradient(to bottom, #0a0a0a, #0f111a),
-    #02020a;
+background-image:
+  linear-gradient(to bottom, #0a0a0a, #0f111a),    /* layer 1 */
+  url("grain.jpg");                                  /* layer 2 */
 
   /* gradient covers viewport; grain tiles at its natural size */
   background-repeat: repeat, no-repeat, no-repeat;
