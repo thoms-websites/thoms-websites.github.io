@@ -162,6 +162,69 @@ h2 {
   font-size: 1.5rem;
   color: #000;
 }
+/* Make the carousel container hide its scrollbar and position slides inline */
+.special-carousel {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: auto; /* we’ll handle smoothness in JS */
+}
+.special-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Modal overlay */
+.slide-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.slide-modal.open {
+  display: flex;
+}
+
+/* Modal content */
+.slide-modal .modal-content {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  animation: pop-in 0.3s ease-out forwards;
+}
+@keyframes pop-in {
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* Close button */
+#close-modal {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Image and text side by side */
+#modal-image {
+  width: 50%;
+  object-fit: cover;
+}
+.modal-text {
+  padding: 1.5rem;
+  color: #333;
+}
+.modal-text h3 {
+  margin-top: 0;
+  font-size: 1.8rem;
+}
 
 /* Reserve */
 .reserve {
