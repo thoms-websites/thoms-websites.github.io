@@ -4,25 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maison Locale</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Lato:wght@300;400&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- STICKY NAV + MEGA-MENU -->
+  <!-- STICKY NAV + SIMPLE DROPDOWN -->
   <header class="main-nav">
     <div class="logo">Maison Locale</div>
     <ul class="menu">
       <li class="dropdown">
-        <a href="#menu">Menu ▾</a>
-        <div class="mega-menu">
-          <div><h4>Entrées</h4><ul><li>Foie Gras</li><li>Salad</li></ul></div>
-          <div><h4>Mains</h4><ul><li>Steak</li><li>Salmon</li></ul></div>
-          <div><h4>Desserts</h4><ul><li>Lava Cake</li><li>Crème Brûlée</li></ul></div>
-          <div><h4>Drinks</h4><ul><li>Wine</li><li>Cocktails</li></ul></div>
-        </div>
+        <a href="#">Menu ▾</a>
+        <ul class="simple-dropdown">
+          <li><a href="menu.pdf" target="_blank">Entrées</a></li>
+          <li><a href="menu.pdf" target="_blank">Mains</a></li>
+          <li><a href="menu.pdf" target="_blank">Desserts</a></li>
+          <li><a href="menu.pdf" target="_blank">Drinks</a></li>
+        </ul>
       </li>
       <li><a href="#about">About</a></li>
       <li><a href="#reserve">Reservations</a></li>
@@ -30,62 +27,53 @@
   </header>
 
   <!-- PARALLAX HERO -->
-  <section class="parallax-hero fade-in" id="home"></section>
+  <section class="parallax-hero" id="home"></section>
 
   <!-- ABOUT -->
-  <section id="about" class="about section fade-in">
+  <section id="about" class="about section">
     <div class="about-text">
       <h2>About Us</h2>
       <p>
-        At Maison Locale we blend tradition and innovation, crafting each dish
-        with care and passion.
+        Maison Locale was founded in 1986 by Jean Dupont and his wife Claire with a vision to bring refined French cuisine to the heart of the community.
+        What started as a modest bistro has grown into a destination for culinary excellence. Our menu pays homage to timeless French traditions, infused with
+        a touch of modern creativity. Every ingredient is thoughtfully sourced, and each dish crafted with precision and love. Whether you're joining us for
+        a quiet dinner or a celebration, we strive to make each visit unforgettable.
       </p>
     </div>
     <div class="about-img">
-      <img src="chef.jpg" alt="Chef Portrait" />
-      <p class="caption">Meet our chef, Jean Dupont</p>
+      <img src="chef.jpg" alt="Chef Portrait">
+      <p class="caption">Meet our founder and executive chef, Jean Dupont</p>
     </div>
   </section>
 
   <!-- SPECIALS CAROUSEL -->
-  <section id="specials" class="section specials fade-in">
+  <section id="specials" class="section specials">
     <h2>Chef’s Specials</h2>
     <div class="special-carousel">
-      <div
-        class="slide"
-        style="background-image:url('seared-salmon.jpg')"
-      >
+      <div class="slide" style="background-image:url('seared-salmon.jpg')">
         <div class="slide-info"><h3>Seared Salmon</h3><p>$22</p></div>
       </div>
       <div class="slide" style="background-image:url('steak.jpg')">
         <div class="slide-info"><h3>Ribeye Steak</h3><p>$30</p></div>
       </div>
-      <div
-        class="slide"
-        style="background-image:url('choc-lava.jpg')"
-      >
+      <div class="slide" style="background-image:url('choc-lava.jpg')">
         <div class="slide-info"><h3>Chocolate Lava Cake</h3><p>$8</p></div>
       </div>
     </div>
   </section>
 
   <!-- RESERVE -->
-  <section id="reserve" class="section reserve fade-in">
+  <section id="reserve" class="section reserve">
     <h2>Reservations</h2>
-    <iframe
-      src="https://www.opentable.com/widget/reservation/loader?rid=12345"
-      width="100%"
-      height="300"
-      frameborder="0"
-    ></iframe>
+    <iframe src="https://www.opentable.com/widget/reservation/loader?rid=12345" width="100%" height="300" frameborder="0"></iframe>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer fade-in">
+  <footer class="footer">
     <div class="newsletter">
       <h4>Join Our Newsletter</h4>
       <form action="#" method="POST">
-        <input type="email" placeholder="Your email" required />
+        <input type="email" placeholder="Your email" required>
         <button type="submit">Subscribe</button>
       </form>
     </div>
@@ -95,13 +83,5 @@
       <a href="#" aria-label="Twitter">🐦</a>
     </div>
   </footer>
-
-  <script>
-    // Mega-menu hover delay removal & accessibility
-    document.querySelectorAll('.dropdown').forEach(dd => {
-      dd.addEventListener('mouseenter', () => dd.classList.add('open'));
-      dd.addEventListener('mouseleave', () => dd.classList.remove('open'));
-    });
-  </script>
 </body>
 </html>
