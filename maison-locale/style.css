@@ -64,86 +64,98 @@ h2 {
 
 /* Carousel container */
 .special-carousel {
-  display:flex; gap:1rem; overflow:hidden; position:relative;
+  display: flex;
+  gap: 1rem;
+  overflow: hidden;
+  position: relative;
+  /* We'll hide native scrollbar */
 }
-/* hide scrollbar */
-.special-carousel::-webkit-scrollbar { display:none; }
+.special-carousel::-webkit-scrollbar { display: none; }
 
-/* Slides */
+/* Each slide */
 .slide {
-  width:300px;
-  flex-shrink:0;
-  background:#fff;
-  border-radius:8px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  cursor:pointer;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
 }
 .slide-img {
-  height:180px;
-  background-size:cover;
-  background-position:center;
-  width:100%;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px 8px 0 0;
 }
-
 .slide-info {
-  padding:0.75rem 1rem;
-  background:#fff;
-  color:#333;
-  border-top:1px solid #eee;
+  background: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 .slide-info h3 {
-  margin:0 0 0.3rem;
-  font-size:1.1rem;
-  color:#000;
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+  color: #000;
 }
 .slide-info p {
-  margin:0;
-  color:#555;
+  margin: 0;
+  color: #555;
 }
 
 /* Modal overlay & content */
 .slide-modal {
-  display:none; position:fixed; inset:0;
-  background:rgba(0,0,0,0.85);
-  align-items:center; justify-content:center; z-index:100;
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
 }
-.slide-modal.open { display:flex; }
+.slide-modal.open { display: flex; }
 
 .modal-content {
-  display:flex; background:#fff;
-  border-radius:8px; overflow:hidden;
-  max-width:90vw; max-height:90vh;
-  animation:pop-in .3s ease-out forwards;
+  display: flex;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 90vw;
+  max-height: 90vh;
+  animation: pop-in 0.3s ease-out forwards;
 }
 @keyframes pop-in {
-  from { transform:scale(0.7); opacity:0; }
-  to   { transform:scale(1);   opacity:1; }
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
 }
-
 #modal-image {
-  width:50%; object-fit:cover;
+  width: 50%;
+  object-fit: cover;
 }
 .modal-text {
-  padding:1.5rem; color:#333; overflow-y:auto;
+  padding: 1.5rem;
+  overflow-y: auto;
 }
 .modal-text h3 {
-  margin-top:0; font-size:1.8rem;
+  margin-top: 0;
+  font-size: 1.8rem;
 }
 
 /* Close button */
 #close-modal {
-  position:absolute; top:1rem; right:1rem;
-  background:transparent; border:none; font-size:2rem;
-  color:#333; cursor:pointer;
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
-/* Reservations */
+/* Reservations iframe styling */
 .reserve iframe {
-  width:100%; height:400px;
-  border:2px solid #000; border-radius:8px;
+  width: 100%;
+  height: 400px;
+  border: 2px solid #000;
+  border-radius: 8px;
 }
 
 /* Footer */
