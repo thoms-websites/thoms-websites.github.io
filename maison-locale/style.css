@@ -71,10 +71,37 @@ h2 {
 
 /* Slides */
 .slide {
-  min-width:300px; height:200px;
-  background-size:cover; background-position:center;
-  border-radius:8px; flex-shrink:0; cursor:pointer;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1); position:relative;
+  width:300px;
+  flex-shrink:0;
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  cursor:pointer;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.slide-img {
+  height:180px;
+  background-size:cover;
+  background-position:center;
+  width:100%;
+}
+
+.slide-info {
+  padding:0.75rem 1rem;
+  background:#fff;
+  color:#333;
+  border-top:1px solid #eee;
+}
+.slide-info h3 {
+  margin:0 0 0.3rem;
+  font-size:1.1rem;
+  color:#000;
+}
+.slide-info p {
+  margin:0;
+  color:#555;
 }
 
 /* Modal overlay & content */
