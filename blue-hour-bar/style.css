@@ -11,15 +11,26 @@
   border: 0;
 }
 
-/* BODY & BACKGROUND */
+/* BODY & BACKGROUND: grain + tint using grain.jpg */
 body.bar-body {
   font-family: 'Open Sans', sans-serif;
-  background:
-    linear-gradient(to bottom, #0a0a0a, #0f111a),
-    radial-gradient(rgba(255,255,255,0.02) 1px, transparent 0)
-      0/40px 40px repeat;
   color: #eee;
   overflow-x: hidden;
+
+  /* 1) grain image on top, tiled
+     2) dark navy→black gradient underneath
+     3) solid fallback color */
+  background:
+    url("grain.jpg") repeat,
+    linear-gradient(to bottom, #0a0a0a, #0f111a),
+    #02020a;
+
+  /* gradient covers viewport; grain tiles at its natural size */
+  background-repeat: repeat, no-repeat, no-repeat;
+  background-size: auto, cover, auto;
+
+  /* blend the grain layer over the gradient */
+  background-blend-mode: overlay, normal, normal;
 }
 
 /* OFF-CANVAS NAV */
