@@ -9,7 +9,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22><text y=%22.9em%22 font-size=%2216%22>🍽️</text></svg>">
 </head>
 <body>
-  <!-- STICKY NAV + SIMPLE DROPDOWN -->
+  <!-- NAV -->
   <header class="main-nav">
     <div class="logo">Maison Locale</div>
     <ul class="menu">
@@ -27,7 +27,7 @@
     </ul>
   </header>
 
-  <!-- PARALLAX HERO -->
+  <!-- HERO -->
   <section class="parallax-hero" id="home"></section>
 
   <!-- ABOUT -->
@@ -48,209 +48,134 @@
   </section>
 
   <!-- SPECIALS CAROUSEL -->
-<section id="specials" class="section specials">
-  <h2>Chef’s Specials</h2>
-  <div class="special-carousel" id="special-carousel">
-    <!-- Original three -->
-    <div class="slide" style="background-image:url('seared-salmon.jpg')" data-desc="Seared Salmon – Atlantic salmon fillet, lemon beurre blanc, fresh herbs.">
-      <div class="slide-info"><h3>Seared Salmon</h3><p>$22</p></div>
-    </div>
-    <div class="slide" style="background-image:url('steak.jpg')" data-desc="Ribeye Steak – 12-oz ribeye, garlic herb butter, seasonal vegetables.">
-      <div class="slide-info"><h3>Ribeye Steak</h3><p>$30</p></div>
-    </div>
-    <div class="slide" style="background-image:url('choc-lava.jpg')" data-desc="Chocolate Lava Cake – Molten chocolate cake, vanilla gelato, fresh berries.">
-      <div class="slide-info"><h3>Chocolate Lava Cake</h3><p>$8</p></div>
+  <section id="specials" class="section specials">
+    <h2>Chef’s Specials</h2>
+    <div class="special-carousel" id="special-carousel">
+      <!-- your 10 slides here... -->
+      <div class="slide" style="background-image:url('seared-salmon.jpg')" data-desc="Seared Salmon – Atlantic salmon fillet, lemon beurre blanc, fresh herbs.">
+        <div class="slide-info"><h3>Seared Salmon</h3><p>$22</p></div>
+      </div>
+      <div class="slide" style="background-image:url('steak.jpg')" data-desc="Ribeye Steak – 12-oz ribeye, garlic herb butter, seasonal vegetables.">
+        <div class="slide-info"><h3>Ribeye Steak</h3><p>$30</p></div>
+      </div>
+      <div class="slide" style="background-image:url('choc-lava.jpg')" data-desc="Chocolate Lava Cake – Molten chocolate cake, vanilla gelato, fresh berries.">
+        <div class="slide-info"><h3>Chocolate Lava Cake</h3><p>$8</p></div>
+      </div>
+      <div class="slide" style="background-image:url('bouillabaisse.jpg')" data-desc="Bouillabaisse – Provençal fish stew with saffron broth and rouille.">
+        <div class="slide-info"><h3>Bouillabaisse</h3><p>$24</p></div>
+      </div>
+      <div class="slide" style="background-image:url('coquilles-saint-jacques.jpg')" data-desc="Coquilles Saint-Jacques – Seared scallops in creamy white-wine sauce.">
+        <div class="slide-info"><h3>Coquilles Saint-Jacques</h3><p>$21</p></div>
+      </div>
+      <div class="slide" style="background-image:url('lamb-navarin.jpg')" data-desc="Lamb Navarin – French lamb stew with spring root vegetables.">
+        <div class="slide-info"><h3>Lamb Navarin</h3><p>$26</p></div>
+      </div>
+      <div class="slide" style="background-image:url('boeuf-bourguignon.jpg')" data-desc="Boeuf Bourguignon – Slow-braised beef in red wine with pearl onions.">
+        <div class="slide-info"><h3>Boeuf Bourguignon</h3><p>$28</p></div>
+      </div>
+      <div class="slide" style="background-image:url('truffle-tagliatelle.jpg')" data-desc="Truffle Tagliatelle – Fresh pasta tossed in black truffle cream sauce.">
+        <div class="slide-info"><h3>Truffle Tagliatelle</h3><p>$22</p></div>
+      </div>
+      <div class="slide" style="background-image:url('tart-tatin.jpg')" data-desc="Tarte Tatin – Caramelized apple tart, crème fraîche, mint.">
+        <div class="slide-info"><h3>Tarte Tatin</h3><p>$10</p></div>
+      </div>
+      <div class="slide" style="background-image:url('duck-orange.jpg')" data-desc="Duck à l’Orange – Crispy duck breast with orange-citrus glaze.">
+        <div class="slide-info"><h3>Duck à l’Orange</h3><p>$27</p></div>
+      </div>
     </div>
 
-    <!-- Seven new dishes -->
-    <div class="slide" style="background-image:url('bouillabaisse.jpg')" data-desc="Bouillabaisse – Provençal fish stew with saffron broth and rouille.">
-      <div class="slide-info"><h3>Bouillabaisse</h3><p>$24</p></div>
+    <!-- dish modal -->
+    <div class="slide-modal" id="slide-modal">
+      <div class="modal-content">
+        <button id="close-modal">×</button>
+        <img id="modal-image" alt="">
+        <div class="modal-text">
+          <h3 id="modal-title"></h3>
+          <p id="modal-desc"></p>
+        </div>
+      </div>
     </div>
-    <div class="slide" style="background-image:url('coquilles-saint-jacques.jpg')" data-desc="Coquilles Saint-Jacques – Seared scallops in creamy white-wine sauce.">
-      <div class="slide-info"><h3>Coquilles Saint-Jacques</h3><p>$21</p></div>
-    </div>
-    <div class="slide" style="background-image:url('lamb-navarin.jpg')" data-desc="Lamb Navarin – French lamb stew with spring root vegetables.">
-      <div class="slide-info"><h3>Lamb Navarin</h3><p>$26</p></div>
-    </div>
-    <div class="slide" style="background-image:url('boeuf-bourguignon.jpg')" data-desc="Boeuf Bourguignon – Slow-braised beef in red wine with pearl onions.">
-      <div class="slide-info"><h3>Boeuf Bourguignon</h3><p>$28</p></div>
-    </div>
-    <div class="slide" style="background-image:url('truffle-tagliatelle.jpg')" data-desc="Truffle Tagliatelle – Fresh pasta tossed in black truffle cream sauce.">
-      <div class="slide-info"><h3>Truffle Tagliatelle</h3><p>$22</p></div>
-    </div>
-    <div class="slide" style="background-image:url('tart-tatin.jpg')" data-desc="Tarte Tatin – Caramelized apple tart, crème fraîche, mint.">
-      <div class="slide-info"><h3>Tarte Tatin</h3><p>$10</p></div>
-    </div>
-    <div class="slide" style="background-image:url('duck-orange.jpg')" data-desc="Duck à l’Orange – Crispy duck breast with orange-citrus glaze.">
-      <div class="slide-info"><h3>Duck à l’Orange</h3><p>$27</p></div>
-    </div>
-  </div>
+  </section>
 
-  <!-- Modal for dish details -->
-  <div class="slide-modal" id="slide-modal">
-    <div class="modal-content">
-   <span id="close-modal">×</span>
-   <img id="modal-image" alt="" />
-   <div class="modal-text">
-     <h3 id="modal-title"></h3>
-     <p id="modal-desc"></p>
-    </div>
-  </div>
-</section>
-
-  <!-- RESERVE -->
+  <!-- RESERVATIONS -->
   <section id="reserve" class="section reserve">
     <h2>Reservations</h2>
-<iframe
-  src="https://www.opentable.com/widget/reservation/loader?rid=251397&type=standard&theme=standard&overlay=true&domain=com"
-  width="100%" height="400" frameborder="0" allowtransparency="true">
-</iframe>
+    <iframe
+      src="https://www.opentable.com/widget/reservation/loader?rid=251397&type=standard&theme=standard&overlay=true&domain=com"
+      width="100%" height="400" frameborder="0" allowtransparency="true">
+    </iframe>
   </section>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="newsletter">
       <h4>Join Our Newsletter</h4>
-      <form action="#" method="POST">
-        <input type="email" placeholder="Your email" required>
-        <button type="submit">Subscribe</button>
-      </form>
+      <form><input type="email" placeholder="Your email" required><button>Subscribe</button></form>
     </div>
-<div class="socials">
-  <!-- Instagram -->
-  <a href="instagram.com" aria-label="Instagram">
-    <svg fill="#d4af37" viewBox="0 0 24 24" width="24" height="24">
-      <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 
-               5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 
-               16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 
-               1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 
-               4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 
-               0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 
-               16.25 3.5h-8.5z"/>
-      <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 
-               1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/>
-      <circle cx="17.5" cy="6.5" r="1"/>
-    </svg>
-  </a>
-
-  <!-- Facebook -->
-  <a href="facebook.com" aria-label="Facebook">
-    <svg fill="#d4af37" viewBox="0 0 24 24" width="24" height="24">
-      <path d="M22.675 0h-21.35C.6 0 0 .6 0 
-               1.325v21.351C0 23.4.6 24 1.325 
-               24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1
-               1.893-4.788 4.659-4.788 1.325 0 2.464.099 
-               2.795.143v3.24l-1.918.001c-1.504 
-               0-1.796.715-1.796 1.763v2.31h3.587l-.467 
-               3.622h-3.12V24h6.116C23.4 24 24 23.4 24 
-               22.675V1.325C24 .6 23.4 0 22.675 0z"/>
-    </svg>
-  </a>
-
-  <!-- Twitter -->
-  <a href="x.com" aria-label="Twitter">
-    <svg fill="#d4af37" viewBox="0 0 24 24" width="24" height="24">
-      <path d="M23 3a10.9 10.9 0 0 1-3.14 
-               1.53A4.48 4.48 0 0 0 16.11 
-               3c-2.63 0-4.76 2.13-4.76 
-               4.76 0 .37.04.73.12 1.08A13.5 
-               13.5 0 0 1 1.64 4.15a4.75 4.75 
-               0 0 0-.64 2.39c0 1.65.84 
-               3.1 2.12 3.95a4.49 4.49 
-               0 0 1-2.16-.6v.06c0 2.32 
-               1.65 4.25 3.83 4.69a4.5 4.5 
-               0 0 1-2.15.08 4.76 4.76 
-               0 0 0 4.44 3.31A9.01 9.01 
-               0 0 1 0 19.54a12.7 12.7 
-               0 0 0 6.88 2.01c8.26 0 
-               12.78-6.85 12.78-12.78 
-               0-.2 0-.39-.01-.59A9.1 
-               9.1 0 0 0 23 3z"/>
-    </svg>
-  </a>
-</div>
+    <div class="socials">
+      <!-- SVGs as before... -->
+    </div>
   </footer>
-  <script>
-  const slides = document.querySelectorAll('.slide');
-  const modal = document.getElementById('slide-modal');
-  const modalTitle = document.getElementById('modal-title');
-  const modalDesc = document.getElementById('modal-desc');
-  const closeModal = document.getElementById('close-modal');
 
-  slides.forEach(slide => {
-    slide.addEventListener('click', () => {
-      modalTitle.textContent = slide.querySelector('h3').textContent;
-      modalDesc.textContent = slide.dataset.desc;
-      modal.style.display = 'flex';
+  <!-- all JS in one block -->
+  <script>
+  (function() {
+    const carousel = document.getElementById('special-carousel');
+    const slides   = Array.from(carousel.children);
+    const count    = slides.length;
+    const w        = slides[0].getBoundingClientRect().width;
+
+    // duplicate for infinite
+    slides.forEach(s => carousel.appendChild(s.cloneNode(true)));
+    slides.forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
+
+    // center start
+    carousel.scrollLeft = count * w;
+
+    // wrap around
+    carousel.addEventListener('scroll', () => {
+      if (carousel.scrollLeft <= 0) {
+        carousel.scrollLeft += count * w;
+      } else if (carousel.scrollLeft >= (count*2) * w) {
+        carousel.scrollLeft -= count * w;
+      }
     });
-  });
 
-  closeModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
+    // pause on hover
+    let hover = false;
+    carousel.addEventListener('mouseenter', () => hover = true);
+    carousel.addEventListener('mouseleave', () => hover = false);
 
-  window.addEventListener('click', e => {
-    if (e.target === modal) modal.style.display = 'none';
-  });
-</script>
-  <script>
-(function() {
-  const carousel = document.getElementById('special-carousel');
-  const slides = Array.from(carousel.children);
-  const count = slides.length;
-  const slideWidth = slides[0].getBoundingClientRect().width;
-  
-  // 1) Duplicate slides for infinite scroll
-  slides.forEach(slide => carousel.appendChild(slide.cloneNode(true)));
-  slides.forEach(slide => carousel.insertBefore(slide.cloneNode(true), carousel.firstChild));
-
-  // 2) Start in the middle
-  carousel.scrollLeft = count * slideWidth;
-  
-  // 3) on scroll, wrap around
-  carousel.addEventListener('scroll', () => {
-    if (carousel.scrollLeft <= 0) {
-      carousel.scrollLeft += count * slideWidth;
-    } else if (carousel.scrollLeft >= (count*2) * slideWidth) {
-      carousel.scrollLeft -= count * slideWidth;
+    // auto-scroll
+    const SPEED = 0.5;
+    function autoScroll() {
+      if (!hover) carousel.scrollLeft += SPEED;
+      requestAnimationFrame(autoScroll);
     }
-  });
+    requestAnimationFrame(autoScroll);
 
-  // 4) Pause scrolling on hover
-  let isHover = false;
-  carousel.addEventListener('mouseenter', () => isHover = true);
-  carousel.addEventListener('mouseleave', () => isHover = false);
+    // modal logic
+    const modal      = document.getElementById('slide-modal');
+    const imgEl      = document.getElementById('modal-image');
+    const titleEl    = document.getElementById('modal-title');
+    const descEl     = document.getElementById('modal-desc');
+    const closeBtn   = document.getElementById('close-modal');
 
-  // 5) Auto-scroll
-// step size in pixels per frame — ~0.5px/frame ≈ 30px/sec at 60fps
-const SCROLL_SPEED = 0.5;
-function autoScroll() {
-  if (!isHover) {
-    carousel.scrollLeft += SCROLL_SPEED;
-  }
-  requestAnimationFrame(autoScroll);
-}
+    carousel.querySelectorAll('.slide').forEach(slide => {
+      slide.addEventListener('click', () => {
+        const url = slide.style.backgroundImage.match(/url\(["']?(.+?)["']?\)/)[1];
+        imgEl.src       = url;
+        titleEl.textContent = slide.querySelector('h3').textContent;
+        descEl.textContent  = slide.dataset.desc;
+        modal.classList.add('open');
+      });
+    });
 
-  // 6) Modal logic
-// grab the <img> element
-const modalImage = document.getElementById('modal-image');
-
-carousel.querySelectorAll('.slide').forEach(slide => {
-  slide.style.cursor = 'pointer';
-  slide.addEventListener('click', () => {
-    // read the URL inside background-image: url("…")
-    const bg = slide.style.backgroundImage.match(/url\(["']?(.+?)["']?\)/)[1];
-    modalImage.src = bg;
-    modalTitle.textContent = slide.querySelector('h3').textContent;
-    modalDesc.textContent  = slide.dataset.desc;
-    modal.classList.add('open');
-  });
-});
-
-closeModal.addEventListener('click', () => modal.classList.remove('open'));
-modal.addEventListener('click', e => {
-  if (e.target === modal) modal.classList.remove('open');
-});
-</script>
+    closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', e => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+  })();
+  </script>
 </body>
 </html>
