@@ -232,29 +232,25 @@ function autoScroll() {
 }
 
   // 6) Modal logic
-  const modal = document.getElementById('slide-modal');
-  const modalImage = document.getElementById('modal-image');
-  const modalTitle = document.getElementById('modal-title');
-  const modalDesc  = document.getElementById('modal-desc');
-  const closeBtn   = document.getElementById('close-modal');
+// grab the <img> element
+const modalImage = document.getElementById('modal-image');
 
-  carousel.querySelectorAll('.slide').forEach(slide => {
-    slide.style.cursor = 'pointer';
-    slide.addEventListener('click', () => {
-      // pull in the background-image URL
-      const bg = slide.style.backgroundImage.slice(5, -2);
-      modalImage.src = bg;
-      modalTitle.textContent = slide.querySelector('h3').textContent;
-      modalDesc.textContent  = slide.dataset.desc;
-      modal.classList.add('open');
-    });
+carousel.querySelectorAll('.slide').forEach(slide => {
+  slide.style.cursor = 'pointer';
+  slide.addEventListener('click', () => {
+    // read the URL inside background-image: url("…")
+    const bg = slide.style.backgroundImage.match(/url\(["']?(.+?)["']?\)/)[1];
+    modalImage.src = bg;
+    modalTitle.textContent = slide.querySelector('h3').textContent;
+    modalDesc.textContent  = slide.dataset.desc;
+    modal.classList.add('open');
   });
+});
 
-  closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-  modal.addEventListener('click', e => {
-    if (e.target === modal) modal.classList.remove('open');
-  });
-})();
+closeModal.addEventListener('click', () => modal.classList.remove('open'));
+modal.addEventListener('click', e => {
+  if (e.target === modal) modal.classList.remove('open');
+});
 </script>
 </body>
 </html>
