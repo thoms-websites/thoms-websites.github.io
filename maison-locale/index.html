@@ -214,7 +214,7 @@
 
     carousel.querySelectorAll('.slide').forEach(slide => {
       slide.addEventListener('click', () => {
-        const url = slide.style.backgroundImage.match(/url\(["']?(.+?)["']?\)/)[1];
+        const url = slide.dataset.img;
         imgEl.src       = url;
         titleEl.textContent = slide.querySelector('h3').textContent;
         descEl.textContent  = slide.dataset.desc;
