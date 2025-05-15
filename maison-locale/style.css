@@ -112,11 +112,6 @@ h2 {
   gap: 1rem;
   overflow: hidden;
   position: relative;
-  animation: scrollLeft 30s linear infinite;
-}
-
-.special-carousel:hover {
-  animation-play-state: paused;
 }
 
 @keyframes scrollLeft {
@@ -165,7 +160,6 @@ h2 {
 /* Make the carousel container hide its scrollbar and position slides inline */
 .special-carousel {
   display: flex;
-  overflow-x: scroll;
   scroll-behavior: auto; /* we’ll handle smoothness in JS */
 }
 .special-carousel::-webkit-scrollbar {
