@@ -13,15 +13,14 @@
 
 /* BODY & BACKGROUND: grain + tint using grain.jpg */
 body.bar-body {
+  /* ... */
   background-image:
-    /* gradient at the bottom */
     linear-gradient(to bottom, #0a0a0a, #0f111a),
-    /* grain on top */
+    linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)),
     url("grain.jpg");
-  background-repeat: no-repeat, repeat;
-  background-size: cover, auto;
-  /* soften the grain blend */
-  background-blend-mode: normal, soft-light;
+  background-repeat: no-repeat, repeat, repeat;
+  background-size: cover, /* tint layer */ 3px 3px, auto;
+  background-blend-mode: normal, normal, soft-light;
 }
 
 /* OFF-CANVAS NAV */
