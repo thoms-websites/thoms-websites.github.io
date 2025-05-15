@@ -29,6 +29,17 @@ body.bar-body {
   background-blend-mode: normal, normal, soft-light;
 }
 
+body.bar-body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center,
+    rgba(0,0,0,0) 50%,
+    rgba(0,0,0,0.7) 100%);
+  z-index: 1;
+}
+
 /* OFF-CANVAS NAV */
 .nav-toggle {
   position: fixed; top: 20px; left: 20px; z-index: 50;
