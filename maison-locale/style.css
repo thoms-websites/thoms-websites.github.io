@@ -195,3 +195,41 @@ h2 {
   border:none; border-radius:4px; font-weight:bold; cursor:pointer;
 }
 .socials a { margin-right:1rem; color:#d4af37; text-decoration:none; }
+
+/* Carousel container – force visible overflow in all browsers */
+.special-carousel {
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+}
+
+/* Hovered slide – explicitly set larger border */
+.slide:hover {
+  border-width: 4px !important;        /* ensure thicker border */
+  transform: scale(1.03) !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
+}
+.modal-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1rem;       /* prev arrow on left edge */
+  right: auto;      /* override any previous right setting */
+  background: rgba(0,0,0,0.3);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  z-index: 9999;    /* float above everything */
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+#modal-next {
+  left: auto;       /* override */
+  right: 1rem;      /* next arrow on right edge */
+}
+.modal-nav:hover {
+  transform: translateY(-50%) scale(1.2);
+  background: rgba(0,0,0,0.6);
+}
+
