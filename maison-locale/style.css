@@ -141,8 +141,8 @@ h2 {
   to   { transform: scale(1);   opacity: 1; }
 }
 #modal-image {
-  width: 300px;            /* match a single slide’s width */
-  height: auto;            /* let height scale proportionally */
+  width: 450px;            /* match a single slide’s width */
+  height: 300;            /* let height scale proportionally */
   object-fit: cover;
 }
 .modal-text {
