@@ -35,9 +35,10 @@ body {
 
 /* Hero & Sections */
 .parallax-hero {
-  height:60vh;
-  background:url('interior.jpg') center/cover fixed;
-  border-bottom:2px solid #000;
+  height: 60vh;
+  background: url('interior.jpg') center calc(40% + 20px) / cover fixed;
+  /* ↑ moves the image 20px up from its normal 40% vertical position */
+  border-bottom: 2px solid #000;
 }
 .section {
   padding:4rem 2rem; background:#fff;
@@ -82,19 +83,28 @@ h2 {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  border: 2px solid #000;      /* ← new black border */
+  border-radius: 8px;          /* match your corners */
+  overflow: hidden;            /* clip rounded corners */
+  background: #fff;            /* ensure border is visible */
 }
 .slide-img {
   height: 180px;
   background-size: cover;
   background-position: center;
-  border-radius: 8px 8px 0 0;
+  /* keep top corners rounded */
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: 2px solid #000;  /* ← line between image & info */
 }
+/* The text panel sits flush beneath */
 .slide-info {
-  background: #fff;
   padding: 0.75rem 1rem;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: #fff;
+  color: #000;
+  flex: 1;
 }
+
 .slide-info h3 {
   margin: 0 0 0.3rem;
   font-size: 1.1rem;
