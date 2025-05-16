@@ -51,7 +51,7 @@
   <section id="specials" class="section specials">
     <h2>Chef’s Specials</h2>
     <div id="special-carousel" class="special-carousel">
-      <!-- original ten dishes -->
+      <!-- original ten dishes (only one Seared Salmon now) -->
       <div class="slide" data-img="seared-salmon.jpg" data-desc="Atlantic salmon fillet, lemon beurre blanc, fresh herbs.">
         <div class="slide-img" style="background-image:url('seared-salmon.jpg')"></div>
         <div class="slide-info"><h3>Seared Salmon</h3><p>$22</p></div>
@@ -115,10 +115,8 @@
     <iframe
       class="airtable-embed"
       src="https://airtable.com/embed/app3w4CuF2VjBo8rc/pag8MPOKWOgSxGiKg/preview?app_preview=true"
-      frameborder="0"
-      onmousewheel=""
-      width="100%"
-      height="533"
+      frameborder="0" onmousewheel=""
+      width="100%" height="533"
       style="background:transparent; border:1px solid #ccc;">
     </iframe>
   </section>
@@ -145,6 +143,7 @@
     </div>
   </footer>
 
+  <!-- all JS in one block -->
   <script>
   (function() {
     const carousel = document.getElementById('special-carousel');
@@ -180,31 +179,34 @@
     requestAnimationFrame(autoScroll);
 
     // drag-to-scroll
-    let isDown=false, startX, scrollLeft;
+    let isDown = false, startX, scrollLeft;
     carousel.addEventListener('mousedown', e => {
       isDown = true;
       carousel.classList.add('dragging');
       startX = e.pageX - carousel.offsetLeft;
       scrollLeft = carousel.scrollLeft;
     });
-    carousel.addEventListener('mouseleave', ()=>{ isDown=false; carousel.classList.remove('dragging'); });
-    carousel.addEventListener('mouseup', ()=>{ isDown=false; carousel.classList.remove('dragging'); });
+    ['mouseleave','mouseup'].forEach(ev => {
+      carousel.addEventListener(ev, () => {
+        isDown = false; carousel.classList.remove('dragging');
+      });
+    });
     carousel.addEventListener('mousemove', e => {
       if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - carousel.offsetLeft;
-      const walk = (x - startX)*1.5;
+      const walk = (x - startX) * 1.5;
       carousel.scrollLeft = scrollLeft - walk;
     });
 
     // modal & prev/next
-    const modal = document.getElementById('slide-modal');
-    const imgEl = document.getElementById('modal-image');
-    const titleEl = document.getElementById('modal-title');
-    const descEl = document.getElementById('modal-desc');
-    const closeBtn = document.getElementById('close-modal');
-    const prevBtn = document.getElementById('modal-prev');
-    const nextBtn = document.getElementById('modal-next');
+    const modal      = document.getElementById('slide-modal');
+    const imgEl      = document.getElementById('modal-image');
+    const titleEl    = document.getElementById('modal-title');
+    const descEl     = document.getElementById('modal-desc');
+    const closeBtn   = document.getElementById('close-modal');
+    const prevBtn    = document.getElementById('modal-prev');
+    const nextBtn    = document.getElementById('modal-next');
 
     let currentIdx = 0;
     originalSlides.forEach((slide, idx) => {
@@ -217,7 +219,7 @@
       const s = originalSlides[idx];
       imgEl.src = s.dataset.img;
       titleEl.textContent = s.querySelector('h3').textContent;
-      descEl.textContent = s.dataset.desc;
+      descEl.textContent  = s.dataset.desc;
       modal.classList.add('open');
     }
     prevBtn.addEventListener('click', e => {
@@ -232,7 +234,9 @@
     });
 
     closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-    modal.addEventListener('click', e => { if (e.target===modal) modal.classList.remove('open'); });
+    modal.addEventListener('click', e => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
   })();
   </script>
 </body>
