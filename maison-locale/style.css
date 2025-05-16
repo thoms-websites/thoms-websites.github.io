@@ -142,7 +142,7 @@ h2 {
 }
 #modal-image {
   width: 450px;            /* match a single slide’s width */
-  height: 300;            /* let height scale proportionally */
+  height: auto;            /* let height scale proportionally */
   object-fit: cover;
 }
 .modal-text {
