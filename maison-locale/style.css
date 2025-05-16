@@ -47,6 +47,10 @@ h2 {
   border-bottom:2px solid #000; display:inline-block;
   padding-bottom:.5rem;
 }
+/* right after your .section definitions, add: */
+.section.specials {
+  overflow: visible;
+}
 
 /* About */
 .about {
@@ -108,7 +112,7 @@ h2 {
 .slide-modal.open { display:flex; }
 .modal-content {
   position:relative;
-  display:flex; background:#fff; border-radius:8px; overflow:hidden;
+  display:flex; background:#fff; border-radius:8px; overflow:visible;
   max-width:90vw; max-height:90vh;
   animation:pop-in .3s ease-out forwards;
 }
@@ -207,22 +211,6 @@ h2 {
   border-width: 4px !important;        /* ensure thicker border */
   transform: scale(1.03) !important;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
-}
-.modal-nav {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 1rem;       /* prev arrow on left edge */
-  right: auto;      /* override any previous right setting */
-  background: rgba(0,0,0,0.3);
-  border: none;
-  color: #fff;
-  font-size: 2rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  cursor: pointer;
-  z-index: 9999;    /* float above everything */
-  transition: transform 0.2s ease, background 0.2s ease;
 }
 #modal-next {
   left: auto;       /* override */
