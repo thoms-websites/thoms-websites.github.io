@@ -37,12 +37,9 @@ body {
 .parallax-hero {
   height: 60vh;
   background: url('interior.jpg') center calc(40% + 20px) / cover fixed;
-  /* ↑ moves the image 20px up from its normal 40% vertical position */
-  border-bottom: 2px solid #000;
+  border-bottom:2px solid #000;
 }
-.section {
-  padding:4rem 2rem; background:#fff;
-}
+.section { padding:4rem 2rem; background:#fff; }
 h2 {
   font-family:'Alex Brush', cursive;
   font-size:2.5rem; color:#d4af37;
@@ -59,123 +56,83 @@ h2 {
 .about-text { flex:1 1 300px; }
 .about-img { flex:1 1 300px; text-align:center; }
 .about-img img {
-  width: 66%;
-  max-width: 250px;
-  border-radius: 8px;
-  border: 2px solid #000;    /* ← new black border */
+  width:66%; max-width:250px;
+  border-radius:8px;
+  border:2px solid #000; /* black border */
 }
 .caption { font-style:italic; margin-top:.5rem; }
 
 /* Carousel container */
 .special-carousel {
-  display: flex;
-  gap: 1rem;
-  overflow: hidden;
-  position: relative;
-  /* We'll hide native scrollbar */
+  display:flex; gap:1rem; overflow:hidden; position:relative;
+  cursor: grab;
 }
-.special-carousel::-webkit-scrollbar { display: none; }
+.special-carousel.dragging { cursor: grabbing; }
+.special-carousel::-webkit-scrollbar { display:none; }
 
-/* Each slide */
+/* Slides */
 .slide {
-  width: 300px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  border: 2px solid #000;      /* ← new black border */
-  border-radius: 8px;          /* match your corners */
-  overflow: hidden;            /* clip rounded corners */
-  background: #fff;            /* ensure border is visible */
+  width:300px; flex-shrink:0;
+  display:flex; flex-direction:column;
+  background:#fff; border:2px solid #000;
+  border-radius:8px; overflow:hidden;
 }
 .slide-img {
-  height: 180px;
-  background-size: cover;
-  background-position: center;
-  /* keep top corners rounded */
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  border-bottom: 2px solid #000;  /* ← line between image & info */
+  height:180px; background-size:cover; background-position:center;
+  border-top-left-radius:6px; border-top-right-radius:6px;
+  border-bottom:2px solid #000;
 }
-/* The text panel sits flush beneath */
 .slide-info {
-  padding: 0.75rem 1rem;
-  background: #fff;
-  color: #000;
-  flex: 1;
+  padding:.75rem 1rem; background:#fff; flex:1;
 }
-
-.slide-info h3 {
-  margin: 0 0 0.3rem;
-  font-size: 1.1rem;
-  color: #000;
-}
-.slide-info p {
-  margin: 0;
-  color: #555;
-}
+.slide-info h3 { margin:0 0 .3rem; font-size:1.1rem; color:#000; }
+.slide-info p  { margin:0; color:#555; }
 
 /* Modal overlay & content */
 .slide-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,0.85);
+  align-items:center; justify-content:center; z-index:100;
 }
-.slide-modal.open { display: flex; }
-
+.slide-modal.open { display:flex; }
 .modal-content {
-  display: flex;
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  max-width: 90vw;
-  max-height: 90vh;
-  animation: pop-in 0.3s ease-out forwards;
+  position:relative;
+  display:flex; background:#fff; border-radius:8px; overflow:hidden;
+  max-width:90vw; max-height:90vh;
+  animation:pop-in .3s ease-out forwards;
 }
 @keyframes pop-in {
-  from { transform: scale(0.7); opacity: 0; }
-  to   { transform: scale(1);   opacity: 1; }
+  from { transform:scale(0.7); opacity:0 } to { transform:scale(1); opacity:1 }
 }
+
+/* Prev/Next */
+.modal-nav {
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(0,0,0,0.3); border:none; color:#fff;
+  font-size:2rem; width:2.5rem; height:2.5rem; cursor:pointer; z-index:2;
+}
+#modal-prev { left:.5rem; }
+#modal-next { right:.5rem; }
+
+/* Image & text */
 #modal-image {
-  width: 450px;            /* match a single slide’s width */
-  height: auto;            /* let height scale proportionally */
-  object-fit: cover;
+  width:450px; object-fit:cover;
 }
 .modal-text {
-  padding: 2rem;            /* more padding */
-  overflow-y: auto;
-  flex: 1;                  /* allow it to grow */
+  flex:1; padding:2rem; overflow-y:auto;
 }
-.modal-text h3 {
-  margin: 0 0 1rem;         /* separate title & description */
-  font-size: 2rem;
-}
-.modal-text p {
-  margin: 0 0 1.5rem;       /* extra space below desc */
-  line-height: 1.4;
-  color: #333;
-}
+.modal-text h3 { margin:0 0 1rem; font-size:2rem; }
+.modal-text p  { margin:0 0 1.5rem; line-height:1.4; color:#333; }
 
-/* Close button */
+/* Close */
 #close-modal {
-  position: absolute;
-  top: 1rem; right: 1rem;
-  background: transparent;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
+  position:absolute; top:1rem; right:1rem;
+  background:transparent; border:none; font-size:2rem; cursor:pointer;
 }
 
-/* Reservations iframe styling */
+/* Reservations (Airtable embed) */
 .reserve iframe {
-  width: 100%;
-  height: 400px;
-  border: 2px solid #000;
-  border-radius: 8px;
+  width:100%; height:533px; border:1px solid #ccc; border-radius:8px;
 }
 
 /* Footer */
@@ -194,6 +151,4 @@ h2 {
   padding:.5rem 1rem; background:#d4af37;
   border:none; border-radius:4px; font-weight:bold; cursor:pointer;
 }
-.socials a {
-  margin-right:1rem; color:#d4af37; text-decoration:none;
-}
+.socials a { margin-right:1rem; color:#d4af37; text-decoration:none; }
