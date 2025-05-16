@@ -135,12 +135,18 @@ h2 {
   object-fit: cover;
 }
 .modal-text {
-  padding: 1.5rem;
+  padding: 2rem;            /* more padding */
   overflow-y: auto;
+  flex: 1;                  /* allow it to grow */
 }
 .modal-text h3 {
-  margin-top: 0;
-  font-size: 1.8rem;
+  margin: 0 0 1rem;         /* separate title & description */
+  font-size: 2rem;
+}
+.modal-text p {
+  margin: 0 0 1.5rem;       /* extra space below desc */
+  line-height: 1.4;
+  color: #333;
 }
 
 /* Close button */
