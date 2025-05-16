@@ -58,7 +58,10 @@ h2 {
 .about-text { flex:1 1 300px; }
 .about-img { flex:1 1 300px; text-align:center; }
 .about-img img {
-  width:66%; max-width:250px; border-radius:8px;
+  width: 66%;
+  max-width: 250px;
+  border-radius: 8px;
+  border: 2px solid #000;    /* ← new black border */
 }
 .caption { font-style:italic; margin-top:.5rem; }
 
