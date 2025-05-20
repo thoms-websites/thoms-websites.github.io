@@ -12,16 +12,18 @@
   <link rel="icon" href="website-pp.png" />
 </head>
 <body>
+
+  <!-- HERO -->
   <header class="main-nav">
     <div class="logo">Thom Creates Websites</div>
     <ul class="menu">
-      <li><a href="#about">About</a></li>
-      <li><a href="#demos">Demos</a></li>
-      <li><a href="#contact">Let’s Chat</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#demos">Demo Projects</a></li>
+      <li><a href="#contact">Let's Chat</a></li>
     </ul>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="blob blob-top"></div>
     <div class="hero-content">
@@ -35,46 +37,75 @@
   </section>
 
   <main>
+
     <!-- ABOUT ME -->
     <section id="about" class="about">
       <h2 class="section-title">About Me</h2>
-      <p>  
-        I’m a self-taught web developer based in Paris, with a diploma in audio production and a passion for creating 
-        lively, user-friendly websites. After years behind the mixing desk, I discovered my true calling building digital 
-        experiences. I specialize in crafting modern, responsive sites for hospitality venues—cafés, bars, and restaurants—
-        that not only look great but also help bring in more customers.
-      </p>
       <p>
-        From wireframes to final launch, I handle everything: responsive layouts, performance optimization, and
-        intuitive content management. Whether you need a sleek menu page, an events calendar, or an easy-to-use
-        reservation form, I’ve got you covered.
+        I’m a <strong>self-taught</strong> web developer with a passion for crafting immersive online experiences.  
+        Starting from scratch, I’ve mastered HTML, CSS, JavaScript—and even Python—to automate tasks and build robust sites.  
+        I thrive on turning a café’s cozy ambiance or a bar’s electric energy into pixel-perfect pages that drive real-world foot traffic.  
+        When I’m not coding, you’ll find me experimenting with new libraries, refining designs, or sipping an espresso in search of inspiration.
       </p>
     </section>
 
-    <!-- DEMOS -->
+    <!-- SKILLS -->
+    <section id="skills" class="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-list">
+        <span class="skill">HTML</span>
+        <span class="skill">CSS</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">Python</span>
+        <span class="skill">Git</span>
+      </div>
+    </section>
+
+    <!-- DEMO PROJECTS -->
     <section id="demos" class="demos">
       <h2 class="section-title">Demo Projects</h2>
       <div class="demo-grid">
-        <a href="blue-hour-bar/index.html" class="demo-card">
-          <video class="demo-media" src="bar-demo.mp4" autoplay loop muted playsinline></video>
+        <a href="blue-hour-bar/index.html" class="demo-card" style="background-image:url('blue-hour-bar/bar1.jpg')">
           <div class="overlay"></div>
           <h3>The Blue Hour Bar</h3>
           <p>Moody, elegant site with event listings &amp; menus</p>
+          <p class="demo-skills"><strong>Skills:</strong> HTML • CSS • JavaScript</p>
         </a>
-        <a href="corner-cafe/index.html" class="demo-card" style="background-image:url('cafe-demo.png')">
+        <a href="corner-cafe/index.html" class="demo-card" style="background-image:url('corner-cafe/cafe1.jpg')">
           <div class="overlay"></div>
           <h3>The Corner Café</h3>
           <p>Bright, cozy layout perfect for coffee lovers</p>
+          <p class="demo-skills"><strong>Skills:</strong> HTML • CSS • JavaScript</p>
         </a>
-        <a href="maison-locale/index.html" class="demo-card" style="background-image:url('restaurant-demo.png')">
+        <a href="maison-locale/index.html" class="demo-card" style="background-image:url('maison-locale/rest1.jpg')">
           <div class="overlay"></div>
           <h3>Maison Locale</h3>
           <p>Modern dining site with specials &amp; reservations</p>
+          <p class="demo-skills"><strong>Skills:</strong> HTML • CSS • JavaScript • Python</p>
+        </a>
+        <a href="restaurant-demo.png" class="demo-card" style="background-image:url('restaurant-demo.png')">
+          <div class="overlay"></div>
+          <h3>Restaurant Demo</h3>
+          <p>Full-screen hero with menu and gallery</p>
+          <p class="demo-skills"><strong>Skills:</strong> HTML • CSS • JavaScript</p>
+        </a>
+        <a href="cafe-demo.png" class="demo-card" style="background-image:url('cafe-demo.png')">
+          <div class="overlay"></div>
+          <h3>Café Demo</h3>
+          <p>Minimalist café site with parallax scroll</p>
+          <p class="demo-skills"><strong>Skills:</strong> HTML • CSS • JavaScript</p>
+        </a>
+        <a href="bar-demo.mp4" class="demo-card video-card">
+          <video class="demo-media" src="bar-demo.mp4" muted loop autoplay playsinline></video>
+          <div class="overlay"></div>
+          <h3>Bar Demo</h3>
+          <p>Dynamic video background &amp; booking form</p>
+          <p class="demo-skills"><strong>Skills:</strong> HTML • CSS • JavaScript</p>
         </a>
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- CONTACT / LET'S CHAT -->
     <section id="contact" class="contact">
       <div class="divider"></div>
       <h2 class="section-title">Let’s Chat</h2>
@@ -83,15 +114,17 @@
           <input type="text" name="name" placeholder="Your name" required />
           <input type="email" name="email" placeholder="Your email" required />
           <textarea name="message" rows="5" placeholder="Tell me about your venue..." required></textarea>
-          <button type="submit">Send Message</button>
         </div>
+        <button type="submit">Send Message</button>
       </form>
     </section>
+
   </main>
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>✉️ &nbsp;<a href="mailto:thom.creates.websites@gmail.com">thom.creates.websites@gmail.com</a></p>
+    <p>📧 <a href="mailto:thom.creates.websites@gmail.com">thom.creates.websites@gmail.com</a></p>
   </footer>
+
 </body>
 </html>
