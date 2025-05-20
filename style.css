@@ -130,19 +130,25 @@ body {
   margin-bottom: 20px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
+/* Title */
 .hero-title {
   font-family: 'Playfair Display', serif;
   font-size: 2.8rem;
   color: #fff;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  /* same drop-shadow as Demo Projects header */
+  text-shadow: 0 4px 8px rgba(0,0,0,0.6);
   margin-bottom: 10px;
 }
+
+/* Subtitle */
 .hero-subtitle {
   font-size: 1.2rem;
   max-width: 600px;
   margin: 0 auto;
   color: #f0f0f0;
   line-height: 1.5;
+  /* slight drop-shadow */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 /* ========== ABOUT SECTION ========== */
@@ -276,12 +282,22 @@ body {
   padding: 1rem;
   background: transparent;
 }
-/* unify text color & remove underlines */
-.demo-card .demo-text h3,
+/* Titles, descriptions and skill badges */
+.demo-card .demo-text h3 {
+  margin: 0 0 .5rem;
+  font-size: 1.4rem;
+  color: #222;
+  text-decoration: none;      /* absolutely no underlines */
+  white-space: nowrap;        /* force one line */
+}
+
 .demo-card .demo-text p,
 .demo-card .demo-text .demo-skills {
+  margin: 0 0 1.25rem;         /* extra spacing between lines */
+  font-size: .95rem;
   color: #222;
-  text-decoration: none;
+  text-decoration: none;      /* remove any underline */
+  line-height: 1.4;           /* breathing room */
 }
 
 /* hide default video controls */
