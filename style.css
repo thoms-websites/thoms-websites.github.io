@@ -161,6 +161,13 @@ body {
   font-size: 1rem;
   color: #333;
 }
+.diagonal-section {
+  position: relative;
+  background: rgba(255,255,255,0.95);
+  padding: 60px 20px;
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+  margin-bottom: 40px;
+}
 
 /* ========== SKILLS SECTION ========== */
 .skills {
@@ -333,18 +340,45 @@ body {
 .contact-form button:hover {
   background: #444;
 }
+.diagonal-section {
+  position: relative;
+  background: rgba(255,255,255,0.95);
+  padding: 60px 20px;
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+  margin-bottom: 40px;
+}
+.contact .contact-intro.spaced {
+  margin-top: 20px;   /* adds space below the heading */
+  margin-bottom: 40px;
+}
 
 /* ========== FOOTER ========== */
 .footer {
-  text-align: center;
-  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   background: rgba(255,255,255,0.85);
+  padding: 1rem 2rem;
   font-size: 0.9rem;
-  color: #222;
   border-top: 1px solid #ddd;
 }
-.footer a {
-  color: #222;
+.footer-left,
+.footer-center,
+.footer-right {
+  flex: 1;
+}
+.footer-left {
+  text-align: left;
+}
+.footer-center {
+  text-align: center;
+}
+.footer-right {
+  text-align: right;
+}
+.back-to-top {
   text-decoration: none;
-  font-weight: 500;
+  color: #222;
+  font-weight: 600;
 }
