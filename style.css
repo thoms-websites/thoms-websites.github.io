@@ -38,20 +38,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 3rem;
+  padding: 1rem 2rem;            /* reduced padding */
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 
-  /* flip diagonal bottom edge the other way */
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  /* flipped diagonal bottom edge */
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }
 
-/* fluid but legible logo & nav text */
 .logo {
+  /* you can drop in an SVG or fancier font here when ready */
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-size: clamp(1.4rem, 4vw, 2rem);  /* scaled down */
 }
+
 .menu li a {
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(0.9rem, 2vw, 1.1rem); /* scaled down */
 }
 
 .nav-toggle {
