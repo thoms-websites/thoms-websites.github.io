@@ -23,7 +23,6 @@
   <link rel="icon" href="website-pp.png" />
 </head>
   <body id="top">
-<body>
 
   <!-- RESPONSIVE NAVIGATION -->
   <header class="main-nav">
@@ -64,7 +63,7 @@
 </section>
 
 <!-- Skills -->
-<section class="skills-section diagonal-section">
+<section id="skills" class="skills-section diagonal-section">
   <div class="container">
     <h2>Skills</h2>
     <div class="skills-grid">
@@ -80,14 +79,16 @@
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript logo">
         <p>JavaScript</p>
       </div>
+      <!-- GitHub -->
       <div class="skill-card">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub logo">
         <p>GitHub</p>
       </div>
       <div class="skill-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma logo">
-        <p>Figma</p>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo">
+        <p>Python</p>
       </div>
+      <!-- Photoshop -->
       <div class="skill-card">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-line.svg" alt="Photoshop logo">
         <p>Photoshop</p>
@@ -95,36 +96,51 @@
     </div>
   </div>
 </section>
-
+    
 <!-- DEMO PROJECTS -->
 <section id="demos" class="demos scroll-target">
   <h2 class="section-title">Demo Projects</h2>
   <div class="demo-grid">
-    <a href="blue-hour-bar/index.html" class="demo-card" style="background-image:url('bar-demo.mp4')">
+    <!-- Bar demo as video -->
+    <a href="bar-demo.mp4" class="demo-card video-card" target="_blank" rel="noopener">
+      <video
+        class="demo-media"
+        src="bar-demo.mp4"
+        poster="bar-demo.png"
+        muted
+        loop
+        autoplay
+        playsinline
+        preload="none"
+      ></video>
       <div class="overlay"></div>
       <h3>The Blue Hour Bar</h3>
       <p>Moody, elegant site with event listings &amp; menus</p>
       <p class="demo-skills"><strong>Skills:</strong> HTML • CSS • JavaScript</p>
     </a>
-    <a href="corner-cafe/index.html" class="demo-card" style="background-image:url('cafe-demo.png')">
+
+    <!-- Restaurant demo -->
+    <a href="restaurant-demo.png" class="demo-card" style="background-image:url('restaurant-demo.png')" target="_blank" rel="noopener">
       <div class="overlay"></div>
       <h3>The Corner Café</h3>
       <p>Bright, cozy layout perfect for coffee lovers</p>
       <p class="demo-skills"><strong>Skills:</strong> HTML • CSS • JavaScript</p>
     </a>
-    <a href="maison-locale/index.html" class="demo-card" style="background-image:url('restaurant-demo.png')">
+
+    <!-- Café demo -->
+    <a href="cafe-demo.png" class="demo-card" style="background-image:url('cafe-demo.png')" target="_blank" rel="noopener">
       <div class="overlay"></div>
       <h3>Maison Locale</h3>
       <p>Modern dining site with specials &amp; reservations</p>
-      <p class="demo-skills"><strong>Skills:</strong> HTML • CSS • JavaScript • Python</p>
+      <p class="demo-skills"><strong>Skills:</strong> HTML • CSS • JavaScript</p>
     </a>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="contact scroll-target diagonal-section">
-  <h2 class="section-title">Let’s Chat</h2>
-  <p class="contact-intro spaced">
+  <h2 class="section-title" style="text-align:center;">Let’s Chat</h2>
+  <p class="contact-intro spaced" style="margin-top:2rem; text-align:center;">
     Ready to bring your venue online? Fill out the form below and I’ll respond within 24 hours.
   </p>
   <form action="https://formspree.io/f/mldbnvdn" method="POST" class="contact-form">
@@ -143,10 +159,10 @@
     <p>© <span id="year"></span> Thom Creates Websites</p>
   </div>
   <div class="footer-center">
-    <a href="#top" class="back-to-top">Back to top ↑</a>
+    <a href="https://thoms-websites.github.io/" class="back-to-top">Back to top ↑</a>
   </div>
   <div class="footer-right">
-    <p>📧 <a href="mailto:thom.creates.websites@gmail.com">thom.creates.websites@gmail.com</a></p>
+    <p>📧 <a href="mailto:thom.creates.websites@gmail.com" style="color:#222;">thom.creates.websites@gmail.com</a></p>
   </div>
 </footer>
 
