@@ -257,16 +257,16 @@ body {
   margin-bottom: 40px;
   text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
+
 /* ===== DEMO PROJECT TILE FIX ===== */
 .demo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem; /* give more breathing room */
+  gap: 2rem; /* breathing room */
   justify-items: center;
 }
 
 .demo-card {
-  /* switch from absolute text to flex layout */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -284,7 +284,6 @@ body {
 }
 
 .demo-card .overlay {
-  /* keep the dark fade */
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
@@ -294,10 +293,10 @@ body {
 .demo-card h3,
 .demo-card p,
 .demo-skills {
-  position: static;         /* remove previous absolute */
-  margin: 0.25rem 0;        /* space between lines */
+  position: static;   /* drop absolute positioning */
+  margin: 0.25rem 0;
   color: #fff;
-  z-index: 1;               /* sit above overlay */
+  z-index: 1;
 }
 
 .demo-card h3 {
@@ -314,7 +313,6 @@ body {
   color: #ddd;
 }
 
-/* hover effect */
 .demo-card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
