@@ -40,6 +40,9 @@ body {
   justify-content: space-between;
   padding: 1rem 2rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  /* clip-path temporarily removed to restore layout */
+  /* clip-path: polygon(0 0, 100% 8%, 100% 100%, 0% 100%); */
+}
 
   /*  -- DIAGONAL NAV HEADER -- */
   clip-path: polygon(0 0, 100% 8%, 100% 100%, 0% 100%);
