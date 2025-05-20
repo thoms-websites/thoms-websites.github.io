@@ -257,7 +257,7 @@ body {
   flex-direction: column;
   width: 100%;
   max-width: 360px;
-  background: #222;
+  background: rgba(255,255,255,0.85);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
@@ -274,17 +274,19 @@ body {
 /* text block */
 .demo-card .demo-text {
   padding: 1rem;
-  background: #222;
+  background: transparent;
 }
-.demo-card .demo-text h3 {
-  margin: 0 0 .5rem;
-  color: #fff;
-}
+/* unify text color & remove underlines */
+.demo-card .demo-text h3,
 .demo-card .demo-text p,
 .demo-card .demo-text .demo-skills {
-  margin: 0 0 .5rem;
-  color: #ddd;
-  font-size: .95rem;
+  color: #222;
+  text-decoration: none;
+}
+
+/* hide default video controls */
+.video-card .demo-media {
+  /* controls attribute removed in HTML; browser will not show controls */
 }
 
 /* hover */
