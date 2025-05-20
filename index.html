@@ -4,18 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thom Creates Websites</title>
+
+  <!-- Meta & Open Graph for SEO & Social Sharing -->
+  <meta name="description" content="I build vibrant, responsive websites for cafés, bars & restaurants that stand out—and bring in customers." />
+  <meta property="og:title" content="Thom Creates Websites" />
+  <meta property="og:description" content="Crafting immersive online experiences for cafés, bars & restaurants." />
+  <meta property="og:image" content="https://thoms-websites.github.io/website-pp.png" />
+  <meta property="og:url" content="https://thoms-websites.github.io/" />
+  <meta property="og:type" content="website" />
+
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@500&family=Fira+Code&display=swap" rel="stylesheet" />
+
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
+
   <!-- Favicon -->
   <link rel="icon" href="website-pp.png" />
 </head>
 <body>
 
-  <!-- HERO -->
+  <!-- RESPONSIVE NAVIGATION -->
   <header class="main-nav">
     <div class="logo">Thom Creates Websites</div>
+    <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
     <ul class="menu">
       <li><a href="#about">About Me</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -24,22 +36,23 @@
     </ul>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="blob blob-top"></div>
+    <div class="blob blob-top" aria-hidden="true"></div>
     <div class="hero-content">
-      <img src="website-pp.png" alt="Thom’s Photo" class="hero-photo" />
+      <img src="website-pp.png" alt="Thom’s Photo" class="hero-photo" loading="lazy" />
       <h1 class="hero-title">Hi, I’m Thom</h1>
       <p class="hero-subtitle">
         I build vibrant, responsive websites for cafés, bars &amp; restaurants that stand out—and bring in customers.
       </p>
     </div>
-    <div class="blob blob-bottom"></div>
+    <div class="blob blob-bottom" aria-hidden="true"></div>
   </section>
 
   <main>
 
     <!-- ABOUT ME -->
-    <section id="about" class="about">
+    <section id="about" class="about scroll-target">
       <h2 class="section-title">About Me</h2>
       <p>
         I’m a <strong>self-taught</strong> web developer with a passion for crafting immersive online experiences.  
@@ -50,7 +63,7 @@
     </section>
 
     <!-- SKILLS -->
-    <section id="skills" class="skills">
+    <section id="skills" class="skills scroll-target">
       <h2 class="section-title">Skills</h2>
       <div class="skills-list">
         <span class="skill">HTML</span>
@@ -62,7 +75,7 @@
     </section>
 
     <!-- DEMO PROJECTS -->
-    <section id="demos" class="demos">
+    <section id="demos" class="demos scroll-target">
       <h2 class="section-title">Demo Projects</h2>
       <div class="demo-grid">
         <a href="blue-hour-bar/index.html" class="demo-card" style="background-image:url('blue-hour-bar/bar1.jpg')">
@@ -96,7 +109,16 @@
           <p class="demo-skills"><strong>Skills:</strong> HTML • CSS • JavaScript</p>
         </a>
         <a href="bar-demo.mp4" class="demo-card video-card">
-          <video class="demo-media" src="bar-demo.mp4" muted loop autoplay playsinline></video>
+          <video
+            class="demo-media"
+            src="bar-demo.mp4"
+            poster="bar-demo.png"
+            muted
+            loop
+            autoplay
+            playsinline
+            preload="none"
+          ></video>
           <div class="overlay"></div>
           <h3>Bar Demo</h3>
           <p>Dynamic video background &amp; booking form</p>
@@ -106,7 +128,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact scroll-target">
       <div class="divider"></div>
       <h2 class="section-title">Let’s Chat</h2>
       <p class="contact-intro">
@@ -124,8 +146,28 @@
 
   <!-- FOOTER -->
   <footer class="footer">
+    <p>© <span id="year"></span> Thom Creates Websites</p>
     <p>📧 <a href="mailto:thom.creates.websites@gmail.com">thom.creates.websites@gmail.com</a></p>
+    <p><a href="#home" class="back-to-top">Back to top ↑</a></p>
   </footer>
 
+  <!-- Smooth scroll & Nav toggle -->
+  <script>
+    // smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // mobile nav toggle
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('.menu').classList.toggle('open');
+    });
+
+    // current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
