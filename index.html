@@ -4,85 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thom Creates Websites</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Hi, I’m Thom—self-taught web developer building vibrant, responsive websites for cafés, bars & restaurants that impress and bring in customers." />
+  <meta property="og:title" content="Thom Creates Websites" />
+  <meta property="og:description" content="Self-taught web developer building vibrant, responsive websites for cafés, bars & restaurants." />
+  <meta property="og:image" content="website-pp.png" />
+
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet" />
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="background"></div>
-  <!-- HERO with blob decoration -->
-  <section class="hero">
+
+  <!-- STICKY NAV -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#demos">Demos</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header id="hero" class="hero">
     <div class="blob blob-top"></div>
     <div class="hero-content">
-      <img src="prof-photo.jpeg" alt="Thom’s Photo" class="hero-photo" />
+      <img src="website-pp.png" alt="Thom’s Photo" class="hero-photo" loading="lazy" />
       <h1 class="hero-title">Hi, I’m Thom</h1>
       <p class="hero-subtitle">
-        I build vibrant, responsive websites for cafés, bars &amp; restaurants that stand out—and bring in customers.
+        I’m a self-taught web developer with a passion for building vibrant, responsive websites for cafés, bars & restaurants that stand out—and bring in customers.
       </p>
+      <a href="#demos" class="btn cta">View Demo Projects</a>
     </div>
     <div class="blob blob-bottom"></div>
-  </section>
+  </header>
 
   <main class="content">
-    <section class="hero">
-      <img src="prof-photo.jpeg" alt="Thom’s Photo" />
-      <h1>Thom Creates Websites</h1>
-      <p>I build modern, responsive websites for cafés, bars, and restaurants—designed to impress and bring in customers.</p>
-    </section>
-  <!-- DEMOS with image‐backed cards -->
-  <section class="demos">
-    <h2 class="section-title">Demo Projects</h2>
-    <div class="demo-grid">
-      <a href="blue-hour-bar/index.html" class="demo-card" style="background-image:url('blue-hour-bar/bar1.jpg')">
-        <div class="overlay"></div>
-        <h3>The Blue Hour Bar</h3>
-        <p>Moody, elegant site with event listings &amp; menus</p>
-      </a>
 
-    <section class="demos">
-      <h2>Demo Projects</h2>
-      <div class="demo-links">
-        <a href="blue-hour-bar/index.html" class="demo-button">Blue Hour Bar</a>
-        <a href="corner-cafe/index.html" class="demo-button">Corner Café</a>
-        <a href="maison-locale/index.html" class="demo-button">Maison Locale</a>
+    <!-- ABOUT -->
+    <section id="about" class="about">
+      <h2 class="section-title alt">About Me</h2>
+      <p>
+        I discovered my passion for web development in 2020 and taught myself HTML, CSS, and JavaScript by building sites for friends and local cafés. Since then I’ve
+        honed my skills in responsive design, performance optimization, and modern tooling (Git, npm, build pipelines). I love the challenge of turning a business’s
+        vision into a pixel-perfect, user-friendly website that not only looks great but also drives real results.
+      </p>
+      <p>
+        When I’m not coding you’ll find me experimenting with CSS art, exploring new JavaScript frameworks, or sampling lattes at the Corner Café down the street.
+        Let’s partner up to give your venue a website that truly reflects its personality and keeps customers coming back.
+      </p>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="skills">
+      <h2 class="section-title alt">My Toolkit</h2>
+      <ul class="skill-list">
+        <li>HTML5 & CSS3</li>
+        <li>JavaScript (ES6+)</li>
+        <li>Responsive & Mobile-First</li>
+        <li>Git & GitHub</li>
+        <li>Accessibility & SEO</li>
+        <li>Performance Optimization</li>
+      </ul>
+    </section>
+
+    <!-- DEMOS -->
+    <section id="demos" class="demos">
+      <h2 class="section-title">Demo Projects</h2>
+      <div class="demo-grid">
+        <a href="maison-locale/index.html" class="demo-card">
+          <div class="media">
+            <img src="restaurant-demo.png" alt="Maison Locale Demo" loading="lazy">
+          </div>
+          <div class="demo-info">
+            <h3>Maison Locale</h3>
+            <p>Modern dining site with specials & reservations</p>
+            <small>HTML, CSS, JavaScript, OpenTable & Airtable integration</small>
+          </div>
+        </a>
+        <a href="corner-cafe/index.html" class="demo-card">
+          <div class="media">
+            <img src="cafe-demo.png" alt="Corner Café Demo" loading="lazy">
+          </div>
+          <div class="demo-info">
+            <h3>Corner Café</h3>
+            <p>Bright, cozy layout perfect for coffee lovers</p>
+            <small>HTML, CSS Grid, lightbox gallery</small>
+          </div>
+        </a>
+        <a href="blue-hour-bar/index.html" class="demo-card">
+          <div class="media">
+            <video src="bar-demo.mp4" muted loop playsinline></video>
+          </div>
+          <div class="demo-info">
+            <h3>The Blue Hour Bar</h3>
+            <p>Moody, elegant site with event listings & menus</p>
+            <small>HTML, CSS Flexbox, JS event calendar</small>
+          </div>
+        </a>
       </div>
     </section>
-      <a href="corner-cafe/index.html" class="demo-card" style="background-image:url('corner-cafe/cafe1.jpg')">
-        <div class="overlay"></div>
-        <h3>The Corner Café</h3>
-        <p>Bright, cozy layout perfect for coffee lovers</p>
-      </a>
 
-      <a href="maison-locale/index.html" class="demo-card" style="background-image:url('maison-locale/rest1.jpg')">
-        <div class="overlay"></div>
-        <h3>Maison Locale</h3>
-        <p>Modern dining site with specials &amp; reservations</p>
-      </a>
-    </div>
-  </section>
-
-    <section class="contact">
-      <h2>Contact</h2>
-      <form action="https://formspree.io/forms/mldbnvdn/" method="POST">
-  <!-- CONTACT with angled divider -->
-  <section class="contact">
-    <div class="divider"></div>
-    <h2 class="section-title">Let’s Chat</h2>
-    <form action="https://formspree.io/forms/mldbnvdn/" method="POST">
-      <div class="form-row">
-        <input type="text" name="name" placeholder="Your name" required />
-        <input type="email" name="email" placeholder="Your email" required />
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <div class="divider"></div>
+      <h2 class="section-title">Let’s Chat</h2>
+      <p class="contact-intro">
+        Ready to bring your venue online? Fill out the form below and I’ll respond within 24 hours.
+      </p>
+      <form action="https://formspree.io/forms/mldbnvdn/" method="POST" class="contact-form">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
         <textarea name="message" rows="5" placeholder="Tell me about your venue..." required></textarea>
-        <button type="submit">Send Message</button>
+        <button type="submit" class="btn">Send Message</button>
       </form>
     </section>
+
   </main>
-      </div>
-      <textarea name="message" rows="4" placeholder="Tell me about your venue..." required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
+
+  <!-- SMOOTH SCROLL SCRIPT -->
+  <script>
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(anchor.getAttribute('href'))
+          .scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
 </body>
 </html>
