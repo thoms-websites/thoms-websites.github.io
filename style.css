@@ -30,7 +30,7 @@ body {
 
 /* ========== HEADER & NAVIGATION ========== */
 .main-nav {
-  position: sticky;
+  position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
   background: rgba(255,255,255,0.85);
@@ -38,11 +38,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 2rem 3rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 
-  /* diagonal cut */
-  clip-path: polygon(0 0, 100% 8%, 100% 100%, 0 100%);
+  /* backwards, steeper diagonal */
+  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+}
+
+.menu li a {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
 }
 
 .logo {
@@ -234,92 +238,52 @@ body {
   font-family: 'Playfair Display', serif;
   color: #fff;
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 40px;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  text-shadow: 0 4px 8px rgba(0,0,0,0.6);
 }
 
-/* Demo grid layout */
+/* grid */
 .demo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   justify-items: center;
 }
 
-/* Card base */
+/* make each card landscape */
 .demo-card {
-  position: relative;
+  flex-direction: row;
   width: 100%;
-  max-width: 260px;
-  height: 360px;
-  overflow: hidden;
-  border-radius: 16px;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;            /* foster vertical alignment */
-  align-items: flex-end;    /* text stays at bottom */
+  max-width: 360px;
+  height: 240px;
+  padding: 0;
 }
 
-/* Video fills the card */
-.video-card .demo-media {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+/* position text below media */
+.demo-card .overlay { display: none; }
+.demo-card .video-card .demo-media,
+.demo-card:not(.video-card) {
+  width: 100%;
+  height: 140px;
   object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
-/* Dark overlay to improve text contrast */
-.demo-card .overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-  pointer-events: none;
-}
-
-/* Text wrapper at bottom */
+/* container for text (below image/video) */
 .demo-card .demo-text {
-  position: relative;
-  z-index: 1;
+  background: #222;
   padding: 1rem;
-  color: #fff;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  width: 100%;
 }
-
-/* Headings, paragraphs and skills badge */
-.demo-card .demo-text h3 {
-  margin: 0 0 .25rem;
-  font-size: 1.4rem;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.8);
-}
-.demo-card .demo-text p {
-  margin: 0 0 .5rem;
-  font-size: 0.95rem;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.8);
-}
+.demo-card .demo-text h3,
+.demo-card .demo-text p,
 .demo-card .demo-text .demo-skills {
-  margin: 0;
-  font-size: 0.85rem;
-  color: #ddd;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.8);
-}
-
-/* Hover lift */
-.demo-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
-
-/*  -- DEMO TEXT LEGIBILITY -- */
-.demo-card h3,
-.demo-card p,
-.demo-skills {
-  text-shadow: 0 2px 6px rgba(0,0,0,0.8);
-}
-
-.demo-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  color: #fff;
+  text-shadow: none;
 }
 
 /* ========== CONTACT SECTION ========== */
