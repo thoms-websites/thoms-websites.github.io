@@ -11,10 +11,12 @@ html, body {
   height: 100%;
   font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
+  scroll-behavior: smooth; /* smooth scrolling */
 }
 
 /* ========== ANIMATED BACKGROUND ========== */
 body {
+  background-color: #ff758c; /* fallback */
   background: linear-gradient(240deg, #ff758c, #ff7eb3, #65c7f7, #9afbfd);
   background-size: 400% 400%;
   animation: moveGradient 15s ease infinite;
@@ -26,7 +28,7 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* ========== HEADER ========== */
+/* ========== HEADER & NAVIGATION ========== */
 .main-nav {
   position: sticky;
   top: 0; left: 0; right: 0;
@@ -39,23 +41,39 @@ body {
   padding: 1rem 2rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
-.main-nav .logo {
+.logo {
   font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
   color: #222;
 }
-.main-nav .menu {
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.menu {
   list-style: none;
   display: flex;
   gap: 1.5rem;
 }
-.main-nav .menu li a {
+.menu.open {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.95);
+  padding: 1rem 2rem;
+}
+.menu li a {
   text-decoration: none;
   font-weight: 600;
   color: #222;
   position: relative;
 }
-.main-nav .menu li a::after {
+.menu li a::after {
   content: '';
   position: absolute;
   left: 0; bottom: -4px;
@@ -65,8 +83,18 @@ body {
   transform-origin: left;
   transition: transform 0.3s ease;
 }
-.main-nav .menu li a:hover::after {
+.menu li a:hover::after {
   transform: scaleX(1);
+}
+
+/* MOBILE NAV */
+@media(max-width: 768px) {
+  .nav-toggle { display: block; }
+  .menu {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 /* ========== HERO SECTION ========== */
@@ -89,9 +117,7 @@ body {
   0%,100% { transform: scale(1); }
   50%     { transform: scale(1.2) translate(10px, -10px); }
 }
-.hero-content {
-  position: relative; z-index: 2;
-}
+.hero-content { position: relative; z-index: 2; }
 .hero-photo {
   width: 140px; height: 140px;
   object-fit: cover;
@@ -178,10 +204,10 @@ body {
   text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 .demo-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
   gap: 20px;
-  justify-content: center;
+  justify-items: center;
 }
 .demo-card {
   position: relative;
@@ -223,13 +249,13 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
-/* ========== CONTACT ========== */
+/* ========== CONTACT SECTION ========== */
 .contact {
   position: relative;
   padding: 80px 20px;
   background: white;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 auto 40px;
 }
 .divider {
   position: absolute;
@@ -262,7 +288,7 @@ body {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background .2s;
+  transition: background 0.2s;
 }
 .contact-form button:hover {
   background: #444;
