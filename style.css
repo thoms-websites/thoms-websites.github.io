@@ -190,6 +190,46 @@ body {
   font-size: 0.9rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+.diagonal-section {
+  position: relative;
+  background: #fff;
+  padding: 60px 20px;
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 40px;
+  justify-items: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.skill-card img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.skill-card img:hover {
+  filter: none;
+}
+
+.skill-card p {
+  margin: 0;
+  font-weight: bold;
+  color: #333;
+}
 
 /* ========== DEMOS SECTION ========== */
 .demos {
