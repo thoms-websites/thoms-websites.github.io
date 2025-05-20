@@ -257,47 +257,64 @@ body {
   margin-bottom: 40px;
   text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
+/* ===== DEMO PROJECT TILE FIX ===== */
 .demo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem; /* give more breathing room */
   justify-items: center;
 }
+
 .demo-card {
-  position: relative;
-  width: 260px; height: 360px;
-  overflow: hidden;
+  /* switch from absolute text to flex layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 260px;
+  height: 360px;
+  padding: 1rem;
+  background-size: cover;
+  background-position: center;
   border-radius: 16px;
-  text-decoration: none;
-  color: white;
+  overflow: hidden;
+  position: relative;
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.demo-card .demo-media {
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
-.demo-card[style] {
-  background-size: cover;
-  background-position: center;
-}
+
 .demo-card .overlay {
-  position: absolute; inset: 0;
+  /* keep the dark fade */
+  position: absolute;
+  inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  pointer-events: none;
 }
+
+.demo-card h3,
+.demo-card p,
+.demo-skills {
+  position: static;         /* remove previous absolute */
+  margin: 0.25rem 0;        /* space between lines */
+  color: #fff;
+  z-index: 1;               /* sit above overlay */
+}
+
 .demo-card h3 {
-  position: absolute; bottom: 60px; left: 20px;
   font-size: 1.4rem;
+  font-weight: 700;
 }
+
 .demo-card p {
-  position: absolute; bottom: 30px; left: 20px;
   font-size: 0.95rem;
 }
+
 .demo-skills {
-  position: absolute; bottom: 8px; left: 20px;
   font-size: 0.85rem;
   color: #ddd;
 }
+
+/* hover effect */
 .demo-card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
