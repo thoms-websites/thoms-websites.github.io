@@ -52,16 +52,16 @@
 
   <main>
 
-    <!-- ABOUT ME -->
-    <section id="about" class="about scroll-target">
-      <h2 class="section-title">About Me</h2>
-      <p>
-        I’m a <strong>self-taught</strong> web developer with a passion for crafting immersive online experiences.  
-        Starting from scratch, I’ve mastered HTML, CSS, JavaScript—and even Python—to automate tasks and build robust sites.  
-        I thrive on turning a café’s cozy ambiance or a bar’s electric energy into pixel-perfect pages that drive real-world foot traffic.  
-        When I’m not coding, you’ll find me experimenting with new libraries, refining designs, or sipping an espresso in search of inspiration.
-      </p>
-    </section>
+<!-- ABOUT ME -->
+<section id="about" class="about scroll-target diagonal-section">
+  <h2 class="section-title">About Me</h2>
+  <p>
+    I’m a <strong>self-taught</strong> web developer with a passion for crafting immersive online experiences.  
+    Starting from scratch, I’ve mastered HTML, CSS, JavaScript—and even Python—to automate tasks and build robust sites.  
+    I thrive on turning a café’s cozy ambiance or a bar’s electric energy into pixel-perfect pages that drive real-world foot traffic.  
+    When I’m not coding, you’ll find me experimenting with new libraries, refining designs, or sipping an espresso in search of inspiration.
+  </p>
+</section>
 
 <!-- Skills -->
 <section class="skills-section diagonal-section">
@@ -149,29 +149,34 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="contact scroll-target">
-      <div class="divider"></div>
-      <h2 class="section-title">Let’s Chat</h2>
-      <p class="contact-intro">
-        Ready to bring your venue online? Fill out the form below and I’ll respond within 24 hours.
-      </p>
-      <form action="https://formspree.io/f/mldbnvdn" method="POST" class="contact-form">
-        <input type="text" name="name" placeholder="Your name" required>
-        <input type="email" name="email" placeholder="Your email" required>
-        <textarea name="message" rows="5" placeholder="Tell me about your venue..." required></textarea>
-        <button type="submit" class="btn">Send Message</button>
-      </form>
-    </section>
+<!-- CONTACT -->
+<section id="contact" class="contact scroll-target diagonal-section">
+  <h2 class="section-title">Let’s Chat</h2>
+  <p class="contact-intro spaced">
+    Ready to bring your venue online? Fill out the form below and I’ll respond within 24 hours.
+  </p>
+  <form action="https://formspree.io/f/mldbnvdn" method="POST" class="contact-form">
+    <input type="text"  name="name"    placeholder="Your name"     required>
+    <input type="email" name="email"   placeholder="Your email"    required>
+    <textarea name="message" rows="5" placeholder="Tell me about your venue..." required></textarea>
+    <button type="submit" class="btn">Send Message</button>
+  </form>
+</section>
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">
     <p>© <span id="year"></span> Thom Creates Websites</p>
+  </div>
+  <div class="footer-center">
+    <a href="#top" class="back-to-top">Back to top ↑</a>
+  </div>
+  <div class="footer-right">
     <p>📧 <a href="mailto:thom.creates.websites@gmail.com">thom.creates.websites@gmail.com</a></p>
-    <p><a href="#top" class="back-to-top">Back to top ↑</a></p>
-  </footer>
+  </div>
+</footer>
 
   <!-- Smooth scroll & Nav toggle -->
   <script>
