@@ -33,7 +33,7 @@ body {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -41,18 +41,17 @@ body {
   padding: 2rem 3rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 
-  /* backwards, steeper diagonal */
-  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+  /* flip diagonal bottom edge the other way */
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
 }
 
-.menu li a {
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-}
-
+/* fluid but legible logo & nav text */
 .logo {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: #222;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+}
+.menu li a {
+  font-size: clamp(1rem, 2vw, 1.2rem);
 }
 
 .nav-toggle {
@@ -238,52 +237,59 @@ body {
   font-family: 'Playfair Display', serif;
   color: #fff;
   text-align: center;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   margin-bottom: 40px;
   text-shadow: 0 4px 8px rgba(0,0,0,0.6);
 }
 
-/* grid */
+/* landscape grid */
 .demo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
   gap: 2rem;
   justify-items: center;
 }
 
-/* make each card landscape */
+/* card layout */
 .demo-card {
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 360px;
-  height: 240px;
-  padding: 0;
-}
-
-/* position text below media */
-.demo-card .overlay { display: none; }
-.demo-card .video-card .demo-media,
-.demo-card:not(.video-card) {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-}
-
-/* container for text (below image/video) */
-.demo-card .demo-text {
   background: #222;
-  padding: 1rem;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
-.demo-card .demo-text h3,
+
+/* media at top */
+.demo-card .demo-media {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+/* text block */
+.demo-card .demo-text {
+  padding: 1rem;
+  background: #222;
+}
+.demo-card .demo-text h3 {
+  margin: 0 0 .5rem;
+  color: #fff;
+}
 .demo-card .demo-text p,
 .demo-card .demo-text .demo-skills {
-  color: #fff;
-  text-shadow: none;
+  margin: 0 0 .5rem;
+  color: #ddd;
+  font-size: .95rem;
+}
+
+/* hover */
+.demo-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 /* ========== CONTACT SECTION ========== */
