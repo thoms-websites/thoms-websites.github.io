@@ -13,7 +13,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* ========== ANIMATED GRADIENT BACKGROUND ========== */
+/* ========== ANIMATED BACKGROUND ========== */
 body {
   background: linear-gradient(240deg, #ff758c, #ff7eb3, #65c7f7, #9afbfd);
   background-size: 400% 400%;
@@ -29,7 +29,7 @@ body {
 /* ========== HEADER ========== */
 .main-nav {
   position: sticky;
-  top: 0;
+  top: 0; left: 0; right: 0;
   z-index: 100;
   background: rgba(255,255,255,0.85);
   backdrop-filter: blur(6px);
@@ -42,7 +42,6 @@ body {
 .main-nav .logo {
   font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
-  font-weight: 500;
   color: #222;
 }
 .main-nav .menu {
@@ -87,12 +86,11 @@ body {
 .blob-top { top: -100px; left: -100px; }
 .blob-bottom { bottom: -120px; right: -80px; }
 @keyframes blobMove {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.2) translate(10px, -10px); }
+  0%,100% { transform: scale(1); }
+  50%     { transform: scale(1.2) translate(10px, -10px); }
 }
 .hero-content {
-  position: relative;
-  z-index: 2;
+  position: relative; z-index: 2;
 }
 .hero-photo {
   width: 140px; height: 140px;
@@ -118,24 +116,53 @@ body {
 }
 
 /* ========== ABOUT SECTION ========== */
-#about {
+.about {
   padding: 60px 20px;
   background: rgba(255,255,255,0.9);
   max-width: 800px;
   margin: 0 auto 40px;
   border-radius: 8px;
 }
-#about .section-title {
+.about .section-title {
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
   margin-bottom: 1rem;
   color: #222;
 }
-#about p {
+.about p {
   margin-bottom: 1rem;
   line-height: 1.6;
   font-size: 1rem;
   color: #333;
+}
+
+/* ========== SKILLS SECTION ========== */
+.skills {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+.skills .section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 1rem;
+}
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: center;
+}
+.skill {
+  background: #fff;
+  color: #222;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 /* ========== DEMOS SECTION ========== */
@@ -175,19 +202,21 @@ body {
   background-position: center;
 }
 .demo-card .overlay {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
 }
 .demo-card h3 {
-  position: absolute;
-  bottom: 60px; left: 20px;
+  position: absolute; bottom: 60px; left: 20px;
   font-size: 1.4rem;
 }
 .demo-card p {
-  position: absolute;
-  bottom: 30px; left: 20px;
+  position: absolute; bottom: 30px; left: 20px;
   font-size: 0.95rem;
+}
+.demo-skills {
+  position: absolute; bottom: 8px; left: 20px;
+  font-size: 0.85rem;
+  color: #ddd;
 }
 .demo-card:hover {
   transform: translateY(-8px) scale(1.02);
@@ -201,16 +230,14 @@ body {
   background: #fff;
 }
 .contact .divider {
-  position: absolute;
-  top: -60px; left: 0; right: 0;
-  height: 60px;
-  background: #fff;
+  position: absolute; top: -60px; left: 0; right: 0;
+  height: 60px; background: #fff;
   clip-path: polygon(0 100%, 100% 0, 100% 100%);
 }
 .contact .section-title {
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
-  color: #222;
+  color: #222; /* dark on white */
   margin-bottom: 1rem;
 }
 .contact form {
