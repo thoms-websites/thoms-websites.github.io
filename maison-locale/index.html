@@ -160,127 +160,148 @@
       </div>
   
   <!-- all JS in one block -->
-  <script>
-  // 1) Setup stroke-dash on the logo path immediately:
-  const logoPath = document.getElementById('logo-path');
-  const pathLength = logoPath.getTotalLength();
-  logoPath.style.strokeDasharray  = pathLength;
-  logoPath.style.strokeDashoffset = pathLength;
+<script>
+// 1) Setup stroke-dash on the logo path immediately:
+const logoPath   = document.getElementById('logo-path');
+const pathLength = logoPath.getTotalLength();
+logoPath.style.strokeDasharray  = pathLength;
+logoPath.style.strokeDashoffset = pathLength;
+logoPath.style.fill             = 'none';
 
-  // 2) Once everything (images, CSS, etc.) has loaded:
-  window.addEventListener('load', () => {
-    // a) Animate the “handwriting” + final fill in one timeline:
-    logoPath.animate([
-      { strokeDashoffset: pathLength, fill: 'none' },
-      { strokeDashoffset:        0, fill: 'none' },
-      { strokeDashoffset:        0, fill: '#d4af37' }
-    ], {
-      duration: 2500,            // 2.5s total
-      easing: 'steps(1)',        // no interim fills
-      fill: 'forwards'
-    });
+// 2) Once everything (images, CSS, etc.) has loaded:
+window.addEventListener('load', () => {
+  // a) Draw the stroke over 2s:
+  const drawAnim = logoPath.animate(
+    [
+      { strokeDashoffset: pathLength },
+      { strokeDashoffset:         0 }
+    ],
+    {
+      duration: 2000,
+      easing:   'ease-out',
+      fill:     'forwards'
+    }
+  );
 
-    // b) After 2.6s, hide the overlay and reveal the page content:
-    setTimeout(() => {
-      document.querySelector('.logo-overlay').classList.add('done');
-      document.querySelector('.site-content').classList.add('loaded');
-      document.body.classList.add('loaded'); // triggers your hero expand too
-    }, 2600);
+  drawAnim.onfinish = () => {
+    // b) Fill it in over 0.3s:
+    const fillAnim = logoPath.animate(
+      [
+        { fill: 'none' },
+        { fill: '#d4af37' }
+      ],
+      {
+        duration: 300,
+        fill:     'forwards'
+      }
+    );
+
+    fillAnim.onfinish = () => {
+      // c) Fly & shrink into the nav logo:
+      document.querySelector('.logo-overlay').classList.add('fly-home');
+
+      // d) After the fly-home transition (0.6s), reveal the rest:
+      setTimeout(() => {
+        document.querySelector('.site-content').classList.add('loaded');
+        document.body.classList.add('loaded');
+      }, 600);
+    };
+  };
+});
+
+
+// 3) Carousel + modal logic (unchanged, namespaced in an IIFE):
+(function() {
+  const carousel   = document.getElementById('special-carousel');
+  const slides     = Array.from(carousel.children);
+  const count      = slides.length;
+  const slideWidth = slides[0].getBoundingClientRect().width;
+
+  // duplicate for infinite scroll
+  slides.forEach(s => carousel.appendChild(s.cloneNode(true)));
+  slides.forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
+  carousel.scrollLeft = count * slideWidth;
+
+  // wrap logic
+  carousel.addEventListener('scroll', () => {
+    if (carousel.scrollLeft <= 0) {
+      carousel.scrollLeft += count * slideWidth;
+    } else if (carousel.scrollLeft >= count * 2 * slideWidth) {
+      carousel.scrollLeft -= count * slideWidth;
+    }
   });
 
-  // 3) Carousel + modal logic (unchanged, namespaced in an IIFE):
-  (function() {
-    const carousel       = document.getElementById('special-carousel');
-    const slides         = Array.from(carousel.children);
-    const count          = slides.length;
-    const slideWidth     = slides[0].getBoundingClientRect().width;
-
-    // duplicate for infinite scroll
-    slides.forEach(s => carousel.appendChild(s.cloneNode(true)));
-    slides.forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
-    carousel.scrollLeft = count * slideWidth;
-
-    // wrap logic
-    carousel.addEventListener('scroll', () => {
-      if (carousel.scrollLeft <= 0) {
-        carousel.scrollLeft += count * slideWidth;
-      } else if (carousel.scrollLeft >= count * 2 * slideWidth) {
-        carousel.scrollLeft -= count * slideWidth;
-      }
-    });
-
-    // auto-scroll + pause on hover
-    let isHovering = false;
-    carousel.addEventListener('mouseenter', () => isHovering = true);
-    carousel.addEventListener('mouseleave', () => isHovering = false);
-
-    function autoScroll() {
-      if (!isHovering) carousel.scrollLeft += 0.5;
-      requestAnimationFrame(autoScroll);
-    }
+  // auto-scroll + pause on hover
+  let isHovering = false;
+  carousel.addEventListener('mouseenter', () => isHovering = true);
+  carousel.addEventListener('mouseleave', () => isHovering = false);
+  function autoScroll() {
+    if (!isHovering) carousel.scrollLeft += 0.5;
     requestAnimationFrame(autoScroll);
+  }
+  requestAnimationFrame(autoScroll);
 
-    // drag-to-scroll
-    let isDown = false, startX, scrollStart;
-    carousel.addEventListener('mousedown', e => {
-      isDown = true;
-      carousel.classList.add('dragging');
-      startX      = e.pageX - carousel.offsetLeft;
-      scrollStart = carousel.scrollLeft;
-    });
-    ['mouseleave','mouseup'].forEach(evt =>
-      carousel.addEventListener(evt, () => {
-        isDown = false;
-        carousel.classList.remove('dragging');
-      })
-    );
-    carousel.addEventListener('mousemove', e => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x    = e.pageX - carousel.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      carousel.scrollLeft = scrollStart - walk;
-    });
+  // drag-to-scroll
+  let isDown = false, startX, scrollStart;
+  carousel.addEventListener('mousedown', e => {
+    isDown = true;
+    carousel.classList.add('dragging');
+    startX      = e.pageX - carousel.offsetLeft;
+    scrollStart = carousel.scrollLeft;
+  });
+  ['mouseleave','mouseup'].forEach(evt =>
+    carousel.addEventListener(evt, () => {
+      isDown = false;
+      carousel.classList.remove('dragging');
+    })
+  );
+  carousel.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x    = e.pageX - carousel.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    carousel.scrollLeft = scrollStart - walk;
+  });
 
-    // modal/pop-up
-    const modal    = document.getElementById('slide-modal');
-    const imgEl    = document.getElementById('modal-image');
-    const titleEl  = document.getElementById('modal-title');
-    const descEl   = document.getElementById('modal-desc');
-    const closeBtn = document.getElementById('close-modal');
-    const prevBtn  = document.getElementById('modal-prev');
-    const nextBtn  = document.getElementById('modal-next');
-    let currentIdx = 0;
+  // modal/pop-up
+  const modal    = document.getElementById('slide-modal');
+  const imgEl    = document.getElementById('modal-image');
+  const titleEl  = document.getElementById('modal-title');
+  const descEl   = document.getElementById('modal-desc');
+  const closeBtn = document.getElementById('close-modal');
+  const prevBtn  = document.getElementById('modal-prev');
+  const nextBtn  = document.getElementById('modal-next');
+  let currentIdx = 0;
 
-    slides.forEach((slide, i) => slide.addEventListener('click', () => {
-      currentIdx = i;
-      openModal(i);
-    }));
+  slides.forEach((slide, i) => slide.addEventListener('click', () => {
+    currentIdx = i;
+    openModal(i);
+  }));
 
-    function openModal(i) {
-      const s = slides[i];
-      imgEl.src         = s.dataset.img;
-      titleEl.textContent = s.querySelector('h3').textContent;
-      descEl.textContent  = s.dataset.desc;
-      modal.classList.add('open');
-    }
+  function openModal(i) {
+    const s = slides[i];
+    imgEl.src           = s.dataset.img;
+    titleEl.textContent = s.querySelector('h3').textContent;
+    descEl.textContent  = s.dataset.desc;
+    modal.classList.add('open');
+  }
 
-    prevBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      currentIdx = (currentIdx - 1 + count) % count;
-      openModal(currentIdx);
-    });
-    nextBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      currentIdx = (currentIdx + 1) % count;
-      openModal(currentIdx);
-    });
-    closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-    modal.addEventListener('click', e => {
-      if (e.target === modal) modal.classList.remove('open');
-    });
-  })();
-  </script>
+  prevBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIdx = (currentIdx - 1 + count) % count;
+    openModal(currentIdx);
+  });
+  nextBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIdx = (currentIdx + 1) % count;
+    openModal(currentIdx);
+  });
+  closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
+})();
+</script>
 
 </body>
 </html>
