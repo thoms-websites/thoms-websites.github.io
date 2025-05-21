@@ -55,6 +55,7 @@ body.loaded {
 
 /* Hero & Sections */
 .parallax-hero {
+  position: relative; /* ← new */
   height: 80vh; /* taller hero */
   background: url('interior.jpg') center calc(40% + 20px) / cover fixed;
   border-bottom:2px solid #000;
@@ -84,7 +85,7 @@ h2 {
   top: 50%; left: 50%;
   transform: translate(-50%,-50%);
   pointer-events: none;
-  z-index: 20;  /* above hero but below nav if needed */
+  z-index: 1;  /* above hero but below nav if needed */
   transition: opacity 0.5s ease 2.6s;
 }
 .logo-overlay.done {
@@ -103,7 +104,8 @@ h2 {
 /* no manual stroke‐dasharray here—we set it in JS */
 /* you can still style the path for hover etc if you like */
 #logo-path {
-  /* will be animated entirely by JS */
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* About */
