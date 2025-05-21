@@ -197,8 +197,10 @@ window.addEventListener('load', () => {
     const dy    = (tRect.top  + tRect.height/2) - (oRect.top  + oRect.height/2);
 
     // fly-and-shrink inline
-    overlay.style.transition = 'transform 0.6s ease-out';
-    overlay.style.transform  = `translate(${dx}px, ${dy}px) scale(${scale})`;
++   overlay.style.transition = 'transform 0.6s ease-out';
++   // preserve the original centering, then apply our delta + scale
++   overlay.style.transform  =
++     `translate(-50%, -50%) translate(${dx}px, ${dy}px) scale(${scale})`;
 
     // after that, reveal page
     setTimeout(() => {
