@@ -194,13 +194,17 @@
       overlay.style.transform  =
         `translate(-50%, -50%) translate(${dx}px, ${dy}px) scale(${scale})`;
 
-      // reveal page & trigger hero expand
-      setTimeout(() => {
-        document.body.classList.add('loaded');
-        document.querySelector('.site-content').classList.add('loaded');
-      }, 600);
-    };
-  });
+drawAndFill.onfinish = () => {
+  const overlay = document.querySelector('.logo-overlay');
+  // add the class (which applies our fixed positioning & scale)
+  overlay.classList.add('fly-home');
+
+  // now reveal the rest of the page
+  setTimeout(() => {
+    document.body.classList.add('loaded');
+    document.querySelector('.site-content').classList.add('loaded');
+  }, 600);
+};
 
   // 3) Carousel + modal: back at top level, not inside any onfinish
   (function() {
