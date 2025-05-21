@@ -157,145 +157,133 @@
       </a>
     </div>
   </footer>
-  </div>
+      </div>
   
   <!-- all JS in one block -->
 <script>
-  // 1) stroke-dash + start with invisible fill
-  const logoPath   = document.getElementById('logo-path');
-  const pathLength = logoPath.getTotalLength();
-  logoPath.style.strokeDasharray  = pathLength;
-  logoPath.style.strokeDashoffset = pathLength;
-  logoPath.style.fillOpacity      = 0;
-  logoPath.style.fill             = '#d4af37';
+// 1) Setup stroke‐dash AND start with invisible fill:
+const logoPath    = document.getElementById('logo-path');
+const pathLength  = logoPath.getTotalLength();
+logoPath.style.strokeDasharray  = pathLength;
+logoPath.style.strokeDashoffset = pathLength;
+logoPath.style.fillOpacity      = 0;         // hide fill initially
+logoPath.style.fill             = '#d4af37'; // set fill color for later
 
-  // 2) when everything’s loaded, draw + fill + fly + reveal
-  window.addEventListener('load', () => {
-    // draw and fade-in fill over 2s
-    const drawAndFill = logoPath.animate([
-      { strokeDashoffset: pathLength, fillOpacity: 0 },
-      { strokeDashoffset:          0, fillOpacity: 1 }
-    ], {
-      duration: 2000,
-      easing:   'ease-out',
-      fill:     'forwards'
-    });
-
-    // once that’s done, move into nav & then un-hide content
-    drawAndFill.onfinish = () => {
-      const overlay = document.querySelector('.logo-overlay');
-      const target  = document.querySelector('.main-nav .logo');
-      const oRect   = overlay.getBoundingClientRect();
-      const tRect   = target.getBoundingClientRect();
-
-      // center-to-center translation + scale to match text height
-      const scale = tRect.height / oRect.height;
-      const dx    = (tRect.left + tRect.width/2) - (oRect.left + oRect.width/2);
-      const dy    = (tRect.top  + tRect.height/2) - (oRect.top  + oRect.height/2);
-
-      // apply the fly-home transform in one go
-      overlay.style.transition = 'transform 0.6s ease-out';
-      overlay.style.transform  =
-        `translate(-50%, -50%) translate(${dx}px, ${dy}px) scale(${scale})`;
-
-      // after it’s tucked into the header, reveal the rest
-      setTimeout(() => {
-        document.body.classList.add('loaded');
-        document.querySelector('.site-content').classList.add('loaded');
-      }, 600);
-    };
+// 2) When everything’s loaded:
+window.addEventListener('load', () => {
+  // a) Draw + fill over the same 2s timeline:
+  const drawAndFill = logoPath.animate([
+    { strokeDashoffset: pathLength, fillOpacity: 0 },
+    { strokeDashoffset:          0, fillOpacity: 1 }
+  ], {
+    duration: 2000,
+    easing:   'ease-out',
+    fill:     'forwards'
   });
 
-  // 3) Carousel + modal (unchanged)
-  (function() {
-    const carousel   = document.getElementById('special-carousel');
-    const slides     = Array.from(carousel.children);
-    const count      = slides.length;
-    const slideWidth = slides[0].getBoundingClientRect().width;
+  drawAndFill.onfinish = () => {
+    // b) Immediately fly & shrink into your nav’s logo spot:
+    document.querySelector('.logo-overlay').classList.add('fly-home');
 
-    // infinite scroll
-    slides.forEach(s => carousel.appendChild(s.cloneNode(true)));
-    slides.forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
-    carousel.scrollLeft = count * slideWidth;
+    // c) After the fly-home transition (0.6s), reveal your content + expand hero:
+    setTimeout(() => {
+      document.querySelector('.site-content').classList.add('loaded');
+      document.body.classList.add('loaded');
+    }, 600);
+  };
+});
 
-    // wrap on scroll
-    carousel.addEventListener('scroll', () => {
-      if (carousel.scrollLeft <= 0) {
-        carousel.scrollLeft += count * slideWidth;
-      } else if (carousel.scrollLeft >= count * 2 * slideWidth) {
-        carousel.scrollLeft -= count * slideWidth;
-      }
-    });
 
-    // auto-scroll + pause
-    let isHover = false;
-    carousel.addEventListener('mouseenter', () => isHover = true);
-    carousel.addEventListener('mouseleave', () => isHover = false);
-    (function autoScroll() {
-      if (!isHover) carousel.scrollLeft += 0.5;
-      requestAnimationFrame(autoScroll);
-    })();
+// 3) Carousel & modal logic (unchanged, namespaced in an IIFE):
+(function() {
+  const carousel   = document.getElementById('special-carousel');
+  const slides     = Array.from(carousel.children);
+  const count      = slides.length;
+  const slideWidth = slides[0].getBoundingClientRect().width;
 
-    // drag-to-scroll
-    let isDown = false, startX, scrollStart;
-    carousel.addEventListener('mousedown', e => {
-      isDown = true;
-      carousel.classList.add('dragging');
-      startX      = e.pageX - carousel.offsetLeft;
-      scrollStart = carousel.scrollLeft;
-    });
-    ['mouseleave','mouseup'].forEach(evt =>
-      carousel.addEventListener(evt, () => {
-        isDown = false;
-        carousel.classList.remove('dragging');
-      })
-    );
-    carousel.addEventListener('mousemove', e => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x    = e.pageX - carousel.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      carousel.scrollLeft = scrollStart - walk;
-    });
+  // infinite-scroll setup
+  slides.forEach(s => carousel.appendChild(s.cloneNode(true)));
+  slides.forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
+  carousel.scrollLeft = count * slideWidth;
 
-    // modal
-    const modal    = document.getElementById('slide-modal');
-    const imgEl    = document.getElementById('modal-image');
-    const titleEl  = document.getElementById('modal-title');
-    const descEl   = document.getElementById('modal-desc');
-    const closeBtn = document.getElementById('close-modal');
-    const prevBtn  = document.getElementById('modal-prev');
-    const nextBtn  = document.getElementById('modal-next');
-    let currentIdx = 0;
-
-    slides.forEach((slide, i) => slide.addEventListener('click', () => {
-      currentIdx = i;
-      openModal(i);
-    }));
-
-    function openModal(i) {
-      const s = slides[i];
-      imgEl.src           = s.dataset.img;
-      titleEl.textContent = s.querySelector('h3').textContent;
-      descEl.textContent  = s.dataset.desc;
-      modal.classList.add('open');
+  // wrap on scroll
+  carousel.addEventListener('scroll', () => {
+    if (carousel.scrollLeft <= 0) {
+      carousel.scrollLeft += count * slideWidth;
+    } else if (carousel.scrollLeft >= count * 2 * slideWidth) {
+      carousel.scrollLeft -= count * slideWidth;
     }
+  });
 
-    prevBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      currentIdx = (currentIdx - 1 + count) % count;
-      openModal(currentIdx);
-    });
-    nextBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      currentIdx = (currentIdx + 1) % count;
-      openModal(currentIdx);
-    });
-    closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-    modal.addEventListener('click', e => {
-      if (e.target === modal) modal.classList.remove('open');
-    });
+  // auto-scroll + pause on hover
+  let isHovering = false;
+  carousel.addEventListener('mouseenter', () => isHovering = true);
+  carousel.addEventListener('mouseleave', () => isHovering = false);
+  (function autoScroll() {
+    if (!isHovering) carousel.scrollLeft += 0.5;
+    requestAnimationFrame(autoScroll);
   })();
+
+  // drag-to-scroll
+  let isDown = false, startX, scrollStart;
+  carousel.addEventListener('mousedown', e => {
+    isDown = true;
+    carousel.classList.add('dragging');
+    startX      = e.pageX - carousel.offsetLeft;
+    scrollStart = carousel.scrollLeft;
+  });
+  ['mouseleave','mouseup'].forEach(evt =>
+    carousel.addEventListener(evt, () => {
+      isDown = false;
+      carousel.classList.remove('dragging');
+    })
+  );
+  carousel.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x    = e.pageX - carousel.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    carousel.scrollLeft = scrollStart - walk;
+  });
+
+  // modal/pop-up
+  const modal    = document.getElementById('slide-modal');
+  const imgEl    = document.getElementById('modal-image');
+  const titleEl  = document.getElementById('modal-title');
+  const descEl   = document.getElementById('modal-desc');
+  const closeBtn = document.getElementById('close-modal');
+  const prevBtn  = document.getElementById('modal-prev');
+  const nextBtn  = document.getElementById('modal-next');
+  let currentIdx = 0;
+
+  slides.forEach((slide, i) => slide.addEventListener('click', () => {
+    currentIdx = i;
+    openModal(i);
+  }));
+
+  function openModal(i) {
+    const s = slides[i];
+    imgEl.src           = s.dataset.img;
+    titleEl.textContent = s.querySelector('h3').textContent;
+    descEl.textContent  = s.dataset.desc;
+    modal.classList.add('open');
+  }
+
+  prevBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIdx = (currentIdx - 1 + count) % count;
+    openModal(currentIdx);
+  });
+  nextBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIdx = (currentIdx + 1) % count;
+    openModal(currentIdx);
+  });
+  closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
+})();
 </script>
 
 </body>
