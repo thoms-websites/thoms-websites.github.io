@@ -232,6 +232,10 @@
       if (e.target === modal) modal.classList.remove('open');
     });
   })();
+    // trigger hero expansion after load
+window.addEventListener('load', () => {
+  document.body.classList.add('loaded');
+});
   </script>
 </body>
 </html>
