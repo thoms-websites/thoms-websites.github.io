@@ -161,145 +161,137 @@
   
   <!-- all JS in one block -->
 <script>
-// 1) Setup stroke‐dash AND start with invisible fill:
-const logoPath   = document.getElementById('logo-path');
-const pathLength = logoPath.getTotalLength();
-logoPath.style.strokeDasharray  = pathLength;
-logoPath.style.strokeDashoffset = pathLength;
-logoPath.style.fillOpacity      = 0;
-logoPath.style.fill             = '#d4af37';
+  // 1) stroke‐dash + invisible fill
+  const logoPath   = document.getElementById('logo-path');
+  const pathLength = logoPath.getTotalLength();
+  logoPath.style.strokeDasharray  = pathLength;
+  logoPath.style.strokeDashoffset = pathLength;
+  logoPath.style.fillOpacity      = 0;
+  logoPath.style.fill             = '#d4af37';
 
-// 2) When everything’s loaded:
-window.addEventListener('load', () => {
-  // a) Draw + fill over the same 2s timeline:
-  const drawAndFill = logoPath.animate([
-    { strokeDashoffset: pathLength, fillOpacity: 0 },
-    { strokeDashoffset:          0, fillOpacity: 1 }
-  ], {
-    duration: 2000,
-    easing:   'ease-out',
-    fill:     'forwards'
+  // 2) on window.load: draw+fill
+  window.addEventListener('load', () => {
+    const anim = logoPath.animate([
+      { strokeDashoffset: pathLength, fillOpacity: 0 },
+      { strokeDashoffset:          0, fillOpacity: 1 }
+    ], {
+      duration: 2000,
+      easing:   'ease-out',
+      fill:     'forwards'
+    });
+
+    anim.onfinish = () => {
+      const overlay = document.querySelector('.logo-overlay');
+      const target  = document.querySelector('.main-nav .logo');
+      const oRect   = overlay.getBoundingClientRect();
+      const tRect   = target.getBoundingClientRect();
+      const scale   = tRect.height / oRect.height;
+      const dx      = (tRect.left + tRect.width/2) - (oRect.left + oRect.width/2);
+      const dy      = (tRect.top  + tRect.height/2) - (oRect.top  + oRect.height/2);
+
+      overlay.style.transition = 'transform 0.6s ease-out';
+      // preserve initial center, then shift + scale
+      overlay.style.transform  =
+        `translate(-50%, -50%) translate(${dx}px, ${dy}px) scale(${scale})`;
+
+      // reveal page & trigger hero expand
+      setTimeout(() => {
+        document.body.classList.add('loaded');
+        document.querySelector('.site-content').classList.add('loaded');
+      }, 600);
+    };
   });
 
-  // ← THIS onfinish now properly closes before the carousel code
-  drawAndFill.onfinish = () => {
-    // grab overlay & target logo elements
-    const overlay = document.querySelector('.logo-overlay');
-    const target  = document.querySelector('.main-nav .logo');
+  // 3) Carousel + modal: back at top level, not inside any onfinish
+  (function() {
+    const carousel   = document.getElementById('special-carousel');
+    const slides     = Array.from(carousel.children);
+    const count      = slides.length;
+    const slideWidth = slides[0].getBoundingClientRect().width;
 
-    // get bounding boxes
-    const oRect = overlay.getBoundingClientRect();
-    const tRect = target .getBoundingClientRect();
+    // infinite scroll setup
+    slides.forEach(s => carousel.appendChild(s.cloneNode(true)));
+    slides.forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
+    carousel.scrollLeft = count * slideWidth;
 
-    // compute scale & translation
-    const scale = tRect.height / oRect.height;
-    const dx    = (tRect.left + tRect.width/2) - (oRect.left + oRect.width/2);
-    const dy    = (tRect.top  + tRect.height/2) - (oRect.top  + oRect.height/2);
+    // wrap on scroll
+    carousel.addEventListener('scroll', () => {
+      if (carousel.scrollLeft <= 0) {
+        carousel.scrollLeft += count * slideWidth;
+      } else if (carousel.scrollLeft >= count * 2 * slideWidth) {
+        carousel.scrollLeft -= count * slideWidth;
+      }
+    });
 
-    // fly-and-shrink inline
-+   overlay.style.transition = 'transform 0.6s ease-out';
-+   // preserve the original centering, then apply our delta + scale
-+   overlay.style.transform  =
-+     `translate(-50%, -50%) translate(${dx}px, ${dy}px) scale(${scale})`;
+    // auto-scroll + hover pause
+    let isHover = false;
+    carousel.addEventListener('mouseenter', () => isHover = true);
+    carousel.addEventListener('mouseleave', () => isHover = false);
+    (function autoScroll() {
+      if (!isHover) carousel.scrollLeft += 0.5;
+      requestAnimationFrame(autoScroll);
+    })();
 
-    // after that, reveal page
-    setTimeout(() => {
-      document.querySelector('.site-content').classList.add('loaded');
-      document.body.classList.add('loaded');
-    }, 600);
-  };
-});  // ← closes window.load listener
+    // drag-to-scroll
+    let isDown = false, startX, scrollStart;
+    carousel.addEventListener('mousedown', e => {
+      isDown = true;
+      carousel.classList.add('dragging');
+      startX      = e.pageX - carousel.offsetLeft;
+      scrollStart = carousel.scrollLeft;
+    });
+    ['mouseleave','mouseup'].forEach(evt =>
+      carousel.addEventListener(evt, () => {
+        isDown = false;
+        carousel.classList.remove('dragging');
+      })
+    );
+    carousel.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x    = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      carousel.scrollLeft = scrollStart - walk;
+    });
 
-// 3) Carousel & modal logic (unchanged, namespaced in an IIFE):
-(function() {
-  const carousel   = document.getElementById('special-carousel');
-  const slides     = Array.from(carousel.children);
-  const count      = slides.length;
-  const slideWidth = slides[0].getBoundingClientRect().width;
+    // modal/pop-up
+    const modal    = document.getElementById('slide-modal');
+    const imgEl    = document.getElementById('modal-image');
+    const titleEl  = document.getElementById('modal-title');
+    const descEl   = document.getElementById('modal-desc');
+    const closeBtn = document.getElementById('close-modal');
+    const prevBtn  = document.getElementById('modal-prev');
+    const nextBtn  = document.getElementById('modal-next');
+    let currentIdx = 0;
 
-  // infinite-scroll setup
-  slides.forEach(s => carousel.appendChild(s.cloneNode(true)));
-  slides.forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
-  carousel.scrollLeft = count * slideWidth;
+    slides.forEach((slide,i) => slide.addEventListener('click', () => {
+      currentIdx = i;
+      openModal(i);
+    }));
 
-  // wrap on scroll
-  carousel.addEventListener('scroll', () => {
-    if (carousel.scrollLeft <= 0) {
-      carousel.scrollLeft += count * slideWidth;
-    } else if (carousel.scrollLeft >= count * 2 * slideWidth) {
-      carousel.scrollLeft -= count * slideWidth;
+    function openModal(i) {
+      const s = slides[i];
+      imgEl.src            = s.dataset.img;
+      titleEl.textContent  = s.querySelector('h3').textContent;
+      descEl.textContent   = s.dataset.desc;
+      modal.classList.add('open');
     }
-  });
 
-  // auto-scroll + pause on hover
-  let isHovering = false;
-  carousel.addEventListener('mouseenter', () => isHovering = true);
-  carousel.addEventListener('mouseleave', () => isHovering = false);
-  (function autoScroll() {
-    if (!isHovering) carousel.scrollLeft += 0.5;
-    requestAnimationFrame(autoScroll);
+    prevBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      currentIdx = (currentIdx - 1 + count) % count;
+      openModal(currentIdx);
+    });
+    nextBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      currentIdx = (currentIdx + 1) % count;
+      openModal(currentIdx);
+    });
+    closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', e => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
   })();
-
-  // drag-to-scroll
-  let isDown = false, startX, scrollStart;
-  carousel.addEventListener('mousedown', e => {
-    isDown = true;
-    carousel.classList.add('dragging');
-    startX      = e.pageX - carousel.offsetLeft;
-    scrollStart = carousel.scrollLeft;
-  });
-  ['mouseleave','mouseup'].forEach(evt =>
-    carousel.addEventListener(evt, () => {
-      isDown = false;
-      carousel.classList.remove('dragging');
-    })
-  );
-  carousel.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x    = e.pageX - carousel.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    carousel.scrollLeft = scrollStart - walk;
-  });
-
-  // modal/pop-up
-  const modal    = document.getElementById('slide-modal');
-  const imgEl    = document.getElementById('modal-image');
-  const titleEl  = document.getElementById('modal-title');
-  const descEl   = document.getElementById('modal-desc');
-  const closeBtn = document.getElementById('close-modal');
-  const prevBtn  = document.getElementById('modal-prev');
-  const nextBtn  = document.getElementById('modal-next');
-  let currentIdx = 0;
-
-  slides.forEach((slide, i) => slide.addEventListener('click', () => {
-    currentIdx = i;
-    openModal(i);
-  }));
-
-  function openModal(i) {
-    const s = slides[i];
-    imgEl.src           = s.dataset.img;
-    titleEl.textContent = s.querySelector('h3').textContent;
-    descEl.textContent  = s.dataset.desc;
-    modal.classList.add('open');
-  }
-
-  prevBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    currentIdx = (currentIdx - 1 + count) % count;
-    openModal(currentIdx);
-  });
-  nextBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    currentIdx = (currentIdx + 1) % count;
-    openModal(currentIdx);
-  });
-  closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-  modal.addEventListener('click', e => {
-    if (e.target === modal) modal.classList.remove('open');
-  });
-})();
 </script>
 
 </body>
