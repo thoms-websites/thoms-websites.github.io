@@ -52,13 +52,13 @@ body {
 /* HERO & LOGO OVERLAY */
 .parallax-hero {
   position: relative;     /* so logo-overlay is positioned relative to this */
-  height: 100vh;
+  height: 90vh;
   background: url('interior.jpg') center calc(40% + 20px)/cover fixed;
   border-bottom: 2px solid #000;
   transition: height 1s ease-out;
 }
 body.loaded .parallax-hero {
-  height: 100vh;
+  height: 80vh;
 }
 
 /* 1. Starting state: centered big in hero */
