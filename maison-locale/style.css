@@ -53,46 +53,32 @@ body.loaded {
   text-decoration: none;
 }
 
-/* Hero & Sections */
+/* HERO & LOGO OVERLAY */
 .parallax-hero {
-  position: relative; /* ← new */
-  height: 80vh; /* taller hero */
-  background: url('interior.jpg') center calc(40% + 20px) / cover fixed;
-  border-bottom:2px solid #000;
+  position: relative;     /* so logo-overlay is positioned relative to this */
+  height: 80vh;
+  background: url('interior.jpg') center calc(40% + 20px)/cover fixed;
+  border-bottom: 2px solid #000;
   transition: height 1s ease-out;
 }
 body.loaded .parallax-hero {
-  height: 100vh; /* expand to full viewport once “loaded” class is added */
+  height: 100vh;
 }
 
-.section { padding:4rem 2rem; background:#fff; }
-h2 {
-  font-family:'Alex Brush', cursive;
-  font-size:2.5rem; color:#d4af37;
-  text-align:center; margin-bottom:2rem;
-  border-bottom:2px solid #000; display:inline-block;
-  padding-bottom:.5rem;
-}
-/* right after your .section definitions, add: */
-.section.specials {
-  overflow: visible;
-}
-/* remove any body‐opacity rule—you want the hero + overlay visible immediately */
-
-/* LOGO OVERLAY (centered on top of hero) */
 .logo-overlay {
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: 1;  /* above hero but below nav if needed */
+  z-index: 1;
+  opacity: 1;
   transition: opacity 0.5s ease 2.6s;
 }
 .logo-overlay.done {
   opacity: 0;
 }
 
-/* hide everything else until logo animates */
+/* HIDE/SHOW SITE CONTENT */
 .site-content {
   opacity: 0;
   transition: opacity 0.5s ease 2.6s;
@@ -101,8 +87,7 @@ h2 {
   opacity: 1;
 }
 
-/* no manual stroke‐dasharray here—we set it in JS */
-/* you can still style the path for hover etc if you like */
+/* SMOOTH OUT THE STROKE ANIMATION */
 #logo-path {
   stroke-linecap: round;
   stroke-linejoin: round;
