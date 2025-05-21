@@ -161,68 +161,52 @@
   
   <!-- all JS in one block -->
 <script>
-// 1) Setup stroke-dash on the logo path immediately:
-const logoPath   = document.getElementById('logo-path');
-const pathLength = logoPath.getTotalLength();
+// 1) Setup stroke‐dash AND start with invisible fill:
+const logoPath    = document.getElementById('logo-path');
+const pathLength  = logoPath.getTotalLength();
 logoPath.style.strokeDasharray  = pathLength;
 logoPath.style.strokeDashoffset = pathLength;
-logoPath.style.fill             = 'none';
+logoPath.style.fillOpacity      = 0;         // hide fill initially
+logoPath.style.fill             = '#d4af37'; // set fill color for later
 
-// 2) Once everything (images, CSS, etc.) has loaded:
+// 2) When everything’s loaded:
 window.addEventListener('load', () => {
-  // a) Draw the stroke over 2s:
-  const drawAnim = logoPath.animate(
-    [
-      { strokeDashoffset: pathLength },
-      { strokeDashoffset:         0 }
-    ],
-    {
-      duration: 2000,
-      easing:   'ease-out',
-      fill:     'forwards'
-    }
-  );
+  // a) Draw + fill over the same 2s timeline:
+  const drawAndFill = logoPath.animate([
+    { strokeDashoffset: pathLength, fillOpacity: 0 },
+    { strokeDashoffset:          0, fillOpacity: 1 }
+  ], {
+    duration: 2000,
+    easing:   'ease-out',
+    fill:     'forwards'
+  });
 
-  drawAnim.onfinish = () => {
-    // b) Fill it in over 0.3s:
-    const fillAnim = logoPath.animate(
-      [
-        { fill: 'none' },
-        { fill: '#d4af37' }
-      ],
-      {
-        duration: 300,
-        fill:     'forwards'
-      }
-    );
+  drawAndFill.onfinish = () => {
+    // b) Immediately fly & shrink into your nav’s logo spot:
+    document.querySelector('.logo-overlay').classList.add('fly-home');
 
-    fillAnim.onfinish = () => {
-      // c) Fly & shrink into the nav logo:
-      document.querySelector('.logo-overlay').classList.add('fly-home');
-
-      // d) After the fly-home transition (0.6s), reveal the rest:
-      setTimeout(() => {
-        document.querySelector('.site-content').classList.add('loaded');
-        document.body.classList.add('loaded');
-      }, 600);
-    };
+    // c) After the fly-home transition (0.6s), reveal your content + expand hero:
+    setTimeout(() => {
+      document.querySelector('.site-content').classList.add('loaded');
+      document.body.classList.add('loaded');
+    }, 600);
   };
 });
 
 
-// 3) Carousel + modal logic (unchanged, namespaced in an IIFE):
+// 3) Carousel & modal logic (unchanged, namespaced in an IIFE):
 (function() {
   const carousel   = document.getElementById('special-carousel');
   const slides     = Array.from(carousel.children);
   const count      = slides.length;
   const slideWidth = slides[0].getBoundingClientRect().width;
 
-  // duplicate for infinite scroll
+  // infinite-scroll setup
   slides.forEach(s => carousel.appendChild(s.cloneNode(true)));
   slides.forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
   carousel.scrollLeft = count * slideWidth;
 
-  // wrap logic
+  // wrap on scroll
   carousel.addEventListener('scroll', () => {
     if (carousel.scrollLeft <= 0) {
       carousel.scrollLeft += count * slideWidth;
@@ -235,11 +219,10 @@ window.addEventListener('load', () => {
   let isHovering = false;
   carousel.addEventListener('mouseenter', () => isHovering = true);
   carousel.addEventListener('mouseleave', () => isHovering = false);
-  function autoScroll() {
+  (function autoScroll() {
     if (!isHovering) carousel.scrollLeft += 0.5;
     requestAnimationFrame(autoScroll);
-  }
-  requestAnimationFrame(autoScroll);
+  })();
 
   // drag-to-scroll
   let isDown = false, startX, scrollStart;
