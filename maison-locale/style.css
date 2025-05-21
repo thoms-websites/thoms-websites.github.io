@@ -80,7 +80,7 @@ body.loaded .parallax-hero {
   left: 2rem;                  /* your header padding-left */
   transform: scale(0.25);      /* shrink to ~25% of original — tweak as desired */
   transform-origin: top left;  /* scale around its top-left corner */
-  z-index: 1001;               /* float above the nav bar */
+  z-index: 1100;               /* float above the nav bar */
   transition: top 0.6s ease-out,
               left 0.6s ease-out,
               transform 0.6s ease-out;
