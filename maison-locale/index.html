@@ -171,16 +171,9 @@
 
   // 2) on window.load: draw+fill
   window.addEventListener('load', () => {
-    const anim = logoPath.animate([
-      { strokeDashoffset: pathLength, fillOpacity: 0 },
-      { strokeDashoffset:          0, fillOpacity: 1 }
-    ], {
-      duration: 2000,
-      easing:   'ease-out',
-      fill:     'forwards'
-    });
++    const drawAndFill = logoPath.animate([...], { /* … */ });
 
-    anim.onfinish = () => {
++    drawAndFill.onfinish = () => {
       const overlay = document.querySelector('.logo-overlay');
       const target  = document.querySelector('.main-nav .logo');
       const oRect   = overlay.getBoundingClientRect();
@@ -189,22 +182,17 @@
       const dx      = (tRect.left + tRect.width/2) - (oRect.left + oRect.width/2);
       const dy      = (tRect.top  + tRect.height/2) - (oRect.top  + oRect.height/2);
 
-      overlay.style.transition = 'transform 0.6s ease-out';
-      // preserve initial center, then shift + scale
-      overlay.style.transform  =
-        `translate(-50%, -50%) translate(${dx}px, ${dy}px) scale(${scale})`;
++      // apply the “fly home” transform
++      overlay.style.transition = 'transform 0.6s ease-out';
++      overlay.style.transform  =
++        `translate(-50%, -50%) translate(${dx}px, ${dy}px) scale(${scale})`;
 
-drawAndFill.onfinish = () => {
-  const overlay = document.querySelector('.logo-overlay');
-  // add the class (which applies our fixed positioning & scale)
-  overlay.classList.add('fly-home');
-
-  // now reveal the rest of the page
-  setTimeout(() => {
-    document.body.classList.add('loaded');
-    document.querySelector('.site-content').classList.add('loaded');
-  }, 600);
-};
++      // now reveal the rest
++      setTimeout(() => {
++        document.body.classList.add('loaded');
++        document.querySelector('.site-content').classList.add('loaded');
++      }, 600);
++    };
 
   // 3) Carousel + modal: back at top level, not inside any onfinish
   (function() {
