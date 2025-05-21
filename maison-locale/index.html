@@ -162,12 +162,12 @@
   <!-- all JS in one block -->
 <script>
 // 1) Setup stroke‐dash AND start with invisible fill:
-const logoPath    = document.getElementById('logo-path');
-const pathLength  = logoPath.getTotalLength();
+const logoPath   = document.getElementById('logo-path');
+const pathLength = logoPath.getTotalLength();
 logoPath.style.strokeDasharray  = pathLength;
 logoPath.style.strokeDashoffset = pathLength;
-logoPath.style.fillOpacity      = 0;         // hide fill initially
-logoPath.style.fill             = '#d4af37'; // set fill color for later
+logoPath.style.fillOpacity      = 0;
+logoPath.style.fill             = '#d4af37';
 
 // 2) When everything’s loaded:
 window.addEventListener('load', () => {
@@ -181,34 +181,32 @@ window.addEventListener('load', () => {
     fill:     'forwards'
   });
 
-drawAndFill.onfinish = () => {
-  // grab overlay & target logo elements
-  const overlay = document.querySelector('.logo-overlay');
-  const target  = document.querySelector('.main-nav .logo');
+  // ← THIS onfinish now properly closes before the carousel code
+  drawAndFill.onfinish = () => {
+    // grab overlay & target logo elements
+    const overlay = document.querySelector('.logo-overlay');
+    const target  = document.querySelector('.main-nav .logo');
 
-  // get bounding boxes
-  const oRect = overlay.getBoundingClientRect();
-  const tRect = target.getBoundingClientRect();
+    // get bounding boxes
+    const oRect = overlay.getBoundingClientRect();
+    const tRect = target .getBoundingClientRect();
 
-  // compute scale factor (make SVG width match text height)
-  // tweak this ratio if you want slightly larger/smaller
-  const scale = tRect.height / oRect.height;
+    // compute scale & translation
+    const scale = tRect.height / oRect.height;
+    const dx    = (tRect.left + tRect.width/2) - (oRect.left + oRect.width/2);
+    const dy    = (tRect.top  + tRect.height/2) - (oRect.top  + oRect.height/2);
 
-  // compute translation: move overlay's center to target's center
-  const dx = (tRect.left + tRect.width/2) - (oRect.left + oRect.width/2);
-  const dy = (tRect.top  + tRect.height/2) - (oRect.top  + oRect.height/2);
+    // fly-and-shrink inline
+    overlay.style.transition = 'transform 0.6s ease-out';
+    overlay.style.transform  = `translate(${dx}px, ${dy}px) scale(${scale})`;
 
-  // apply the fly-home inline (so CSS transition picks it up)
-  overlay.style.transition = 'transform 0.6s ease-out';
-  overlay.style.transform  =
-    `translate(${dx}px, ${dy}px) scale(${scale})`;
-
-  // when that completes, show the rest
-  setTimeout(() => {
-    document.querySelector('.site-content').classList.add('loaded');
-    document.body.classList.add('loaded');
-  }, 600);
-};
+    // after that, reveal page
+    setTimeout(() => {
+      document.querySelector('.site-content').classList.add('loaded');
+      document.body.classList.add('loaded');
+    }, 600);
+  };
+});  // ← closes window.load listener
 
 // 3) Carousel & modal logic (unchanged, namespaced in an IIFE):
 (function() {
