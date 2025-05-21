@@ -181,18 +181,34 @@ window.addEventListener('load', () => {
     fill:     'forwards'
   });
 
-  drawAndFill.onfinish = () => {
-    // b) Immediately fly & shrink into your nav’s logo spot:
-    document.querySelector('.logo-overlay').classList.add('fly-home');
+drawAndFill.onfinish = () => {
+  // grab overlay & target logo elements
+  const overlay = document.querySelector('.logo-overlay');
+  const target  = document.querySelector('.main-nav .logo');
 
-    // c) After the fly-home transition (0.6s), reveal your content + expand hero:
-    setTimeout(() => {
-      document.querySelector('.site-content').classList.add('loaded');
-      document.body.classList.add('loaded');
-    }, 600);
-  };
-});
+  // get bounding boxes
+  const oRect = overlay.getBoundingClientRect();
+  const tRect = target.getBoundingClientRect();
 
+  // compute scale factor (make SVG width match text height)
+  // tweak this ratio if you want slightly larger/smaller
+  const scale = tRect.height / oRect.height;
+
+  // compute translation: move overlay's center to target's center
+  const dx = (tRect.left + tRect.width/2) - (oRect.left + oRect.width/2);
+  const dy = (tRect.top  + tRect.height/2) - (oRect.top  + oRect.height/2);
+
+  // apply the fly-home inline (so CSS transition picks it up)
+  overlay.style.transition = 'transform 0.6s ease-out';
+  overlay.style.transform  =
+    `translate(${dx}px, ${dy}px) scale(${scale})`;
+
+  // when that completes, show the rest
+  setTimeout(() => {
+    document.querySelector('.site-content').classList.add('loaded');
+    document.body.classList.add('loaded');
+  }, 600);
+};
 
 // 3) Carousel & modal logic (unchanged, namespaced in an IIFE):
 (function() {
