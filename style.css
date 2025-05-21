@@ -287,7 +287,8 @@ body {
   margin: 0 0 .5rem;
   font-size: 1.4rem;
   color: #222;
-  text-decoration: none;      /* absolutely no underlines */
+  /* only titles are underlined */
+  text-decoration: underline;
   white-space: nowrap;        /* force one line */
 }
 
@@ -296,7 +297,8 @@ body {
   margin: 0 0 1.25rem;         /* extra spacing between lines */
   font-size: .95rem;
   color: #222;
-  text-decoration: none;      /* remove any underline */
+  /* remove any underline */
+  text-decoration: none;
   line-height: 1.4;           /* breathing room */
 }
 
