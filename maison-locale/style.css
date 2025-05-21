@@ -26,27 +26,39 @@ body {
 .menu a:hover::after { transform:scaleX(1); }
 
 /* Dropdown */
-.simple-dropdown {
-  opacity: 0;
-  visibility: hidden;
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
   position: absolute;
-  top: 100%; left: 0;
-  background:#fff; border:1px solid #000;
-  padding:.5rem 0; z-index:20;
-  transform: translateY(-10px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  top: 100%; /* Align to bottom of dropdown trigger (usually nav/header) */
+  left: 0;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding: 10px 0;
+  list-style: none; /* Removes bullet points */
+  border-radius: 5px;
 }
-.dropdown:hover .simple-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
-.simple-dropdown li {
-  padding: .75rem 2rem; /* more spacing */
+
+.dropdown-content li {
+  padding: 10px 20px;
+  text-align: left;
+  white-space: nowrap;
+  font-size: 16px;
+  color: #000;
 }
-.simple-dropdown a {
-  color: #d4af37;
-  text-decoration: none;
+
+.dropdown-content li:hover {
+  background-color: #f5f5f5;
 }
 
 /* HERO & LOGO OVERLAY */
