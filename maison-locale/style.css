@@ -61,17 +61,23 @@ body.loaded .parallax-hero {
   height: 100vh;
 }
 
+/* 1. Starting state: centered big in hero */
 .logo-overlay {
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 1;
-  opacity: 1;
-  transition: opacity 0.5s ease 2.6s;
+  transform: translate(-50%, -50%) scale(1);
+  transition:
+    transform 0.6s ease-out 0s,
+    opacity   0.3s ease  2s;    /* fade-out if you like */
+  transform-origin: center center;
 }
-.logo-overlay.done {
-  opacity: 0;
+
+/* 2. When drawing+fill done, fly into the nav logo */
+.logo-overlay.fly-home {
+  /* shrink down */
+  transform: translate(calc(1rem + 0px), calc(1rem + 0px)) scale(0.25);
+  /* reposition roughly to top-left: adjust those calc() amounts to exactly line up */
+  transition: transform 0.6s ease-out 0s;
 }
 
 /* HIDE/SHOW SITE CONTENT */
