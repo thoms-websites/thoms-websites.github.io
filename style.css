@@ -268,6 +268,7 @@ body {
   overflow: hidden;
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
   transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
 }
 
 /* media at top */
@@ -298,7 +299,7 @@ body {
   font-size: .95rem;
   color: #222;
   /* remove any underline */
-  text-decoration: none;
+  text-decoration: none !important;
   line-height: 1.4;           /* breathing room */
 }
 
