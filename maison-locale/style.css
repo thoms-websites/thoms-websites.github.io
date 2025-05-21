@@ -71,12 +71,6 @@ body.loaded .parallax-hero {
   transition: transform 0.6s ease-out;
 }
 
-/* shrink+move into nav logo spot */
-.logo-overlay.fly-home {
-  /* adjust these translate() values until it lines up exactly: */
-  transform: translate(1rem, 1rem) scale(0.25);
-}
-
 /* HIDE/SHOW SITE CONTENT */
 .site-content {
   opacity: 0;
