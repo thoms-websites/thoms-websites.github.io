@@ -261,33 +261,105 @@ body.loaded .parallax-hero {
 }
 
 /* Footer */
-.footer {
-  background:#fff; color:#333;
-  padding:2rem; display:flex; flex-wrap:wrap;
-  justify-content:space-between; gap:2rem;
-  border-top:2px solid #000;
+footer {
+  background-color: #000;
+  color: gold;
+  padding: 60px 20px 30px;
+  text-align: center;
 }
-.footer .info p {
-  margin:0 0.5rem 0.5rem 0;
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  gap: 40px;
 }
-.socials a svg {
-  visibility: visible;
-  fill: #d4af37;
-  transition: transform 0.3s;
+
+.footer-column {
+  flex: 1 1 250px;
+  text-align: left;
 }
-.socials a:hover svg {
-  transform: scale(1.2);
+
+.footer-column h4 {
+  margin-bottom: 10px;
+  font-size: 20px;
 }
-.newsletter h4 { margin-bottom:.5rem; }
-.newsletter form { display:flex; gap:.5rem; }
-.newsletter input {
-  flex:1; padding:.5rem; border:1px solid #000; border-radius:4px;
+
+.footer-column p {
+  margin: 6px 0;
+  font-size: 16px;
+  line-height: 1.5;
 }
+
+.newsletter {
+  margin: 40px auto;
+  max-width: 500px;
+}
+
+.newsletter h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.newsletter form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.newsletter input[type="email"] {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+}
+
 .newsletter button {
-  padding:.5rem 1rem; background:#d4af37;
-  border:none; border-radius:4px; font-weight:bold; cursor:pointer;
+  background-color: gold;
+  color: black;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-.socials a { margin-right:1rem; color:#d4af37; text-decoration:none; }
+
+.newsletter button:hover {
+  background-color: #d4af37;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 15px;
+  border-top: 1px solid gold;
+  padding-top: 30px;
+  margin-top: 40px;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.social-icons img {
+  height: 24px;
+  width: 24px;
+  margin: 0 10px;
+  filter: brightness(0) saturate(100%) invert(84%) sepia(44%) saturate(742%) hue-rotate(8deg) brightness(95%) contrast(90%);
+}
+
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
 
 /* Carousel container – force visible overflow in all browsers */
 .special-carousel {
