@@ -158,147 +158,129 @@
     </div>
   </footer>
       </div>
-
-  <!-- all JS in one block -->
-    <script>
-    // 1) Measure the path & set up dash-array
-    const logoPath = document.getElementById('logo-path');
-    const length = logoPath.getTotalLength();
-    logoPath.style.strokeDasharray  = length;
-    logoPath.style.strokeDashoffset = length;
-
-    // 2) After window load, kick off the SVG draw + fill, then reveal page
-    window.addEventListener('load', () => {
-// draw + fill in one timeline
-logoPath.animate([
-  { strokeDashoffset: length, fill: 'none' },
-  { strokeDashoffset: 0,        fill: 'none' },
-  { strokeDashoffset: 0,        fill: '#d4af37' }
-], {
-  duration: 2500,            // total 2.5s
-  easing: 'ease-out',
-  fill: 'forwards',
-  easing: 'steps(1)'         // prevents interim fills
-});
-
-      // fill it in right after stroke-draw ends
-      setTimeout(() => {
-        logoPath.animate([
-          { fill: 'none' },
-          { fill: '#d4af37' }
-        ], {
-          duration: 500,
-          easing: 'ease-out',
-          fill: 'forwards'
-        });
-      }, 2000);
-
-      // then fade out the overlay & fade in the site
-      setTimeout(() => {
-        document.querySelector('.logo-overlay').classList.add('done');
-        document.querySelector('.site-content').classList.add('loaded');
-      }, 2600);
-    });
-  </script>
   
+  <!-- all JS in one block -->
   <script>
+  // 1) Setup stroke-dash on the logo path immediately:
+  const logoPath = document.getElementById('logo-path');
+  const pathLength = logoPath.getTotalLength();
+  logoPath.style.strokeDasharray  = pathLength;
+  logoPath.style.strokeDashoffset = pathLength;
+
+  // 2) Once everything (images, CSS, etc.) has loaded:
+  window.addEventListener('load', () => {
+    // a) Animate the “handwriting” + final fill in one timeline:
+    logoPath.animate([
+      { strokeDashoffset: pathLength, fill: 'none' },
+      { strokeDashoffset:        0, fill: 'none' },
+      { strokeDashoffset:        0, fill: '#d4af37' }
+    ], {
+      duration: 2500,            // 2.5s total
+      easing: 'steps(1)',        // no interim fills
+      fill: 'forwards'
+    });
+
+    // b) After 2.6s, hide the overlay and reveal the page content:
+    setTimeout(() => {
+      document.querySelector('.logo-overlay').classList.add('done');
+      document.querySelector('.site-content').classList.add('loaded');
+      document.body.classList.add('loaded'); // triggers your hero expand too
+    }, 2600);
+  });
+
+  // 3) Carousel + modal logic (unchanged, namespaced in an IIFE):
   (function() {
-    const carousel = document.getElementById('special-carousel');
-    const originalSlides = Array.from(carousel.children);
-    const count = originalSlides.length;
-    const w = originalSlides[0].getBoundingClientRect().width;
+    const carousel       = document.getElementById('special-carousel');
+    const slides         = Array.from(carousel.children);
+    const count          = slides.length;
+    const slideWidth     = slides[0].getBoundingClientRect().width;
 
     // duplicate for infinite scroll
-    originalSlides.forEach(s => carousel.appendChild(s.cloneNode(true)));
-    originalSlides.forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
+    slides.forEach(s => carousel.appendChild(s.cloneNode(true)));
+    slides.forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
+    carousel.scrollLeft = count * slideWidth;
 
-    // start centered
-    carousel.scrollLeft = count * w;
-
-    // wrap
+    // wrap logic
     carousel.addEventListener('scroll', () => {
       if (carousel.scrollLeft <= 0) {
-        carousel.scrollLeft += count * w;
-      } else if (carousel.scrollLeft >= (count*2)*w) {
-        carousel.scrollLeft -= count * w;
+        carousel.scrollLeft += count * slideWidth;
+      } else if (carousel.scrollLeft >= count * 2 * slideWidth) {
+        carousel.scrollLeft -= count * slideWidth;
       }
     });
 
-    // auto-scroll & pause on hover
-    let hover = false;
-    carousel.addEventListener('mouseenter', () => hover = true);
-    carousel.addEventListener('mouseleave', () => hover = false);
-    const SPEED = 0.5;
+    // auto-scroll + pause on hover
+    let isHovering = false;
+    carousel.addEventListener('mouseenter', () => isHovering = true);
+    carousel.addEventListener('mouseleave', () => isHovering = false);
+
     function autoScroll() {
-      if (!hover) carousel.scrollLeft += SPEED;
+      if (!isHovering) carousel.scrollLeft += 0.5;
       requestAnimationFrame(autoScroll);
     }
     requestAnimationFrame(autoScroll);
 
     // drag-to-scroll
-    let isDown = false, startX, scrollLeft;
+    let isDown = false, startX, scrollStart;
     carousel.addEventListener('mousedown', e => {
       isDown = true;
       carousel.classList.add('dragging');
-      startX = e.pageX - carousel.offsetLeft;
-      scrollLeft = carousel.scrollLeft;
+      startX      = e.pageX - carousel.offsetLeft;
+      scrollStart = carousel.scrollLeft;
     });
-    ['mouseleave','mouseup'].forEach(ev => {
-      carousel.addEventListener(ev, () => {
-        isDown = false; carousel.classList.remove('dragging');
-      });
-    });
+    ['mouseleave','mouseup'].forEach(evt =>
+      carousel.addEventListener(evt, () => {
+        isDown = false;
+        carousel.classList.remove('dragging');
+      })
+    );
     carousel.addEventListener('mousemove', e => {
       if (!isDown) return;
       e.preventDefault();
-      const x = e.pageX - carousel.offsetLeft;
+      const x    = e.pageX - carousel.offsetLeft;
       const walk = (x - startX) * 1.5;
-      carousel.scrollLeft = scrollLeft - walk;
+      carousel.scrollLeft = scrollStart - walk;
     });
 
-    // modal & prev/next
-    const modal      = document.getElementById('slide-modal');
-    const imgEl      = document.getElementById('modal-image');
-    const titleEl    = document.getElementById('modal-title');
-    const descEl     = document.getElementById('modal-desc');
-    const closeBtn   = document.getElementById('close-modal');
-    const prevBtn    = document.getElementById('modal-prev');
-    const nextBtn    = document.getElementById('modal-next');
-
+    // modal/pop-up
+    const modal    = document.getElementById('slide-modal');
+    const imgEl    = document.getElementById('modal-image');
+    const titleEl  = document.getElementById('modal-title');
+    const descEl   = document.getElementById('modal-desc');
+    const closeBtn = document.getElementById('close-modal');
+    const prevBtn  = document.getElementById('modal-prev');
+    const nextBtn  = document.getElementById('modal-next');
     let currentIdx = 0;
-    originalSlides.forEach((slide, idx) => {
-      slide.addEventListener('click', () => {
-        currentIdx = idx;
-        openModalAt(idx);
-      });
-    });
-    function openModalAt(idx) {
-      const s = originalSlides[idx];
-      imgEl.src = s.dataset.img;
+
+    slides.forEach((slide, i) => slide.addEventListener('click', () => {
+      currentIdx = i;
+      openModal(i);
+    }));
+
+    function openModal(i) {
+      const s = slides[i];
+      imgEl.src         = s.dataset.img;
       titleEl.textContent = s.querySelector('h3').textContent;
       descEl.textContent  = s.dataset.desc;
       modal.classList.add('open');
     }
+
     prevBtn.addEventListener('click', e => {
       e.stopPropagation();
       currentIdx = (currentIdx - 1 + count) % count;
-      openModalAt(currentIdx);
+      openModal(currentIdx);
     });
     nextBtn.addEventListener('click', e => {
       e.stopPropagation();
       currentIdx = (currentIdx + 1) % count;
-      openModalAt(currentIdx);
+      openModal(currentIdx);
     });
-
     closeBtn.addEventListener('click', () => modal.classList.remove('open'));
     modal.addEventListener('click', e => {
       if (e.target === modal) modal.classList.remove('open');
     });
   })();
-    // trigger hero expansion after load
-window.addEventListener('load', () => {
-  document.body.classList.add('loaded');
-});
   </script>
+
 </body>
 </html>
