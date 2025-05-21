@@ -81,7 +81,7 @@ section li {
   margin-bottom: 16px;
 }
 
-ul {
+.section ul {
   padding-left: 20px;
   list-style-position: inside;
 }
