@@ -1,14 +1,11 @@
 /* Base & Nav */
+/* Base & Nav */
 * { box-sizing: border-box; margin:0; padding:0; }
 body {
   font-family: 'Lato', sans-serif;
   background: #fff;
   color: #d4af37;
-  opacity: 0;
-  transition: opacity 0.8s ease 2.8s; /* wait until logo animation completes */
-}
-body.loaded {
-  opacity: 1;
+  /* ← remove any opacity:0 here */
 }
 .main-nav {
   position: sticky; top:0;
