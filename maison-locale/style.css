@@ -31,12 +31,27 @@ body.loaded {
 
 /* Dropdown */
 .simple-dropdown {
-  display:none; position:absolute; top:100%; left:0;
-  background:#fff; border:1px solid #000; padding:.5rem 0; z-index:20;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 100%; left: 0;
+  background:#fff; border:1px solid #000;
+  padding:.5rem 0; z-index:20;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
-.simple-dropdown li { padding:.25rem 1rem; }
-.simple-dropdown a { color:#d4af37; display:block; }
-.dropdown:hover .simple-dropdown { display:block; }
+.dropdown:hover .simple-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.simple-dropdown li {
+  padding: .75rem 2rem; /* more spacing */
+}
+.simple-dropdown a {
+  color: #d4af37;
+  text-decoration: none;
+}
 
 /* Hero & Sections */
 .parallax-hero {
@@ -214,10 +229,21 @@ body.loaded .logo-overlay {
 
 /* Footer */
 .footer {
-  background:#fff; color:#d4af37;
+  background:#fff; color:#333;
   padding:2rem; display:flex; flex-wrap:wrap;
   justify-content:space-between; gap:2rem;
   border-top:2px solid #000;
+}
+.footer .info p {
+  margin:0 0.5rem 0.5rem 0;
+}
+.socials a svg {
+  visibility: visible;
+  fill: #d4af37;
+  transition: transform 0.3s;
+}
+.socials a:hover svg {
+  transform: scale(1.2);
 }
 .newsletter h4 { margin-bottom:.5rem; }
 .newsletter form { display:flex; gap:.5rem; }
