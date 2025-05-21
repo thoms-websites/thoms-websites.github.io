@@ -62,11 +62,13 @@ body {
 }
 
 /* Sections */
-section {
-  margin: 80px auto;
-  padding: 0 20px;
-  max-width: 1200px;
+/* Only style those sections you gave class="section" */
+.section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
 }
+
 
 section h2 {
   font-size: 32px;
