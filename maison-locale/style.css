@@ -63,22 +63,27 @@ body.loaded .parallax-hero {
 
 /* 1. Starting state: centered big in hero */
 /* initial logo-overlay: centered & full size */
+/* initial, centered large in the hero */
 .logo-overlay {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%) scale(1);
   transform-origin: center center;
-  transition: transform 0.6s ease-out;
+  transition: none;  /* we’ll apply transition only when flying home */
+  pointer-events: none;
 }
+
+/* once the JS sets .fly-home, it will pin & shrink */
 .logo-overlay.fly-home {
-  /* switch into fixed‐position so it's no longer constrained by the hero */
-  position: fixed;
-  top: 1rem;            /* same vertical spacing as your .main-nav padding */
-  left: 2rem;           /* adjust as needed to line up over “Maison Locale” */
-  transform: translate(0, 0) scale(0.25);  /* no extra centering translate */
-  transform-origin: top left;
-  z-index: 999;         /* float it above the nav bar text */
-  transition: transform 0.6s ease-out, top 0.6s ease-out, left 0.6s ease-out;
+  position: fixed;             /* escape the hero container */
+  top: 1rem;                   /* your header padding-top */
+  left: 2rem;                  /* your header padding-left */
+  transform: scale(0.25);      /* shrink to ~25% of original — tweak as desired */
+  transform-origin: top left;  /* scale around its top-left corner */
+  z-index: 1001;               /* float above the nav bar */
+  transition: top 0.6s ease-out,
+              left 0.6s ease-out,
+              transform 0.6s ease-out;
 }
 
 /* HIDE/SHOW SITE CONTENT */
