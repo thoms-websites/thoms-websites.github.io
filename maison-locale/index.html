@@ -171,15 +171,17 @@
 
     // 2) After window load, kick off the SVG draw + fill, then reveal page
     window.addEventListener('load', () => {
-      // draw the stroke
-      logoPath.animate([
-        { strokeDashoffset: length },
-        { strokeDashoffset: 0 }
-      ], {
-        duration: 2000,
-        easing: 'ease-out',
-        fill: 'forwards'
-      });
+// draw + fill in one timeline
+logoPath.animate([
+  { strokeDashoffset: length, fill: 'none' },
+  { strokeDashoffset: 0,        fill: 'none' },
+  { strokeDashoffset: 0,        fill: '#d4af37' }
+], {
+  duration: 2500,            // total 2.5s
+  easing: 'ease-out',
+  fill: 'forwards',
+  easing: 'steps(1)'         // prevents interim fills
+});
 
       // fill it in right after stroke-draw ends
       setTimeout(() => {
