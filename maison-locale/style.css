@@ -52,11 +52,13 @@ body {
 }
 
 /* Dropdown */
+.dropdown { position: relative; }
 .dropdown-content {
   display: none;
   position: absolute;
   top: 100%;           /* now 100% of the header’s height */
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: max-content;
   background: #fff;
   border: 1px solid #000;
