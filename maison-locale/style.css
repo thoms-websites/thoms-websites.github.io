@@ -26,32 +26,50 @@ body {
 .menu a:hover::after { transform:scaleX(1); }
 
 /* Dropdown */
-.dropdown {
-  position: relative;
+.main-nav {
+  position: sticky;
+  top: 0;
+  /* …other styles… */
 }
+
+/* ensure the menu container is the positioning context */
+.menu {
+  position: relative;
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* hide bullets on the submenu */
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 100%;    /* sits exactly below the header/nav */
+  /* now absolutely at header’s bottom */
+  top: 100%;            /* exactly header’s height down */
   left: 0;
+  width: max-content;   /* no extra width */
   background: #fff;
   border: 1px solid #000;
   padding: .5rem 0;
-  list-style: none;      /* remove all bullets */
+  list-style: none;
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   border-radius: 4px;
   z-index: 20;
 }
+
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
 .dropdown-content li {
   padding: .75rem 2rem;
 }
+
 .dropdown-content li a {
   color: #d4af37;
   text-decoration: none;
 }
+
 .dropdown-content li:hover {
   background: #f5f5f5;
 }
@@ -122,9 +140,13 @@ body.loaded .parallax-hero {
 
 /* About */
 .about {
-  display:flex; flex-wrap:wrap; gap:2rem; align-items:center;
-  border-top:2px solid #000;
+  display:flex;
+  flex-wrap:wrap;
+  gap:2rem;
+  align-items:center;
+  /* border-top removed so it won’t cut through the chef image */
 }
+
 .about-text { flex:1 1 300px; }
 .about-img { flex:1 1 300px; text-align:center; }
 .about-img img {
@@ -134,15 +156,27 @@ body.loaded .parallax-hero {
 }
 .caption { font-style:italic; margin-top:.5rem; }
 
-/* Carousel container */
+/* SPECIALS CAROUSEL */
+.specials {
+  overflow: visible;  /* allow the thicker borders to show */
+}
+
 .special-carousel {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;       /* allow horizontal scrolling */
-  overflow-y: visible;    /* let slides grow vertically on hover */
+  overflow-x: auto !important;
+  overflow-y: visible;  /* already there, but double-check */
   position: relative;
   cursor: grab;
 }
+
+/* Hovered slide – keep it on top so its borders aren’t hidden */
+.slide:hover {
+  position: relative;
+  z-index: 1;
+  border-width: 4px !important;
+  transform: scale(1.03) !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
+}
+
 .special-carousel.dragging { cursor: grabbing; }
 .special-carousel::-webkit-scrollbar { display:none; }
 
