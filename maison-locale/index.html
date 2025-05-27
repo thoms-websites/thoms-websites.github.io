@@ -187,18 +187,13 @@ window.addEventListener('load', () => {
     fill:     'forwards'
   });
 
-  drawAndFill.onfinish = () => {
-    // b) Immediately fly & shrink into your nav’s logo spot:
-    document.querySelector('.logo-overlay').classList.add('fly-home');
-
-    // c) After the fly-home transition (0.6s), reveal your content + expand hero:
-    setTimeout(() => {
-      document.querySelector('.site-content').classList.add('loaded');
-      document.body.classList.add('loaded');
-    }, 600);
-  };
-});
-
+drawAndFill.onfinish = () => {
+  document.querySelector('.logo-overlay').classList.add('fly-home');
+  setTimeout(() => {
+    document.querySelector('.site-content').classList.add('loaded');
+    document.body.classList.add('loaded');
+  }, 600);
+};
 
 // 3) Carousel & modal logic (unchanged, namespaced in an IIFE):
 (function() {
