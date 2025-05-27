@@ -227,32 +227,48 @@ width:100%; height:533px; border:1px solid #ccc; border-radius:8px;
 
 /* Footer */
 .footer {
-background:#fff; color:#333;
-padding:2rem; display:flex; flex-wrap:wrap;
-justify-content:space-between; gap:2rem;
-border-top:2px solid #000;
+  background-color: #000;
+  color: gold;
+  padding: 2rem 1rem;
+  text-align: center;
+  margin-top: 3rem;
 }
-.footer .info p {
-margin:0 0.5rem 0.5rem 0;
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
-.socials a svg {
-visibility: visible;
-fill: #d4af37;
-transition: transform 0.3s;
+
+.footer-left,
+.footer-right {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-.socials a:hover svg {
-transform: scale(1.2);
+
+.footer a {
+  color: gold;
+  text-decoration: none;
 }
-.newsletter h4 { margin-bottom:.5rem; }
-.newsletter form { display:flex; gap:.5rem; }
-.newsletter input {
-flex:1; padding:.5rem; border:1px solid #000; border-radius:4px;
+
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
 }
-.newsletter button {
-padding:.5rem 1rem; background:#d4af37;
-border:none; border-radius:4px; font-weight:bold; cursor:pointer;
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  filter: brightness(1.2);
 }
-.socials a { margin-right:1rem; color:#d4af37; text-decoration:none; }
 
 /* Carousel container – force visible overflow in all browsers */
 .special-carousel {
