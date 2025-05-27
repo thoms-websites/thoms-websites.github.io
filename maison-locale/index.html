@@ -314,6 +314,16 @@ if (e.target === modal) modal.classList.remove('open');
 });
 })();
 </script>
+<script>
+  document.body.classList.add("loading");
+
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.body.classList.remove("loading");
+      document.body.classList.add("loaded");
+    }, 200); // short delay for smoother effect
+  });
+</script>
 
 </body>
 </html>
