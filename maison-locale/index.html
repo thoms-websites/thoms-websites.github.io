@@ -175,17 +175,17 @@ logoPath.style.strokeDashoffset = pathLength;
 logoPath.style.fillOpacity      = 0;         // hide fill initially
 logoPath.style.fill             = '#d4af37'; // set fill color for later
 
-// 2) When everything’s loaded:
 window.addEventListener('load', () => {
-  // a) Draw + fill over the same 2s timeline:
-  const drawAndFill = logoPath.animate([
-    { strokeDashoffset: pathLength, fillOpacity: 0 },
-    { strokeDashoffset:          0, fillOpacity: 1 }
-  ], {
-    duration: 2000,
-    easing:   'ease-out',
-    fill:     'forwards'
-  });
+  const drawAndFill = logoPath.animate(/*…*/);
+
+  drawAndFill.onfinish = () => {
+    document.querySelector('.logo-overlay').classList.add('fly-home');
+    setTimeout(() => {
+      document.querySelector('.site-content').classList.add('loaded');
+      document.body.classList.add('loaded');
+    }, 600);
+  };
+});   // ← ← ←  This was missing!
 
 drawAndFill.onfinish = () => {
   document.querySelector('.logo-overlay').classList.add('fly-home');
