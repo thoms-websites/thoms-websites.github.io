@@ -1,401 +1,276 @@
 /* Base & Nav */
 * { box-sizing: border-box; margin:0; padding:0; }
 body {
-  font-family: 'Lato', sans-serif;
-  background: #fff;
-  color: #d4af37;
-  /* ← remove any opacity:0 here */
+font-family: 'Lato', sans-serif;
+background: #fff;
+color: #d4af37;
+/* ← remove any opacity:0 here */
 }
 .main-nav {
-  position: sticky;       /* sticky also establishes a positioning context */
-  top: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  background: #fff;
-  padding: 1rem 2rem;
-  border-bottom: 2px solid #000;
-  z-index: 10;
+position: sticky; top:0;
+display:flex; justify-content:space-between; align-items:center;
+background:#fff; padding:1rem 2rem;
+border-bottom:2px solid #000; z-index:10;
 }
-.logo {
-  font-family: 'Alex Brush', cursive;
-  font-size: 2rem;
-  color: #d4af37;
-}
-/* removed position:relative */
-.menu {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
+.logo { font-family:'Alex Brush', cursive; font-size:2rem; color:#d4af37; }
+.menu { list-style:none; display:flex; gap:1.5rem; position:relative; }
 .menu a {
-  text-decoration: none;
-  font-weight: 600;
-  color: #d4af37;
-  position: relative;
+text-decoration:none; font-weight:600; color:#d4af37; position:relative;
 }
 .menu a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  background: #000;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .3s ease;
+content:''; position:absolute; left:0; bottom:-4px;
+width:100%; height:2px; background:#000;
+transform:scaleX(0); transform-origin:left;
+transition:transform .3s ease;
 }
-.menu a:hover::after {
-  transform: scaleX(1);
-}
+.menu a:hover::after { transform:scaleX(1); }
 
 /* Dropdown */
-.dropdown { position: relative; }
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;           /* now 100% of the header’s height */
-  left: 50%;
-  transform: translateX(-50%);
-  width: max-content;
-  background: #fff;
-  border: 1px solid #000;
-  padding: .5rem 0;
-  list-style: none;    /* remove bullets */
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  border-radius: 4px;
-  z-index: 20;
+.simple-dropdown {
+opacity: 0;
+visibility: hidden;
+position: absolute;
+top: 100%; left: 0;
+background:#fff; border:1px solid #000;
+padding:.5rem 0; z-index:20;
+transform: translateY(-10px);
+transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
-.dropdown:hover .dropdown-content {
-  display: block;
+.dropdown:hover .simple-dropdown {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
 }
-.dropdown-content li {
-  padding: .75rem 2rem;
+.simple-dropdown li {
+padding: .75rem 2rem; /* more spacing */
 }
-.dropdown-content li a {
-  color: #d4af37;
-  text-decoration: none;
-}
-.dropdown-content li:hover {
-  background: #f5f5f5;
+.simple-dropdown a {
+color: #d4af37;
+text-decoration: none;
 }
 
 /* HERO & LOGO OVERLAY */
 .parallax-hero {
-  position: relative;     /* so logo-overlay is positioned relative to this */
+position: relative;     /* so logo-overlay is positioned relative to this */
+  height: 80vh;
   height: 90vh;
-  background: url('interior.jpg') center calc(40% + 20px)/cover fixed;
-  border-bottom: 2px solid #000;
-  transition: height 1s ease-out;
+background: url('interior.jpg') center calc(40% + 20px)/cover fixed;
+border-bottom: 2px solid #000;
+transition: height 1s ease-out;
 }
 body.loaded .parallax-hero {
+  height: 100vh;
   height: 80vh;
 }
-
-/* Sections */
-.section {
-  max-width: 1200px;
-  margin: 4rem auto;
-  padding: 0 1.5rem;
-}
-.section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.section p,
-.section li {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-/* (Removed any global `section {}` or `ul {}` rules that were conflicting.) */
-
 
 /* 1. Starting state: centered big in hero */
 /* initial logo-overlay: centered & full size */
 .logo-overlay {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  transform-origin: center center;
-  transition: transform 0.6s ease-out;
+position: absolute;
+top: 50%; left: 50%;
+transform: translate(-50%, -50%) scale(1);
+transform-origin: center center;
+transition: transform 0.6s ease-out;
 }
 
 /* shrink+move into nav logo spot */
-/* shrink+move into nav logo spot */
 .logo-overlay.fly-home {
-  position: fixed;        /* escape the hero */
-  top: 1rem;              /* match your header’s padding */
-  left: 2rem;             /* match your header’s padding-left */
-  transform: scale(0.25); /* shrink to exactly match */
-  transform-origin: top left;
-  z-index: 1001;          /* float above everything else */
+/* adjust these translate() values until it lines up exactly: */
+transform: translate(1rem, 1rem) scale(0.25);
 }
 
 /* HIDE/SHOW SITE CONTENT */
 .site-content {
-  opacity: 0;
-  transition: opacity 0.5s ease 2.6s;
+opacity: 0;
+transition: opacity 0.5s ease 2.6s;
 }
 .site-content.loaded {
-  opacity: 1;
+opacity: 1;
 }
 
 /* SMOOTH OUT THE STROKE ANIMATION */
 #logo-path {
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  /* fillOpacity is driven by JS */
+stroke-linecap: round;
+stroke-linejoin: round;
+/* fillOpacity is driven by JS */
 }
 
 /* About */
 .about {
-  display:flex;
-  flex-wrap:wrap;
-  gap:2rem;
-  align-items:center;
-  /* border-top removed so it won’t cut through the chef image */
+display:flex; flex-wrap:wrap; gap:2rem; align-items:center;
+border-top:2px solid #000;
 }
-
 .about-text { flex:1 1 300px; }
 .about-img { flex:1 1 300px; text-align:center; }
 .about-img img {
-  width:66%; max-width:250px;
-  border-radius:8px;
-  border:2px solid #000; /* black border */
+width:66%; max-width:250px;
+border-radius:8px;
+border:2px solid #000; /* black border */
 }
 .caption { font-style:italic; margin-top:.5rem; }
 
-/* SPECIALS CAROUSEL */
-.specials {
-  overflow: visible;  /* allow the thicker borders to show */
-}
-
+/* Carousel container */
 .special-carousel {
-  overflow-x: auto !important;
-  overflow-y: visible;  /* already there, but double-check */
-  position: relative;
-  cursor: grab;
+display: flex;
+gap: 1rem;
+overflow-x: auto;       /* allow horizontal scrolling */
+overflow-y: visible;    /* let slides grow vertically on hover */
+position: relative;
+cursor: grab;
 }
-
-/* Hovered slide – keep it on top so its borders aren’t hidden */
-.slide:hover {
-  position: relative;
-  z-index: 1;
-  border-width: 4px !important;
-  transform: scale(1.03) !important;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
-}
-
 .special-carousel.dragging { cursor: grabbing; }
 .special-carousel::-webkit-scrollbar { display:none; }
 
 /* Slides */
 .slide {
-  width:300px;
-  flex-shrink:0;
-  display:flex; flex-direction:column;
-  background:#fff;
-  border:2px solid #000;
-  border-radius:8px;
-  overflow:hidden;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-width 0.3s ease;   /* ← add */
+width:300px;
+flex-shrink:0;
+display:flex; flex-direction:column;
+background:#fff;
+border:2px solid #000;
+border-radius:8px;
+overflow:hidden;
+transition:
+transform 0.3s ease,
+box-shadow 0.3s ease,
+border-width 0.3s ease;   /* ← add */
 }
 .slide-img {
-  height:180px; background-size:cover; background-position:center;
-  border-top-left-radius:6px; border-top-right-radius:6px;
-  border-bottom:2px solid #000;
+height:180px; background-size:cover; background-position:center;
+border-top-left-radius:6px; border-top-right-radius:6px;
+border-bottom:2px solid #000;
 }
 .slide-info {
-  padding:.75rem 1rem; background:#fff; flex:1;
+padding:.75rem 1rem; background:#fff; flex:1;
 }
 .slide-info h3 { margin:0 0 .3rem; font-size:1.1rem; color:#000; }
 .slide-info p  { margin:0; color:#555; }
 
 /* Modal overlay & content */
 .slide-modal {
-  display:none; position:fixed; inset:0;
-  background:rgba(0,0,0,0.85);
-  align-items:center; justify-content:center; z-index:100;
+display:none; position:fixed; inset:0;
+background:rgba(0,0,0,0.85);
+align-items:center; justify-content:center; z-index:100;
 }
 .slide-modal.open { display:flex; }
 .modal-content {
-  position:relative;
-  display:flex; background:#fff; border-radius:8px; overflow:visible;
-  max-width:90vw; max-height:90vh;
-  animation:pop-in .3s ease-out forwards;
+position:relative;
+display:flex; background:#fff; border-radius:8px; overflow:visible;
+max-width:90vw; max-height:90vh;
+animation:pop-in .3s ease-out forwards;
 }
 @keyframes pop-in {
-  from { transform:scale(0.7); opacity:0 } to { transform:scale(1); opacity:1 }
+from { transform:scale(0.7); opacity:0 } to { transform:scale(1); opacity:1 }
 }
 .slide:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  border-width:4px;           /* ← double the border on hover */
+transform: scale(1.03);
+box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+border-width:4px;           /* ← double the border on hover */
 }
 
 /* Prev/Next */
 .modal-nav {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.3);
-  border: none;
-  color: #fff;
-  font-size: 2rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  cursor: pointer;
-  z-index: 300;                /* ↑ ensure they float above everything */
-  transition: transform 0.2s ease, background 0.2s ease;
+position: fixed;
+top: 50%;
+transform: translateY(-50%);
+background: rgba(0,0,0,0.3);
+border: none;
+color: #fff;
+font-size: 2rem;
+width: 2.5rem;
+height: 2.5rem;
+cursor: pointer;
+z-index: 300;                /* ↑ ensure they float above everything */
+transition: transform 0.2s ease, background 0.2s ease;
 }
 #modal-prev { left: 0.5rem; }  /* very close to left edge */
 #modal-next { right: 0.5rem; } /* very close to right edge */
 
 .modal-nav:hover {
-  transform: translateY(-50%) scale(1.2);
-  background: rgba(0,0,0,0.6);
+transform: translateY(-50%) scale(1.2);
+background: rgba(0,0,0,0.6);
 }
 .modal-content {
-  position: relative;
-  z-index: 150;   /* ensure the modal box sits below the arrows */
+position: relative;
+z-index: 150;   /* ensure the modal box sits below the arrows */
 }
 
 .modal-nav {
-  z-index: 200;   /* arrows float above everything */
+z-index: 200;   /* arrows float above everything */
 }
 
 /* Ensure they remain above the overlay */
 .slide-modal.open .modal-nav {
-  display: block;
+display: block;
 }
 
 /* Image & text */
 #modal-image {
-  width:450px; object-fit:cover;
+width:450px; object-fit:cover;
 }
 .modal-text {
-  flex:1; padding:2rem; overflow-y:auto;
+flex:1; padding:2rem; overflow-y:auto;
 }
 .modal-text h3 { margin:0 0 1rem; font-size:2rem; }
 .modal-text p  { margin:0 0 1.5rem; line-height:1.4; color:#333; }
 
 /* Close */
 #close-modal {
-  position:absolute; top:1rem; right:1rem;
-  background:transparent; border:none; font-size:2rem; cursor:pointer;
+position:absolute; top:1rem; right:1rem;
+background:transparent; border:none; font-size:2rem; cursor:pointer;
 }
 
 /* Reservations (Airtable embed) */
-#reserve iframe,
-.airtable-embed {
-  max-width: 600px;
-  width: 100%;
-  height: 500px;
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  display: block;
+.reserve iframe {
+width:100%; height:533px; border:1px solid #ccc; border-radius:8px;
 }
 
 /* Footer */
 .footer {
-  background: #fff;
-  color: #333;
-  padding: 2rem 1.5rem;
-  border-top: 2px solid #000;
-  max-width: 1200px;
-  margin: 0 auto;
+background:#fff; color:#333;
+padding:2rem; display:flex; flex-wrap:wrap;
+justify-content:space-between; gap:2rem;
+border-top:2px solid #000;
 }
-
-.footer-top {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: 2rem;
+.footer .info p {
+margin:0 0.5rem 0.5rem 0;
 }
-
-.footer-top .info,
-.footer-top .newsletter {
-  flex: 1 1 300px;
+.socials a svg {
+visibility: visible;
+fill: #d4af37;
+transition: transform 0.3s;
 }
-
-.footer-top h4 {
-  margin-bottom: .5rem;
+.socials a:hover svg {
+transform: scale(1.2);
 }
-
-.footer-top p {
-  margin: 0 0 1rem;
+.newsletter h4 { margin-bottom:.5rem; }
+.newsletter form { display:flex; gap:.5rem; }
+.newsletter input {
+flex:1; padding:.5rem; border:1px solid #000; border-radius:4px;
 }
-
-.footer-top input,
-.footer-top button {
-  width: 100%;
+.newsletter button {
+padding:.5rem 1rem; background:#d4af37;
+border:none; border-radius:4px; font-weight:bold; cursor:pointer;
 }
-
-.footer-top input {
-  padding: .5rem;
-  margin-bottom: .5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.footer-top button {
-  padding: .5rem;
-  border: none;
-  background: #d4af37;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid #000;
-  padding-top: 1rem;
-}
-
-.footer-bottom p {
-  margin: 0;
-}
-
-.footer-bottom .socials a {
-  margin-right: 1rem;
-}
-
-.footer-bottom .socials svg {
-  fill: #d4af37;
-  width: 24px;
-  height: 24px;
-}
+.socials a { margin-right:1rem; color:#d4af37; text-decoration:none; }
 
 /* Carousel container – force visible overflow in all browsers */
 .special-carousel {
-  overflow-x: auto !important;
-  overflow-y: visible !important;
+overflow-x: auto !important;
+overflow-y: visible !important;
 }
 
 /* Hovered slide – explicitly set larger border */
 .slide:hover {
-  border-width: 4px !important;        /* ensure thicker border */
-  transform: scale(1.03) !important;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
+border-width: 4px !important;        /* ensure thicker border */
+transform: scale(1.03) !important;
+box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
 }
 #modal-next {
-  left: auto;       /* override */
-  right: 1rem;      /* next arrow on right edge */
+left: auto;       /* override */
+right: 1rem;      /* next arrow on right edge */
 }
 .modal-nav:hover {
-  transform: translateY(-50%) scale(1.2);
-  background: rgba(0,0,0,0.6);
+transform: translateY(-50%) scale(1.2);
+background: rgba(0,0,0,0.6);
 }
