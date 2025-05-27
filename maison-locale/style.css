@@ -243,34 +243,109 @@ background:transparent; border:none; font-size:2rem; cursor:pointer;
 width:100%; height:533px; border:1px solid #ccc; border-radius:8px;
 }
 
-/* Footer */
+/* FOOTER */
 .footer {
-background:#fff; color:#333;
-padding:2rem; display:flex; flex-wrap:wrap;
-justify-content:space-between; gap:2rem;
-border-top:2px solid #000;
+  background-color: #000;
+  color: #d4af37;
+  padding: 3rem 2rem;
+  font-family: 'Times New Roman', serif;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
 }
-.footer .info p {
-margin:0 0.5rem 0.5rem 0;
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
 }
-.socials a svg {
-visibility: visible;
-fill: #d4af37;
-transition: transform 0.3s;
+
+.footer-column h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #fff;
 }
-.socials a:hover svg {
-transform: scale(1.2);
+
+.footer-column p {
+  margin: 0;
+  line-height: 1.6;
+  color: #d4af37;
 }
-.newsletter h4 { margin-bottom:.5rem; }
-.newsletter form { display:flex; gap:.5rem; }
-.newsletter input {
-flex:1; padding:.5rem; border:1px solid #000; border-radius:4px;
+
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
+
+.newsletter h3 {
+  font-size: 1.4rem;
+  margin: 0;
+  color: #fff;
+}
+
+.newsletter form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.newsletter input[type="email"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  width: 250px;
+}
+
 .newsletter button {
-padding:.5rem 1rem; background:#d4af37;
-border:none; border-radius:4px; font-weight:bold; cursor:pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #d4af37;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
-.socials a { margin-right:1rem; color:#d4af37; text-decoration:none; }
+
+.newsletter button:hover {
+  background-color: #b8962d;
+}
+
+.footer-bottom {
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-icons a svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s;
+}
+
+.social-icons a:hover svg {
+  transform: scale(1.2);
+}
+
+.footer-bottom p {
+  font-size: 0.9rem;
+  color: #aaa;
+}
 
 /* Carousel container – force visible overflow in all browsers */
 .special-carousel {
