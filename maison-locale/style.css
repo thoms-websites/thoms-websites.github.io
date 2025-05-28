@@ -13,7 +13,7 @@ body {
 }
 
 .main-nav {
-  position: relative;  /* ensure dropdowns position off the bottom of this element */
+  position: sticky;  /* ensure dropdowns position off the bottom of this element */
   top: 0;
   display: flex;
   justify-content: space-between;
