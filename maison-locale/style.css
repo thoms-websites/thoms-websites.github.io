@@ -92,44 +92,45 @@ body {
 }
 
 /* Dropdown */
-.menu {
-  position: relative;   /* keep this */
+/* 1) Make header the positioning context */
+.main-nav {
+  position: relative; /* was sticky—now also ancestor for absolutely-positioned dropdowns */
 }
 
+/* 2) Don’t use dropdown <li> as the positioning anchor */
 .dropdown {
-  position: relative;   /* make each <li> its own anchor */
+  position: static; 
 }
 
+/* 3) Position the submenu relative to the header’s bottom edge */
 .dropdown-content {
   display: none;
   position: absolute;
-  /* push it 100% down + the 2px border thickness */
-  top: calc(100% + 2px);
+  top: calc(100% + 2px); /* header height + border thickness */
   left: 0;
-  min-width: max-content;
   background: #fff;
   border: 1px solid #000;
   padding: .5rem 0;
+  min-width: max-content;
   list-style: none;
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   border-radius: 4px;
   z-index: 20;
-  /* remove any translateY here if present */
 }
 
+/* show on hover */
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
+/* menu items */
 .dropdown-content li {
   padding: .75rem 2rem;
 }
-
 .dropdown-content li a {
   color: #d4af37;
   text-decoration: none;
 }
-
 .dropdown-content li:hover {
   background: #f5f5f5;
 }
