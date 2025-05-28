@@ -34,8 +34,11 @@ body {
 
 /* Sections */
 .section {
-  margin: 4rem 0;
+  max-width: 1200px;
+  margin: 6rem auto;      /* ↑ more separation top & bottom */
+  padding: 0 1.5rem;
 }
+
 .section h2 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
