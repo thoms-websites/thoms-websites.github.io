@@ -190,38 +190,30 @@ a quiet dinner or a celebration, we strive to make each visit unforgettable.
 
 <!-- all JS in one block -->
 <script>
-// 1) Setup stroke‐dash AND start with invisible fill:
-const logoPath    = document.getElementById('logo-path');
-const pathLength  = logoPath.getTotalLength();
+// 1) Setup stroke‐dash + invisible fill:
+const logoPath   = document.getElementById('logo-path');
+const pathLength = logoPath.getTotalLength();
 logoPath.style.strokeDasharray  = pathLength;
 logoPath.style.strokeDashoffset = pathLength;
-logoPath.style.fillOpacity      = 0;         // hide fill initially
-logoPath.style.fill             = '#d4af37'; // set fill color for later
+logoPath.style.fillOpacity      = 0;
+logoPath.style.fill             = '#d4af37';
 
-// 2) When everything’s loaded:
+// 2) Animate handwriting every 20s forever:
+function animateLogo(){
+  logoPath.animate([
+    { strokeDashoffset: pathLength, fillOpacity: 0 },
+    { strokeDashoffset:          0, fillOpacity: 1 }
+  ], {
+    duration: 2000,
+    easing:   'ease-out',
+    fill:     'forwards'
+  });
+}
+// run on load, then every 20s
 window.addEventListener('load', () => {
-// a) Draw + fill over the same 2s timeline:
-const drawAndFill = logoPath.animate([
-{ strokeDashoffset: pathLength, fillOpacity: 0 },
-{ strokeDashoffset:          0, fillOpacity: 1 }
-], {
-duration: 2000,
-easing:   'ease-out',
-fill:     'forwards'
+  animateLogo();
+  setInterval(animateLogo, 20000);
 });
-
-drawAndFill.onfinish = () => {
-// b) Immediately fly & shrink into your nav’s logo spot:
-document.querySelector('.logo-overlay').classList.add('fly-home');
-
-// c) After the fly-home transition (0.6s), reveal your content + expand hero:
-setTimeout(() => {
-document.querySelector('.site-content').classList.add('loaded');
-document.body.classList.add('loaded');
-}, 600);
-};
-});
-
 
 // 3) Carousel & modal logic (unchanged, namespaced in an IIFE):
 (function() {
