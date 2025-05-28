@@ -190,7 +190,7 @@ a quiet dinner or a celebration, we strive to make each visit unforgettable.
 
 <!-- all JS in one block -->
 <script>
-// 1) Setup stroke‐dash + invisible fill:
+// 1) Setup stroke-dash + invisible fill:
 const logoPath   = document.getElementById('logo-path');
 const pathLength = logoPath.getTotalLength();
 logoPath.style.strokeDasharray  = pathLength;
@@ -198,7 +198,7 @@ logoPath.style.strokeDashoffset = pathLength;
 logoPath.style.fillOpacity      = 0;
 logoPath.style.fill             = '#d4af37';
 
-// 2) Animate handwriting every 20s forever:
+// 2) Draw + fill, then reveal site, repeating every 12s:
 function animateLogo(){
   logoPath.animate([
     { strokeDashoffset: pathLength, fillOpacity: 0 },
@@ -209,10 +209,19 @@ function animateLogo(){
     fill:     'forwards'
   });
 }
-// run on load, then every 20s
+
 window.addEventListener('load', () => {
+  // initial run
   animateLogo();
-  setInterval(animateLogo, 20000);
+
+  // reveal the page after the first animation
+  setTimeout(() => {
+    document.body.classList.add('loaded');
+    document.querySelector('.site-content').classList.add('loaded');
+  }, 2000);
+
+  // loop every 12 s
+  setInterval(animateLogo, 12000);
 });
 
 // 3) Carousel & modal logic (unchanged, namespaced in an IIFE):
