@@ -80,9 +80,12 @@ body {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
   text-align: center;
+  /* Playfair is applied above */
 }
+
 .section p,
 .section li {
+  /* Libre Baskerville from body rule applies */
   font-size: 1.125rem;
   line-height: 1.6;
   margin-bottom: 1rem;
