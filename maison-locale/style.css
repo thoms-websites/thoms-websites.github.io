@@ -6,6 +6,15 @@ body {
   color: #d4af37;
   padding: 0;             /* remove any global side margins */
 }
+.main-nav .menu a,
+.section h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+.section h2 {
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
 .main-nav {
   position: sticky; top:0;
   display:flex; justify-content:space-between; align-items:center;
