@@ -61,27 +61,34 @@ body {
 }
 
 /* Dropdown */
-.simple-dropdown {
-opacity: 0;
-visibility: hidden;
-position: absolute;
-top: 100%; left: 0;
-background:#fff; border:1px solid #000;
-padding:.5rem 0; z-index:20;
-transform: translateY(-10px);
-transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+.dropdown {
+  position: relative;  /* anchor point for its submenu */
 }
-.dropdown:hover .simple-dropdown {
-opacity: 1;
-visibility: visible;
-transform: translateY(0);
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;            /* directly below the Menu ▾ button */
+  left: 0;              /* align with left edge of that button */
+  background: #fff;
+  border: 1px solid #000;
+  padding: .5rem 0;
+  list-style: none;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  z-index: 20;
 }
-.simple-dropdown li {
-padding: .75rem 2rem; /* more spacing */
+.dropdown:hover .dropdown-content {
+  display: block;
 }
-.simple-dropdown a {
-color: #d4af37;
-text-decoration: none;
+.dropdown-content li {
+  padding: .75rem 2rem;
+}
+.dropdown-content li a {
+  color: #d4af37;
+  text-decoration: none;
+}
+.dropdown-content li:hover {
+  background: #f5f5f5;
 }
 
 /* HERO & LOGO OVERLAY */
