@@ -13,7 +13,7 @@ body {
 }
 
 .main-nav {
-  position: sticky;  /* ensure dropdowns position off the bottom of this element */
+  position: sticky;  /* make this the positioning container */
   top: 0;
   display: flex;
   justify-content: space-between;
@@ -36,7 +36,7 @@ body {
   list-style: none;
   display: flex;
   gap: 1.5rem;
-  position: relative;
+  position: relative;  /* for any submenu positioned inside */
 }
 
 .menu a {
@@ -62,75 +62,43 @@ body {
   transform: scaleX(1);
 }
 
-/* Global wrapper for consistent margins */
-.content-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* Sections */
-.section {
-  max-width: 1200px;
-  margin: 6rem auto;      /* ↑ more separation top & bottom */
-  padding: 0 1.5rem;
-}
-
-.section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  /* Playfair is applied above */
-}
-
-.section p,
-.section li {
-  /* Libre Baskerville from body rule applies */
-  font-size: 1.125rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
 /* Dropdown */
-/* 1) Make header the positioning context */
-.main-nav {
-  position: relative; /* was sticky—now also ancestor for absolutely-positioned dropdowns */
-}
-
-/* 2) Don’t use dropdown <li> as the positioning anchor */
 .dropdown {
-  position: static; 
+  position: static;  /* anchor remains at header level */
 }
 
-/* 3) Position the submenu relative to the header’s bottom edge */
 .dropdown-content {
   display: none;
   position: absolute;
-  top: calc(100% + 2px); /* header height + border thickness */
+  /* move it down past the header’s bottom border */
+  top: calc(100% + 2px);
   left: 0;
+  width: 100%;           /* full-width beneath header */
   background: #fff;
-  border: 1px solid #000;
-  padding: .5rem 0;
-  min-width: max-content;
+  border-top: 1px solid #000;
   list-style: none;
+  padding: 0;
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  border-radius: 4px;
   z-index: 20;
 }
 
-/* show on hover */
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* menu items */
 .dropdown-content li {
-  padding: .75rem 2rem;
+  padding: 0.75rem 2rem;
 }
+
+.dropdown-content li + li {
+  border-top: 1px solid #eee;
+}
+
 .dropdown-content li a {
   color: #d4af37;
   text-decoration: none;
 }
+
 .dropdown-content li:hover {
   background: #f5f5f5;
 }
