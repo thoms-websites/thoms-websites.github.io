@@ -103,16 +103,18 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 100%;           /* directly below the Menu ▾ button */
-  left: 0;             /* align with the left edge of that button */
-  min-width: max-content;  /* no wider than its contents */
+  /* push it 100% down + the 2px border thickness */
+  top: calc(100% + 2px);
+  left: 0;
+  min-width: max-content;
   background: #fff;
   border: 1px solid #000;
   padding: .5rem 0;
-  list-style: none;    /* remove bullets */
+  list-style: none;
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   border-radius: 4px;
   z-index: 20;
+  /* remove any translateY here if present */
 }
 
 .dropdown:hover .dropdown-content {
