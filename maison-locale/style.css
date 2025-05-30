@@ -1,38 +1,66 @@
 /* Base & Nav */
-* { box-sizing: border-box; margin:0; padding:0; }
-body {
-  font-family: 'Lato', sans-serif;
-  background: #fff;
-  color: #d4af37;
-  padding: 0;             /* remove any global side margins */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+body {
+  font-family: 'Libre Baskerville', serif; /* warmer, more readable body text */
+  background: #fff;
+  color: #333;                             /* switch to dark grey for better contrast */
+  padding: 0;
+}
+
+.main-nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid #000;
+  z-index: 10;
+}
+
+/* Nav links & Section headings share the same “fancy” font */
 .main-nav .menu a,
 .section h2 {
   font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: #d4af37;
 }
 
-.section h2 {
-  font-style: normal;
-  letter-spacing: 0.5px;
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  position: relative;
 }
-.main-nav {
-  position: sticky; top:0;
-  display:flex; justify-content:space-between; align-items:center;
-  background:#fff; padding:1rem 2rem;
-  border-bottom:2px solid #000; z-index:10;
-}
-.logo { font-family:'Alex Brush', cursive; font-size:2rem; color:#d4af37; }
-.menu { list-style:none; display:flex; gap:1.5rem; position:relative; }
+
 .menu a {
-  text-decoration:none; font-weight:600; color:#d4af37; position:relative;
+  position: relative;
+  text-decoration: none;
+  font-size: 1.125rem;
 }
+
 .menu a::after {
-  content:''; position:absolute; left:0; bottom:-4px;
-  width:100%; height:2px; background:#000;
-  transform:scaleX(0); transform-origin:left;
-  transition:transform .3s ease;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
 }
-.menu a:hover::after { transform:scaleX(1); }
+
+.menu a:hover::after {
+  transform: scaleX(1);
+}
 
 /* Global wrapper for consistent margins */
 .content-inner {
