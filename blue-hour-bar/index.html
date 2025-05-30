@@ -19,10 +19,16 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bar-body">
+  <!-- Skip link for keyboard users -->
+  <a href="#home" class="skip-link">Skip to content</a>
 
   <!-- OFF-CANVAS NAV -->
-  <button class="nav-toggle" aria-label="Toggle menu">☰</button>
-  <nav class="offcanvas">
+  <button
+    class="nav-toggle"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+  >☰</button>
+  <nav class="offcanvas" aria-hidden="true">
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#events">Events</a></li>
@@ -197,20 +203,36 @@
 
   <!-- Scripts -->
   <script>
-    // Off-canvas toggle
     const navToggle = document.querySelector('.nav-toggle');
     const offcanvas = document.querySelector('.offcanvas');
+
+    // Toggle handler
     navToggle.onclick = e => {
       e.stopPropagation();
-      offcanvas.classList.toggle('open');
+      const isOpen = offcanvas.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      offcanvas.setAttribute('aria-hidden', !isOpen);
     };
 
-    // Close when clicking outside
+    // Close when clicking outside or pressing Escape
     document.addEventListener('click', e => {
-      if (offcanvas.classList.contains('open') &&
-          !offcanvas.contains(e.target) &&
-          e.target !== navToggle) {
+      if (
+        offcanvas.classList.contains('open') &&
+        !offcanvas.contains(e.target) &&
+        e.target !== navToggle
+      ) {
         offcanvas.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        offcanvas.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && offcanvas.classList.contains('open')) {
+        offcanvas.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        offcanvas.setAttribute('aria-hidden', 'true');
+        navToggle.focus();
       }
     });
 
