@@ -116,8 +116,8 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 100%;            /* directly at bottom of the header */
-  left: 0;              /* full‐width, flush under header */
+  top: calc(100% + 8px); /* pushes it 8px further down */
+  left: 0;               
   width: 100%;
   background: #fff;
   border-top: 1px solid #000;
