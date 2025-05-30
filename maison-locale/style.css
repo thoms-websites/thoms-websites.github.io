@@ -87,6 +87,22 @@ body {
   line-height: 1.6;
   margin-bottom: 1rem;
 }
+/* —————————————————————— */
+/* Section header flourish */
+.section h2 {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.section h2::after {
+  content: '';
+  display: block;
+  width: 60px;              /* length of flourish */
+  height: 4px;              /* thickness */
+  background-color: #d4af37;/* gold color */
+  margin: 0.5rem auto 0;    /* center under the text */
+  border-radius: 2px;       /* soft edges */
+}
 
 /* Dropdown */
 .menu {
