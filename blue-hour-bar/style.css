@@ -1,6 +1,35 @@
 /* RESET */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Skip link — visually hidden until focused */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 1rem;
+  background: #0ff;
+  color: #000;
+  padding: 0.5rem 1rem;
+  z-index: 100;
+  transition: top 0.3s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Clear focus outline for interactive elements */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: 3px solid #0ff;
+  outline-offset: 2px;
+}
+
+/* Optional: strengthen off-canvas close focus */
+.offcanvas a:focus {
+  background: rgba(0,255,255,0.2);
+}
+
 /* visually hidden for screen readers */
 .sr-only {
   position: absolute;
