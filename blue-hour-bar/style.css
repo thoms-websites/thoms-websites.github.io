@@ -148,6 +148,11 @@ body.bar-body::after {
 .carousel-control:hover {
   color: #0cc;
 }
+/* hide arrows on desktop (≥768px) */
+@media (min-width: 768px) {
+  .carousel-control { display: none; }
+}
+
 .carousel-dots {
   text-align: center; margin-top: 0.5rem;
 }
@@ -233,9 +238,7 @@ body.bar-body::after {
   font-weight: bold; text-decoration: none;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   transition: background .2s;
-}
-@media (max-width: 600px) {
-  .pdf-btn { display: none; } /* Hide PDF button on small screens */
+  z-index: 150; /* above footer */
 }
 .pdf-btn:hover { background: #0cc; }
 
@@ -271,7 +274,7 @@ body.bar-body::after {
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   opacity: 0; visibility: hidden;
   transition: opacity .3s ease, visibility .3s;
-  z-index: 50;
+  z-index: 200; /* above footer */
 }
 #back-to-top.visible {
   opacity: 1; visibility: visible;
@@ -279,10 +282,16 @@ body.bar-body::after {
 
 /* STICKY FOOTER LAYOUT */
 .social-footer {
-  position: sticky; bottom: 0;
-  left: 0; width: 100%;
   background: rgba(17,17,17,0.9);
-  z-index: 100;
+  left: 0; width: 100%;
+  /* Only sticky on desktop, not on mobile */
+}
+@media (min-width: 768px) {
+  .social-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+  }
 }
 .footer-inner {
   display: flex; justify-content: space-between; align-items: center;
@@ -321,14 +330,6 @@ body.bar-body::after {
 .footer-right a:hover .social-icon {
   fill: #0cc;
   transform: scale(1.2);
-}
-
-/* Larger on wide screens */
-@media (min-width: 1200px) {
-  .footer-right .social-icon {
-    width: 32px;
-    height: 32px;
-  }
 }
 
 /* Adjust scroll-hint on small screens */
