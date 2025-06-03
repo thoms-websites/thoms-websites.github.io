@@ -124,36 +124,40 @@ body.bar-body::after {
 /* EVENTS CAROUSEL — center on screen */
 .carousel {
   display: flex;
-  align-items: center;
-  justify-content: center;  /* ← newly added to center the content */
+  justify-content: center; /* center the inner “slides‐wrapper” */
   position: relative;
   margin-bottom: 1rem;
 }
-.slides-container {
-  display: flex; overflow-x: auto; gap: 1rem;
-  padding: 0 1rem; scroll-snap-type: x mandatory;
+
+/* wrap all the .slide items in a .slides‐wrapper */
+.slides-wrapper {
+  display: flex;
+  gap: 1rem;
+  /* no padding here—just let it shrink to its content */
+  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  flex: 1;
 }
-.slides-container .slide {
-  flex: 0 0 auto; min-width: 220px;
-  background: #111; padding: 1rem;
-  border: 1px solid #0ff; border-radius: 6px;
+
+/* each slide */
+.slides-wrapper .slide {
+  flex: 0 0 auto;
+  min-width: 220px;
+  background: #111;
+  padding: 1rem;
+  border: 1px solid #0ff;
+  border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  scroll-snap-align: center; text-align: center;
-  color: #fff; font-size: 1rem;
+  scroll-snap-align: center;
+  text-align: center;
+  color: #fff;
+  font-size: 1rem;
 }
-.carousel-control {
-  background: none; border: none; color: #0ff;
-  font-size: 2rem; cursor: pointer; z-index: 2;
-  transition: color .2s;
-}
-.carousel-control:hover {
-  color: #0cc;
-}
+
 /* hide arrows on desktop (≥768px) */
 @media (min-width: 768px) {
-  .carousel-control { display: none; }
+  .carousel-control {
+    display: none;
+  }
 }
 
 .carousel-dots {
