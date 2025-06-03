@@ -121,26 +121,27 @@ body.bar-body::after {
   to { width: 50px; }
 }
 
-/* EVENTS CAROUSEL — center on screen */
+/* EVENTS CAROUSEL – center on screen */
 .carousel {
   display: flex;
-  justify-content: center; /* center the inner “slides‐wrapper” */
+  justify-content: center; /* center the inner “slides-container” */
   position: relative;
   margin-bottom: 1rem;
 }
 
-/* wrap all the .slide items in a .slides‐wrapper */
-.slides-wrapper {
+/* wrap all the .slide items in a .slides-container */
+.slides-container {
   display: flex;
   gap: 1rem;
-  touch-action: pan-x;  /* allow only horizontal swipes—no vertical bounce */
-  /* no padding here—just let it shrink to its content */
+  touch-action: pan-x;        /* only horizontal swipes—no vertical bounce */
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  overflow-x: auto;           /* allow horizontal scrolling on mobile */
+  padding: 0 1rem;
 }
 
 /* each slide */
-.slides-wrapper .slide {
+.slides-container .slide {
   flex: 0 0 auto;
   min-width: 220px;
   background: #111;
@@ -154,20 +155,45 @@ body.bar-body::after {
   font-size: 1rem;
 }
 
-/* hide arrows on desktop (≥768px) */
+/* show arrows on mobile (<768px) and hide them on desktop (≥768px) */
+.carousel-control {
+  background: none;
+  border: none;
+  color: #0ff;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 2;
+  transition: color .2s;
+}
+.carousel-control:hover {
+  color: #0cc;
+}
 @media (min-width: 768px) {
   .carousel-control {
     display: none;
   }
 }
 
+/* already hiding scroll-hint, so we leave that */
+.scroll-hint {
+  display: none;
+}
+
+/* dots under the carousel */
 .carousel-dots {
-  text-align: center; margin-top: 0.5rem;
+  text-align: center;
+  margin-top: 0.5rem;
 }
 .carousel-dots .dot {
-  background: #555; border: none; width: 10px; height: 10px;
-  border-radius: 50%; margin: 0 4px; display: inline-block;
-  cursor: pointer; transition: background .2s;
+  background: #555;
+  border: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 4px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background .2s;
 }
 .carousel-dots .dot.active {
   background: #0ff;
