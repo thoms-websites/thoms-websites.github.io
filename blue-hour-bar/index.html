@@ -10,25 +10,25 @@
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50%25' font-size='48'%3E🍸%3C/text%3E%3C/svg%3E"
         type="image/svg+xml" />
 
+  <!-- Preload key fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" as="style" onload="this.rel='stylesheet'">
+
   <!-- Google Fonts & FontAwesome (deduped) -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400&display=swap"
-        rel="stylesheet">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400&display=swap"
+          rel="stylesheet">
+  </noscript>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bar-body">
-  <!-- Skip link for keyboard users -->
-  <a href="#home" class="skip-link">Skip to content</a>
 
   <!-- OFF-CANVAS NAV -->
-  <button
-    class="nav-toggle"
-    aria-label="Toggle menu"
-    aria-expanded="false"
-  >☰</button>
-  <nav class="offcanvas" aria-hidden="true">
+  <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  <nav class="offcanvas">
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#events">Events</a></li>
@@ -39,8 +39,9 @@
 
   <!-- HERO -->
   <section id="home" class="video-hero">
-    <video autoplay muted loop playsinline>
-      <source src="bar-ambience.mp4" type="video/mp4">
+    <!-- 4. Video Fallback & Poster -->
+    <video autoplay muted loop playsinline poster="hero-poster.png">
+      <source src="bar-ambience.mp4" type="video/mp4" />
       Your browser doesn’t support video.
     </video>
     <div class="overlay"></div>
@@ -54,11 +55,16 @@
   <section id="events" class="section events-section">
     <h2>Events</h2>
     <div class="carousel">
-      <div class="slide">Live Jazz • Wed 8–11 pm</div>
-      <div class="slide">Karaoke Fridays • 9 pm–12 am</div>
-      <div class="slide">Mixology Class • 1st Mon 7 pm</div>
+      <button class="carousel-control prev" aria-label="Previous slide">‹</button>
+      <div class="slides-container">
+        <div class="slide">Live Jazz • Wed 8–11 pm</div>
+        <div class="slide">Karaoke Fridays • 9 pm–12 am</div>
+        <div class="slide">Mixology Class • 1st Mon 7 pm</div>
+      </div>
+      <button class="carousel-control next" aria-label="Next slide">›</button>
     </div>
     <div class="scroll-hint" aria-hidden="true">›</div>
+    <div class="carousel-dots"></div>
   </section>
 
   <!-- DRINKS -->
@@ -71,30 +77,30 @@
       <button data-filter="wine">Wine</button>
     </div>
     <div class="drink-grid">
- <!-- Cocktails -->
+      <!-- Cocktails -->
       <div class="menu-item" data-type="cocktail">
-        <img src="margarita.jpg" alt="Margarita">
+        <img src="margarita.jpg" alt="Margarita" loading="lazy" />
         <div class="menu-item-content">
           <h3>Margarita</h3>
           <p>Tequila, triple sec, lime</p>
         </div>
       </div>
       <div class="menu-item" data-type="cocktail">
-        <img src="blue-lagoon.jpg" alt="Blue Lagoon">
+        <img src="blue-lagoon.jpg" alt="Blue Lagoon" loading="lazy" />
         <div class="menu-item-content">
           <h3>Blue Lagoon</h3>
           <p>Vodka, blue curaçao, lemonade</p>
         </div>
       </div>
       <div class="menu-item" data-type="cocktail">
-        <img src="negroni.jpg" alt="Negroni">
+        <img src="negroni.jpg" alt="Negroni" loading="lazy" />
         <div class="menu-item-content">
           <h3>Negroni</h3>
           <p>Campari, gin, sweet vermouth</p>
         </div>
       </div>
       <div class="menu-item" data-type="cocktail">
-        <img src="old-fashioned.jpg" alt="Old Fashioned">
+        <img src="old-fashioned.jpg" alt="Old Fashioned" loading="lazy" />
         <div class="menu-item-content">
           <h3>Old Fashioned</h3>
           <p>Bourbon, sugar, bitters</p>
@@ -102,21 +108,21 @@
       </div>
       <!-- Beers -->
       <div class="menu-item" data-type="beer">
-        <img src="craft-beer.jpg" alt="Craft Beer">
+        <img src="craft-beer.jpg" alt="Craft Beer" loading="lazy" />
         <div class="menu-item-content">
           <h3>Craft Beer</h3>
           <p>Local brewery special</p>
         </div>
       </div>
       <div class="menu-item" data-type="beer">
-        <img src="ale.jpg" alt="Ale">
+        <img src="ale.jpg" alt="Ale" loading="lazy" />
         <div class="menu-item-content">
           <h3>Ale</h3>
           <p>Rich amber ale</p>
         </div>
       </div>
       <div class="menu-item" data-type="beer">
-        <img src="guinness.jpg" alt="Guinness">
+        <img src="guinness.jpg" alt="Guinness" loading="lazy" />
         <div class="menu-item-content">
           <h3>Guinness</h3>
           <p>Classic stout</p>
@@ -124,21 +130,21 @@
       </div>
       <!-- Wines -->
       <div class="menu-item" data-type="wine">
-        <img src="white-wine.jpg" alt="White Wine">
+        <img src="white-wine.jpg" alt="White Wine" loading="lazy" />
         <div class="menu-item-content">
           <h3>White Wine</h3>
           <p>Crisp chardonnay</p>
         </div>
       </div>
       <div class="menu-item" data-type="wine">
-        <img src="red-wine.jpg" alt="Red Wine">
+        <img src="red-wine.jpg" alt="Red Wine" loading="lazy" />
         <div class="menu-item-content">
           <h3>Red Wine</h3>
           <p>Full-bodied merlot</p>
         </div>
       </div>
       <div class="menu-item" data-type="wine">
-        <img src="prosecco.jpg" alt="Prosecco">
+        <img src="prosecco.jpg" alt="Prosecco" loading="lazy" />
         <div class="menu-item-content">
           <h3>Prosecco</h3>
           <p>Light sparkling</p>
@@ -151,25 +157,21 @@
   <!-- BOOKING FORM -->
   <section id="book" class="section book-section">
     <h2>Book Your Night</h2>
-    <form action="mailto:thom.creates.websites@gmail.com"
-          method="post"
-          enctype="text/plain"
-          class="booking-form">
-      <label for="name" class="sr-only">Your Name</label>
-      <input id="name" name="name" type="text" placeholder="Your name" required>
-
-      <label for="email" class="sr-only">Your Email</label>
-      <input id="email" name="email" type="email" placeholder="Your email" required>
-
-      <label for="message" class="sr-only">Your Request</label>
-      <textarea id="message" name="message" rows="4" placeholder="Your request..." required></textarea>
-
+    <form action="javascript:void(0)" method="post" class="booking-form">
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="email" name="email" placeholder="Your email" required />
+      <textarea name="message" rows="4" placeholder="Your request..." required></textarea>
+      <!-- Honeypot -->
+      <input type="text" name="hp_field" class="sr-only" placeholder="Leave blank" />
       <button type="submit">Send Inquiry</button>
     </form>
+    <p class="form-success" aria-live="polite"></p>
   </section>
 
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" aria-label="Back to top">↑</button>
+
   <!-- STICKY FOOTER -->
-   <!-- STICKY FOOTER -->
   <footer class="social-footer">
     <div class="footer-inner">
       <div class="footer-left">
@@ -178,77 +180,172 @@
       <div class="footer-center">
         <p>&copy; 2025 The Blue Hour Bar</p>
       </div>
-<div class="footer-right">
-  <!-- Instagram -->
-  <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
-    <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5z"/>
-      <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/>
-      <circle cx="17.5" cy="6.5" r="1"/>
-    </svg>
-  </a>
-  <!-- Facebook -->
-  <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
-    <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.325v21.351C0 23.4.6 24
-               1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1
-               1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001
-               c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116
-               C23.4 24 24 23.4 24 22.675V1.325C24 .6 23.4 0 22.675 0z"/>
-    </svg>
-  </a>
-</div>
+      <div class="footer-right">
+        <!-- Instagram -->
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5z"/>
+            <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/>
+            <circle cx="17.5" cy="6.5" r="1"/>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.325v21.351C0 23.4.6 24
+                     1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1
+                     1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001
+                     c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116
+                     C23.4 24 24 23.4 24 22.675V1.325C24 .6 23.4 0 22.675 0z"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script>
+    // Off-canvas toggle
     const navToggle = document.querySelector('.nav-toggle');
     const offcanvas = document.querySelector('.offcanvas');
-
-    // Toggle handler
     navToggle.onclick = e => {
       e.stopPropagation();
-      const isOpen = offcanvas.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', isOpen);
-      offcanvas.setAttribute('aria-hidden', !isOpen);
+      offcanvas.classList.toggle('open');
     };
-
-    // Close when clicking outside or pressing Escape
     document.addEventListener('click', e => {
-      if (
-        offcanvas.classList.contains('open') &&
-        !offcanvas.contains(e.target) &&
-        e.target !== navToggle
-      ) {
+      if (offcanvas.classList.contains('open') &&
+          !offcanvas.contains(e.target) &&
+          e.target !== navToggle) {
         offcanvas.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        offcanvas.setAttribute('aria-hidden', 'true');
       }
     });
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && offcanvas.classList.contains('open')) {
-        offcanvas.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        offcanvas.setAttribute('aria-hidden', 'true');
-        navToggle.focus();
-      }
-    });
-
-    // Drink filter + active state
+    // Drink filter + fade-in/out animation + active state
     document.querySelectorAll('.drink-filters button').forEach(btn => {
-      btn.onclick = () => {
-        document.querySelectorAll('.drink-filters button')
-                .forEach(b => b.classList.remove('active'));
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.drink-filters button').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const type = btn.dataset.filter;
         document.querySelectorAll('.drink-grid .menu-item').forEach(item => {
-          item.style.display = (type === 'all' || item.dataset.type === type)
-                               ? 'flex'
-                               : 'none';
+          if (type === 'all' || item.dataset.type === type) {
+            item.style.display = 'flex';
+            requestAnimationFrame(() => item.style.opacity = 1);
+          } else {
+            item.style.opacity = 0;
+            setTimeout(() => item.style.display = 'none', 300);
+          }
         });
+      });
+    });
+
+    // Carousel controls, dots & scroll-snap
+    const slidesContainer = document.querySelector('.slides-container');
+    const slides = Array.from(slidesContainer.children);
+    const prevBtn = document.querySelector('.carousel-control.prev');
+    const nextBtn = document.querySelector('.carousel-control.next');
+    const dotsContainer = document.querySelector('.carousel-dots');
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = i === 0 ? 'dot active' : 'dot';
+      dot.dataset.index = i;
+      dotsContainer.append(dot);
+      dot.addEventListener('click', () => {
+        slidesContainer.children[i].scrollIntoView({ behavior: 'smooth', inline: 'center' });
+      });
+    });
+
+    // Update active dot on scroll
+    slidesContainer.addEventListener('scroll', debounce(() => {
+      const center = slidesContainer.scrollLeft + slidesContainer.offsetWidth / 2;
+      slides.forEach((slide, i) => {
+        const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+        if (Math.abs(center - slideCenter) < slide.offsetWidth / 2) {
+          document.querySelector('.dot.active').classList.remove('active');
+          dotsContainer.children[i].classList.add('active');
+        }
+      });
+    }, 100));
+
+    prevBtn.addEventListener('click', () => {
+      const idx = [...slidesContainer.children].findIndex(slide => slide.getBoundingClientRect().left >= slidesContainer.getBoundingClientRect().left + 1);
+      const target = slides[Math.max(idx - 1, 0)];
+      target.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+    });
+    nextBtn.addEventListener('click', () => {
+      const idx = [...slidesContainer.children].findIndex(slide => slide.getBoundingClientRect().left >= slidesContainer.getBoundingClientRect().right);
+      const target = slides[Math.min(idx, slides.length - 1)];
+      target.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+    });
+
+    // Debounce helper (stub for “Media & Performance”)
+    function debounce(fn, wait) {
+      let t;
+      return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn.apply(this, args), wait);
       };
+    }
+
+    // Tilt effect on hover for drinks
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('mousemove', e => {
+        const rect = item.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        item.style.transform = `rotateX(${ -y * 5 }deg) rotateY(${ x * 5 }deg) scale(1.02)`;
+      });
+      item.addEventListener('mouseleave', () => {
+        item.style.transform = '';
+      });
+    });
+
+    // Inline form submission with success message + honeypot
+    const bookingForm = document.querySelector('.booking-form');
+    const successMsg = document.querySelector('.form-success');
+    bookingForm.addEventListener('submit', e => {
+      e.preventDefault();
+      if (bookingForm.hp_field.value !== '') {
+        // honeypot caught spam; do nothing
+        return;
+      }
+      // Stubbed “send” and show success
+      bookingForm.style.display = 'none';
+      successMsg.textContent = 'Thanks! Your inquiry has been sent.';
+    });
+
+    // Back-to-top button
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > window.innerHeight / 2) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Randomized flicker timing on logo
+    document.addEventListener('DOMContentLoaded', () => {
+      const logo = document.querySelector('.logo-text');
+      const delay = Math.random() * 3; // 0–3 seconds
+      logo.style.animationDelay = `${delay}s`;
+      logo.style.animationIterationCount = 'infinite';
+    });
+
+    // Easter-egg “drink of the day”
+    window.addEventListener('load', () => {
+      const items = document.querySelectorAll('.menu-item');
+      const idx = Math.floor(Math.random() * items.length);
+      const featured = items[idx];
+      const badge = document.createElement('div');
+      badge.className = 'featured-badge';
+      badge.textContent = 'Drink of the Day';
+      featured.append(badge);
+      featured.classList.add('featured');
     });
   </script>
 </body>
