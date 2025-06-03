@@ -14,7 +14,7 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" as="style" onload="this.rel='stylesheet'">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" as="style" onload="this.rel='stylesheet'">
 
-  <!-- Google Fonts & FontAwesome (deduped) -->
+  <!-- Google Fonts & FontAwesome (fallback for no‐JS) -->
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400&display=swap"
           rel="stylesheet">
@@ -55,6 +55,7 @@
   <section id="events" class="section events-section">
     <h2>Events</h2>
     <div class="carousel">
+      <!-- arrows hidden on desktop via CSS -->
       <button class="carousel-control prev" aria-label="Previous slide">‹</button>
       <div class="slides-container">
         <div class="slide">Live Jazz • Wed 8–11 pm</div>
@@ -161,8 +162,8 @@
       <input type="text" name="name" placeholder="Your name" required />
       <input type="email" name="email" placeholder="Your email" required />
       <textarea name="message" rows="4" placeholder="Your request..." required></textarea>
-      <!-- Honeypot -->
-      <input type="text" name="hp_field" class="sr-only" placeholder="Leave blank" />
+      <!-- Honeypot field -->
+      <input type="text" name="hp_field" class="sr-only" placeholder="Leave this blank" />
       <button type="submit">Send Inquiry</button>
     </form>
     <p class="form-success" aria-live="polite"></p>
@@ -192,11 +193,7 @@
         <!-- Facebook -->
         <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
           <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.325v21.351C0 23.4.6 24
-                     1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1
-                     1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001
-                     c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116
-                     C23.4 24 24 23.4 24 22.675V1.325C24 .6 23.4 0 22.675 0z"/>
+            <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.325v21.351C0 23.4.6 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116C23.4 24 24 23.4 24 22.675V1.325C24 .6 23.4 0 22.675 0z"/>
           </svg>
         </a>
       </div>
@@ -256,7 +253,7 @@
       });
     });
 
-    // Update active dot on scroll
+    // Update active dot on scroll (debounced)
     slidesContainer.addEventListener('scroll', debounce(() => {
       const center = slidesContainer.scrollLeft + slidesContainer.offsetWidth / 2;
       slides.forEach((slide, i) => {
@@ -269,17 +266,21 @@
     }, 100));
 
     prevBtn.addEventListener('click', () => {
-      const idx = [...slidesContainer.children].findIndex(slide => slide.getBoundingClientRect().left >= slidesContainer.getBoundingClientRect().left + 1);
+      const idx = slides.findIndex(slide =>
+        slide.getBoundingClientRect().left >= slidesContainer.getBoundingClientRect().left + 1
+      );
       const target = slides[Math.max(idx - 1, 0)];
       target.scrollIntoView({ behavior: 'smooth', inline: 'center' });
     });
     nextBtn.addEventListener('click', () => {
-      const idx = [...slidesContainer.children].findIndex(slide => slide.getBoundingClientRect().left >= slidesContainer.getBoundingClientRect().right);
+      const idx = slides.findIndex(slide =>
+        slide.getBoundingClientRect().left >= slidesContainer.getBoundingClientRect().right
+      );
       const target = slides[Math.min(idx, slides.length - 1)];
       target.scrollIntoView({ behavior: 'smooth', inline: 'center' });
     });
 
-    // Debounce helper (stub for “Media & Performance”)
+    // Debounce helper
     function debounce(fn, wait) {
       let t;
       return (...args) => {
@@ -328,24 +329,27 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // Randomized “Drink of the Day” once per day
+    window.addEventListener('load', () => {
+      const items = document.querySelectorAll('.menu-item');
+      if (items.length) {
+        const day = new Date().getDate();
+        const idx = day % items.length;
+        const featured = items[idx];
+        const badge = document.createElement('div');
+        badge.className = 'featured-badge';
+        badge.textContent = 'Drink of the Day';
+        featured.append(badge);
+        featured.classList.add('featured');
+      }
+    });
+
     // Randomized flicker timing on logo
     document.addEventListener('DOMContentLoaded', () => {
       const logo = document.querySelector('.logo-text');
       const delay = Math.random() * 3; // 0–3 seconds
       logo.style.animationDelay = `${delay}s`;
       logo.style.animationIterationCount = 'infinite';
-    });
-
-    // Easter-egg “drink of the day”
-    window.addEventListener('load', () => {
-      const items = document.querySelectorAll('.menu-item');
-      const idx = Math.floor(Math.random() * items.length);
-      const featured = items[idx];
-      const badge = document.createElement('div');
-      badge.className = 'featured-badge';
-      badge.textContent = 'Drink of the Day';
-      featured.append(badge);
-      featured.classList.add('featured');
     });
   </script>
 </body>
