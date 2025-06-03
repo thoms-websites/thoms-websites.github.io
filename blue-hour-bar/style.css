@@ -155,19 +155,34 @@ body.bar-body::after {
   font-size: 1rem;
 }
 
-/* show arrows on mobile (<768px) and hide them on desktop (≥768px) */
+/* ─── Replace your old .carousel-control block with this ─── */
 .carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
   color: #0ff;
   font-size: 2rem;
   cursor: pointer;
   z-index: 2;
-  transition: color .2s;
+  transition: color 0.2s;
+  padding: 0 0.5rem;
 }
+
+.carousel-control.prev {
+  left: 0.5rem;
+}
+
+.carousel-control.next {
+  right: 0.5rem;
+}
+
 .carousel-control:hover {
   color: #0cc;
 }
+
+/* hide arrows on desktop (≥768px) */
 @media (min-width: 768px) {
   .carousel-control {
     display: none;
