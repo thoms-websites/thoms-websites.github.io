@@ -239,8 +239,6 @@
   // Carousel controls, dots & scroll-snap — updated to target .slides-container
   const slidesContainer = document.querySelector('.slides-container');
   const slides = Array.from(slidesContainer.children);
-  const prevBtn = document.querySelector('.carousel-control.prev');
-  const nextBtn = document.querySelector('.carousel-control.next');
   const dotsContainer = document.querySelector('.carousel-dots');
 
 // Build dots
@@ -268,26 +266,6 @@ slidesContainer.addEventListener('scroll', debounce(() => {
     }
   });
 }, 100));
-
-prevBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  // find the first slide fully visible or partially visible from the left
-  const idx = slides.findIndex(slide =>
-    slide.getBoundingClientRect().left >= slidesContainer.getBoundingClientRect().left + 1
-  );
-  const target = slides[Math.max(idx - 1, 0)];
-  target.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-});
-
-nextBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  // find the first slide that has its left edge beyond the container’s right edge
-  const idx = slides.findIndex(slide =>
-    slide.getBoundingClientRect().left >= slidesContainer.getBoundingClientRect().right
-  );
-  const target = slides[Math.min(idx, slides.length - 1)];
-  target.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-});
 
 // Debounce helper
 function debounce(fn, wait) {
