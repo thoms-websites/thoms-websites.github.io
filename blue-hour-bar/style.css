@@ -133,6 +133,7 @@ body.bar-body::after {
 .slides-wrapper {
   display: flex;
   gap: 1rem;
+  touch-action: pan-x;  /* allow only horizontal swipes—no vertical bounce */
   /* no padding here—just let it shrink to its content */
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
