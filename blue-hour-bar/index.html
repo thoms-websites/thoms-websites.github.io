@@ -52,21 +52,21 @@
   </section>
 
   <!-- EVENTS -->
-  <section id="events" class="section events-section">
-    <h2>Events</h2>
-    <div class="carousel">
-      <!-- arrows hidden on desktop via CSS -->
-      <button class="carousel-control prev" aria-label="Previous slide">‹</button>
-      <div class="slides-container">
-        <div class="slide">Live Jazz • Wed 8–11 pm</div>
-        <div class="slide">Karaoke Fridays • 9 pm–12 am</div>
-        <div class="slide">Mixology Class • 1st Mon 7 pm</div>
-      </div>
-      <button class="carousel-control next" aria-label="Next slide">›</button>
+<section id="events" class="section events-section">
+  <h2>Events</h2>
+  <div class="carousel">
+    <div class="slides-wrapper">
+      <div class="slide">Live Jazz • Wed 8–11 pm</div>
+      <div class="slide">Karaoke Fridays • 9 pm–12 am</div>
+      <div class="slide">Mixology Class • 1st Mon 7 pm</div>
     </div>
-    <div class="scroll-hint" aria-hidden="true">›</div>
-    <div class="carousel-dots"></div>
-  </section>
+    <!-- if you have left/right arrow buttons, keep them here -->
+    <button class="carousel-control prev">‹</button>
+    <button class="carousel-control next">›</button>
+  </div>
+  <!-- you already hid .scroll-hint, so you can leave this or remove it -->
+  <div class="scroll-hint" aria-hidden="true"></div>
+</section>
 
   <!-- DRINKS -->
   <section id="drinks" class="section drinks-section">
