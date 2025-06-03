@@ -155,38 +155,9 @@ body.bar-body::after {
   font-size: 1rem;
 }
 
-/* ─── Replace your old .carousel-control block with this ─── */
+/* ─── Hide carousel arrows on all devices ─── */
 .carousel-control {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: #0ff;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 2;
-  transition: color 0.2s;
-  padding: 0 0.5rem;
-}
-
-.carousel-control.prev {
-  left: 0.5rem;
-}
-
-.carousel-control.next {
-  right: 0.5rem;
-}
-
-.carousel-control:hover {
-  color: #0cc;
-}
-
-/* hide arrows on desktop (≥768px) */
-@media (min-width: 768px) {
-  .carousel-control {
-    display: none;
-  }
+  display: none !important;
 }
 
 /* already hiding scroll-hint, so we leave that */
@@ -194,7 +165,7 @@ body.bar-body::after {
   display: none;
 }
 
-/* dots under the carousel */
+/* By default, dots container is visible */
 .carousel-dots {
   text-align: center;
   margin-top: 0.5rem;
@@ -209,9 +180,21 @@ body.bar-body::after {
   display: inline-block;
   cursor: pointer;
   transition: background .2s;
+  outline: none;
+  touch-action: manipulation; /* prevent unintended vertical scroll */
+}
+.carousel-dots .dot:focus {
+  outline: none;
 }
 .carousel-dots .dot.active {
   background: #0ff;
+}
+
+/* Hide dots on desktop (≥768px) */
+@media (min-width: 768px) {
+  .carousel-dots {
+    display: none;
+  }
 }
 
 /* SCROLL HINT — hide it completely */
