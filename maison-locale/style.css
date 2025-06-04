@@ -150,15 +150,22 @@ body {
   filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5));
 }
 
-/* PARALLAX HERO (mobile) */
+/* PARALLAX HERO (mobile first) */
 .parallax-hero {
   position: relative;
-  height: 55vh;
+  height: 90vh; /* start tall */
   background: url('interior.jpg') center center/cover no-repeat;
-  background-attachment: scroll; /* disable fixed on mobile for performance */
+  background-attachment: scroll; /* disable fixed on mobile */
   border-bottom: 2px solid #000;
   overflow: hidden;
+  transition: height 1s ease-out; /* animate the shrink */
 }
+
+/* Once logo animation finishes, shrink to 80vh */
+body.loaded .parallax-hero {
+  height: 80vh;
+}
+
 /* SHOW/HIDE CONTENT AFTER LOGO ANIMATES */
 .site-content {
   opacity: 0;
@@ -504,9 +511,9 @@ body.loaded .site-content {
   }
 
   /* PARALLAX HERO: taller on desktop */
+@media (min-width: 769px) {
   .parallax-hero {
     height: 80vh;
-    background: url('interior.jpg') center center/cover no-repeat;
     background-attachment: fixed;
   }
   /* On desktop, restore logo-overlay scale=1 */
