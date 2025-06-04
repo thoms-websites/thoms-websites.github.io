@@ -1,432 +1,481 @@
-/* Base & Nav */
+/*==================================================
+  MOBILE FIRST / BASE STYLES (all devices)
+  ==================================================*/
+
+/* RESET */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body {
-  font-family: 'Libre Baskerville', serif; /* warmer, more readable body text */
-  background: #fff;
-  color: #333;                             /* switch to dark grey for better contrast */
-  padding: 0;
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
+/* BODY */
+body {
+  font-family: 'Libre Baskerville', serif;
+  background: #fff;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* MAIN NAV */
 .main-nav {
   position: sticky;
   top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background: #fff;
-  padding: 1rem 2rem;
   border-bottom: 2px solid #000;
-  z-index: 10;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
 }
-
-/* Nav links & Section headings share the same “fancy” font */
-.main-nav .menu a,
-.section h2 {
+.main-nav .logo svg {
+  width: 120px;
+  height: auto;
+}
+.main-nav .menu {
+  display: none; /* hide until ≥769px */
+  list-style: none;
+}
+.main-nav .menu li {
+  margin-left: 1.5rem;
+}
+.main-nav .menu a {
+  text-decoration: none;
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   color: #d4af37;
-}
-
-.menu {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
   position: relative;
+  font-size: 1rem;
 }
-
-.menu a {
-  position: relative;
-  text-decoration: none;
-  font-size: 1.125rem;
-}
-
-.menu a::after {
+.main-nav .menu a::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -4px;
+  bottom: -3px;
   width: 100%;
   height: 2px;
   background: #000;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
-
-.menu a:hover::after {
+.main-nav .menu a:hover::after {
   transform: scaleX(1);
 }
 
-/* Global wrapper for consistent margins */
-.content-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+/* SIMPLE FULL-WIDTH DROPDOWN (mobile) */
+.dropdown {
+  position: relative;
 }
-
-/* Sections */
-.section {
-  max-width: 1200px;
-  margin: 6rem auto;      /* ↑ more separation top & bottom */
-  padding: 0 1.5rem;
+.simple-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #000;
+  list-style: none;
+  z-index: 30;
 }
-
-.section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
+.simple-dropdown li {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
   text-align: center;
+}
+.simple-dropdown li:last-child {
+  border-bottom: none;
+}
+.simple-dropdown li a {
+  font-family: 'Playfair Display', serif;
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: 700;
+}
+.dropdown:hover .simple-dropdown {
+  display: block;
+}
+
+/* PARALLAX HERO */
+.parallax-hero {
+  position: relative;
+  height: 55vh;
+  background: url('interior.jpg') center center/cover no-repeat;
+  background-attachment: scroll; /* disable fixed on mobile for performance */
+  border-bottom: 2px solid #000;
+  overflow: hidden;
+}
+/* SHOW/HIDE CONTENT AFTER LOGO ANIMATES */
+.site-content {
+  opacity: 0;
+  transition: opacity 0.5s ease 2.6s;
+}
+body.loaded .site-content {
+  opacity: 1;
+}
+
+/* LOGO OVERLAY (CENTERED) */
+.logo-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  transform-origin: center center;
+  transition: transform 0.6s ease-out;
+}
+/* (the “fly‐home” class gets toggled in JS once animation finishes) */
+.logo-overlay.fly-home {
+  transform: translate(1rem, 1rem) scale(0.25);
+}
+
+/* SECTIONS (stacked, full width on mobile) */
+.section {
+  margin: 3rem 0;
+  padding: 0 1rem;
+  background: transparent; /* underlying parent handles background */
+}
+.section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  color: #d4af37;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 .section p,
 .section li {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-/* —————————————————————— */
-/* Section header flourish */
-.section h2 {
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-.section h2::after {
-  content: '';
-  display: block;
-  width: 60px;              /* length of flourish */
-  height: 4px;              /* thickness */
-  background-color: #d4af37;/* gold color */
-  margin: 0.5rem auto 0;    /* center under the text */
-  border-radius: 2px;       /* soft edges */
-}
-
-/* Dropdown – modern refreshed look */
-.main-nav .dropdown {
-  position: relative; /* anchor point */
-}
-
-.main-nav .dropdown-content {
-  display: none;
-  position: absolute;
-  top: calc(100% + 4px);    /* just below header border */
-  left: 50%;                /* center under the “Menu” */
-  transform: translateX(-50%);
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  min-width: 200px;         /* adjust to taste */
-  padding: 0.25rem 0;
-  z-index: 100;
-}
-
-.main-nav .dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.main-nav .dropdown-content li {
-  list-style: none;
-}
-
-.main-nav .dropdown-content li a {
-  display: block;
-  padding: 0.75rem 1.25rem;
-  color: #333;             /* darker text for readability */
+  font-family: 'Libre Baskerville', serif;
   font-size: 1rem;
-  text-align: center;      /* center the text */
-  transition: background 0.2s ease;
+  color: #333;
 }
 
-.main-nav .dropdown-content li a:hover {
-  background: #f5f5f5;
-}
-
-/* HERO & LOGO OVERLAY */
-.parallax-hero {
-  position: relative;
-  height: 90vh;
-  background: url('interior.jpg') center calc(40% + 20px)/cover fixed;
-  border-bottom: 2px solid #000;
-  transition: height 1s ease-out;
-}
-body.loaded .parallax-hero {
-  height: 80vh;
-}
-
-/* 1. Starting state: centered big in hero */
-/* initial logo-overlay: centered & full size */
-.logo-overlay {
-position: absolute;
-top: 50%; left: 50%;
-transform: translate(-50%, -50%) scale(1);
-transform-origin: center center;
-transition: transform 0.6s ease-out;
-}
-
-.logo-overlay svg {
-  background: rgba(255,255,255,0.7);    /* semi-opaque white behind the letters */
-  padding: 0.5rem;
-  border-radius: 8px;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-}
-
-/* shrink+move into nav logo spot */
-.logo-overlay.fly-home {
-/* adjust these translate() values until it lines up exactly: */
-transform: translate(1rem, 1rem) scale(0.25);
-}
-
-/* HIDE/SHOW SITE CONTENT */
-.site-content {
-opacity: 0;
-transition: opacity 0.5s ease 2.6s;
-}
-.site-content.loaded {
-opacity: 1;
-}
-
-/* SMOOTH OUT THE STROKE ANIMATION */
-#logo-path {
-stroke-linecap: round;
-stroke-linejoin: round;
-/* fillOpacity is driven by JS */
-}
-
-/* About */
+/* ABOUT (stacked) */
 .about {
-display:flex; flex-wrap:wrap; gap:2rem; align-items:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ }
+.about-text {
+  max-width: 600px;
+  text-align: left;
 }
-.about-text { flex:1 1 300px; }
-.about-img { flex:1 1 300px; text-align:center; }
+.about-img {
+  margin-top: 2rem;
+  text-align: center;
+}
 .about-img img {
-width:66%; max-width:250px;
-border-radius:8px;
-border:2px solid #000; /* black border */
+  width: 80%;
+  max-width: 250px;
+  border-radius: 8px;
+  border: 2px solid #000;
 }
-.caption { font-style:italic; margin-top:.5rem; }
+.caption {
+  font-style: italic;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
 
-/* Carousel container */
+/* SPECIALS CAROUSEL (mobile) */
 .special-carousel {
-display: flex;
-gap: 1rem;
-overflow-x: auto;       /* allow horizontal scrolling */
-overflow-y: visible;    /* let slides grow vertically on hover */
-position: relative;
-cursor: grab;
+  display: flex;
+  overflow-x: auto;
+  gap: 0.75rem;
+  padding: 0 1rem;
+  scroll-snap-type: x mandatory;
 }
-.special-carousel.dragging { cursor: grabbing; }
-.special-carousel::-webkit-scrollbar { display:none; }
-
-/* Slides */
+.special-carousel::-webkit-scrollbar {
+  display: none;
+}
 .slide {
-width:300px;
-flex-shrink:0;
-display:flex; flex-direction:column;
-background:#fff;
-border:2px solid #000;
-border-radius:8px;
-overflow:hidden;
-transition:
-transform 0.3s ease,
-box-shadow 0.3s ease,
-border-width 0.3s ease;   /* ← add */
+  flex: 0 0 80%;
+  max-width: 320px;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 8px;
+  overflow: hidden;
+  scroll-snap-align: center;
 }
 .slide-img {
-height:180px; background-size:cover; background-position:center;
-border-top-left-radius:6px; border-top-right-radius:6px;
-border-bottom:2px solid #000;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: 2px solid #000;
 }
 .slide-info {
-padding:.75rem 1rem; background:#fff; flex:1;
+  padding: 0.75rem 1rem;
+  background: #fff;
 }
-.slide-info h3 { margin:0 0 .3rem; font-size:1.1rem; color:#000; }
-.slide-info p  { margin:0; color:#555; }
+.slide-info h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: #000;
+}
+.slide-info p {
+  margin: 0;
+  color: #555;
+}
 
-/* Modal overlay & content */
+/* MODAL (works on all viewports) */
 .slide-modal {
-display:none; position:fixed; inset:0;
-background:rgba(0,0,0,0.85);
-align-items:center; justify-content:center; z-index:100;
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
 }
-.slide-modal.open { display:flex; }
+.slide-modal.open {
+  display: flex;
+}
 .modal-content {
-position:relative;
-display:flex; background:#fff; border-radius:8px; overflow:visible;
-max-width:90vw; max-height:90vh;
-animation:pop-in .3s ease-out forwards;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: pop-in 0.3s ease-out forwards;
 }
 @keyframes pop-in {
-from { transform:scale(0.7); opacity:0 } to { transform:scale(1); opacity:1 }
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
 }
-.slide:hover {
-transform: scale(1.03);
-box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-border-width:4px;           /* ← double the border on hover */
-}
-
-/* Prev/Next */
-.modal-nav {
-position: fixed;
-top: 50%;
-transform: translateY(-50%);
-background: rgba(0,0,0,0.3);
-border: none;
-color: #fff;
-font-size: 2rem;
-width: 2.5rem;
-height: 2.5rem;
-cursor: pointer;
-z-index: 300;                /* ↑ ensure they float above everything */
-transition: transform 0.2s ease, background 0.2s ease;
-}
-#modal-prev { left: 0.5rem; }  /* very close to left edge */
-#modal-next { right: 0.5rem; } /* very close to right edge */
-
-.modal-nav:hover {
-transform: translateY(-50%) scale(1.2);
-background: rgba(0,0,0,0.6);
-}
-.modal-content {
-position: relative;
-z-index: 150;   /* ensure the modal box sits below the arrows */
-}
-
-.modal-nav {
-z-index: 200;   /* arrows float above everything */
-}
-
-/* Ensure they remain above the overlay */
-.slide-modal.open .modal-nav {
-display: block;
-}
-
-/* Image & text */
-#modal-image {
-width:450px; object-fit:cover;
+.modal-content img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 .modal-text {
-flex:1; padding:2rem; overflow-y:auto;
+  padding: 1.5rem;
+  overflow-y: auto;
 }
-.modal-text h3 { margin:0 0 1rem; font-size:2rem; }
-.modal-text p  { margin:0 0 1.5rem; line-height:1.4; color:#333; }
-
-/* Close */
+.modal-text h3 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+}
+.modal-text p {
+  margin: 0 0 1rem;
+  line-height: 1.4;
+  color: #333;
+}
+.modal-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.3);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  z-index: 200;
+}
+#modal-prev { left: 1rem; }
+#modal-next { right: 1rem; }
+.modal-nav:hover {
+  transform: translateY(-50%) scale(1.2);
+  background: rgba(0,0,0,0.6);
+}
 #close-modal {
-position:absolute; top:1rem; right:1rem;
-background:transparent; border:none; font-size:2rem; cursor:pointer;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
 }
 
-/* Reservations (Airtable embed) */
+/* RESERVATIONS (iframe fits full width) */
 .reserve iframe {
-width:100%; height:533px; border:1px solid #ccc; border-radius:8px;
+  width: 100%;
+  height: 450px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
-/* Footer */
+/* FOOTER (stacked on mobile) */
 .footer {
-  width: 100%;                /* full-width container */
   background: #fff;
   color: #333;
   padding: 2rem 1rem;
-  border-top: 2px solid #000; /* full-width divider */
+  border-top: 2px solid #000;
 }
-
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;             /* center inner content */
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
-
 .footer-column {
-  flex: 1 1 300px;
+  width: 100%;
 }
-
 .footer-column h4 {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
   color: #d4af37;
 }
-
 .footer-column p {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.5rem;
   font-size: 0.9rem;
-  line-height: 1.4;
+  color: #333;
 }
-
 .footer-column form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-
 .footer-column input[type="email"] {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 0.9rem;
 }
-
 .footer-column button {
   padding: 0.5rem;
-  border: none;
   background: #d4af37;
   color: #fff;
-  font-size: 0.9rem;
-  font-weight: bold;
+  border: none;
   border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 700;
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
 .footer-column button:hover {
   background: #b5942f;
 }
-
 .socials {
   margin-top: 1rem;
   display: flex;
   gap: 1rem;
 }
-
-.socials a {
-  display: inline-block;
-}
-
-.socials svg {
+.socials a svg {
   width: 24px;
   height: 24px;
   fill: #d4af37;
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+.socials a:hover svg {
+  transform: scale(1.2);
+  fill: #b5942f;
 }
 
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    align-items: flex-start;
+/* LOGO ANIMATION (stroke) */
+#logo-path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* fillOpacity driven by JS */
+}
+
+
+/*==================================================
+  TABLET & DESKTOP (≥ 769px)
+  ==================================================*/
+@media (min-width: 769px) {
+  /* MAIN NAV: show horizontal menu */
+  .main-nav .menu {
+    display: flex;
   }
-}
+  /* hide the “▾” caret margin on desktop: */
+  .main-nav .dropdown > a::after {
+    content: ' ▾'; 
+    margin-left: 4px;
+  }
 
-/* Carousel container – force visible overflow in all browsers */
-.special-carousel {
-overflow-x: auto !important;
-overflow-y: visible !important;
-}
+  /* PARALLAX HERO: taller on desktop */
+  .parallax-hero {
+    height: 80vh;
+    background-attachment: fixed;
+  }
+  .logo-overlay {
+    /* initial scale is 1, moves/ scales to nav spot via JS */
+    transform: translate(-50%, -50%) scale(1);
+  }
 
-/* Hovered slide – explicitly set larger border */
-.slide:hover {
-border-width: 4px !important;        /* ensure thicker border */
-transform: scale(1.03) !important;
-box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
-}
-#modal-next {
-left: auto;       /* override */
-right: 1rem;      /* next arrow on right edge */
-}
-.modal-nav:hover {
-transform: translateY(-50%) scale(1.2);
-background: rgba(0,0,0,0.6);
+  /* SITE CONTENT: center & max-width wrapper */
+  .content-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ABOUT: two-column side-by-side */
+  .about {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+  }
+  .about-text, .about-img {
+    flex: 1;
+  }
+  .about-img {
+    text-align: center;
+    margin-top: 0;
+  }
+  .about-img img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* SECTION spacing */
+  .section {
+    margin: 6rem auto;
+    padding: 0 1.5rem;
+  }
+  .section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .section p, .section li {
+    font-size: 1.125rem;
+  }
+
+  /* SPECIALS CAROUSEL: show 3 slides at once, center-justified */
+  .special-carousel {
+    display: flex;
+    gap: 1rem;
+    overflow: hidden;
+    justify-content: center;
+  }
+  .special-carousel .slide {
+    flex: 0 0 300px;
+  }
+  .special-carousel .slide-img {
+    height: 180px;
+  }
+
+  /* SLIDE-MODAL nav buttons */
+  .modal-nav {
+    display: block;
+  }
+
+  /* RESERVE iframe larger */
+  .reserve iframe {
+    height: 533px;
+  }
+
+  /* FOOTER: two-column layout */
+  .footer-content {
+    flex-direction: row;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .footer-column {
+    flex: 1 1 300px;
+  }
 }
