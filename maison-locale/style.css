@@ -676,4 +676,123 @@ body.loaded .parallax-hero {
     width: 100%;
   }
 }
+/* ──────────────────────────────────────────────────────
+   MOBILE-ONLY OVERRIDES (≤768px)
+   Appended at the very bottom of style.css
+   ────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* 1) FOOTER: reduce padding/blank space */
+  .footer {
+    padding: 1rem 0.5rem; /* shrink from 2rem to 1rem */
+  }
+  .footer-content {
+    gap: 1rem;            /* tighten vertical gaps */
+    max-width: 100%;      /* allow full-width stacking */
+    margin: 0 auto;
+  }
+  .footer-column h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;      /* slightly smaller heading */
+  }
+  .footer-column p,
+  .footer-column input,
+  .footer-column button {
+    font-size: 0.85rem;   /* slightly smaller text */
+  }
 
+  /* 2) “CHEF’S SPECIALS” MODAL: scale down to fit small screens */
+  .slide-modal .modal-content {
+    width: 90vw;          /* almost full viewport width */
+    max-height: 80vh;     /* leave some room at top/bottom */
+  }
+  .slide-modal .modal-content img {
+    max-height: 45vh;     /* constrain image height */
+    width: auto;          /* maintain aspect ratio */
+    object-fit: contain;
+  }
+  .modal-text {
+    padding: 1rem;        /* reduce inner padding */
+    font-size: 0.9rem;    /* slightly smaller text */
+  }
+  .modal-text h3 {
+    font-size: 1.25rem;   /* smaller title so it doesn’t overflow */
+  }
+  .modal-nav {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;    /* smaller arrows for mobile */
+  }
+  #modal-prev { left: 0.5rem; }
+  #modal-next { right: 0.5rem; }
+
+  /* 3) CENTERED SVG LOGO: triple its size on mobile, and re-center it */
+  .logo-overlay {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) scale(3) !important;
+  }
+  .logo-overlay svg {
+    width: 100px;         /* base size (will be scaled by parent) */
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  }
+
+  /* 4) “MENU ▾” DROPDOWN: make the “Menu” link visible again, allow tapping
+     – hide all other top-level links, leave only “Menu ▾” on mobile,
+     – ensure the dropdown (Entrées, Mains, Desserts, Drinks) is tappable */
+  .main-nav .menu {
+    display: flex !important;        /* override any “display: none” */
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  /* hide everything except the .dropdown item */
+  .main-nav .menu li:not(.dropdown) {
+    display: none;
+  }
+  /* ensure the “Menu ▾” link stretches full width for easier tapping */
+  .main-nav .dropdown > a {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+  }
+  /* position the dropdown-options immediately below the header */
+  .main-nav .dropdown-content {
+    top: calc(100% + 2px) !important; /* sit just below the bottom border of header */
+    left: 0 !important;
+    transform: none !important;
+    width: 100%;                      /* full-width dropdown */
+    border-top: 1px solid #000;
+  }
+  .main-nav .dropdown-content li a {
+    font-size: 1rem;
+    padding: 0.75rem 0;
+  }
+
+  /* 5) HIDE any leftover horizontal menu spacing at mobile */
+  .main-nav .menu li {
+    margin-left: 0; /* ensure no gaps between hidden items */
+  }
+
+  /* 6) SPECIALS CAROUSEL: ensure drag/scroll works fluidly,
+         but keep infinite/auto-scroll logic untouched (JS handles that). */
+  .special-carousel {
+    padding: 0 0.5rem;   /* slightly less side padding */
+    gap: 0.5rem;         /* tighten gap */
+  }
+  .special-carousel .slide {
+    flex: 0 0 90%;       /* slightly larger slide on mobile viewport */
+    max-width: 280px;
+  }
+
+  /* 7) SCROLL-SNAP: ensure no vertical “bounce” when tapping */
+  .special-carousel,
+  .special-carousel .slide {
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+
+  /* 8) OPTIONAL: if you had a back-to-top button or PDF button,
+         adjust their mobile positioning here (not shown). */
+}
