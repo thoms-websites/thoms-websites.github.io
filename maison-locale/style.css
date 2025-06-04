@@ -588,3 +588,92 @@ body.loaded .parallax-hero {
     border-radius: 2px;
   }
 }
+/*==================================================
+  ADDITIONAL MOBILE FIXES (≤ 768px)
+  ==================================================*/
+@media (max-width: 768px) {
+  /*———————————————————————
+    1) SHRINK FOOTER PADDING & GAP
+    ———————————————————————*/
+  .footer {
+    padding: 1rem 0.5rem; /* reduce top/bottom padding */
+  }
+  .footer-content {
+    gap: 1rem; /* shrink gap between columns */
+  }
+
+  /*———————————————————————
+    2) RESIZE CHEF’S SPECIALS MODAL TO FIT SMALL SCREENS
+    ———————————————————————*/
+  .slide-modal .modal-content {
+    max-width: 90vw;   /* no wider than 90% of viewport */
+    max-height: 80vh;  /* no taller than 80% of viewport */
+    overflow: hidden;
+  }
+  .slide-modal img {
+    width: auto;
+    max-height: 60vh;  /* constrain image height so it doesn’t overflow */
+    margin: 0 auto;    /* center image horizontally */
+    display: block;
+  }
+
+  /*———————————————————————
+    3) MAKE CENTERED SVG LOGO LARGER
+    ———————————————————————*/
+  .logo-overlay {
+    /* override the previous scale(0.7) */
+    transform: translate(-50%, -50%) scale(2.1) !important;
+  }
+  .logo-overlay svg {
+    /* ensure it doesn’t overflow horizontally */
+    width: 90%;
+    max-width: 320px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  }
+
+  /*———————————————————————
+    4) ENSURE “MENU ▾” DROPDOWN IS TAP‐ACCESSIBLE
+    ———————————————————————*/
+  /* keep the mobile full‐width dropdown logic from before */
+  .main-nav .menu {
+    display: none; /* still hidden on mobile */
+  }
+  .main-nav .dropdown > a {
+    display: block;
+    padding: 0.75rem 1rem;
+  }
+  .main-nav .simple-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #000;
+    list-style: none;
+    z-index: 30;
+  }
+  /* show submenu when <a> is tapped/focused */
+  .main-nav .dropdown > a:focus + .simple-dropdown,
+  .main-nav .dropdown > a:active + .simple-dropdown {
+    display: block;
+  }
+  .main-nav .simple-dropdown li {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+  }
+  .main-nav .simple-dropdown li:last-child {
+    border-bottom: none;
+  }
+  .main-nav .simple-dropdown li a {
+    font-family: 'Playfair Display', serif;
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+  }
+}
+
