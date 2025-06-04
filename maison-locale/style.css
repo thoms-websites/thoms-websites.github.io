@@ -459,3 +459,132 @@ body.loaded .parallax-hero {
   transform: translateY(-50%) scale(1.2);
   background: rgba(0,0,0,0.6);
 }
+/*==================================================
+  MOBILE OPTIMIZATIONS (≤ 768px)
+  ==================================================*/
+@media (max-width: 768px) {
+  /*———————————————————————
+    1) SHRINK & CONTRAST‐BOOST THE CENTERED SVG
+    ———————————————————————*/
+  .logo-overlay {
+    /* make the logo overlay a bit smaller on small screens */
+    transform: translate(-50%, -50%) scale(0.7) !important;
+  }
+  .logo-overlay svg {
+    /* remove any white background and padding */
+    background: none !important;
+    padding: 0 !important;
+    /* add a subtle drop‐shadow for contrast against interior.jpg */
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    /* ensure it never overflows the viewport */
+    width: 80%;
+    max-width: 280px;
+    height: auto;
+  }
+
+  /*———————————————————————
+    2) MAKE “MENU ▾” DROPDOWN CLICKABLE ON MOBILE
+    ———————————————————————*/
+  .main-nav .menu {
+    display: none; /* still hidden on mobile */
+  }
+  .main-nav .dropdown {
+    /* allow focus on the <a> so that clicking/tapping opens the submenu */
+    position: relative;
+  }
+  .main-nav .dropdown > a {
+    display: block;
+    padding: 0.75rem 1rem;
+  }
+  .main-nav .simple-dropdown {
+    /* keep full‐width on mobile */
+    display: none;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #000;
+    list-style: none;
+    z-index: 30;
+  }
+  /* show submenu when <a> is focused (i.e. tapped) */
+  .main-nav .dropdown > a:focus + .simple-dropdown,
+  .main-nav .dropdown > a:active + .simple-dropdown {
+    display: block;
+  }
+  .main-nav .simple-dropdown li {
+    padding: 1rem; /* larger touch area */
+    border-bottom: 1px solid #eee;
+    text-align: center;
+  }
+  .main-nav .simple-dropdown li:last-child {
+    border-bottom: none;
+  }
+  .main-nav .simple-dropdown li a {
+    font-family: 'Playfair Display', serif;
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    /* ensure the link fills the entire li for easy tapping */
+    display: block;
+    width: 100%;
+  }
+
+  /*———————————————————————
+    3) ENSURE PARALLAX HERO SHRINKS FROM 90→80vh ON MOBILE TOO
+    ———————————————————————*/
+  .parallax-hero {
+    /* on mobile, we want the same “shrink after JS” behavior */
+    height: 90vh;
+    background-attachment: scroll; /* keep this for performance */
+  }
+  body.loaded .parallax-hero {
+    height: 80vh;
+  }
+
+  /*———————————————————————
+    4) “CHEF’S SPECIALS”—RESTORE AUTO‐SCROLL & INFINITE SCROLL ON MOBILE
+    ———————————————————————*/
+  .special-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.75rem;
+    padding: 0 1rem;
+    scroll-snap-type: x mandatory;
+    position: relative;
+  }
+  .special-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .special-carousel .slide {
+    flex: 0 0 80%;
+    max-width: 320px;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 8px;
+    overflow: hidden;
+    scroll-snap-align: center;
+  }
+  /* To re‐enable infinite auto‐scroll on mobile, re‐apply the desktop “cloning” logic as well… */
+  /* (No CSS changes needed here—just ensure your JS IIFE that clones slides and auto-scrolls runs on all viewports.) */
+
+  /*———————————————————————
+    5) ADD A FANCY FLOURISH UNDER EVERY <h2> FOR MOBILE AS WELL
+    ———————————————————————*/
+  .section h2 {
+    position: relative;
+    padding-bottom: 0.5rem;
+    font-size: 1.75rem; /* unchanged */
+  }
+  .section h2::after {
+    content: '';
+    display: block;
+    width: 60px;             /* length of flourish */
+    height: 4px;             /* thickness */
+    background-color: #d4af37;
+    margin: 0.5rem auto 0;   /* center under the text */
+    border-radius: 2px;
+  }
+}
