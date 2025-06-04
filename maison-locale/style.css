@@ -168,11 +168,8 @@ body.loaded .parallax-hero {
   transition: transform 0.6s ease-out;
 }
 
-/* Keep the centered SVG styling with drop-shadow */
+/* Keep only the drop-shadow on the centered SVG */
 .logo-overlay svg {
-  background: rgba(255,255,255,0.7);    /* semi-opaque white behind the letters */
-  padding: 0.5rem;
-  border-radius: 8px;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
