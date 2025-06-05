@@ -860,6 +860,45 @@ body.loaded .parallax-hero {
   .modal-text h3 {
     font-size: 1.25rem;      /* smaller heading */
   }
+    /* ─────────────────────────────────────────────────────────
+     2a) ENSURE .slide-modal is on TOP of everything 
+         and scale it so title + description remain visible
+     ───────────────────────────────────────────────────────── */
+  .slide-modal {
+    z-index: 9999 !important;        /* float above hero + header */
+  }
+
+  /* 2b) constrain the modal’s size so it actually appears */
+  .slide-modal .modal-content {
+    width: 90vw !important;          /* at most 90% of viewport */
+    max-width: 90vw !important;
+    max-height: 80vh !important;     /* leave room for close button */
+    overflow: hidden;
+  }
+  .slide-modal img {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    max-height: 45vh !important;     /* keep image from pushing out of view */
+    object-fit: contain;
+  }
+
+  /* 2c) shrink text & arrows so they fit */
+  .modal-text {
+    padding: 1rem !important;
+    font-size: 0.9rem !important;
+  }
+  .modal-text h3 {
+    font-size: 1.25rem !important;
+  }
+  .modal-nav {
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 1.5rem !important;
+    z-index: 10000 !important;   /* ensure arrows are still tappable */
+  }
+  #modal-prev { left: 0.5rem !important; }
+  #modal-next { right: 0.5rem !important; }
 
   /* 4) FOOTER: collapse extra white‐space/padding */
   .footer {
@@ -904,5 +943,71 @@ body.loaded .parallax-hero {
     font-size: 1rem;
     display: block;
     width: 100%;
+  }
+      /* ─────────────────────────────────────────────────────────
+     1a) FORCE both .dropdown-content & .simple-dropdown to full-width
+     on mobile, and let :focus/:active show/hide them
+     ───────────────────────────────────────────────────────── */
+  .main-nav .dropdown-content,
+  .main-nav .simple-dropdown {
+    display: none;           /* hide by default */
+    position: absolute;      /* anchor beneath header */
+    top: calc(100% + 2px);   /* just below header bottom border */
+    left: 0;                 /* flush left */
+    width: 100%;             /* full viewport width */
+    background: #fff;
+    border-top: 1px solid #000;
+    z-index: 2001;           /* sit on top of hero */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  /* 1b) when the “Menu” link is tapped (focus/active), show its submenu */
+  .main-nav .dropdown > a:focus + .dropdown-content,
+  .main-nav .dropdown > a:focus + .simple-dropdown,
+  .main-nav .dropdown > a:active + .dropdown-content,
+  .main-nav .dropdown > a:active + .simple-dropdown {
+    display: block;
+  }
+
+  /* 1c) enlarge each <li> so it’s easy to tap, and ensure full-width links */
+  .main-nav .dropdown-content li,
+  .main-nav .simple-dropdown li {
+    padding: 1rem 0;         /* big touch target */
+    border-bottom: 1px solid #eee;
+    text-align: center;
+  }
+  .main-nav .dropdown-content li:last-child,
+  .main-nav .simple-dropdown li:last-child {
+    border-bottom: none;
+  }
+  .main-nav .dropdown-content li a,
+  .main-nav .simple-dropdown li a {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #d4af37;
+    text-decoration: none;
+    display: block;          /* fills entire <li> */
+    width: 100%;
+  }
+    /* ─────────────────────────────────────────────────────────
+     3) SHRINK FOOTER PADDING & GAP for mobile
+     ───────────────────────────────────────────────────────── */
+  .footer {
+    padding: 0.75rem 0.5rem !important;   /* reduce from 2rem/1rem */
+  }
+  .footer-content {
+    gap: 0.5rem !important;   /* reduce the space between stacked columns */
+    max-width: 100% !important; /* let columns stack full-width */
+    margin: 0 auto !important;
+  }
+  .footer-column h4 {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .footer-column p,
+  .footer-column input,
+  .footer-column button {
+    font-size: 0.85rem !important;
   }
 }
