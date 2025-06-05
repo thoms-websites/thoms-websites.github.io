@@ -1,483 +1,642 @@
-/* ─────────────────────────────────────────────────────
-   (1) EVERYTHING UP TO—but NOT INCLUDING—the mobile block
-   Remove the three sections mentioned above before saving.
-   ───────────────────────────────────────────────────── */
-
 /* Base & Nav */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+box-sizing: border-box;
+margin: 0;
+padding: 0;
 }
 
 body {
-  font-family: 'Libre Baskerville', serif;
-  background: #fff;
-  color: #333;
-  padding: 0;
+font-family: 'Libre Baskerville', serif; /* warmer, more readable body text */
+background: #fff;
+color: #333;                             /* switch to dark grey for better contrast */
+padding: 0;
 }
 
 .main-nav {
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #fff;
-  padding: 1rem 2rem;
-  border-bottom: 2px solid #000;
-  z-index: 10;
+position: sticky;
+top: 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+background: #fff;
+padding: 1rem 2rem;
+border-bottom: 2px solid #000;
+z-index: 10;
 }
 
 /* Nav links & Section headings share the same “fancy” font */
 .main-nav .menu a,
 .section h2 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  color: #d4af37;
+font-family: 'Playfair Display', serif;
+font-weight: 700;
+color: #d4af37;
 }
 
 .menu {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  position: relative;
+list-style: none;
+display: flex;
+gap: 1.5rem;
+position: relative;
 }
 
 .menu a {
-  position: relative;
-  text-decoration: none;
-  font-size: 1.125rem;
+position: relative;
+text-decoration: none;
+font-size: 1.125rem;
 }
 
 .menu a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  background: #000;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
+content: '';
+position: absolute;
+left: 0;
+bottom: -4px;
+width: 100%;
+height: 2px;
+background: #000;
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.3s ease;
 }
 
 .menu a:hover::after {
-  transform: scaleX(1);
+transform: scaleX(1);
 }
 
 /* Global wrapper for consistent margins */
 .content-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 1.5rem;
 }
 
 /* Sections */
 .section {
-  max-width: 1200px;
-  margin: 6rem auto;
-  padding: 0 1.5rem;
+max-width: 1200px;
+margin: 6rem auto;      /* ↑ more separation top & bottom */
+padding: 0 1.5rem;
 }
 
 .section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
+font-size: 2.5rem;
+margin-bottom: 1.5rem;
+text-align: center;
 }
 .section p,
 .section li {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
+font-size: 1.125rem;
+line-height: 1.6;
+margin-bottom: 1rem;
 }
 
 /* —————————————————————— */
 /* Section header flourish */
 .section h2 {
-  position: relative;
-  padding-bottom: 0.5rem;
+position: relative;
+padding-bottom: 0.5rem;
 }
 
 .section h2::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 4px;
-  background-color: #d4af37;
-  margin: 0.5rem auto 0;
-  border-radius: 2px;
+content: '';
+display: block;
+width: 60px;              /* length of flourish */
+height: 4px;              /* thickness */
+background-color: #d4af37;/* gold color */
+margin: 0.5rem auto 0;    /* center under the text */
+border-radius: 2px;       /* soft edges */
 }
 
-/* (Dropdown block REMOVED entirely here) */
+/* Dropdown – modern refreshed look */
+.main-nav .dropdown {
+position: relative; /* anchor point */
+}
+
+.main-nav .dropdown-content {
+display: none;
+position: absolute;
+top: calc(100% + 4px);    /* just below header border */
+left: 50%;                /* center under the “Menu” */
+transform: translateX(-50%);
+background: #fff;
+border: 1px solid rgba(0,0,0,0.1);
+border-radius: 6px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+min-width: 200px;         /* adjust to taste */
+padding: 0.25rem 0;
+z-index: 100;
+}
+
+.main-nav .dropdown:hover .dropdown-content {
+display: block;
+}
+
+.main-nav .dropdown-content li {
+list-style: none;
+}
+
+.main-nav .dropdown-content li a {
+display: block;
+padding: 0.75rem 1.25rem;
+color: #333;             /* darker text for readability */
+font-size: 1rem;
+text-align: center;      /* center the text */
+transition: background 0.2s ease;
+}
+
+.main-nav .dropdown-content li a:hover {
+background: #f5f5f5;
+}
 
 /* HERO & LOGO OVERLAY */
 .parallax-hero {
-  position: relative;
-  height: 90vh;
-  background: url('interior.jpg') center calc(40% + 20px)/cover fixed;
-  border-bottom: 2px solid #000;
-  transition: height 1s ease-out;
+position: relative;
+height: 90vh;
+background: url('interior.jpg') center calc(40% + 20px)/cover fixed;
+border-bottom: 2px solid #000;
+transition: height 1s ease-out;
 }
 body.loaded .parallax-hero {
-  height: 80vh;
+height: 80vh;
 }
 
 /* 1. Starting state: centered big in hero */
+/* initial logo-overlay: centered & full size */
 .logo-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  transform-origin: center center;
-  transition: transform 0.6s ease-out;
+position: absolute;
+top: 50%; left: 50%;
+transform: translate(-50%, -50%) scale(1);
+transform-origin: center center;
+transition: transform 0.6s ease-out;
 }
 
 /* Keep only the drop-shadow on the centered SVG */
 .logo-overlay svg {
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
 /* shrink+move into nav logo spot */
 .logo-overlay.fly-home {
-  /* adjust these translate() values until it lines up exactly: */
-  transform: translate(1rem, 1rem) scale(0.25);
+/* adjust these translate() values until it lines up exactly: */
+transform: translate(1rem, 1rem) scale(0.25);
 }
 
 /* HIDE/SHOW SITE CONTENT */
 .site-content {
-  opacity: 0;
-  transition: opacity 0.5s ease 2.6s;
+opacity: 0;
+transition: opacity 0.5s ease 2.6s;
 }
 .site-content.loaded {
-  opacity: 1;
+opacity: 1;
 }
 
 /* SMOOTH OUT THE STROKE ANIMATION */
 #logo-path {
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  /* fillOpacity is driven by JS */
+stroke-linecap: round;
+stroke-linejoin: round;
+/* fillOpacity is driven by JS */
 }
 
 /* About */
 .about {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: center;
+display: flex;
+flex-wrap: wrap;
+gap: 2rem;
+align-items: center;
 }
 .about-text { flex: 1 1 300px; }
 .about-img { flex: 1 1 300px; text-align: center; }
 .about-img img {
-  width: 66%;
-  max-width: 250px;
-  border-radius: 8px;
-  border: 2px solid #000; /* black border */
+width: 66%;
+max-width: 250px;
+border-radius: 8px;
+border: 2px solid #000; /* black border */
 }
 .caption { font-style: italic; margin-top: .5rem; }
 
 /* Carousel container */
 .special-carousel {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;    /* allow horizontal scrolling */
-  overflow-y: visible; /* let slides grow vertically on hover */
-  position: relative;
-  cursor: grab;
+display: flex;
+gap: 1rem;
+overflow-x: auto;       /* allow horizontal scrolling */
+overflow-y: visible;    /* let slides grow vertically on hover */
+position: relative;
+cursor: grab;
 }
 .special-carousel.dragging { cursor: grabbing; }
 .special-carousel::-webkit-scrollbar { display: none; }
 
 /* Slides */
 .slide {
-  width: 300px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border: 2px solid #000;
-  border-radius: 8px;
-  overflow: hidden;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-width 0.3s ease;
+width: 300px;
+flex-shrink: 0;
+display: flex;
+flex-direction: column;
+background: #fff;
+border: 2px solid #000;
+border-radius: 8px;
+overflow: hidden;
+transition:
+transform 0.3s ease,
+box-shadow 0.3s ease,
+border-width 0.3s ease;   /* ← add */
 }
 .slide-img {
-  height: 180px;
-  background-size: cover;
-  background-position: center;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  border-bottom: 2px solid #000;
+height: 180px;
+background-size: cover;
+background-position: center;
+border-top-left-radius: 6px;
+border-top-right-radius: 6px;
+border-bottom: 2px solid #000;
 }
 .slide-info {
-  padding: .75rem 1rem;
-  background: #fff;
-  flex: 1;
+padding: .75rem 1rem;
+background: #fff;
+flex: 1;
 }
 .slide-info h3 { margin: 0 0 .3rem; font-size: 1.1rem; color: #000; }
 .slide-info p  { margin: 0; color: #555; }
 
 /* Modal overlay & content */
 .slide-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  align-items: center;
-  justify-content: center;
-  z-index: 100; /* WILL BE OVERRIDDEN FOR MOBILE below */
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.85);
+align-items: center;
+justify-content: center;
+z-index: 100;
 }
 .slide-modal.open { display: flex; }
-
-/* (Removed fixed #modal-image width here) */
-
 .modal-content {
-  position: relative;
-  display: flex;
-  background: #fff;
-  border-radius: 8px;
-  overflow: visible;
-  max-width: 90vw;
-  max-height: 90vh;
-  animation: pop-in .3s ease-out forwards;
+position: relative;
+display: flex;
+background: #fff;
+border-radius: 8px;
+overflow: visible;
+max-width: 90vw;
+max-height: 90vh;
+animation: pop-in .3s ease-out forwards;
 }
 @keyframes pop-in {
-  from { transform: scale(0.7); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
+from { transform: scale(0.7); opacity: 0; }
+to   { transform: scale(1); opacity: 1; }
 }
 .slide:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  border-width: 4px;
+transform: scale(1.03);
+box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+border-width: 4px;           /* ← double the border on hover */
 }
 
 /* Prev/Next */
 .modal-nav {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.3);
-  border: none;
-  color: #fff;
-  font-size: 2rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  cursor: pointer;
-  z-index: 300;
-  transition: transform 0.2s ease, background 0.2s ease;
+position: fixed;
+top: 50%;
+transform: translateY(-50%);
+background: rgba(0,0,0,0.3);
+border: none;
+color: #fff;
+font-size: 2rem;
+width: 2.5rem;
+height: 2.5rem;
+cursor: pointer;
+z-index: 300;                /* ↑ ensure they float above everything */
+transition: transform 0.2s ease, background 0.2s ease;
 }
-#modal-prev { left: 0.5rem; }
-#modal-next { right: 0.5rem; }
+#modal-prev { left: 0.5rem; }  /* very close to left edge */
+#modal-next { right: 0.5rem; } /* very close to right edge */
 
 .modal-nav:hover {
-  transform: translateY(-50%) scale(1.2);
-  background: rgba(0,0,0,0.6);
+transform: translateY(-50%) scale(1.2);
+background: rgba(0,0,0,0.6);
 }
 .modal-content {
-  position: relative;
-  z-index: 150;
+position: relative;
+z-index: 150;   /* ensure the modal box sits below the arrows */
 }
-.modal-nav { z-index: 200; }
 
-/* Removed #modal-image width, let mobile override handle it */
+.modal-nav {
+z-index: 200;   /* arrows float above everything */
+}
+
+/* Ensure they remain above the overlay */
+.slide-modal.open .modal-nav {
+display: block;
+}
+
+/* Image & text */
+#modal-image {
+width: 450px;
+object-fit: cover;
+}
+.modal-text {
+flex: 1;
+padding: 2rem;
+overflow-y: auto;
+}
+.modal-text h3 { margin: 0 0 1rem; font-size: 2rem; }
+.modal-text p  { margin: 0 0 1.5rem; line-height: 1.4; color: #333; }
+
+/* Close */
+#close-modal {
+position: absolute;
+top: 1rem;
+right: 1rem;
+background: transparent;
+border: none;
+font-size: 2rem;
+cursor: pointer;
+}
 
 /* Reservations (Airtable embed) */
 .reserve iframe {
-  width: 100%;
-  height: 533px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+width: 100%;
+height: 533px;
+border: 1px solid #ccc;
+border-radius: 8px;
 }
 
-/* Default desktop footer (delete or comment out this entire block!) */
-/*
+/* Footer */
 .footer {
-  width: 100%;
-  background: #fff;
-  color: #333;
-  padding: 2rem 1rem;      <-- DELETE/COMMENT OUT
-  border-top: 2px solid #000;
+width: 100%;                /* full-width container */
+background: #fff;
+color: #333;
+padding: 2rem 1rem;
+border-top: 2px solid #000; /* full-width divider */
 }
 
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+max-width: 1200px;
+margin: 0 auto;             /* center inner content */
+display: flex;
+flex-wrap: wrap;
+gap: 2rem;
 }
 
 .footer-column {
-  flex: 1 1 300px;
+flex: 1 1 300px;
 }
 
 .footer-column h4 {
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-  color: #d4af37;
+margin-bottom: 0.5rem;
+font-size: 1.2rem;
+color: #d4af37;
 }
 
 .footer-column p {
-  margin: 0 0 0.75rem;
-  font-size: 0.9rem;
-  line-height: 1.4;
+margin: 0 0 0.75rem;
+font-size: 0.9rem;
+line-height: 1.4;
 }
 
 .footer-column form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
 }
 
 .footer-column input[type="email"] {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 0.9rem;
+padding: 0.5rem;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-size: 0.9rem;
 }
 
 .footer-column button {
-  padding: 0.5rem;
-  border: none;
-  background: #d4af37;
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s ease;
+padding: 0.5rem;
+border: none;
+background: #d4af37;
+color: #fff;
+font-size: 0.9rem;
+font-weight: bold;
+border-radius: 4px;
+cursor: pointer;
+transition: background 0.3s ease;
 }
 
 .footer-column button:hover {
-  background: #b5942f;
+background: #b5942f;
 }
 
 .socials {
-  margin-top: 1rem;
-  display: flex;
-  gap: 1rem;
+margin-top: 1rem;
+display: flex;
+gap: 1rem;
 }
 
 .socials a {
-  display: inline-block;
+display: inline-block;
 }
 
 .socials svg {
-  width: 24px;
-  height: 24px;
-  fill: #d4af37;
+width: 24px;
+height: 24px;
+fill: #d4af37;
 }
 
 @media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.footer-content {
+flex-direction: column;
+align-items: flex-start;
 }
-*/
+}
 
 /* Carousel container – force visible overflow in all browsers */
 .special-carousel {
-  overflow-x: auto !important;
-  overflow-y: visible !important;
+overflow-x: auto !important;
+overflow-y: visible !important;
 }
 
 /* Hovered slide – explicitly set larger border */
 .slide:hover {
-  border-width: 4px !important;
-  transform: scale(1.03) !important;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
+border-width: 4px !important;        /* ensure thicker border */
+transform: scale(1.03) !important;
+box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
 }
 #modal-next {
-  left: auto;
-  right: 1rem;
+left: auto;       /* override */
+right: 1rem;      /* next arrow on right edge */
 }
 .modal-nav:hover {
-  transform: translateY(-50%) scale(1.2);
-  background: rgba(0,0,0,0.6);
+transform: translateY(-50%) scale(1.2);
+background: rgba(0,0,0,0.6);
 }
+/* ─────────────────────────────────────────────────────────
+   MOBILE-ONLY OVERRIDES (≤ 768px)
+   Paste this entire block in place of any other “@media (max-width:768px)” blocks.
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) { 
 
+  /*--------------------------------------------------------
+    1) PARALLAX HERO: shrink from 90vh → 80vh after logo animates
+    --------------------------------------------------------*/
+  .parallax-hero {
+    height: 90vh;
+    background-attachment: scroll; /* for performance on mobile */
+    z-index: 0;                    /* ensure hero sits below header/dropdown */
+  }
+  body.loaded .parallax-hero {
+    height: 80vh;
+  }
 /* ──────────────────────────────────────────────────────
    MOBILE OVERRIDES (≤ 768px)
-   Copy exactly this block (no changes) to the bottom.
    ────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
 
+  /*--------------------------------------------------------
+    2) CENTERED SVG LOGO: size & re-center on mobile
+    --------------------------------------------------------*/
+  .logo-overlay {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) scale(3) !important;
+    transition: none !important; /* instant scale on load */
   /* 1) FORCE ONLY ONE .parallax-hero & push it below header */
   .parallax-hero {
     background: url('interior.jpg') center calc(40% + 20px) / cover no-repeat;
-    background-attachment: scroll;
-    z-index: 0;
-  }
+    background-attachment: scroll;  /* performance */
+    z-index: 0;                     /* keep it underneath the nav */
+}
+  .logo-overlay svg {
+    width: 100px;     /* base size (parent scale=3 → ~300px) */
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  /* if a duplicate .parallax-hero was somehow injected, hide it */
   body.loaded .parallax-hero + .parallax-hero {
     display: none;
-  }
+}
 
+  /*--------------------------------------------------------
+    3) HEADER / DROPDOWN “Menu ▾”:
+       • Force only the “Menu ▾” link to appear.
+       • Make dropdown (.dropdown-content) full‐width and tappable.
+       • Tapping outside automatically closes it.
+    --------------------------------------------------------*/
   /* 2) HEADER: show ONLY the “Menu ▾” link, full‐width, and tappable */
-  .main-nav {
+.main-nav {
     position: relative;
-    z-index: 2000;
-  }
-  .main-nav .menu {
-    display: flex !important;
-    justify-content: center;
+    z-index: 2000; /* keep header above hero */
+    position: relative;   /* anchor for dropdown */
+    z-index: 2000;        /* keep header on top of hero */
+}
+.main-nav .menu {
+    display: flex !important;         /* bring back UL, but hide non-dropdown items */
+    display: flex !important;   /* override any previous “display: none” */
+justify-content: center;
     width: 100%;
-    padding: 0;
-  }
-  .main-nav .menu li:not(.dropdown) {
+    padding: 0;                 /* remove extra horizontal gaps */
+}
+  /* hide all top‐level <li> except .dropdown */
+.main-nav .menu li:not(.dropdown) {
+    display: none;                    /* hide all other menu items except .dropdown */
     display: none;
-  }
-  .main-nav .dropdown > a {
-    display: block;
+}
+  /* style the “Menu ▾” link so it fills the header width */
+.main-nav .dropdown > a {
+display: block;
+    padding: 0.75rem 1rem;
     width: 100%;
     padding: 0.75rem 0;
-    font-size: 1rem;
-    background: #fff;
+font-size: 1rem;
+    background: #fff;                 /* ensure readable over hero */
+    z-index: 2002;                    /* keep above hero */
+    position: relative;
+    background: #fff;    /* ensure it’s opaque against the hero */
     color: #d4af37;
-    text-align: center;
+text-align: center;
+    width: 100%;
+  }
+  /* Hide any stray .simple-dropdown if present */
+  .main-nav .simple-dropdown {
+    display: none !important;
     text-decoration: none;
     position: relative;
-    z-index: 2001;
-  }
+    z-index: 2001;       /* above hero */
+}
 
-  /* 2a) FULL‐WIDTH DROPDOWN CONTENT */
+  /* Prepare dropdown-content (Entrées, Mains, Desserts, Drinks) */
+  .main-nav .dropdown-content {
+    display: none;                    /* hide by default */
+  /* 2a) FULL‐WIDTH DROPDOWN CONTENT (replace both .dropdown-content & .simple-dropdown) */
   .main-nav .dropdown-content,
   .main-nav .simple-dropdown {
-    display: none;
-    position: absolute;
-    top: calc(100% + 2px);
+    display: none;          /* hide by default */
+position: absolute;
+    top: calc(100% + 2px);            /* sit just below header bottom border */
     left: 0;
+    width: 100%;                      /* full viewport width */
+    top: calc(100% + 2px);  /* directly below header’s bottom border */
+    left: 0;                /* flush left */
     width: 100%;
-    background: #fff;
-    border-top: 1px solid #000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    z-index: 2002;
+background: #fff;
+border-top: 1px solid #000;
+box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 2001;                    /* float on top of hero */
+    z-index: 2002;          /* float above everything else */
+}
+  /* Show dropdown when “Menu” <a> is tapped/focused */
+  .main-nav .dropdown > a:focus + .dropdown-content,
+  .main-nav .dropdown > a:active + .dropdown-content {
+    display: block;
   }
+  .main-nav .dropdown-content li {
+    list-style: none;
+  /* enlarge each <li> for easy tapping, full‐width links */
   .main-nav .dropdown-content li,
   .main-nav .simple-dropdown li {
     padding: 1rem 0;
-    border-bottom: 1px solid #eee;
+border-bottom: 1px solid #eee;
     text-align: center;
-  }
+}
+  .main-nav .dropdown-content li:last-child {
   .main-nav .dropdown-content li:last-child,
   .main-nav .simple-dropdown li:last-child {
-    border-bottom: none;
-  }
+border-bottom: none;
+}
+  .main-nav .dropdown-content li a {
   .main-nav .dropdown-content li a,
   .main-nav .simple-dropdown li a {
-    display: block;
-    width: 100%;
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 1rem;
+display: block;
+    padding: 1rem 0;                 /* large tap target */
     color: #d4af37;
-    text-decoration: none;
+    width: 100%;
+font-family: 'Playfair Display', serif;
+font-weight: 700;
+font-size: 1rem;
+    color: #d4af37;
+text-decoration: none;
+    text-align: center;
+    width: 100%;
+}
+  .main-nav .dropdown-content li a:hover {
+    background: #f5f5f5;
   }
-  /* 2b) Show submenu on focus/active */
+
+  /* JavaScript snippet (drop into your HTML just before </body>):
+     This blurs “Menu” when you tap outside, so it closes the dropdown. */
+  /*
+    <script>
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+          var menuLink = document.querySelector('.main-nav .dropdown > a');
+          if (menuLink) menuLink.blur();
+        }
+      });
+    </script>
+  */
+
+  /*--------------------------------------------------------
+    4) CARETS & ARROWS: hide any desktop-only controls 
+       (no left/right arrows on mobile since drag‐to‐scroll is available)
+    --------------------------------------------------------*/
+  .carousel-control {
+    display: none !important;
+  }
+
+  /*--------------------------------------------------------
+    5) CHEF’S SPECIALS CAROUSEL:
+       • Keep horizontal drag/scroll fluid.
+       • Re-enable infinite/auto‐scroll via JS (no CSS needed here).
+    --------------------------------------------------------*/
+  /* 2b) Show submenu when “Menu” link is focused/active; hide it otherwise */
   .main-nav .dropdown > a:focus + .dropdown-content,
   .main-nav .dropdown > a:active + .dropdown-content,
   .main-nav .dropdown > a:focus + .simple-dropdown,
@@ -485,49 +644,59 @@ body.loaded .parallax-hero {
     display: block;
   }
 
-  /* 3) CENTERED SVG LOGO: enlarge & re-center */
+  /* 3) CENTERED SVG LOGO: enlarge & re-center without white box */
   .logo-overlay {
     left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%) scale(3) !important;
-    z-index: 1500;
+    z-index: 1500;   /* ensure it floats above hero */
   }
   .logo-overlay svg {
-    width: 100px;
+    width: 100px;    /* base width, will be tripled by parent scale */
     height: auto;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
   }
 
-  /* 4) PARALLAX HERO: maintain shrink from 90→80 vh */
+  /* 4) PARALLAX HERO: maintain shrink from 90→80 vh on mobile, as on desktop */
   .parallax-hero {
-    height: 90vh;
+    height: 90vh;               /* initial */
   }
   body.loaded .parallax-hero {
-    height: 80vh;
+    height: 80vh;               /* after animation */
   }
 
-  /* 5) CHEF’S SPECIALS CAROUSEL */
-  .special-carousel {
-    display: flex;
+  /* 5) CHEF’S SPECIALS CAROUSEL: restore fluid drag + infinite/auto scroll */
+.special-carousel {
+display: flex;
+    gap: 0.5rem;            /* tighter gap on mobile */
+    overflow-x: auto;       /* allow swipe/drag */
     overflow-x: auto;
-    gap: 0.5rem;
+    gap: 0.5rem;    /* tighten gap */
     padding: 0 0.5rem;
-    scroll-snap-type: x mandatory;
+scroll-snap-type: x mandatory;
+    padding: 0 0.5rem;      /* small side padding */
+    -webkit-overflow-scrolling: touch;
     position: relative;
   }
   .special-carousel::-webkit-scrollbar {
     display: none;
-  }
-  .special-carousel .slide {
+}
+.special-carousel .slide {
+    flex: 0 0 90%;          /* ~90% of viewport width */
     flex: 0 0 90%;
-    max-width: 280px;
-    scroll-snap-align: center;
-  }
+max-width: 280px;
+scroll-snap-align: center;
+}
+  /* (The cloning/auto-scroll IIFE in your JS must run on mobile as well.) */
 
-  /* 6) CHEF’S SPECIALS MODAL */
-  .slide-modal {
-    z-index: 3000 !important;
-    display: none;
+  /*--------------------------------------------------------
+    6) CHEF’S SPECIALS MODAL: force on-top, resize to fit
+    --------------------------------------------------------*/
+  /* 6) CHEF’S SPECIALS MODAL: ensure title+desc appear, not just image */
+.slide-modal {
+    z-index: 9999 !important;   /* float above all content */
+    z-index: 3000 !important;     /* float above header/hero */
+    display: none;                /* default hidden; JS toggles .open */
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.85);
@@ -536,78 +705,106 @@ body.loaded .parallax-hero {
   }
   .slide-modal.open {
     display: flex;
-  }
-  .slide-modal .modal-content {
-    width: 90vw !important;
-    max-width: 90vw !important;
-    max-height: 80vh !important;
+}
+.slide-modal .modal-content {
+width: 90vw !important;
+max-width: 90vw !important;
+max-height: 80vh !important;
+    overflow: hidden;
     overflow: auto;
     background: #fff;
     border-radius: 8px;
     animation: pop-in .3s ease-out forwards;
     position: relative;
     z-index: 3001;
-  }
-  .slide-modal img {
-    display: block;
-    margin: 0 auto;
+}
+.slide-modal img {
+display: block;
+margin: 0 auto;
     max-height: 45vh !important;
-    width: auto;
-    object-fit: contain;
-  }
-  .modal-text {
-    padding: 1rem !important;
-    font-size: 0.9rem !important;
+width: auto;
+    max-height: 45vh !important; /* keep image from pushing title/desc offscreen */
+object-fit: contain;
+}
+.modal-text {
+padding: 1rem !important;
+font-size: 0.9rem !important;
     overflow-y: auto;
-  }
-  .modal-text h3 {
-    font-size: 1.25rem !important;
+}
+.modal-text h3 {
+font-size: 1.25rem !important;
     margin-bottom: 0.5rem;
   }
   .modal-text p {
     margin-bottom: 1rem;
     line-height: 1.4;
     color: #333;
-  }
-  .modal-nav {
-    width: 2rem !important;
-    height: 2rem !important;
-    font-size: 1.5rem !important;
+}
+.modal-nav {
+width: 2rem !important;
+height: 2rem !important;
+font-size: 1.5rem !important;
+    z-index: 10000 !important;
     z-index: 3002 !important;
+}
+#modal-prev { left: 0.5rem !important; }
+#modal-next { right: 0.5rem !important; }
+
+  /*--------------------------------------------------------
+    7) SECTION HEADERS: keep “flourish underline” under each <h2>
+    --------------------------------------------------------*/
+  .section h2 {
+    font-size: 1.75rem;
+    position: relative;
+    padding-bottom: 0.5rem;
   }
-  #modal-prev { left: 0.5rem !important; }
-  #modal-next { right: 0.5rem !important; }
+  .section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #d4af37;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
   #close-modal {
     font-size: 1.8rem !important;
     top: 0.5rem !important;
     right: 0.5rem !important;
-  }
+}
 
-  /* 7) FOOTER: collapse whitespace/padding */
-  .footer {
+  /*--------------------------------------------------------
+    8) FOOTER: collapse extra whitespace / padding
+    --------------------------------------------------------*/
+  /* 7) FOOTER: collapse extra whitespace/padding */
+.footer {
+    padding: 0.75rem 0.5rem !important;   /* shrink the top/bottom padding */
     padding: 0.75rem 0.5rem !important;
-  }
-  .footer-content {
+}
+.footer-content {
+    gap: 0.5rem !important;              /* tighten gaps between columns */
+    max-width: 100% !important;          /* allow full-width stacking */
     gap: 0.5rem !important;
     max-width: 100% !important;
-    margin: 0 auto !important;
+margin: 0 auto !important;
     flex-direction: column !important;
     align-items: flex-start !important;
-  }
-  .footer-column h4 {
-    font-size: 1rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-  .footer-column p,
-  .footer-column input,
-  .footer-column button {
-    font-size: 0.85rem !important;
-  }
+}
+.footer-column h4 {
+font-size: 1rem !important;
+margin-bottom: 0.5rem !important;
+}
+.footer-column p,
+.footer-column input,
+.footer-column button {
+font-size: 0.85rem !important;
+}
 
-  /* 8) SCROLL-SNAP TWEAK */
+  /* 8) SCROLL-SNAP TWEAK (no vertical bounce when dragging/ tapping) */
   .special-carousel,
   .special-carousel .slide {
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
   }
+
+  /* 9) ENSURE DROPDOWN CLOSES WHEN TAPPING OUTSIDE (JS snippet above) */
 }
