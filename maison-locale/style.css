@@ -796,3 +796,113 @@ body.loaded .parallax-hero {
   /* 8) OPTIONAL: if you had a back-to-top button or PDF button,
          adjust their mobile positioning here (not shown). */
 }
+/* ──────────────────────────────────────────────────────
+   MOBILE-SPECIFIC TWEAKS (≤768px):
+   Append this at the end of your style.css (inside the @media block).
+   ────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* 1) FIX “double” interior.jpg layering:
+     Ensure there’s only one .parallax-hero background, and that it sits below everything. */
+  .parallax-hero {
+    background: url('interior.jpg') center calc(40% + 20px) / cover no-repeat;
+    background-attachment: scroll;  /* already set, just be explicit */
+    z-index: 0;                     /* “push” the hero beneath header/dropdown */
+  }
+  /* If you had accidentally stacked two parallax-hero sections, this forces just one. */
+  body.loaded .parallax-hero + .parallax-hero {
+    display: none;  /* hide any duplicate */
+  }
+
+  /* 2) DROPDOWN MENU: bring it above the hero and allow closing on outside-tap */
+  .main-nav {
+    z-index: 2000;     /* keep header on top */
+    position: relative;/* ensure dropdown anchors properly */
+  }
+  .main-nav .simple-dropdown {
+    z-index: 2001;     /* ensure it floats above the hero */
+  }
+  /* Make sure the link never “gets stuck” after tapping. */
+  /* (We still rely on :focus to open—below JS snippet will blur when tapping outside.) */
+  /* Append this small inline script just before </body> in your HTML: */
+  /* <script>
+       document.addEventListener('click', function(e) {
+         if (!e.target.closest('.dropdown')) {
+           var link = document.querySelector('.main-nav .dropdown > a');
+           if (link) link.blur();
+         }
+       });
+     </script>
+  */
+  /* (That JS simply blurs the “Menu” link when you tap anywhere else.) */
+
+  /* 3) CHEF’S SPECIALS MODAL: ensure it sits on top of everything, and scales to fit */
+  .slide-modal {
+    z-index: 3000;           /* above all other layers */
+  }
+  .slide-modal .modal-content {
+    max-width: 90vw;         /* ensure it never overflows horizontally */
+    max-height: 80vh;        /* ensure it never overflows vertically */
+  }
+  .slide-modal img {
+    max-height: 45vh;        /* constrain the image so title/desc remain visible */
+    width: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .modal-nav {
+    z-index: 3001;           /* arrows above the content */
+  }
+  .modal-text {
+    font-size: 0.9rem;       /* slightly reduce text so it fits */
+    padding: 1rem;
+  }
+  .modal-text h3 {
+    font-size: 1.25rem;      /* smaller heading */
+  }
+
+  /* 4) FOOTER: collapse extra white‐space/padding */
+  .footer {
+    padding: 0.75rem 0.5rem;  /* reduce from 1rem/0.5rem if needed */
+  }
+  .footer-content {
+    gap: 0.5rem;             /* reduce gap between stacked columns */
+  }
+  .footer-column p,
+  .footer-column input,
+  .footer-column button {
+    font-size: 0.85rem;      /* slightly smaller so it doesn’t push height */
+  }
+
+  /* 5) RE-ENABLE “Menu ▾” dropdown links underneath header:
+     - Force the “Menu” button itself to sit on top,
+     - ensure you can scroll the hero beneath it. */
+  .main-nav .menu {
+    display: flex !important;      /* bring back the parent UL on mobile */
+    justify-content: center;
+  }
+  .main-nav .menu li:not(.dropdown) {
+    display: none;                 /* hide all top-level links except “Menu ▾” */
+  }
+  .main-nav .dropdown > a {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    background: #fff;              /* ensure it’s not transparent over hero */
+    z-index: 2002;                 /* keep it above the hero */
+    position: relative;
+  }
+  .main-nav .simple-dropdown {
+    top: calc(100% + 2px) !important; /* right under header bottom-border */
+    left: 0 !important;
+    width: 100%;
+    transform: none !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .main-nav .simple-dropdown li a {
+    padding: 1rem 0;               /* larger tappable area */
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+  }
+}
