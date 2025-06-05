@@ -459,431 +459,169 @@ body.loaded .parallax-hero {
   transform: translateY(-50%) scale(1.2);
   background: rgba(0,0,0,0.6);
 }
-/*==================================================
-  MOBILE OPTIMIZATIONS (≤ 768px)
-  ==================================================*/
-@media (max-width: 768px) {
-  /*———————————————————————
-    1) SHRINK & CONTRAST‐BOOST THE CENTERED SVG
-    ———————————————————————*/
-  .logo-overlay {
-    /* make the logo overlay a bit smaller on small screens */
-    transform: translate(-50%, -50%) scale(0.7) !important;
-  }
-  .logo-overlay svg {
-    /* remove any white background and padding */
-    background: none !important;
-    padding: 0 !important;
-    /* add a subtle drop‐shadow for contrast against interior.jpg */
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-    /* ensure it never overflows the viewport */
-    width: 80%;
-    max-width: 280px;
-    height: auto;
-  }
+/* ─────────────────────────────────────────────────────────
+   MOBILE-ONLY OVERRIDES (≤ 768px)
+   Paste this entire block in place of any other “@media (max-width:768px)” blocks.
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) { 
 
-  /*———————————————————————
-    2) MAKE “MENU ▾” DROPDOWN CLICKABLE ON MOBILE
-    ———————————————————————*/
-  .main-nav .menu {
-    display: none; /* still hidden on mobile */
-  }
-  .main-nav .dropdown {
-    /* allow focus on the <a> so that clicking/tapping opens the submenu */
-    position: relative;
-  }
-  .main-nav .dropdown > a {
-    display: block;
-    padding: 0.75rem 1rem;
-  }
-  .main-nav .simple-dropdown {
-    /* keep full‐width on mobile */
-    display: none;
-    position: absolute;
-    top: calc(100% + 2px);
-    left: 0;
-    width: 100%;
-    background: #fff;
-    border-top: 1px solid #000;
-    list-style: none;
-    z-index: 30;
-  }
-  /* show submenu when <a> is focused (i.e. tapped) */
-  .main-nav .dropdown > a:focus + .simple-dropdown,
-  .main-nav .dropdown > a:active + .simple-dropdown {
-    display: block;
-  }
-  .main-nav .simple-dropdown li {
-    padding: 1rem; /* larger touch area */
-    border-bottom: 1px solid #eee;
-    text-align: center;
-  }
-  .main-nav .simple-dropdown li:last-child {
-    border-bottom: none;
-  }
-  .main-nav .simple-dropdown li a {
-    font-family: 'Playfair Display', serif;
-    color: #d4af37;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1rem;
-    /* ensure the link fills the entire li for easy tapping */
-    display: block;
-    width: 100%;
-  }
-
-  /*———————————————————————
-    3) ENSURE PARALLAX HERO SHRINKS FROM 90→80vh ON MOBILE TOO
-    ———————————————————————*/
+  /*--------------------------------------------------------
+    1) PARALLAX HERO: shrink from 90vh → 80vh after logo animates
+    --------------------------------------------------------*/
   .parallax-hero {
-    /* on mobile, we want the same “shrink after JS” behavior */
     height: 90vh;
-    background-attachment: scroll; /* keep this for performance */
+    background-attachment: scroll; /* for performance on mobile */
+    z-index: 0;                    /* ensure hero sits below header/dropdown */
   }
   body.loaded .parallax-hero {
     height: 80vh;
   }
 
-  /*———————————————————————
-    4) “CHEF’S SPECIALS”—RESTORE AUTO‐SCROLL & INFINITE SCROLL ON MOBILE
-    ———————————————————————*/
-  .special-carousel {
-    display: flex;
-    overflow-x: auto;
-    gap: 0.75rem;
-    padding: 0 1rem;
-    scroll-snap-type: x mandatory;
-    position: relative;
-  }
-  .special-carousel::-webkit-scrollbar {
-    display: none;
-  }
-  .special-carousel .slide {
-    flex: 0 0 80%;
-    max-width: 320px;
-    background: #fff;
-    border: 2px solid #000;
-    border-radius: 8px;
-    overflow: hidden;
-    scroll-snap-align: center;
-  }
-  /* To re‐enable infinite auto‐scroll on mobile, re‐apply the desktop “cloning” logic as well… */
-  /* (No CSS changes needed here—just ensure your JS IIFE that clones slides and auto-scrolls runs on all viewports.) */
-
-  /*———————————————————————
-    5) ADD A FANCY FLOURISH UNDER EVERY <h2> FOR MOBILE AS WELL
-    ———————————————————————*/
-  .section h2 {
-    position: relative;
-    padding-bottom: 0.5rem;
-    font-size: 1.75rem; /* unchanged */
-  }
-  .section h2::after {
-    content: '';
-    display: block;
-    width: 60px;             /* length of flourish */
-    height: 4px;             /* thickness */
-    background-color: #d4af37;
-    margin: 0.5rem auto 0;   /* center under the text */
-    border-radius: 2px;
-  }
-}
-/*==================================================
-  ADDITIONAL MOBILE FIXES (≤ 768px)
-  ==================================================*/
-@media (max-width: 768px) {
-  /*———————————————————————
-    1) SHRINK FOOTER PADDING & GAP
-    ———————————————————————*/
-  .footer {
-    padding: 1rem 0.5rem; /* reduce top/bottom padding */
-  }
-  .footer-content {
-    gap: 1rem; /* shrink gap between columns */
-  }
-
-  /*———————————————————————
-    2) RESIZE CHEF’S SPECIALS MODAL TO FIT SMALL SCREENS
-    ———————————————————————*/
-  .slide-modal .modal-content {
-    max-width: 90vw;   /* no wider than 90% of viewport */
-    max-height: 80vh;  /* no taller than 80% of viewport */
-    overflow: hidden;
-  }
-  .slide-modal img {
-    width: auto;
-    max-height: 60vh;  /* constrain image height so it doesn’t overflow */
-    margin: 0 auto;    /* center image horizontally */
-    display: block;
-  }
-
-  /*———————————————————————
-    3) MAKE CENTERED SVG LOGO LARGER
-    ———————————————————————*/
-  .logo-overlay {
-    /* override the previous scale(0.7) */
-    transform: translate(-50%, -50%) scale(2.1) !important;
-  }
-  .logo-overlay svg {
-    /* ensure it doesn’t overflow horizontally */
-    width: 90%;
-    max-width: 320px;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-  }
-
-  /*———————————————————————
-    4) ENSURE “MENU ▾” DROPDOWN IS TAP‐ACCESSIBLE
-    ———————————————————————*/
-  /* keep the mobile full‐width dropdown logic from before */
-  .main-nav .menu {
-    display: none; /* still hidden on mobile */
-  }
-  .main-nav .dropdown > a {
-    display: block;
-    padding: 0.75rem 1rem;
-  }
-  .main-nav .simple-dropdown {
-    display: none;
-    position: absolute;
-    top: calc(100% + 2px);
-    left: 0;
-    width: 100%;
-    background: #fff;
-    border-top: 1px solid #000;
-    list-style: none;
-    z-index: 30;
-  }
-  /* show submenu when <a> is tapped/focused */
-  .main-nav .dropdown > a:focus + .simple-dropdown,
-  .main-nav .dropdown > a:active + .simple-dropdown {
-    display: block;
-  }
-  .main-nav .simple-dropdown li {
-    padding: 1rem;
-    border-bottom: 1px solid #eee;
-    text-align: center;
-  }
-  .main-nav .simple-dropdown li:last-child {
-    border-bottom: none;
-  }
-  .main-nav .simple-dropdown li a {
-    font-family: 'Playfair Display', serif;
-    color: #d4af37;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1rem;
-    display: block;
-    width: 100%;
-  }
-}
-/* ──────────────────────────────────────────────────────
-   MOBILE-ONLY OVERRIDES (≤768px)
-   Appended at the very bottom of style.css
-   ────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  /* 1) FOOTER: reduce padding/blank space */
-  .footer {
-    padding: 1rem 0.5rem; /* shrink from 2rem to 1rem */
-  }
-  .footer-content {
-    gap: 1rem;            /* tighten vertical gaps */
-    max-width: 100%;      /* allow full-width stacking */
-    margin: 0 auto;
-  }
-  .footer-column h4 {
-    margin-bottom: 0.5rem;
-    font-size: 1rem;      /* slightly smaller heading */
-  }
-  .footer-column p,
-  .footer-column input,
-  .footer-column button {
-    font-size: 0.85rem;   /* slightly smaller text */
-  }
-
-  /* 2) “CHEF’S SPECIALS” MODAL: scale down to fit small screens */
-  .slide-modal .modal-content {
-    width: 90vw;          /* almost full viewport width */
-    max-height: 80vh;     /* leave some room at top/bottom */
-  }
-  .slide-modal .modal-content img {
-    max-height: 45vh;     /* constrain image height */
-    width: auto;          /* maintain aspect ratio */
-    object-fit: contain;
-  }
-  .modal-text {
-    padding: 1rem;        /* reduce inner padding */
-    font-size: 0.9rem;    /* slightly smaller text */
-  }
-  .modal-text h3 {
-    font-size: 1.25rem;   /* smaller title so it doesn’t overflow */
-  }
-  .modal-nav {
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.5rem;    /* smaller arrows for mobile */
-  }
-  #modal-prev { left: 0.5rem; }
-  #modal-next { right: 0.5rem; }
-
-  /* 3) CENTERED SVG LOGO: triple its size on mobile, and re-center it */
+  /*--------------------------------------------------------
+    2) CENTERED SVG LOGO: size & re-center on mobile
+    --------------------------------------------------------*/
   .logo-overlay {
     left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%) scale(3) !important;
+    transition: none !important; /* instant scale on load */
   }
   .logo-overlay svg {
-    width: 100px;         /* base size (will be scaled by parent) */
+    width: 100px;     /* base size (parent scale=3 → ~300px) */
     height: auto;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
   }
 
-  /* 4) “MENU ▾” DROPDOWN: make the “Menu” link visible again, allow tapping
-     – hide all other top-level links, leave only “Menu ▾” on mobile,
-     – ensure the dropdown (Entrées, Mains, Desserts, Drinks) is tappable */
+  /*--------------------------------------------------------
+    3) HEADER / DROPDOWN “Menu ▾”:
+       • Force only the “Menu ▾” link to appear.
+       • Make dropdown (.dropdown-content) full‐width and tappable.
+       • Tapping outside automatically closes it.
+    --------------------------------------------------------*/
+  .main-nav {
+    position: relative;
+    z-index: 2000; /* keep header above hero */
+  }
   .main-nav .menu {
-    display: flex !important;        /* override any “display: none” */
+    display: flex !important;         /* bring back UL, but hide non-dropdown items */
     justify-content: center;
-    flex-wrap: wrap;
   }
-  /* hide everything except the .dropdown item */
   .main-nav .menu li:not(.dropdown) {
-    display: none;
+    display: none;                    /* hide all other menu items except .dropdown */
   }
-  /* ensure the “Menu ▾” link stretches full width for easier tapping */
   .main-nav .dropdown > a {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    padding: 0.75rem 0;
+    display: block;
+    padding: 0.75rem 1rem;
     font-size: 1rem;
+    background: #fff;                 /* ensure readable over hero */
+    z-index: 2002;                    /* keep above hero */
+    position: relative;
+    text-align: center;
+    width: 100%;
   }
-  /* position the dropdown-options immediately below the header */
+  /* Hide any stray .simple-dropdown if present */
+  .main-nav .simple-dropdown {
+    display: none !important;
+  }
+
+  /* Prepare dropdown-content (Entrées, Mains, Desserts, Drinks) */
   .main-nav .dropdown-content {
-    top: calc(100% + 2px) !important; /* sit just below the bottom border of header */
-    left: 0 !important;
-    transform: none !important;
-    width: 100%;                      /* full-width dropdown */
+    display: none;                    /* hide by default */
+    position: absolute;
+    top: calc(100% + 2px);            /* sit just below header bottom border */
+    left: 0;
+    width: 100%;                      /* full viewport width */
+    background: #fff;
     border-top: 1px solid #000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 2001;                    /* float on top of hero */
+  }
+  /* Show dropdown when “Menu” <a> is tapped/focused */
+  .main-nav .dropdown > a:focus + .dropdown-content,
+  .main-nav .dropdown > a:active + .dropdown-content {
+    display: block;
+  }
+  .main-nav .dropdown-content li {
+    list-style: none;
+    border-bottom: 1px solid #eee;
+  }
+  .main-nav .dropdown-content li:last-child {
+    border-bottom: none;
   }
   .main-nav .dropdown-content li a {
-    font-size: 1rem;
-    padding: 0.75rem 0;
-  }
-
-  /* 5) HIDE any leftover horizontal menu spacing at mobile */
-  .main-nav .menu li {
-    margin-left: 0; /* ensure no gaps between hidden items */
-  }
-
-  /* 6) SPECIALS CAROUSEL: ensure drag/scroll works fluidly,
-         but keep infinite/auto-scroll logic untouched (JS handles that). */
-  .special-carousel {
-    padding: 0 0.5rem;   /* slightly less side padding */
-    gap: 0.5rem;         /* tighten gap */
-  }
-  .special-carousel .slide {
-    flex: 0 0 90%;       /* slightly larger slide on mobile viewport */
-    max-width: 280px;
-  }
-
-  /* 7) SCROLL-SNAP: ensure no vertical “bounce” when tapping */
-  .special-carousel,
-  .special-carousel .slide {
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-  }
-
-  /* 8) OPTIONAL: if you had a back-to-top button or PDF button,
-         adjust their mobile positioning here (not shown). */
-}
-/* ──────────────────────────────────────────────────────
-   MOBILE-SPECIFIC TWEAKS (≤768px):
-   Append this at the end of your style.css (inside the @media block).
-   ────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-
-  /* 1) FIX “double” interior.jpg layering:
-     Ensure there’s only one .parallax-hero background, and that it sits below everything. */
-  .parallax-hero {
-    background: url('interior.jpg') center calc(40% + 20px) / cover no-repeat;
-    background-attachment: scroll;  /* already set, just be explicit */
-    z-index: 0;                     /* “push” the hero beneath header/dropdown */
-  }
-  /* If you had accidentally stacked two parallax-hero sections, this forces just one. */
-  body.loaded .parallax-hero + .parallax-hero {
-    display: none;  /* hide any duplicate */
-  }
-
-  /* 2) DROPDOWN MENU: bring it above the hero and allow closing on outside-tap */
-  .main-nav {
-    z-index: 2000;     /* keep header on top */
-    position: relative;/* ensure dropdown anchors properly */
-  }
-  .main-nav .simple-dropdown {
-    z-index: 2001;     /* ensure it floats above the hero */
-  }
-  /* Make sure the link never “gets stuck” after tapping. */
-  /* (We still rely on :focus to open—below JS snippet will blur when tapping outside.) */
-  /* Append this small inline script just before </body> in your HTML: */
-  /* <script>
-       document.addEventListener('click', function(e) {
-         if (!e.target.closest('.dropdown')) {
-           var link = document.querySelector('.main-nav .dropdown > a');
-           if (link) link.blur();
-         }
-       });
-     </script>
-  */
-  /* (That JS simply blurs the “Menu” link when you tap anywhere else.) */
-
-  /* 3) CHEF’S SPECIALS MODAL: ensure it sits on top of everything, and scales to fit */
-  .slide-modal {
-    z-index: 3000;           /* above all other layers */
-  }
-  .slide-modal .modal-content {
-    max-width: 90vw;         /* ensure it never overflows horizontally */
-    max-height: 80vh;        /* ensure it never overflows vertically */
-  }
-  .slide-modal img {
-    max-height: 45vh;        /* constrain the image so title/desc remain visible */
-    width: auto;
     display: block;
-    margin: 0 auto;
+    padding: 1rem 0;                 /* large tap target */
+    color: #d4af37;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
   }
-  .modal-nav {
-    z-index: 3001;           /* arrows above the content */
-  }
-  .modal-text {
-    font-size: 0.9rem;       /* slightly reduce text so it fits */
-    padding: 1rem;
-  }
-  .modal-text h3 {
-    font-size: 1.25rem;      /* smaller heading */
-  }
-    /* ─────────────────────────────────────────────────────────
-     2a) ENSURE .slide-modal is on TOP of everything 
-         and scale it so title + description remain visible
-     ───────────────────────────────────────────────────────── */
-  .slide-modal {
-    z-index: 9999 !important;        /* float above hero + header */
+  .main-nav .dropdown-content li a:hover {
+    background: #f5f5f5;
   }
 
-  /* 2b) constrain the modal’s size so it actually appears */
+  /* JavaScript snippet (drop into your HTML just before </body>):
+     This blurs “Menu” when you tap outside, so it closes the dropdown. */
+  /*
+    <script>
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+          var menuLink = document.querySelector('.main-nav .dropdown > a');
+          if (menuLink) menuLink.blur();
+        }
+      });
+    </script>
+  */
+
+  /*--------------------------------------------------------
+    4) CARETS & ARROWS: hide any desktop-only controls 
+       (no left/right arrows on mobile since drag‐to‐scroll is available)
+    --------------------------------------------------------*/
+  .carousel-control {
+    display: none !important;
+  }
+
+  /*--------------------------------------------------------
+    5) CHEF’S SPECIALS CAROUSEL:
+       • Keep horizontal drag/scroll fluid.
+       • Re-enable infinite/auto‐scroll via JS (no CSS needed here).
+    --------------------------------------------------------*/
+  .special-carousel {
+    display: flex;
+    gap: 0.5rem;            /* tighter gap on mobile */
+    overflow-x: auto;       /* allow swipe/drag */
+    scroll-snap-type: x mandatory;
+    padding: 0 0.5rem;      /* small side padding */
+    -webkit-overflow-scrolling: touch;
+  }
+  .special-carousel .slide {
+    flex: 0 0 90%;          /* ~90% of viewport width */
+    max-width: 280px;
+    scroll-snap-align: center;
+  }
+
+  /*--------------------------------------------------------
+    6) CHEF’S SPECIALS MODAL: force on-top, resize to fit
+    --------------------------------------------------------*/
+  .slide-modal {
+    z-index: 9999 !important;   /* float above all content */
+  }
   .slide-modal .modal-content {
-    width: 90vw !important;          /* at most 90% of viewport */
+    width: 90vw !important;
     max-width: 90vw !important;
-    max-height: 80vh !important;     /* leave room for close button */
+    max-height: 80vh !important;
     overflow: hidden;
   }
   .slide-modal img {
     display: block;
     margin: 0 auto;
     width: auto;
-    max-height: 45vh !important;     /* keep image from pushing out of view */
+    max-height: 45vh !important; /* keep image from pushing title/desc offscreen */
     object-fit: contain;
   }
-
-  /* 2c) shrink text & arrows so they fit */
   .modal-text {
     padding: 1rem !important;
     font-size: 0.9rem !important;
@@ -895,110 +633,38 @@ body.loaded .parallax-hero {
     width: 2rem !important;
     height: 2rem !important;
     font-size: 1.5rem !important;
-    z-index: 10000 !important;   /* ensure arrows are still tappable */
+    z-index: 10000 !important;
   }
   #modal-prev { left: 0.5rem !important; }
   #modal-next { right: 0.5rem !important; }
 
-  /* 4) FOOTER: collapse extra white‐space/padding */
-  .footer {
-    padding: 0.75rem 0.5rem;  /* reduce from 1rem/0.5rem if needed */
-  }
-  .footer-content {
-    gap: 0.5rem;             /* reduce gap between stacked columns */
-  }
-  .footer-column p,
-  .footer-column input,
-  .footer-column button {
-    font-size: 0.85rem;      /* slightly smaller so it doesn’t push height */
-  }
-
-  /* 5) RE-ENABLE “Menu ▾” dropdown links underneath header:
-     - Force the “Menu” button itself to sit on top,
-     - ensure you can scroll the hero beneath it. */
-  .main-nav .menu {
-    display: flex !important;      /* bring back the parent UL on mobile */
-    justify-content: center;
-  }
-  .main-nav .menu li:not(.dropdown) {
-    display: none;                 /* hide all top-level links except “Menu ▾” */
-  }
-  .main-nav .dropdown > a {
-    display: block;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    background: #fff;              /* ensure it’s not transparent over hero */
-    z-index: 2002;                 /* keep it above the hero */
+  /*--------------------------------------------------------
+    7) SECTION HEADERS: keep “flourish underline” under each <h2>
+    --------------------------------------------------------*/
+  .section h2 {
+    font-size: 1.75rem;
     position: relative;
+    padding-bottom: 0.5rem;
   }
-  .main-nav .simple-dropdown {
-    top: calc(100% + 2px) !important; /* right under header bottom-border */
-    left: 0 !important;
-    width: 100%;
-    transform: none !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-  .main-nav .simple-dropdown li a {
-    padding: 1rem 0;               /* larger tappable area */
-    font-size: 1rem;
+  .section h2::after {
+    content: '';
     display: block;
-    width: 100%;
-  }
-      /* ─────────────────────────────────────────────────────────
-     1a) FORCE both .dropdown-content & .simple-dropdown to full-width
-     on mobile, and let :focus/:active show/hide them
-     ───────────────────────────────────────────────────────── */
-  .main-nav .dropdown-content,
-  .main-nav .simple-dropdown {
-    display: none;           /* hide by default */
-    position: absolute;      /* anchor beneath header */
-    top: calc(100% + 2px);   /* just below header bottom border */
-    left: 0;                 /* flush left */
-    width: 100%;             /* full viewport width */
-    background: #fff;
-    border-top: 1px solid #000;
-    z-index: 2001;           /* sit on top of hero */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 60px;
+    height: 4px;
+    background-color: #d4af37;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
   }
 
-  /* 1b) when the “Menu” link is tapped (focus/active), show its submenu */
-  .main-nav .dropdown > a:focus + .dropdown-content,
-  .main-nav .dropdown > a:focus + .simple-dropdown,
-  .main-nav .dropdown > a:active + .dropdown-content,
-  .main-nav .dropdown > a:active + .simple-dropdown {
-    display: block;
-  }
-
-  /* 1c) enlarge each <li> so it’s easy to tap, and ensure full-width links */
-  .main-nav .dropdown-content li,
-  .main-nav .simple-dropdown li {
-    padding: 1rem 0;         /* big touch target */
-    border-bottom: 1px solid #eee;
-    text-align: center;
-  }
-  .main-nav .dropdown-content li:last-child,
-  .main-nav .simple-dropdown li:last-child {
-    border-bottom: none;
-  }
-  .main-nav .dropdown-content li a,
-  .main-nav .simple-dropdown li a {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 1rem;
-    color: #d4af37;
-    text-decoration: none;
-    display: block;          /* fills entire <li> */
-    width: 100%;
-  }
-    /* ─────────────────────────────────────────────────────────
-     3) SHRINK FOOTER PADDING & GAP for mobile
-     ───────────────────────────────────────────────────────── */
+  /*--------------------------------------------------------
+    8) FOOTER: collapse extra whitespace / padding
+    --------------------------------------------------------*/
   .footer {
-    padding: 0.75rem 0.5rem !important;   /* reduce from 2rem/1rem */
+    padding: 0.75rem 0.5rem !important;   /* shrink the top/bottom padding */
   }
   .footer-content {
-    gap: 0.5rem !important;   /* reduce the space between stacked columns */
-    max-width: 100% !important; /* let columns stack full-width */
+    gap: 0.5rem !important;              /* tighten gaps between columns */
+    max-width: 100% !important;          /* allow full-width stacking */
     margin: 0 auto !important;
   }
   .footer-column h4 {
