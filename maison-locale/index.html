@@ -314,6 +314,15 @@ if (e.target === modal) modal.classList.remove('open');
 });
 })();
 </script>
+ 
+ <script>
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown')) {
+      var link = document.querySelector('.main-nav .dropdown > a');
+      if (link) link.blur();
+    }
+  });
+</script>
 
 </body>
 </html>
