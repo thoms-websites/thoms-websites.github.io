@@ -511,8 +511,8 @@ body.loaded .parallax-hero {
 
 /* ============================================
    MOBILE OVERRIDES (≤ 768px)
-   Place this block at the very bottom of style.css,
-   and delete any other earlier `@media (max-width: 768px)` blocks.
+   Delete any previous “@media (max-width: 768px)” blocks
+   and paste exactly this block at the end of style.css.
    ============================================ */
 @media (max-width: 768px) {
 
@@ -552,6 +552,11 @@ body.loaded .parallax-hero {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     z-index: 2001;           /* float above hero */
     display: none;           /* hidden until <a> is focused/active */
+  }
+  .main-nav .dropdown > a {
+    outline: none;
+    position: relative;      /* so the simple-dropdown sits above hero */
+    z-index: 2001;           /* ensure link stays above hero */
   }
   .main-nav .dropdown > a:focus + .simple-dropdown,
   .main-nav .dropdown > a:active + .simple-dropdown {
