@@ -1,17 +1,22 @@
+/* ============================================
+   BASE STYLES (Desktop + Mobile)
+   ============================================ */
+
 /* Base & Nav */
 * {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-font-family: 'Libre Baskerville', serif; /* warmer, more readable body text */
-background: #fff;
-color: #333;                             /* switch to dark grey for better contrast */
-padding: 0;
+  font-family: 'Libre Baskerville', serif; /* warmer, more readable body text */
+  background: #fff;
+  color: #333;                             /* switch to dark grey for better contrast */
+  padding: 0;
 }
 
+/* Main navigation */
 .main-nav {
   position: sticky;
   top: 0;
@@ -21,522 +26,494 @@ padding: 0;
   background: #fff;
   padding: 1rem 2rem;
   border-bottom: 2px solid #000;
-  z-index: 2000; /* → ensures the header (and its dropdown) floats above the hero */
+  z-index: 2000; /* ensures the header (and its dropdown) floats above the hero */
 }
 
 /* Nav links & Section headings share the same “fancy” font */
 .main-nav .menu a,
 .section h2 {
-font-family: 'Playfair Display', serif;
-font-weight: 700;
-color: #d4af37;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: #d4af37;
 }
 
 .menu {
-list-style: none;
-display: flex;
-gap: 1.5rem;
-position: relative;
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  position: relative;
 }
 
 .menu a {
-position: relative;
-text-decoration: none;
-font-size: 1.125rem;
+  position: relative;
+  text-decoration: none;
+  font-size: 1.125rem;
 }
 
 .menu a::after {
-content: '';
-position: absolute;
-left: 0;
-bottom: -4px;
-width: 100%;
-height: 2px;
-background: #000;
-transform: scaleX(0);
-transform-origin: left;
-transition: transform 0.3s ease;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
 }
 
 .menu a:hover::after {
-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+/* Desktop “hover to show” dropdown */
+.main-nav .dropdown {
+  position: relative; /* anchor */
+}
+
+.main-nav .dropdown-content {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);    /* just below header border */
+  left: 50%;                /* center under the “Menu” */
+  transform: translateX(-50%);
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  min-width: 200px;         /* adjust to taste */
+  padding: 0.25rem 0;
+  z-index: 100;
+}
+
+.main-nav .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.main-nav .dropdown-content li {
+  list-style: none;
+}
+
+.main-nav .dropdown-content li a {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  color: #333;             /* darker text for readability */
+  font-size: 1rem;
+  text-align: center;      /* center the text */
+  transition: background 0.2s ease;
+}
+
+.main-nav .dropdown-content li a:hover {
+  background: #f5f5f5;
 }
 
 /* Global wrapper for consistent margins */
 .content-inner {
-max-width: 1200px;
-margin: 0 auto;
-padding: 0 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 /* Sections */
 .section {
-max-width: 1200px;
-margin: 6rem auto;      /* ↑ more separation top & bottom */
-padding: 0 1.5rem;
+  max-width: 1200px;
+  margin: 6rem auto;      /* ↑ more separation top & bottom */
+  padding: 0 1.5rem;
 }
 
 .section h2 {
-font-size: 2.5rem;
-margin-bottom: 1.5rem;
-text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
+
 .section p,
 .section li {
-font-size: 1.125rem;
-line-height: 1.6;
-margin-bottom: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
-/* —————————————————————— */
 /* Section header flourish */
 .section h2 {
-position: relative;
-padding-bottom: 0.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
 .section h2::after {
-content: '';
-display: block;
-width: 60px;              /* length of flourish */
-height: 4px;              /* thickness */
-background-color: #d4af37;/* gold color */
-margin: 0.5rem auto 0;    /* center under the text */
-border-radius: 2px;       /* soft edges */
-}
-
-/* Dropdown – modern refreshed look */
-.main-nav .dropdown {
-position: relative; /* anchor point */
-}
-
-.main-nav .dropdown-content {
-display: none;
-position: absolute;
-top: calc(100% + 4px);    /* just below header border */
-left: 50%;                /* center under the “Menu” */
-transform: translateX(-50%);
-background: #fff;
-border: 1px solid rgba(0,0,0,0.1);
-border-radius: 6px;
-box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-min-width: 200px;         /* adjust to taste */
-padding: 0.25rem 0;
-z-index: 100;
-}
-
-.main-nav .dropdown:hover .dropdown-content {
-display: block;
-}
-
-/*————————————————————————————————————————————
-  2) FORCE ONLY THE “Menu ▾” UL.simple-dropdown ON MOBILE
-     (desktop .dropdown-content remains hidden)
-————————————————————————————————————————————*/
-
-/* 2a) Hide the desktop-only dropdown completely */
-.main-nav .dropdown-content {
-  display: none !important;
-}
-
-/* 2b) Keep the <a> tappable/focusable for “Menu ▾” */
-.main-nav .dropdown > a {
-  outline: none;
-  position: relative; /* so the .simple-dropdown can sit above hero */
-  z-index: 2001;      /* sits just under the header */
-}
-
-/* 2c) Style & hide the mobile-only simple-dropdown by default */
-.main-nav .simple-dropdown {
-  position: absolute;
-  top: calc(100% + 2px);  /* directly below header bottom border */
-  left: 0;
-  width: 100%;
-  background: #fff;
-  border-top: 1px solid #000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  z-index: 2002;           /* floats above hero+header */
-  display: none;           /* shows only on focus/active */
-}
-
-/* 2d) Whenever “Menu ▾” is tapped/focused, show the UL.simple-dropdown */
-.main-nav .dropdown > a:focus + .simple-dropdown,
-.main-nav .dropdown > a:active + .simple-dropdown {
+  content: '';
   display: block;
-}
-
-/* 2e) Style each <li> inside that UL */
-.main-nav .simple-dropdown li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.main-nav .simple-dropdown li a {
-  display: block;
-  width: 100%;
-  padding: 1rem 0;               /* large touch target */
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 1rem;
-  text-align: center;
-  color: #d4af37;
-  text-decoration: none;
-  border-bottom: 1px solid #eee;
-}
-.main-nav .simple-dropdown li:last-child a {
-  border-bottom: none;
-}
-.main-nav .simple-dropdown li a:hover {
-  background: #f5f5f5;
-}
-
-/*———————————————————————————————————————————
-  3) FORCE THE CHEF’S SPECIALS MODAL ON TOP & SHOW TEXT
-———————————————————————————————————————————*/
-
-.slide-modal {
-  z-index: 3000 !important;  /* floats above header + hero */
-}
-.slide-modal.open {
-  display: flex !important;  /* override any stray “display:none” */
-}
-
-.main-nav .dropdown-content li {
-list-style: none;
-}
-
-.main-nav .dropdown-content li a {
-display: block;
-padding: 0.75rem 1.25rem;
-color: #333;             /* darker text for readability */
-font-size: 1rem;
-text-align: center;      /* center the text */
-transition: background 0.2s ease;
-}
-
-.main-nav .dropdown-content li a:hover {
-background: #f5f5f5;
+  width: 60px;              /* length of flourish */
+  height: 4px;              /* thickness */
+  background-color: #d4af37;/* gold color */
+  margin: 0.5rem auto 0;    /* center under the text */
+  border-radius: 2px;       /* soft edges */
 }
 
 /* HERO & LOGO OVERLAY */
 .parallax-hero {
-position: relative;
-height: 90vh;
-background: url('interior.jpg') center calc(40% + 20px)/cover fixed;
-border-bottom: 2px solid #000;
-transition: height 1s ease-out;
+  position: relative;
+  height: 90vh;
+  background: url('interior.jpg') center calc(40% + 20px)/cover fixed;
+  border-bottom: 2px solid #000;
+  transition: height 1s ease-out;
 }
+
 body.loaded .parallax-hero {
-height: 80vh;
+  height: 80vh;
 }
 
 /* 1. Starting state: centered big in hero */
 /* initial logo-overlay: centered & full size */
 .logo-overlay {
-position: absolute;
-top: 50%; left: 50%;
-transform: translate(-50%, -50%) scale(1);
-transform-origin: center center;
-transition: transform 0.6s ease-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center center;
+  transition: transform 0.6s ease-out;
 }
 
 /* Keep only the drop-shadow on the centered SVG */
 .logo-overlay svg {
-filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
-/* shrink+move into nav logo spot */
+/* shrink + move into nav logo spot */
 .logo-overlay.fly-home {
-/* adjust these translate() values until it lines up exactly: */
-transform: translate(1rem, 1rem) scale(0.25);
+  transform: translate(1rem, 1rem) scale(0.25);
 }
 
 /* HIDE/SHOW SITE CONTENT */
 .site-content {
-opacity: 0;
-transition: opacity 0.5s ease 2.6s;
+  opacity: 0;
+  transition: opacity 0.5s ease 2.6s;
 }
+
 .site-content.loaded {
-opacity: 1;
+  opacity: 1;
 }
 
 /* SMOOTH OUT THE STROKE ANIMATION */
 #logo-path {
-stroke-linecap: round;
-stroke-linejoin: round;
-/* fillOpacity is driven by JS */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* fillOpacity is driven by JS */
 }
 
 /* About */
 .about {
-display: flex;
-flex-wrap: wrap;
-gap: 2rem;
-align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
 }
-.about-text { flex: 1 1 300px; }
-.about-img { flex: 1 1 300px; text-align: center; }
+
+.about-text {
+  flex: 1 1 300px;
+}
+
+.about-img {
+  flex: 1 1 300px;
+  text-align: center;
+}
+
 .about-img img {
-width: 66%;
-max-width: 250px;
-border-radius: 8px;
-border: 2px solid #000; /* black border */
+  width: 66%;
+  max-width: 250px;
+  border-radius: 8px;
+  border: 2px solid #000; /* black border */
 }
-.caption { font-style: italic; margin-top: .5rem; }
+
+.caption {
+  font-style: italic;
+  margin-top: .5rem;
+}
 
 /* Carousel container */
 .special-carousel {
-display: flex;
-gap: 1rem;
-overflow-x: auto;       /* allow horizontal scrolling */
-overflow-y: visible;    /* let slides grow vertically on hover */
-position: relative;
-cursor: grab;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;       /* allow horizontal scrolling */
+  overflow-y: visible;    /* let slides grow vertically on hover */
+  position: relative;
+  cursor: grab;
 }
-.special-carousel.dragging { cursor: grabbing; }
-.special-carousel::-webkit-scrollbar { display: none; }
+
+.special-carousel.dragging {
+  cursor: grabbing;
+}
+
+.special-carousel::-webkit-scrollbar {
+  display: none;
+}
 
 /* Slides */
 .slide {
-width: 300px;
-flex-shrink: 0;
-display: flex;
-flex-direction: column;
-background: #fff;
-border: 2px solid #000;
-border-radius: 8px;
-overflow: hidden;
-transition:
-transform 0.3s ease,
-box-shadow 0.3s ease,
-border-width 0.3s ease;   /* ← add */
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 8px;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-width 0.3s ease;
 }
+
 .slide-img {
-height: 180px;
-background-size: cover;
-background-position: center;
-border-top-left-radius: 6px;
-border-top-right-radius: 6px;
-border-bottom: 2px solid #000;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: 2px solid #000;
 }
+
 .slide-info {
-padding: .75rem 1rem;
-background: #fff;
-flex: 1;
+  padding: .75rem 1rem;
+  background: #fff;
+  flex: 1;
 }
-.slide-info h3 { margin: 0 0 .3rem; font-size: 1.1rem; color: #000; }
-.slide-info p  { margin: 0; color: #555; }
+
+.slide-info h3 {
+  margin: 0 0 .3rem;
+  font-size: 1.1rem;
+  color: #000;
+}
+
+.slide-info p {
+  margin: 0;
+  color: #555;
+}
 
 /* Modal overlay & content */
 .slide-modal {
-display: none;
-position: fixed;
-inset: 0;
-background: rgba(0,0,0,0.85);
-align-items: center;
-justify-content: center;
-z-index: 100;
-}
-.slide-modal.open { display: flex; }
-.modal-content {
-position: relative;
-display: flex;
-background: #fff;
-border-radius: 8px;
-overflow: visible;
-max-width: 90vw;
-max-height: 90vh;
-animation: pop-in .3s ease-out forwards;
-}
-@keyframes pop-in {
-from { transform: scale(0.7); opacity: 0; }
-to   { transform: scale(1); opacity: 1; }
-}
-.slide:hover {
-transform: scale(1.03);
-box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-border-width: 4px;           /* ← double the border on hover */
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
 }
 
-/* Prev/Next */
-.modal-nav {
-position: fixed;
-top: 50%;
-transform: translateY(-50%);
-background: rgba(0,0,0,0.3);
-border: none;
-color: #fff;
-font-size: 2rem;
-width: 2.5rem;
-height: 2.5rem;
-cursor: pointer;
-z-index: 300;                /* ↑ ensure they float above everything */
-transition: transform 0.2s ease, background 0.2s ease;
+.slide-modal.open {
+  display: flex;
 }
+
+.modal-content {
+  position: relative;
+  display: flex;
+  background: #fff;
+  border-radius: 8px;
+  overflow: visible;
+  max-width: 90vw;
+  max-height: 90vh;
+  animation: pop-in .3s ease-out forwards;
+}
+
+@keyframes pop-in {
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.slide:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  border-width: 4px;           /* double the border on hover */
+}
+
+/* Prev/Next navigation for modal */
+.modal-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.3);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  z-index: 300;                /* ensure they float above everything */
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
 #modal-prev { left: 0.5rem; }  /* very close to left edge */
 #modal-next { right: 0.5rem; } /* very close to right edge */
 
 .modal-nav:hover {
-transform: translateY(-50%) scale(1.2);
-background: rgba(0,0,0,0.6);
+  transform: translateY(-50%) scale(1.2);
+  background: rgba(0,0,0,0.6);
 }
+
 .modal-content {
-position: relative;
-z-index: 150;   /* ensure the modal box sits below the arrows */
+  position: relative;
+  z-index: 150;   /* ensure the modal box sits below the arrows */
 }
 
 .modal-nav {
-z-index: 200;   /* arrows float above everything */
+  z-index: 200;   /* arrows float above everything */
 }
 
-/* Ensure they remain above the overlay */
+/* Ensure modal arrows remain above overlay */
 .slide-modal.open .modal-nav {
-display: block;
+  display: block;
 }
 
-/* Image & text */
+/* Image & text inside modal */
 #modal-image {
-width: 450px;
-object-fit: cover;
+  width: 450px;
+  object-fit: cover;
 }
-.modal-text {
-flex: 1;
-padding: 2rem;
-overflow-y: auto;
-}
-.modal-text h3 { margin: 0 0 1rem; font-size: 2rem; }
-.modal-text p  { margin: 0 0 1.5rem; line-height: 1.4; color: #333; }
 
-/* Close */
+.modal-text {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.modal-text h3 {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+}
+
+.modal-text p {
+  margin: 0 0 1.5rem;
+  line-height: 1.4;
+  color: #333;
+}
+
+/* Close button */
 #close-modal {
-position: absolute;
-top: 1rem;
-right: 1rem;
-background: transparent;
-border: none;
-font-size: 2rem;
-cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 /* Reservations (Airtable embed) */
 .reserve iframe {
-width: 100%;
-height: 533px;
-border: 1px solid #ccc;
-border-radius: 8px;
+  width: 100%;
+  height: 533px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
 /* Footer */
 .footer {
-width: 100%;                /* full-width container */
-background: #fff;
-color: #333;
-padding: 2rem 1rem;
-border-top: 2px solid #000; /* full-width divider */
+  width: 100%;                /* full-width container */
+  background: #fff;
+  color: #333;
+  padding: 2rem 1rem;
+  border-top: 2px solid #000; /* full-width divider */
 }
 
 .footer-content {
-max-width: 1200px;
-margin: 0 auto;             /* center inner content */
-display: flex;
-flex-wrap: wrap;
-gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;             /* center inner content */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
 .footer-column {
-flex: 1 1 300px;
+  flex: 1 1 300px;
 }
 
 .footer-column h4 {
-margin-bottom: 0.5rem;
-font-size: 1.2rem;
-color: #d4af37;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #d4af37;
 }
 
 .footer-column p {
-margin: 0 0 0.75rem;
-font-size: 0.9rem;
-line-height: 1.4;
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
 .footer-column form {
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .footer-column input[type="email"] {
-padding: 0.5rem;
-border: 1px solid #ccc;
-border-radius: 4px;
-font-size: 0.9rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
 }
 
 .footer-column button {
-padding: 0.5rem;
-border: none;
-background: #d4af37;
-color: #fff;
-font-size: 0.9rem;
-font-weight: bold;
-border-radius: 4px;
-cursor: pointer;
-transition: background 0.3s ease;
+  padding: 0.5rem;
+  border: none;
+  background: #d4af37;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .footer-column button:hover {
-background: #b5942f;
+  background: #b5942f;
 }
 
 .socials {
-margin-top: 1rem;
-display: flex;
-gap: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .socials a {
-display: inline-block;
+  display: inline-block;
 }
 
 .socials svg {
-width: 24px;
-height: 24px;
-fill: #d4af37;
-}
-
-@media (max-width: 768px) {
-.footer-content {
-flex-direction: column;
-align-items: flex-start;
-}
+  width: 24px;
+  height: 24px;
+  fill: #d4af37;
 }
 
 /* Carousel container – force visible overflow in all browsers */
 .special-carousel {
-overflow-x: auto !important;
-overflow-y: visible !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
 }
 
 /* Hovered slide – explicitly set larger border */
 .slide:hover {
-border-width: 4px !important;        /* ensure thicker border */
-transform: scale(1.03) !important;
-box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
-}
-#modal-next {
-left: auto;       /* override */
-right: 1rem;      /* next arrow on right edge */
-}
-.modal-nav:hover {
-transform: translateY(-50%) scale(1.2);
-background: rgba(0,0,0,0.6);
+  border-width: 4px !important;        /* ensure thicker border */
+  transform: scale(1.03) !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
 }
 
-/* ─────────────────────────────────────────────────────
+#modal-next {
+  left: auto;       /* override */
+  right: 1rem;      /* next arrow on right edge */
+}
+
+.modal-nav:hover {
+  transform: translateY(-50%) scale(1.2);
+  background: rgba(0,0,0,0.6);
+}
+
+/* ============================================
    MOBILE OVERRIDES (≤ 768px)
-   Delete any previous “@media (max-width: 768px)” blocks
-   and paste exactly this block at the end of style.css.
-   ───────────────────────────────────────────────────── */
+   Place this block at the very bottom of style.css,
+   and delete any other earlier `@media (max-width: 768px)` blocks.
+   ============================================ */
 @media (max-width: 768px) {
 
   /* 1) PARALLAX HERO: shrink 90vh → 80vh after logo animates */
@@ -548,31 +525,33 @@ background: rgba(0,0,0,0.6);
   body.loaded .parallax-hero {
     height: 80vh;
   }
-  /* If two parallax-hero blocks exist, hide the duplicate */
+  /* If two .parallax-hero blocks exist, hide the duplicate */
   body.loaded .parallax-hero + .parallax-hero {
     display: none;
   }
 
-  /* 2) HEADER / “Menu ▾” DROPDOWN */
+  /* 2) HEADER / “Menu ▾” DROPDOWN:
+       • Hide the desktop‐only dropdown (.dropdown-content).
+       • Show only the <ul class="simple-dropdown"> on focus/active. */
   .main-nav {
     position: relative; /* anchor for dropdown */
-    z-index: 2000;      /* above the hero */
+    z-index: 2000;      /* keep header above hero */
   }
-  /* Hide any leftover desktop‐only dropdown */
+  /* Hide desktop dropdown on mobile */
   .main-nav .dropdown-content {
     display: none !important;
   }
-  /* Force the UL.simple-dropdown into view on tap/focus */
+  /* Force the mobile UL.simple-dropdown into view when “Menu ▾” is tapped/focused */
   .main-nav .simple-dropdown {
     position: absolute;
-    top: calc(100% + 2px);
-    left: 0; 
+    top: calc(100% + 2px);  /* sits immediately beneath header border */
+    left: 0;                 /* flush left */
     width: 100%;
     background: #fff;
     border-top: 1px solid #000;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    z-index: 2001; 
-    display: none;
+    z-index: 2001;           /* float above hero */
+    display: none;           /* hidden until <a> is focused/active */
   }
   .main-nav .dropdown > a:focus + .simple-dropdown,
   .main-nav .dropdown > a:active + .simple-dropdown {
@@ -586,7 +565,7 @@ background: rgba(0,0,0,0.6);
   .main-nav .simple-dropdown li a {
     display: block;
     width: 100%;
-    padding: 1rem 0;
+    padding: 1rem 0;              /* large tappable area */
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     font-size: 1rem;
@@ -602,43 +581,10 @@ background: rgba(0,0,0,0.6);
     background: #f5f5f5;
   }
 
-  /* 3) CENTERED SVG LOGO: enlarge & re-center (no white box) */
-  .logo-overlay {
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) scale(3) !important;
-    z-index: 1500;              /* floats above hero */
-    transition: none !important;/* instant on load */
-  }
-  .logo-overlay svg {
-    width: 100px;    /* base; parent scale × 3 → ~300px */
-    height: auto;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-  }
-
-  /* 4) CHEF’S SPECIALS CAROUSEL: fluid drag + scroll-snap */
-  .special-carousel {
-    display: flex;
-    gap: 0.5rem;                /* tighten gap */
-    padding: 0 0.5rem;          /* small side padding */
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    position: relative;
-  }
-  .special-carousel::-webkit-scrollbar {
-    display: none;
-  }
-  .special-carousel .slide {
-    flex: 0 0 90%;
-    max-width: 280px;
-    scroll-snap-align: center;
-  }
-
-  /* 5) CHEF’S SPECIALS MODAL: on-top, show title+desc */
+  /* 3) CHEF’S SPECIALS MODAL: force on‐top & show image + title/desc */
   .slide-modal {
-    z-index: 3000 !important; /* floats above header+hero */
-    display: none; /* toggled by JS */
+    z-index: 3000 !important;   /* float above header + hero */
+    display: none;              /* default hidden; JS toggles “.open” */
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.85);
@@ -662,7 +608,7 @@ background: rgba(0,0,0,0.6);
   .slide-modal img {
     display: block;
     margin: 0 auto;
-    max-height: 45vh !important; /* keep title+desc visible */
+    max-height: 45vh !important;   /* keep title + description visible */
     width: auto;
     object-fit: contain;
   }
@@ -694,7 +640,7 @@ background: rgba(0,0,0,0.6);
     right: 0.5rem !important;
   }
 
-  /* 6) SECTION HEADERS: keep the gold “flourish” under each <h2> */
+  /* 4) SECTION HEADERS: keep gold “flourish” under each <h2> */
   .section h2 {
     font-size: 1.75rem;
     position: relative;
@@ -710,7 +656,26 @@ background: rgba(0,0,0,0.6);
     border-radius: 2px;
   }
 
-  /* 7) FOOTER: collapse whitespace & padding */
+  /* 5) CHEF’S SPECIALS CAROUSEL: fluid drag + infinite/auto-scroll */
+  .special-carousel {
+    display: flex;
+    gap: 0.5rem;            /* tighten gap on mobile */
+    padding: 0 0.5rem;      /* small side padding */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+  .special-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .special-carousel .slide {
+    flex: 0 0 90%;
+    max-width: 280px;
+    scroll-snap-align: center;
+  }
+
+  /* 6) FOOTER: collapse extra whitespace/padding */
   .footer {
     padding: 0.75rem 0.5rem !important;
   }
@@ -731,7 +696,7 @@ background: rgba(0,0,0,0.6);
     font-size: 0.85rem !important;
   }
 
-  /* 8) SMOOTH scroll-snap (no vertical bounce) */
+  /* 7) SMOOTH scroll-snap (no vertical bounce) */
   .special-carousel,
   .special-carousel .slide {
     scroll-snap-type: x mandatory;
