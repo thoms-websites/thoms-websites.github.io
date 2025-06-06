@@ -1,8 +1,13 @@
-/* ============================================
-   BASE STYLES (Desktop + Mobile)
-   ============================================ */
+/* ==================================================
+   style.css for Maison Locale
+   ————————————————————————————————————————————————
+   1) Desktop (base) styles
+   2) Mobile overrides at the bottom (≤ 768px)
+   ================================================== */
 
-/* Base & Nav */
+/* ————————————————————————————
+   1) BASE (DESKTOP) & NAV
+   ———————————————————————————— */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,7 +21,11 @@ body {
   padding: 0;
 }
 
-/* Main navigation */
+/* Prevent any duplicate hero sections: if two .parallax-hero elements exist, hide the second */
+.parallax-hero + .parallax-hero {
+  display: none;
+}
+
 .main-nav {
   position: sticky;
   top: 0;
@@ -26,7 +35,7 @@ body {
   background: #fff;
   padding: 1rem 2rem;
   border-bottom: 2px solid #000;
-  z-index: 2000; /* ensures the header (and its dropdown) floats above the hero */
+  z-index: 2000; /* → ensures the header (and its dropdown) floats above the hero */
 }
 
 /* Nav links & Section headings share the same “fancy” font */
@@ -67,16 +76,16 @@ body {
   transform: scaleX(1);
 }
 
-/* Desktop “hover to show” dropdown */
+/* Desktop dropdown (hover to open) */
 .main-nav .dropdown {
-  position: relative; /* anchor */
+  position: relative; /* anchor point */
 }
 
 .main-nav .dropdown-content {
   display: none;
   position: absolute;
   top: calc(100% + 4px);    /* just below header border */
-  left: 50%;                /* center under the “Menu” */
+  left: 50%;                /* center under the “Menu” link */
   transform: translateX(-50%);
   background: #fff;
   border: 1px solid rgba(0,0,0,0.1);
@@ -86,15 +95,12 @@ body {
   padding: 0.25rem 0;
   z-index: 100;
 }
-
 .main-nav .dropdown:hover .dropdown-content {
   display: block;
 }
-
 .main-nav .dropdown-content li {
   list-style: none;
 }
-
 .main-nav .dropdown-content li a {
   display: block;
   padding: 0.75rem 1.25rem;
@@ -103,7 +109,6 @@ body {
   text-align: center;      /* center the text */
   transition: background 0.2s ease;
 }
-
 .main-nav .dropdown-content li a:hover {
   background: #f5f5f5;
 }
@@ -121,26 +126,22 @@ body {
   margin: 6rem auto;      /* ↑ more separation top & bottom */
   padding: 0 1.5rem;
 }
-
 .section h2 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
   text-align: center;
 }
-
 .section p,
 .section li {
   font-size: 1.125rem;
   line-height: 1.6;
   margin-bottom: 1rem;
 }
-
 /* Section header flourish */
 .section h2 {
   position: relative;
   padding-bottom: 0.5rem;
 }
-
 .section h2::after {
   content: '';
   display: block;
@@ -159,7 +160,6 @@ body {
   border-bottom: 2px solid #000;
   transition: height 1s ease-out;
 }
-
 body.loaded .parallax-hero {
   height: 80vh;
 }
@@ -168,20 +168,18 @@ body.loaded .parallax-hero {
 /* initial logo-overlay: centered & full size */
 .logo-overlay {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%) scale(1);
   transform-origin: center center;
   transition: transform 0.6s ease-out;
 }
-
 /* Keep only the drop-shadow on the centered SVG */
 .logo-overlay svg {
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
-
-/* shrink + move into nav logo spot */
+/* shrink+move into nav logo spot */
 .logo-overlay.fly-home {
+  /* adjust these translate() values until it lines up exactly: */
   transform: translate(1rem, 1rem) scale(0.25);
 }
 
@@ -190,7 +188,6 @@ body.loaded .parallax-hero {
   opacity: 0;
   transition: opacity 0.5s ease 2.6s;
 }
-
 .site-content.loaded {
   opacity: 1;
 }
@@ -209,27 +206,15 @@ body.loaded .parallax-hero {
   gap: 2rem;
   align-items: center;
 }
-
-.about-text {
-  flex: 1 1 300px;
-}
-
-.about-img {
-  flex: 1 1 300px;
-  text-align: center;
-}
-
+.about-text { flex: 1 1 300px; }
+.about-img { flex: 1 1 300px; text-align: center; }
 .about-img img {
   width: 66%;
   max-width: 250px;
   border-radius: 8px;
   border: 2px solid #000; /* black border */
 }
-
-.caption {
-  font-style: italic;
-  margin-top: .5rem;
-}
+.caption { font-style: italic; margin-top: .5rem; }
 
 /* Carousel container */
 .special-carousel {
@@ -240,14 +225,8 @@ body.loaded .parallax-hero {
   position: relative;
   cursor: grab;
 }
-
-.special-carousel.dragging {
-  cursor: grabbing;
-}
-
-.special-carousel::-webkit-scrollbar {
-  display: none;
-}
+.special-carousel.dragging { cursor: grabbing; }
+.special-carousel::-webkit-scrollbar { display: none; }
 
 /* Slides */
 .slide {
@@ -262,9 +241,8 @@ body.loaded .parallax-hero {
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
-    border-width 0.3s ease;
+    border-width 0.3s ease;   /* ← add */
 }
-
 .slide-img {
   height: 180px;
   background-size: cover;
@@ -273,23 +251,13 @@ body.loaded .parallax-hero {
   border-top-right-radius: 6px;
   border-bottom: 2px solid #000;
 }
-
 .slide-info {
   padding: .75rem 1rem;
   background: #fff;
   flex: 1;
 }
-
-.slide-info h3 {
-  margin: 0 0 .3rem;
-  font-size: 1.1rem;
-  color: #000;
-}
-
-.slide-info p {
-  margin: 0;
-  color: #555;
-}
+.slide-info h3 { margin: 0 0 .3rem; font-size: 1.1rem; color: #000; }
+.slide-info p  { margin: 0; color: #555; }
 
 /* Modal overlay & content */
 .slide-modal {
@@ -301,11 +269,7 @@ body.loaded .parallax-hero {
   justify-content: center;
   z-index: 100;
 }
-
-.slide-modal.open {
-  display: flex;
-}
-
+.slide-modal.open { display: flex; }
 .modal-content {
   position: relative;
   display: flex;
@@ -316,19 +280,17 @@ body.loaded .parallax-hero {
   max-height: 90vh;
   animation: pop-in .3s ease-out forwards;
 }
-
 @keyframes pop-in {
   from { transform: scale(0.7); opacity: 0; }
   to   { transform: scale(1); opacity: 1; }
 }
-
 .slide:hover {
   transform: scale(1.03);
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  border-width: 4px;           /* double the border on hover */
+  border-width: 4px;           /* ← double the border on hover */
 }
 
-/* Prev/Next navigation for modal */
+/* Prev/Next */
 .modal-nav {
   position: fixed;
   top: 50%;
@@ -340,56 +302,41 @@ body.loaded .parallax-hero {
   width: 2.5rem;
   height: 2.5rem;
   cursor: pointer;
-  z-index: 300;                /* ensure they float above everything */
+  z-index: 300;                /* ↑ ensure they float above everything */
   transition: transform 0.2s ease, background 0.2s ease;
 }
-
 #modal-prev { left: 0.5rem; }  /* very close to left edge */
 #modal-next { right: 0.5rem; } /* very close to right edge */
-
 .modal-nav:hover {
   transform: translateY(-50%) scale(1.2);
   background: rgba(0,0,0,0.6);
 }
-
 .modal-content {
   position: relative;
   z-index: 150;   /* ensure the modal box sits below the arrows */
 }
-
 .modal-nav {
   z-index: 200;   /* arrows float above everything */
 }
-
-/* Ensure modal arrows remain above overlay */
+/* Ensure arrows remain above overlay */
 .slide-modal.open .modal-nav {
   display: block;
 }
 
-/* Image & text inside modal */
+/* Image & text */
 #modal-image {
   width: 450px;
   object-fit: cover;
 }
-
 .modal-text {
   flex: 1;
   padding: 2rem;
   overflow-y: auto;
 }
+.modal-text h3 { margin: 0 0 1rem; font-size: 2rem; }
+.modal-text p  { margin: 0 0 1.5rem; line-height: 1.4; color: #333; }
 
-.modal-text h3 {
-  margin: 0 0 1rem;
-  font-size: 2rem;
-}
-
-.modal-text p {
-  margin: 0 0 1.5rem;
-  line-height: 1.4;
-  color: #333;
-}
-
-/* Close button */
+/* Close */
 #close-modal {
   position: absolute;
   top: 1rem;
@@ -416,7 +363,6 @@ body.loaded .parallax-hero {
   padding: 2rem 1rem;
   border-top: 2px solid #000; /* full-width divider */
 }
-
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;             /* center inner content */
@@ -424,36 +370,30 @@ body.loaded .parallax-hero {
   flex-wrap: wrap;
   gap: 2rem;
 }
-
 .footer-column {
   flex: 1 1 300px;
 }
-
 .footer-column h4 {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
   color: #d4af37;
 }
-
 .footer-column p {
   margin: 0 0 0.75rem;
   font-size: 0.9rem;
   line-height: 1.4;
 }
-
 .footer-column form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-
 .footer-column input[type="email"] {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 0.9rem;
 }
-
 .footer-column button {
   padding: 0.5rem;
   border: none;
@@ -465,58 +405,31 @@ body.loaded .parallax-hero {
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
 .footer-column button:hover {
   background: #b5942f;
 }
-
 .socials {
   margin-top: 1rem;
   display: flex;
   gap: 1rem;
 }
-
 .socials a {
   display: inline-block;
 }
-
 .socials svg {
   width: 24px;
   height: 24px;
   fill: #d4af37;
 }
 
-/* Carousel container – force visible overflow in all browsers */
-.special-carousel {
-  overflow-x: auto !important;
-  overflow-y: visible !important;
-}
-
-/* Hovered slide – explicitly set larger border */
-.slide:hover {
-  border-width: 4px !important;        /* ensure thicker border */
-  transform: scale(1.03) !important;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
-}
-
-#modal-next {
-  left: auto;       /* override */
-  right: 1rem;      /* next arrow on right edge */
-}
-
-.modal-nav:hover {
-  transform: translateY(-50%) scale(1.2);
-  background: rgba(0,0,0,0.6);
-}
-
-/* ============================================
-   MOBILE OVERRIDES (≤ 768px)
-   Delete any previous “@media (max-width: 768px)” blocks
-   and paste exactly this block at the end of style.css.
-   ============================================ */
+/* --------------------------------------------------
+   2) MOBILE OVERRIDES (≤ 768px)
+   — delete any other @media (max-width: 768px) blocks
+   — paste exactly this at the very end of style.css
+   -------------------------------------------------- */
 @media (max-width: 768px) {
 
-  /* 1) PARALLAX HERO: shrink 90vh → 80vh after logo animates */
+  /* 1) PARALLAX HERO: shrink from 90vh → 80vh after logo animates */
   .parallax-hero {
     height: 90vh;
     background-attachment: scroll; /* performance on mobile */
@@ -525,26 +438,24 @@ body.loaded .parallax-hero {
   body.loaded .parallax-hero {
     height: 80vh;
   }
-  /* If two .parallax-hero blocks exist, hide the duplicate */
+  /* If two .parallax-hero sections accidentally exist, hide the second */
   body.loaded .parallax-hero + .parallax-hero {
     display: none;
   }
 
-  /* 2) HEADER / “Menu ▾” DROPDOWN:
-       • Hide the desktop‐only dropdown (.dropdown-content).
-       • Show only the <ul class="simple-dropdown"> on focus/active. */
+  /* 2) HEADER / “Menu ▾” DROPDOWN (mobile) */
   .main-nav {
-    position: relative; /* anchor for dropdown */
-    z-index: 2000;      /* keep header above hero */
+    position: relative;  /* anchor for dropdown */
+    z-index: 2000;       /* keep header above hero */
   }
-  /* Hide desktop dropdown on mobile */
+  /* Hide the desktop‐only dropdown on mobile */
   .main-nav .dropdown-content {
     display: none !important;
   }
-  /* Force the mobile UL.simple-dropdown into view when “Menu ▾” is tapped/focused */
+  /* Force the UL.simple-dropdown into view when “Menu ▾” is tapped/focused */
   .main-nav .simple-dropdown {
     position: absolute;
-    top: calc(100% + 2px);  /* sits immediately beneath header border */
+    top: calc(100% + 2px);  /* sits immediately beneath header bottom border */
     left: 0;                 /* flush left */
     width: 100%;
     background: #fff;
@@ -552,11 +463,6 @@ body.loaded .parallax-hero {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     z-index: 2001;           /* float above hero */
     display: none;           /* hidden until <a> is focused/active */
-  }
-  .main-nav .dropdown > a {
-    outline: none;
-    position: relative;      /* so the simple-dropdown sits above hero */
-    z-index: 2001;           /* ensure link stays above hero */
   }
   .main-nav .dropdown > a:focus + .simple-dropdown,
   .main-nav .dropdown > a:active + .simple-dropdown {
@@ -586,10 +492,43 @@ body.loaded .parallax-hero {
     background: #f5f5f5;
   }
 
-  /* 3) CHEF’S SPECIALS MODAL: force on‐top & show image + title/desc */
+  /* 3) CENTERED SVG LOGO: enlarge & re-center (no white box) */
+  .logo-overlay {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) scale(3) !important;
+    z-index: 1500;              /* floats above hero */
+    transition: none !important;/* instant on load */
+  }
+  .logo-overlay svg {
+    width: 100px;    /* base size; parent scale ×3 → ~300px */
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  }
+
+  /* 4) CHEF’S SPECIALS CAROUSEL: fluid drag + scroll-snap */
+  .special-carousel {
+    display: flex;
+    gap: 0.5rem;                /* tighten gap */
+    padding: 0 0.5rem;          /* small side padding */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+  .special-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .special-carousel .slide {
+    flex: 0 0 90%;           /* ~90% of viewport width */
+    max-width: 280px;
+    scroll-snap-align: center;
+  }
+
+  /* 5) CHEF’S SPECIALS MODAL: on-top & show title+desc */
   .slide-modal {
-    z-index: 3000 !important;   /* float above header + hero */
-    display: none;              /* default hidden; JS toggles “.open” */
+    z-index: 3000 !important; /* floats above header + hero */
+    display: none;            /* toggled by JS */
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.85);
@@ -613,7 +552,7 @@ body.loaded .parallax-hero {
   .slide-modal img {
     display: block;
     margin: 0 auto;
-    max-height: 45vh !important;   /* keep title + description visible */
+    max-height: 45vh !important; /* keep title+desc visible */
     width: auto;
     object-fit: contain;
   }
@@ -645,7 +584,7 @@ body.loaded .parallax-hero {
     right: 0.5rem !important;
   }
 
-  /* 4) SECTION HEADERS: keep gold “flourish” under each <h2> */
+  /* 6) SECTION HEADERS: keep the gold “flourish” under each <h2> */
   .section h2 {
     font-size: 1.75rem;
     position: relative;
@@ -661,26 +600,7 @@ body.loaded .parallax-hero {
     border-radius: 2px;
   }
 
-  /* 5) CHEF’S SPECIALS CAROUSEL: fluid drag + infinite/auto-scroll */
-  .special-carousel {
-    display: flex;
-    gap: 0.5rem;            /* tighten gap on mobile */
-    padding: 0 0.5rem;      /* small side padding */
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    position: relative;
-  }
-  .special-carousel::-webkit-scrollbar {
-    display: none;
-  }
-  .special-carousel .slide {
-    flex: 0 0 90%;
-    max-width: 280px;
-    scroll-snap-align: center;
-  }
-
-  /* 6) FOOTER: collapse extra whitespace/padding */
+  /* 7) FOOTER: collapse extra whitespace/padding */
   .footer {
     padding: 0.75rem 0.5rem !important;
   }
@@ -701,7 +621,7 @@ body.loaded .parallax-hero {
     font-size: 0.85rem !important;
   }
 
-  /* 7) SMOOTH scroll-snap (no vertical bounce) */
+  /* 8) SMOOTH scroll-snap (no vertical bounce) */
   .special-carousel,
   .special-carousel .slide {
     scroll-snap-type: x mandatory;
