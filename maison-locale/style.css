@@ -21,7 +21,7 @@ body {
   padding: 0;
 }
 
-/* Prevent any duplicate hero sections: if two .parallax-hero elements exist, hide the second */
+/* Hide any unintended duplicate parallax-hero on desktop/mobile */
 .parallax-hero + .parallax-hero {
   display: none;
 }
@@ -35,7 +35,7 @@ body {
   background: #fff;
   padding: 1rem 2rem;
   border-bottom: 2px solid #000;
-  z-index: 2000; /* → ensures the header (and its dropdown) floats above the hero */
+  z-index: 2000; /* ensures the header (and its dropdown) floats above the hero */
 }
 
 /* Nav links & Section headings share the same “fancy” font */
@@ -156,7 +156,8 @@ body {
 .parallax-hero {
   position: relative;
   height: 90vh;
-  background: url('interior.jpg') center calc(40% + 20px)/cover fixed;
+  background: url('interior.jpg') center calc(40% + 20px)/cover no-repeat;
+  background-attachment: fixed;
   border-bottom: 2px solid #000;
   transition: height 1s ease-out;
 }
@@ -268,8 +269,12 @@ body.loaded .parallax-hero {
   align-items: center;
   justify-content: center;
   z-index: 100;
+  pointer-events: auto;
 }
-.slide-modal.open { display: flex; }
+.slide-modal.open {
+  display: flex !important;  /* force-show when JS adds .open */
+  pointer-events: auto;
+}
 .modal-content {
   position: relative;
   display: flex;
@@ -287,7 +292,7 @@ body.loaded .parallax-hero {
 .slide:hover {
   transform: scale(1.03);
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  border-width: 4px;           /* ← double the border on hover */
+  border-width: 4px;           /* ↑ double the border on hover */
 }
 
 /* Prev/Next */
@@ -432,6 +437,7 @@ body.loaded .parallax-hero {
   /* 1) PARALLAX HERO: shrink from 90vh → 80vh after logo animates */
   .parallax-hero {
     height: 90vh;
+    background: url('interior.jpg') center calc(40% + 20px)/cover no-repeat;
     background-attachment: scroll; /* performance on mobile */
     z-index: 0;                    /* sits under header */
   }
@@ -452,7 +458,7 @@ body.loaded .parallax-hero {
   .main-nav .dropdown-content {
     display: none !important;
   }
-  /* Force the UL.simple-dropdown into view when “Menu ▾” is tapped/focused */
+  /* Force the <ul class="simple-dropdown"> into view when “Menu ▾” is tapped/focused */
   .main-nav .simple-dropdown {
     position: absolute;
     top: calc(100% + 2px);  /* sits immediately beneath header bottom border */
@@ -463,6 +469,7 @@ body.loaded .parallax-hero {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     z-index: 2001;           /* float above hero */
     display: none;           /* hidden until <a> is focused/active */
+    pointer-events: auto;
   }
   .main-nav .dropdown > a:focus + .simple-dropdown,
   .main-nav .dropdown > a:active + .simple-dropdown {
@@ -534,9 +541,11 @@ body.loaded .parallax-hero {
     background: rgba(0,0,0,0.85);
     align-items: center;
     justify-content: center;
+    pointer-events: auto;
   }
   .slide-modal.open {
     display: flex !important;
+    pointer-events: auto;
   }
   .slide-modal .modal-content {
     width: 90vw !important;
