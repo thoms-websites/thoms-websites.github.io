@@ -823,3 +823,158 @@ background: rgba(0,0,0,0.6);
     font-size: 0.85rem !important;
   }
 }
+/* ─────────────────────────────────────────────────────
+   MOBILE FIXES (≤ 768px)
+   Paste this _after_ everything else in style.css.
+   ───────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* 1) HIDE desktop‐only dropdown, SHOW full‐width simple‐dropdown */
+  .main-nav .dropdown-content {
+    display: none !important;
+  }
+  /* target the same <ul> via its “simple-dropdown” class */
+  .main-nav .simple-dropdown {
+    position: absolute;
+    top: calc(100% + 2px);   /* directly under header bottom border */
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 9999;
+    display: none;           /* hidden until “Menu” is focused/active */
+  }
+  /* when you tap or focus “Menu ▾” link, show the simple-dropdown UL */
+  .main-nav .dropdown > a:focus + .simple-dropdown,
+  .main-nav .dropdown > a:active + .simple-dropdown {
+    display: block;
+  }
+  .main-nav .simple-dropdown li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .main-nav .simple-dropdown li a {
+    display: block;
+    width: 100%;
+    padding: 1rem 0;              /* large tap target */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #d4af37;
+    text-decoration: none;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+  .main-nav .simple-dropdown li:last-child a {
+    border-bottom: none;
+  }
+  .main-nav .simple-dropdown li a:hover {
+    background: #f5f5f5;
+  }
+
+  /* 2) FORCE slide‐modal ON TOP & show content (image + title/desc) */
+  .slide-modal {
+    z-index: 3000 !important;
+    display: none; /* remains hidden until JS adds “.open” */
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    align-items: center;
+    justify-content: center;
+  }
+  .slide-modal.open {
+    display: flex !important;
+  }
+  .slide-modal .modal-content {
+    width: 90vw !important;
+    max-width: 90vw !important;
+    max-height: 80vh !important;
+    overflow: auto !important;
+    background: #fff;
+    border-radius: 8px;
+    animation: pop-in .3s ease-out forwards;
+    position: relative;
+    z-index: 3001;
+  }
+  .slide-modal img {
+    display: block;
+    margin: 0 auto;
+    max-height: 45vh !important;  /* keep title/desc visible */
+    width: auto;
+    object-fit: contain;
+  }
+  .modal-text {
+    padding: 1rem !important;
+    font-size: 0.9rem !important;
+    overflow-y: auto !important;
+  }
+  .modal-text h3 {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.5rem;
+  }
+  .modal-text p {
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    color: #333;
+  }
+  .modal-nav {
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 1.5rem !important;
+    z-index: 3002 !important;
+  }
+  #modal-prev { left: 0.5rem !important; }
+  #modal-next { right: 0.5rem !important; }
+  #close-modal {
+    font-size: 1.8rem !important;
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+  }
+
+  /* 3) SHRINK footer padding & gaps */
+  .footer {
+    padding: 0.75rem 0.5rem !important;
+  }
+  .footer-content {
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .footer-column h4 {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .footer-column p,
+  .footer-column input,
+  .footer-column button {
+    font-size: 0.85rem !important;
+  }
+
+  /* 4) KEEP section‐header flourish on mobile unchanged */
+  .section h2::after {
+    /* already defined above; no extra mobile change needed here */
+  }
+
+  /* 5) ENSURE slide‐carousel uses smooth scroll‐snap */
+  .special-carousel {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+  .special-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .special-carousel .slide {
+    flex: 0 0 90%;
+    max-width: 280px;
+    scroll-snap-align: center;
+  }
+}
