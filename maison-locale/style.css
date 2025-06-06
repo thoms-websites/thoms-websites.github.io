@@ -693,3 +693,133 @@ background: rgba(0,0,0,0.6);
     scroll-behavior: smooth;
   }
 }
+/* ─────────────────────────────────────────────────────
+   MOBILE HOTFIXES (≤ 768px)
+   Paste this after everything else in style.css.
+   ───────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* 1) FULL‐WIDTH “Menu ▾” DROPDOWN 
+        • Hide any leftover desktop dropdown positioning.
+        • Show the UL.simple-dropdown (Entrées, Mains, Desserts, Drinks)
+          when the “Menu” link is focused/active. */
+  .main-nav .dropdown-content {
+    display: none !important;      /* cancel any previous desktop rules */
+  }
+  .main-nav .simple-dropdown {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 9999;
+    display: none;
+  }
+  .main-nav .dropdown > a:focus + .simple-dropdown,
+  .main-nav .dropdown > a:active + .simple-dropdown {
+    display: block;
+  }
+  .main-nav .simple-dropdown li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .main-nav .simple-dropdown li a {
+    display: block;
+    width: 100%;
+    padding: 1rem 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #d4af37;
+    text-decoration: none;
+    text-align: center;
+  }
+  .main-nav .simple-dropdown li a:hover {
+    background: #f5f5f5;
+  }
+
+  /* 2) CHEF’S SPECIALS MODAL: force on‐top & show title/desc
+        • Override any earlier “display:none” on .slide-modal when .open
+        • Allow overflow if content is tall. */
+  .slide-modal {
+    z-index: 3000 !important;
+    display: none; /* default hidden; JS toggles .open */
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    align-items: center;
+    justify-content: center;
+  }
+  .slide-modal.open {
+    display: flex !important;
+  }
+  .slide-modal .modal-content {
+    width: 90vw !important;
+    max-width: 90vw !important;
+    max-height: 80vh !important;
+    overflow: auto !important;
+    background: #fff;
+    border-radius: 8px;
+    animation: pop-in .3s ease-out forwards;
+    position: relative;
+    z-index: 3001;
+  }
+  .slide-modal img {
+    display: block;
+    margin: 0 auto;
+    max-height: 45vh !important;
+    width: auto;
+    object-fit: contain;
+  }
+  .modal-text {
+    padding: 1rem !important;
+    font-size: 0.9rem !important;
+    overflow-y: auto !important;
+  }
+  .modal-text h3 {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.5rem;
+  }
+  .modal-text p {
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    color: #333;
+  }
+  .modal-nav {
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 1.5rem !important;
+    z-index: 3002 !important;
+  }
+  #modal-prev { left: 0.5rem !important; }
+  #modal-next { right: 0.5rem !important; }
+  #close-modal {
+    font-size: 1.8rem !important;
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+  }
+
+  /* 3) FOOTER: collapse extra whitespace/padding */
+  .footer {
+    padding: 0.75rem 0.5rem !important;
+  }
+  .footer-content {
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .footer-column h4 {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .footer-column p,
+  .footer-column input,
+  .footer-column button {
+    font-size: 0.85rem !important;
+  }
+}
