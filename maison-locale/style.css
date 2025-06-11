@@ -428,23 +428,8 @@ body.loaded .parallax-hero {
 }
 
 @media (max-width: 768px) {
-  /* – Restore the original working mobile menu baseline – */
 
-  /* 1) Parallax hero shrink just as on desktop */
-  .parallax-hero {
-    height: 90vh;
-    background-attachment: scroll;
-    z-index: 0;
-  }
-  body.loaded .parallax-hero {
-    height: 80vh;
-  }
-
-  /* 2) HEADER: show only “Menu ▾” and full-width dropdown */
-  .main-nav {
-    position: relative;
-    z-index: 2000;
-  }
+  /* 1) Kill desktop hover‐menu, bring back mobile .simple-dropdown */
   .main-nav .dropdown-content {
     display: none !important;
   }
@@ -458,43 +443,62 @@ body.loaded .parallax-hero {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     z-index: 2001;
     display: none;
+    pointer-events: auto;
   }
   .main-nav .dropdown > a:focus + .simple-dropdown,
   .main-nav .dropdown > a:active + .simple-dropdown {
     display: block;
   }
-  /* hide the extra links */
+  /* hide other links */
   .main-nav .menu li:not(.dropdown) {
     display: none;
   }
 
-  /* ─────────────────────────────────────────────────────
-     ↓ Your three tweaks ↓
-     ───────────────────────────────────────────────────── */
-
-  /* A) Logo scale down to 1.5× (not 3×) for mobile */
+  /* 2) Scale the centered SVG down to ~1× so it never overflows */
   .logo-overlay {
-    transform: translate(-50%, -50%) scale(1.5) !important;
+    transform: translate(-50%, -50%) scale(1) !important;
     z-index: 1500 !important;
   }
+  .logo-overlay svg {
+    width: 80px !important;
+    height: auto;
+  }
 
-  /* B) Make sure the slide‐modal shows title + desc */
+  /* 3) Modal should show image + title/desc without horizontal scrolling */
   .slide-modal.open {
     display: flex !important;
     z-index: 3000 !important;
   }
   .slide-modal .modal-content {
+    display: flex;
+    flex-direction: column;
     width: 90vw !important;
     max-height: 80vh !important;
-    overflow: auto !important;
+    overflow: hidden;
+  }
+  .slide-modal img {
+    flex-shrink: 0;
+    max-height: 40vh !important;
+    width: auto !important;
+    margin: 0 auto;
   }
   .modal-text {
-    max-height: 35vh !important;
+    flex: 1;
+    max-height: calc(80vh - 40vh - 3rem) !important;
     overflow-y: auto !important;
+    padding: 1rem !important;
   }
 
-  /* C) Footer resets to your base style (no mobile padding/gap tweaks) */
-  /* – nothing here; just don’t include any footer overrides – */
+  /* 4) Footer: revert to your base footer style—no mobile shrink here */
+  /* (simply don’t include any footer‐specific overrides) */
 
-  /* (Leave your carousel drag‐snap logic untouched) */
+  /* 5) Parallax hero still shrinks just like desktop */
+  .parallax-hero {
+    height: 90vh;
+    background-attachment: scroll;
+    z-index: 0;
+  }
+  body.loaded .parallax-hero {
+    height: 80vh;
+  }
 }
