@@ -427,213 +427,52 @@ body.loaded .parallax-hero {
   fill: #d4af37;
 }
 
-/* --------------------------------------------------
-   2) MOBILE OVERRIDES (≤ 768px)
-   — delete any other @media (max-width: 768px) blocks
-   — paste exactly this at the very end of style.css
-   -------------------------------------------------- */
 @media (max-width: 768px) {
-
-  /* 1) PARALLAX HERO: shrink from 90vh → 80vh after logo animates */
-  .parallax-hero {
-    height: 90vh;
-    background: url('interior.jpg') center calc(40% + 20px)/cover no-repeat;
-    background-attachment: scroll; /* performance on mobile */
-    z-index: 0;                    /* sits under header */
-  }
-  body.loaded .parallax-hero {
-    height: 80vh;
-  }
-  /* If two .parallax-hero sections accidentally exist, hide the second */
-  body.loaded .parallax-hero + .parallax-hero {
-    display: none;
+  /* FOOTER: simple smaller padding on mobile */
+  .footer {
+    padding: 1rem 0.5rem;
   }
 
-  /* 2) HEADER / “Menu ▾” DROPDOWN (mobile) */
-  .main-nav {
-    position: relative;  /* anchor for dropdown */
-    z-index: 2000;       /* keep header above hero */
-  }
-  /* Hide the desktop‐only dropdown on mobile */
-  .main-nav .dropdown-content {
-    display: none !important;
-  }
-  /* Force the <ul class="simple-dropdown"> into view when “Menu ▾” is tapped/focused */
+  /* MOBILE MENU (using .simple-dropdown.open) */
   .main-nav .simple-dropdown {
+    display: none;
     position: absolute;
-    top: calc(100% + 2px);  /* sits immediately beneath header bottom border */
-    left: 0;                 /* flush left */
+    top: calc(100% + 2px);
+    left: 0;
     width: 100%;
     background: #fff;
     border-top: 1px solid #000;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    z-index: 2001;           /* float above hero */
-    display: none;           /* hidden until <a> is focused/active */
-    pointer-events: auto;
   }
-  .main-nav .dropdown > a:focus + .simple-dropdown,
-  .main-nav .dropdown > a:active + .simple-dropdown {
+  .main-nav .simple-dropdown.open {
     display: block;
   }
-  .main-nav .simple-dropdown li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .main-nav .simple-dropdown li a {
-    display: block;
-    width: 100%;
-    padding: 1rem 0;              /* large tappable area */
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 1rem;
-    text-align: center;
-    color: #d4af37;
-    text-decoration: none;
-    border-bottom: 1px solid #eee;
-  }
-  .main-nav .simple-dropdown li:last-child a {
-    border-bottom: none;
-  }
-  .main-nav .simple-dropdown li a:hover {
-    background: #f5f5f5;
-  }
 
-  /* 3) CENTERED SVG LOGO: enlarge & re-center (no white box) */
-  .logo-overlay {
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) scale(3) !important;
-    z-index: 1500;              /* floats above hero */
-    transition: none !important;/* instant on load */
-  }
-  .logo-overlay svg {
-    width: 100px;    /* base size; parent scale ×3 → ~300px */
-    height: auto;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-  }
-
-  /* 4) CHEF’S SPECIALS CAROUSEL: fluid drag + scroll-snap */
-  .special-carousel {
+  /* MODAL: same as desktop, just ensure .slide-modal.open shows */
+  .slide-modal.open {
     display: flex;
-    gap: 0.5rem;                /* tighten gap */
-    padding: 0 0.5rem;          /* small side padding */
+  }
+
+  /* HERO: single image, no duplicate, shrink on load */
+  .parallax-hero {
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+  }
+
+  /* LOGO: scale a bit smaller on phones */
+  .logo-overlay {
+    transform: translate(-50%, -50%) scale(2) !important;
+  }
+
+  /* CHEF’S SPECIALS: allow drag/scroll, let JS handle infinite + auto-scroll */
+  .special-carousel {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    position: relative;
-  }
-  .special-carousel::-webkit-scrollbar {
-    display: none;
-  }
-  .special-carousel .slide {
-    flex: 0 0 90%;           /* ~90% of viewport width */
-    max-width: 280px;
-    scroll-snap-align: center;
   }
 
-  /* 5) CHEF’S SPECIALS MODAL: on-top & show title+desc */
-  .slide-modal {
-    z-index: 3000 !important; /* floats above header + hero */
-    display: none;            /* toggled by JS */
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    align-items: center;
-    justify-content: center;
-    pointer-events: auto;
-  }
-  .slide-modal.open {
-    display: flex !important;
-    pointer-events: auto;
-  }
-  .slide-modal .modal-content {
-    width: 90vw !important;
-    max-width: 90vw !important;
-    max-height: 80vh !important;
-    overflow: auto !important;
-    background: #fff;
-    border-radius: 8px;
-    animation: pop-in .3s ease-out forwards;
-    position: relative;
-    z-index: 3001;
-  }
-  .slide-modal img {
-    display: block;
-    margin: 0 auto;
-    max-height: 45vh !important; /* keep title+desc visible */
-    width: auto;
-    object-fit: contain;
-  }
-  .modal-text {
-    padding: 1rem !important;
-    font-size: 0.9rem !important;
-    overflow-y: auto !important;
-  }
-  .modal-text h3 {
-    font-size: 1.25rem !important;
-    margin-bottom: 0.5rem;
-  }
-  .modal-text p {
-    margin-bottom: 1rem;
-    line-height: 1.4;
-    color: #333;
-  }
-  .modal-nav {
-    width: 2rem !important;
-    height: 2rem !important;
-    font-size: 1.5rem !important;
-    z-index: 3002 !important;
-  }
-  #modal-prev { left: 0.5rem !important; }
-  #modal-next { right: 0.5rem !important; }
-  #close-modal {
-    font-size: 1.8rem !important;
-    top: 0.5rem !important;
-    right: 0.5rem !important;
-  }
-
-  /* 6) SECTION HEADERS: keep the gold “flourish” under each <h2> */
-  .section h2 {
-    font-size: 1.75rem;
-    position: relative;
-    padding-bottom: 0.5rem;
-  }
+  /* Keep the "flourish" under H2 */
   .section h2::after {
-    content: '';
-    display: block;
     width: 60px;
-    height: 4px;
-    background-color: #d4af37;
-    margin: 0.5rem auto 0;
-    border-radius: 2px;
-  }
-
-  /* 7) FOOTER: collapse extra whitespace/padding */
-  .footer {
-    padding: 0.75rem 0.5rem !important;
-  }
-  .footer-content {
-    gap: 0.5rem !important;
-    max-width: 100% !important;
-    margin: 0 auto !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-  }
-  .footer-column h4 {
-    font-size: 1rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-  .footer-column p,
-  .footer-column input,
-  .footer-column button {
-    font-size: 0.85rem !important;
-  }
-
-  /* 8) SMOOTH scroll-snap (no vertical bounce) */
-  .special-carousel,
-  .special-carousel .slide {
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
   }
 }
