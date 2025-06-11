@@ -427,13 +427,20 @@ body.loaded .parallax-hero {
   fill: #d4af37;
 }
 
+/* ─────────────────────────────────────────────────────
+   MOBILE OVERRIDES (≤ 768px)
+   Paste this block at the end of style.css (after all other mobile rules)
+   ───────────────────────────────────────────────────── */
 @media (max-width: 768px) {
 
-  /* 1) Kill desktop hover‐menu, bring back mobile .simple-dropdown */
-  .main-nav .dropdown-content {
-    display: none !important;
+  /* 1) ONLY “Menu ▾” in header; hide other nav items */
+  .main-nav .menu li:not(.dropdown) {
+    display: none;
   }
+
+  /* 2) MOBILE DROPDOWN (.simple-dropdown.open) */
   .main-nav .simple-dropdown {
+    display: none;
     position: absolute;
     top: calc(100% + 2px);
     left: 0;
@@ -441,27 +448,18 @@ body.loaded .parallax-hero {
     background: #fff;
     border-top: 1px solid #000;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    z-index: 2001;
-    display: none;
-    pointer-events: auto;
   }
-  .main-nav .dropdown > a:focus + .simple-dropdown,
-  .main-nav .dropdown > a:active + .simple-dropdown {
+  .main-nav .simple-dropdown.open {
     display: block;
   }
-  /* hide other links */
-  .main-nav .menu li:not(.dropdown) {
-    display: none;
-  }
 
-  /* 2) Scale the centered SVG down to ~1× so it never overflows */
+  /* 3) ENLARGE CENTERED SVG */
   .logo-overlay {
-    transform: translate(-50%, -50%) scale(1) !important;
-    z-index: 1500 !important;
+    transform: translate(-50%, -50%) scale(3) !important;
   }
   .logo-overlay svg {
-    width: 80px !important;
-    height: auto;
+    width: auto;    /* let the parent scale handle the size */
+    max-width: 100%;
   }
 
   /* 3) Modal should show image + title/desc without horizontal scrolling */
