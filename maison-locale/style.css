@@ -427,15 +427,47 @@ body.loaded .parallax-hero {
   fill: #d4af37;
 }
 
+/* ─────────────────────────────────────────────────────
+   MOBILE OVERRIDES (≤ 768px)
+   Paste exactly this block at the very end of style.css
+   ───────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* FOOTER: simple smaller padding on mobile */
-  .footer {
-    padding: 1rem 0.5rem;
+
+  /* 1) PARALLAX HERO: shrink 90→80vh after logo animation */
+  .parallax-hero {
+    height: 90vh;
+    background-attachment: scroll;
+    z-index: 0;
+  }
+  body.loaded .parallax-hero {
+    height: 80vh;
+  }
+  /* hide any duplicate hero */
+  body.loaded .parallax-hero + .parallax-hero {
+    display: none;
   }
 
-  /* MOBILE MENU (using .simple-dropdown.open) */
-  .main-nav .simple-dropdown {
+  /* 2) HEADER / “Menu ▾” DROPDOWN */
+  .main-nav {
+    position: relative;
+    z-index: 2000;
+  }
+  /* show only the .dropdown item */
+  .main-nav .menu li:not(.dropdown) {
     display: none;
+  }
+
+  /* 3) CENTERED SVG LOGO: scale ×2 (not ×3) */
+  .logo-overlay {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) scale(2) !important;
+    z-index: 1500;
+    transition: none !important;
+  }
+
+  /* 4) FULL-WIDTH MOBILE DROPDOWN */
+  .main-nav .simple-dropdown {
     position: absolute;
     top: calc(100% + 2px);
     left: 0;
@@ -443,36 +475,79 @@ body.loaded .parallax-hero {
     background: #fff;
     border-top: 1px solid #000;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 2001;
+    display: none;
   }
-  .main-nav .simple-dropdown.open {
+  .main-nav .dropdown > a:focus + .simple-dropdown,
+  .main-nav .dropdown > a:active + .simple-dropdown {
     display: block;
   }
 
-  /* MODAL: same as desktop, just ensure .slide-modal.open shows */
-  .slide-modal.open {
-    display: flex;
-  }
-
-  /* HERO: single image, no duplicate, shrink on load */
-  .parallax-hero {
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-  }
-
-  /* LOGO: scale a bit smaller on phones */
-  .logo-overlay {
-    transform: translate(-50%, -50%) scale(2) !important;
-  }
-
-  /* CHEF’S SPECIALS: allow drag/scroll, let JS handle infinite + auto-scroll */
+  /* 5) CHEF’S SPECIALS CAROUSEL */
   .special-carousel {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
   }
+  .special-carousel .slide {
+    flex: 0 0 90%;
+    max-width: 280px;
+    scroll-snap-align: center;
+  }
 
-  /* Keep the "flourish" under H2 */
-  .section h2::after {
-    width: 60px;
+  /* 6) MODAL: constrain width so title/desc show */
+  .slide-modal {
+    z-index: 3000 !important;
+  }
+  .slide-modal.open {
+    display: flex !important;
+  }
+  .slide-modal .modal-content {
+    width: 80vw !important;
+    max-width: 80vw !important;
+    max-height: 70vh !important;
+    overflow: auto !important;
+    background: #fff;
+    border-radius: 8px;
+  }
+  .modal-text {
+    padding: 0.75rem !important;
+    font-size: 0.9rem !important;
+    max-height: 25vh !important;
+    overflow-y: auto !important;
+  }
+  .modal-text h3 {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.5rem;
+  }
+
+  /* 7) FOOTER: collapse whitespace/padding */
+  .footer {
+    padding: 0.5rem 0.5rem !important;
+  }
+  .footer-content {
+    gap: 0.5rem !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+  .footer-column h4 {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .footer-column p,
+  .footer-column input,
+  .footer-column button {
+    font-size: 0.85rem !important;
+  }
+
+  /* 8) smooth scroll snap */
+  .special-carousel,
+  .special-carousel .slide {
+    scroll-behavior: smooth;
   }
 }
