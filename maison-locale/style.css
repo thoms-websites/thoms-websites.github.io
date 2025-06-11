@@ -433,11 +433,6 @@ body.loaded .parallax-hero {
    ───────────────────────────────────────────────────── */
 @media (max-width: 768px) {
 
-  /* 1) ONLY “Menu ▾” in header; hide other nav items */
-  .main-nav .menu li:not(.dropdown) {
-    display: none;
-  }
-
   /* 2) MOBILE DROPDOWN (.simple-dropdown.open) */
   .main-nav .simple-dropdown {
     display: none;
