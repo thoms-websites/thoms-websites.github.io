@@ -324,5 +324,23 @@ if (e.target === modal) modal.classList.remove('open');
   });
 </script>
 
+ <script>
+// MOBILE MENU TOGGLE
+document.addEventListener('DOMContentLoaded', () => {
+  const menuLink = document.querySelector('.main-nav .dropdown > a');
+  const simpleDropdown = document.querySelector('.main-nav .simple-dropdown');
+  menuLink.addEventListener('click', e => {
+    e.preventDefault();
+    simpleDropdown.classList.toggle('open');
+  });
+  // Close when tapping outside
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.main-nav .dropdown')) {
+      simpleDropdown.classList.remove('open');
+    }
+  });
+});
+</script>
+ 
 </body>
 </html>
