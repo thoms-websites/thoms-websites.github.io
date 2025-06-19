@@ -230,9 +230,17 @@ const slides     = Array.from(carousel.children);
 const count      = slides.length;
 const slideWidth = slides[0].getBoundingClientRect().width;
 
-// infinite-scroll setup
-slides.forEach(s => carousel.appendChild(s.cloneNode(true)));
-slides.forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
+// infinite‑scroll setup, but skip Seared Salmon and Ribeye Steak
+const noCloneImgs = ['seared-salmon.jpg', 'steak.jpg'];
+
+slides
+  .filter(s => !noCloneImgs.includes(s.dataset.img))
+  .forEach(s => carousel.appendChild(s.cloneNode(true)));
+
+slides
+  .filter(s => !noCloneImgs.includes(s.dataset.img))
+  .forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
+
 carousel.scrollLeft = count * slideWidth;
 
 // wrap on scroll
