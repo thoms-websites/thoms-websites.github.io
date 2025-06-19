@@ -448,9 +448,19 @@ body.loaded .parallax-hero {
     display: block;
   }
 
+     /* 1) Hide all nav items except the .dropdown (Menu ▾) */
+  .main-nav .menu li:not(.dropdown) {
+    display: none;
+  }
+
   /* 3) ENLARGE CENTERED SVG */
   .logo-overlay {
-    transform: translate(-50%, -50%) scale(1) !important;
+    transform: translate(-50%, -50%) scale(2) !important;
+  }
+     /* also ensure the SVG itself can shrink within the viewport */
+  .logo-overlay svg {
+    max-width: 80vw;
+    height: auto;
   }
 
   /* 3) Modal should show image + title/desc without horizontal scrolling */
