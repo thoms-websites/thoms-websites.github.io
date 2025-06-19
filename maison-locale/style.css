@@ -459,7 +459,7 @@ body.loaded .parallax-hero {
     transform: translate(-50%, -50%) scale(3) !important;
   }
   .logo-overlay svg {
-    max-width: 80vw !important;
+    width: 100px !important;
     height: auto !important;
   }
 
