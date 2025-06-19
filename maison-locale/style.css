@@ -450,7 +450,7 @@ body.loaded .parallax-hero {
 
   /* 3) ENLARGE CENTERED SVG */
   .logo-overlay {
-    transform: translate(-50%, -50%) scale(2) !important;
+    transform: translate(-50%, -50%) scale(1) !important;
   }
 
   /* 3) Modal should show image + title/desc without horizontal scrolling */
