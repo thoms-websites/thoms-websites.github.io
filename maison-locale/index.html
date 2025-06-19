@@ -234,15 +234,21 @@ window.addEventListener('load', () => {
   carousel.style.scrollBehavior = 'smooth';
 
   // 2) Wrap on scroll
-  carousel.addEventListener('scroll', () => {
-    const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-    if (carousel.scrollLeft >= maxScrollLeft) {
-      // jumped to end, wrap to start
-      carousel.scrollLeft = 0;
-    } else if (carousel.scrollLeft <= 0) {
-      // jumped to start, wrap to end
-      carousel.scrollLeft = maxScrollLeft;
-    }
+carousel.addEventListener('scroll', () => {
+  const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+  // if we've scrolled past ~the last slide, jump back to start
+  if (carousel.scrollLeft >= maxScrollLeft - 1) {
+    // disable smooth, jump, then re‐enable
+    carousel.style.scrollBehavior = 'auto';
+    carousel.scrollLeft = 0;
+    carousel.style.scrollBehavior = 'smooth';
+  }
+  // likewise, if we somehow scroll before the first slide
+  else if (carousel.scrollLeft <= 1) {
+    carousel.style.scrollBehavior = 'auto';
+    carousel.scrollLeft = maxScrollLeft;
+    carousel.style.scrollBehavior = 'smooth';
+  }
   });
 
   // 3) Auto‑scroll + pause on hover
