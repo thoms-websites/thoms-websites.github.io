@@ -225,101 +225,97 @@ window.addEventListener('load', () => {
 
 // 3) Carousel & modal logic (unchanged, namespaced in an IIFE):
 (function() {
-const carousel   = document.getElementById('special-carousel');
-const slides     = Array.from(carousel.children);
-const count      = slides.length;
-const slideWidth = slides[0].getBoundingClientRect().width;
+  const carousel   = document.getElementById('special-carousel');
+  const slides     = Array.from(carousel.children);
+  const count      = slides.length;
+  const slideWidth = slides[0].getBoundingClientRect().width;
 
-// infinite‑scroll setup, but skip cloning Salmon & Steak
-const noCloneImgs = ['seared-salmon.jpg', 'steak.jpg'];
+  // 1) Smooth‐scroll behavior
+  carousel.style.scrollBehavior = 'smooth';
 
-slides
-  .filter(s => !noCloneImgs.includes(s.dataset.img))
-  .forEach(s => carousel.appendChild(s.cloneNode(true)));
+  // 2) Wrap on scroll
+  carousel.addEventListener('scroll', () => {
+    const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+    if (carousel.scrollLeft >= maxScrollLeft) {
+      // jumped to end, wrap to start
+      carousel.scrollLeft = 0;
+    } else if (carousel.scrollLeft <= 0) {
+      // jumped to start, wrap to end
+      carousel.scrollLeft = maxScrollLeft;
+    }
+  });
 
-slides
-  .filter(s => !noCloneImgs.includes(s.dataset.img))
-  .forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
+  // 3) Auto‑scroll + pause on hover
+  let isHovering = false;
+  carousel.addEventListener('mouseenter', () => isHovering = true);
+  carousel.addEventListener('mouseleave', () => isHovering = false);
 
-carousel.scrollLeft = count * slideWidth;
+  (function autoScroll() {
+    if (!isHovering) carousel.scrollLeft += 0.5;
+    requestAnimationFrame(autoScroll);
+  })();
 
-// wrap on scroll
-carousel.addEventListener('scroll', () => {
-if (carousel.scrollLeft <= 0) {
-carousel.scrollLeft += count * slideWidth;
-} else if (carousel.scrollLeft >= count * 2 * slideWidth) {
-carousel.scrollLeft -= count * slideWidth;
-}
-});
+  // 4) Drag‑to‑scroll
+  let isDown = false, startX, scrollStart;
+  carousel.addEventListener('mousedown', e => {
+    isDown = true;
+    carousel.classList.add('dragging');
+    startX      = e.pageX - carousel.offsetLeft;
+    scrollStart = carousel.scrollLeft;
+  });
+  ['mouseup','mouseleave'].forEach(evt =>
+    carousel.addEventListener(evt, () => {
+      isDown = false;
+      carousel.classList.remove('dragging');
+    })
+  );
+  carousel.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x    = e.pageX - carousel.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    carousel.scrollLeft = scrollStart - walk;
+  });
 
-// auto-scroll + pause on hover
-let isHovering = false;
-carousel.addEventListener('mouseenter', () => isHovering = true);
-carousel.addEventListener('mouseleave', () => isHovering = false);
-(function autoScroll() {
-if (!isHovering) carousel.scrollLeft += 0.5;
-requestAnimationFrame(autoScroll);
-})();
+  // 5) Modal/pop‑up
+  const modal    = document.getElementById('slide-modal');
+  const imgEl    = document.getElementById('modal-image');
+  const titleEl  = document.getElementById('modal-title');
+  const descEl   = document.getElementById('modal-desc');
+  const closeBtn = document.getElementById('close-modal');
+  const prevBtn  = document.getElementById('modal-prev');
+  const nextBtn  = document.getElementById('modal-next');
+  let currentIdx = 0;
 
-// drag-to-scroll
-let isDown = false, startX, scrollStart;
-carousel.addEventListener('mousedown', e => {
-isDown = true;
-carousel.classList.add('dragging');
-startX      = e.pageX - carousel.offsetLeft;
-scrollStart = carousel.scrollLeft;
-});
-['mouseleave','mouseup'].forEach(evt =>
-carousel.addEventListener(evt, () => {
-isDown = false;
-carousel.classList.remove('dragging');
-})
-);
-carousel.addEventListener('mousemove', e => {
-if (!isDown) return;
-e.preventDefault();
-const x    = e.pageX - carousel.offsetLeft;
-const walk = (x - startX) * 1.5;
-carousel.scrollLeft = scrollStart - walk;
-});
+  slides.forEach((slide, i) =>
+    slide.addEventListener('click', () => {
+      currentIdx = i;
+      openModal(i);
+    })
+  );
 
-// modal/pop-up
-const modal    = document.getElementById('slide-modal');
-const imgEl    = document.getElementById('modal-image');
-const titleEl  = document.getElementById('modal-title');
-const descEl   = document.getElementById('modal-desc');
-const closeBtn = document.getElementById('close-modal');
-const prevBtn  = document.getElementById('modal-prev');
-const nextBtn  = document.getElementById('modal-next');
-let currentIdx = 0;
+  function openModal(i) {
+    const s = slides[i];
+    imgEl.src           = s.dataset.img;
+    titleEl.textContent = s.querySelector('h3').textContent;
+    descEl.textContent  = s.dataset.desc;
+    modal.classList.add('open');
+  }
 
-slides.forEach((slide, i) => slide.addEventListener('click', () => {
-currentIdx = i;
-openModal(i);
-}));
-
-function openModal(i) {
-const s = slides[i];
-imgEl.src           = s.dataset.img;
-titleEl.textContent = s.querySelector('h3').textContent;
-descEl.textContent  = s.dataset.desc;
-modal.classList.add('open');
-}
-
-prevBtn.addEventListener('click', e => {
-e.stopPropagation();
-currentIdx = (currentIdx - 1 + count) % count;
-openModal(currentIdx);
-});
-nextBtn.addEventListener('click', e => {
-e.stopPropagation();
-currentIdx = (currentIdx + 1) % count;
-openModal(currentIdx);
-});
-closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-modal.addEventListener('click', e => {
-if (e.target === modal) modal.classList.remove('open');
-});
+  prevBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIdx = (currentIdx - 1 + count) % count;
+    openModal(currentIdx);
+  });
+  nextBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIdx = (currentIdx + 1) % count;
+    openModal(currentIdx);
+  });
+  closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
 })();
 </script>
 
