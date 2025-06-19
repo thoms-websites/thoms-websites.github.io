@@ -448,19 +448,19 @@ body.loaded .parallax-hero {
     display: block;
   }
 
-     /* 1) Hide all nav items except the .dropdown (Menu ▾) */
-  .main-nav .menu li:not(.dropdown) {
-    display: none;
+  /* 1) Hide just the About & Reservations links (not the whole <li>) */
+  .main-nav .menu a[href="#about"],
+  .main-nav .menu a[href="#reserve"] {
+    display: none !important;
   }
 
-  /* 3) ENLARGE CENTERED SVG */
+  /* 2) Enlarge the centered SVG back to 3× on mobile */
   .logo-overlay {
-    transform: translate(-50%, -50%) scale(2) !important;
+    transform: translate(-50%, -50%) scale(3) !important;
   }
-     /* also ensure the SVG itself can shrink within the viewport */
   .logo-overlay svg {
-    max-width: 80vw;
-    height: auto;
+    max-width: 80vw !important;
+    height: auto !important;
   }
 
   /* 3) Modal should show image + title/desc without horizontal scrolling */
