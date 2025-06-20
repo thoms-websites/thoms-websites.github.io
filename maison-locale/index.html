@@ -224,103 +224,103 @@ setInterval(animateLogo, 12000);
 });
 
 // 3) Carousel & modal logic (unchanged, namespaced in an IIFE):
-(function() {
-const carousel   = document.getElementById('special-carousel');
-const slides     = Array.from(carousel.children);
-const count      = slides.length;
-const slideWidth = slides[0].getBoundingClientRect().width;
+;(function() {
+  const carousel   = document.getElementById('special-carousel');
+  const slides     = Array.from(carousel.children);
+  const count      = slides.length;
+  const slideWidth = slides[0].getBoundingClientRect().width;
 
-// infinite‑scroll setup, but skip Seared Salmon and Ribeye Steak
-// infinite‑scroll setup, but skip cloning Salmon & Steak
-const noCloneImgs = ['seared-salmon.jpg', 'steak.jpg'];
+  // remove any existing clone logic—everything below acts on the originals only
 
-slides
-.filter(s => !noCloneImgs.includes(s.dataset.img))
-.forEach(s => carousel.appendChild(s.cloneNode(true)));
+  // start at the very first slide
+  carousel.scrollLeft = 0;
 
-slides
-.filter(s => !noCloneImgs.includes(s.dataset.img))
-.forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
+  // wrap on scroll
+  carousel.addEventListener('scroll', () => {
+    const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
 
-carousel.scrollLeft = count * slideWidth;
+    // if we scroll past the last slide, jump instantly back to 0
+    if (carousel.scrollLeft >= maxScrollLeft - 1) {
+      carousel.style.scrollBehavior = 'auto';
+      carousel.scrollLeft = 0;
+      carousel.style.scrollBehavior = '';
+    }
+    // if we somehow scroll before the first slide, jump to the end
+    else if (carousel.scrollLeft <= 1) {
+      carousel.style.scrollBehavior = 'auto';
+      carousel.scrollLeft = maxScrollLeft;
+      carousel.style.scrollBehavior = '';
+    }
+  });
 
-// wrap on scroll
-carousel.addEventListener('scroll', () => {
-if (carousel.scrollLeft <= 0) {
-carousel.scrollLeft += count * slideWidth;
-} else if (carousel.scrollLeft >= count * 2 * slideWidth) {
-carousel.scrollLeft -= count * slideWidth;
-}
-});
+  // auto‑scroll + pause on hover
+  let isHovering = false;
+  carousel.addEventListener('mouseenter', () => isHovering = true);
+  carousel.addEventListener('mouseleave', () => isHovering = false);
+  (function autoScroll() {
+    if (!isHovering) carousel.scrollLeft += 0.5;
+    requestAnimationFrame(autoScroll);
+  })();
 
-// auto-scroll + pause on hover
-let isHovering = false;
-carousel.addEventListener('mouseenter', () => isHovering = true);
-carousel.addEventListener('mouseleave', () => isHovering = false);
-(function autoScroll() {
-if (!isHovering) carousel.scrollLeft += 0.5;
-requestAnimationFrame(autoScroll);
-})();
+  // drag‑to‑scroll (desktop)
+  let isDown = false, startX, scrollStart;
+  carousel.addEventListener('mousedown', e => {
+    isDown = true;
+    carousel.classList.add('dragging');
+    startX      = e.pageX - carousel.offsetLeft;
+    scrollStart = carousel.scrollLeft;
+  });
+  ['mouseup','mouseleave'].forEach(evt =>
+    carousel.addEventListener(evt, () => {
+      isDown = false;
+      carousel.classList.remove('dragging');
+    })
+  );
+  carousel.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x    = e.pageX - carousel.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    carousel.scrollLeft = scrollStart - walk;
+  });
 
-// drag-to-scroll
-let isDown = false, startX, scrollStart;
-carousel.addEventListener('mousedown', e => {
-isDown = true;
-carousel.classList.add('dragging');
-startX      = e.pageX - carousel.offsetLeft;
-scrollStart = carousel.scrollLeft;
-});
-['mouseleave','mouseup'].forEach(evt =>
-carousel.addEventListener(evt, () => {
-isDown = false;
-carousel.classList.remove('dragging');
-})
-);
-carousel.addEventListener('mousemove', e => {
-if (!isDown) return;
-e.preventDefault();
-const x    = e.pageX - carousel.offsetLeft;
-const walk = (x - startX) * 1.5;
-carousel.scrollLeft = scrollStart - walk;
-});
+  // modal/pop‑up (unchanged)
+  const modal    = document.getElementById('slide-modal');
+  const imgEl    = document.getElementById('modal-image');
+  const titleEl  = document.getElementById('modal-title');
+  const descEl   = document.getElementById('modal-desc');
+  const closeBtn = document.getElementById('close-modal');
+  const prevBtn  = document.getElementById('modal-prev');
+  const nextBtn  = document.getElementById('modal-next');
+  let currentIdx = 0;
 
-// modal/pop-up
-const modal    = document.getElementById('slide-modal');
-const imgEl    = document.getElementById('modal-image');
-const titleEl  = document.getElementById('modal-title');
-const descEl   = document.getElementById('modal-desc');
-const closeBtn = document.getElementById('close-modal');
-const prevBtn  = document.getElementById('modal-prev');
-const nextBtn  = document.getElementById('modal-next');
-let currentIdx = 0;
+  slides.forEach((slide, i) => slide.addEventListener('click', () => {
+    currentIdx = i;
+    openModal(i);
+  }));
 
-slides.forEach((slide, i) => slide.addEventListener('click', () => {
-currentIdx = i;
-openModal(i);
-}));
+  function openModal(i) {
+    const s = slides[i];
+    imgEl.src           = s.dataset.img;
+    titleEl.textContent = s.querySelector('h3').textContent;
+    descEl.textContent  = s.dataset.desc;
+    modal.classList.add('open');
+  }
 
-function openModal(i) {
-const s = slides[i];
-imgEl.src           = s.dataset.img;
-titleEl.textContent = s.querySelector('h3').textContent;
-descEl.textContent  = s.dataset.desc;
-modal.classList.add('open');
-}
-
-prevBtn.addEventListener('click', e => {
-e.stopPropagation();
-currentIdx = (currentIdx - 1 + count) % count;
-openModal(currentIdx);
-});
-nextBtn.addEventListener('click', e => {
-e.stopPropagation();
-currentIdx = (currentIdx + 1) % count;
-openModal(currentIdx);
-});
-closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-modal.addEventListener('click', e => {
-if (e.target === modal) modal.classList.remove('open');
-});
+  prevBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIdx = (currentIdx - 1 + count) % count;
+    openModal(currentIdx);
+  });
+  nextBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIdx = (currentIdx + 1) % count;
+    openModal(currentIdx);
+  });
+  closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
 })();
 </script>
 
