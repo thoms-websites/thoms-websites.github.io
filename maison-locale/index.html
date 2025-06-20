@@ -230,7 +230,7 @@ setInterval(animateLogo, 12000);
   const count      = slides.length;
   const slideWidth = slides[0].getBoundingClientRect().width;
 
-  // clone first + last
+  // 1) make clones
   const firstClone = slides[0].cloneNode(true);
   const lastClone  = slides[count - 1].cloneNode(true);
   firstClone.classList.add('clone');
@@ -238,40 +238,35 @@ setInterval(animateLogo, 12000);
   carousel.appendChild(firstClone);
   carousel.insertBefore(lastClone, carousel.firstChild);
 
-  // start on slide #1
+  // 2) set initial position & smooth
   carousel.scrollLeft = slideWidth;
   carousel.style.scrollBehavior = 'smooth';
 
+  // 3) wrap on strict boundaries
   carousel.addEventListener('scroll', () => {
     const pos = carousel.scrollLeft;
-
-    // wrap backward if scrolled too far left
-    if (pos < slideWidth * 0.5) {
-      // jump to last real slide
+    // jumped into lastClone on left
+    if (pos <= 0) {
       carousel.style.scrollBehavior = 'auto';
       carousel.scrollLeft = count * slideWidth;
-      // restore smooth on next frame
       requestAnimationFrame(() => {
         carousel.style.scrollBehavior = 'smooth';
       });
     }
-    // wrap forward if scrolled too far right
-    else if (pos > (count + 0.5) * slideWidth) {
-      // jump to first real slide
+    // jumped into firstClone on right
+    else if (pos >= (count + 1) * slideWidth) {
       carousel.style.scrollBehavior = 'auto';
       carousel.scrollLeft = slideWidth;
-      // restore smooth on next frame
       requestAnimationFrame(() => {
         carousel.style.scrollBehavior = 'smooth';
       });
     }
   });
 
-  // ─── AUTO‑SCROLL + PAUSE ON HOVER ────────────────────────────────────
+  // 4) auto‑scroll + pause
   let isHovering = false;
   carousel.addEventListener('mouseenter', () => isHovering = true);
   carousel.addEventListener('mouseleave', () => isHovering = false);
-
   (function autoScroll() {
     if (!isHovering) {
       carousel.scrollBy({ left: 0.5, behavior: 'smooth' });
@@ -279,7 +274,7 @@ setInterval(animateLogo, 12000);
     requestAnimationFrame(autoScroll);
   })();
 
-  // ─── DRAG‑TO‑SCROLL ──────────────────────────────────────────────────
+  // 5) drag‑to‑scroll (desktop)
   let isDown = false, startX, scrollStart;
   carousel.addEventListener('mousedown', e => {
     isDown = true;
@@ -297,8 +292,7 @@ setInterval(animateLogo, 12000);
     if (!isDown) return;
     e.preventDefault();
     const x    = e.pageX - carousel.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    carousel.scrollLeft = scrollStart - walk;
+    carousel.scrollLeft = scrollStart - (x - startX) * 1.5;
   });
 
   // ─── MODAL LOGIC (unchanged) ────────────────────────────────────────
