@@ -227,7 +227,7 @@ setInterval(animateLogo, 12000);
 ;(function() {
   const carousel   = document.getElementById('special-carousel');
   const slides     = Array.from(carousel.children);
-  const count      = slides.length;
+  const count      = slides.length;                       // original slides
   const W          = slides[0].getBoundingClientRect().width;
 
   // 1) Clone first + last
@@ -245,15 +245,15 @@ setInterval(animateLogo, 12000);
   // 3) Wrap the instant you cross the real ends
   carousel.addEventListener('scroll', () => {
     const pos = carousel.scrollLeft;
-    // Disable smooth so our jump is invisible
+    // temporarily disable smooth so our jump is invisible
     carousel.style.scrollBehavior = 'auto';
 
     if (pos <= 0) {
       // jumped into the left clone → go to real last
       carousel.scrollLeft = count * W;
     }
-    else if (pos >= count * W) {
-      // jumped into the right clone → go to real first
+    else if (pos >= (count + 1) * W) {
+      // jumped into the *firstClone* on the right → go to real first
       carousel.scrollLeft = W;
     }
 
@@ -267,7 +267,6 @@ setInterval(animateLogo, 12000);
   let isHovering = false;
   carousel.addEventListener('mouseenter', () => isHovering = true);
   carousel.addEventListener('mouseleave', () => isHovering = false);
-
   (function autoScroll() {
     if (!isHovering) {
       carousel.scrollBy({ left: 0.5, behavior: 'smooth' });
@@ -275,7 +274,7 @@ setInterval(animateLogo, 12000);
     requestAnimationFrame(autoScroll);
   })();
 
-  // 5) Drag‑to‑scroll (desktop)
+  // 5) Drag‑to‑scroll (desktop) – unchanged
   let isDown = false, startX, startScroll;
   carousel.addEventListener('mousedown', e => {
     isDown = true;
@@ -292,7 +291,7 @@ setInterval(animateLogo, 12000);
   carousel.addEventListener('mousemove', e => {
     if (!isDown) return;
     e.preventDefault();
-    const x    = e.pageX - carousel.offsetLeft;
+    const x = e.pageX - carousel.offsetLeft;
     carousel.scrollLeft = startScroll - (x - startX) * 1.5;
   });
 
