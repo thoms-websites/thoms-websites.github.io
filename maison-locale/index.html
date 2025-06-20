@@ -230,7 +230,7 @@ setInterval(animateLogo, 12000);
   const count    = slides.length;
   const W        = slides[0].getBoundingClientRect().width;
 
-  // 1) Clone first & last
+  // 1) Clone first & last slides for seamless wrap
   const firstClone = slides[0].cloneNode(true);
   const lastClone  = slides[count - 1].cloneNode(true);
   firstClone.classList.add('clone');
@@ -238,22 +238,22 @@ setInterval(animateLogo, 12000);
   carousel.appendChild(firstClone);
   carousel.insertBefore(lastClone, carousel.firstChild);
 
-  // 2) Start on the real first slide
+  // 2) Position on the *real* first slide
   carousel.scrollLeft = W;
 
-  // 3) Anytime scrollLeft crosses into a clone, instantly reposition
+  // 3) On any scroll event, if we land in a clone, jump instantly
   carousel.addEventListener('scroll', () => {
     const pos = carousel.scrollLeft;
     if (pos <= 0) {
-      // into left clone → jump to real last
+      // into left‐clone → go to last real
       carousel.scrollLeft = count * W;
     } else if (pos >= (count + 1) * W) {
-      // into right clone → jump to real first
+      // into right‐clone → go to first real
       carousel.scrollLeft = W;
     }
   });
 
-  // 4) Auto‑scroll + pause on hover, manual per‑frame step
+  // 4) Auto‑scroll: tiny manual steps for perfect smooth loop
   let isHovering = false;
   carousel.addEventListener('mouseenter', () => isHovering = true);
   carousel.addEventListener('mouseleave', () => isHovering = false);
@@ -261,14 +261,14 @@ setInterval(animateLogo, 12000);
   (function stepLoop() {
     if (!isHovering) {
       let next = carousel.scrollLeft + 0.5;
-      // if we'd cross beyond the right clone, wrap to real first
+      // if about to cross the right clone, wrap to first real
       if (next >= (count + 1) * W) next = W;
       carousel.scrollLeft = next;
     }
     requestAnimationFrame(stepLoop);
   })();
 
-  // 5) Drag‑to‑scroll remains unchanged
+  // 5) Drag‑to‑scroll (works both directions)
   let isDown = false, startX, startScroll;
   carousel.addEventListener('mousedown', e => {
     isDown = true;
