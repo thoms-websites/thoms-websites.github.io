@@ -230,39 +230,48 @@ setInterval(animateLogo, 12000);
   const count      = slides.length;
   const slideWidth = slides[0].getBoundingClientRect().width;
 
-  // remove any existing clone logic—everything below acts on the originals only
+  // 1) Clone first & last only
+  const firstClone = slides[0].cloneNode(true);
+  const lastClone  = slides[count - 1].cloneNode(true);
 
-  // start at the very first slide
-  carousel.scrollLeft = 0;
+  firstClone.classList.add('clone');
+  lastClone.classList.add('clone');
 
-  // wrap on scroll
+  carousel.appendChild(firstClone);
+  carousel.insertBefore(lastClone, carousel.firstChild);
+
+  // 2) Start at real first slide
+  carousel.scrollLeft = slideWidth;
+
+  // 3) Wrap on scroll
   carousel.addEventListener('scroll', () => {
-    const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+    // disable smooth while snapping
+    const hadSmooth = carousel.style.scrollBehavior;
+    carousel.style.scrollBehavior = 'auto';
 
-    // if we scroll past the last slide, jump instantly back to 0
-    if (carousel.scrollLeft >= maxScrollLeft - 1) {
-      carousel.style.scrollBehavior = 'auto';
-      carousel.scrollLeft = 0;
-      carousel.style.scrollBehavior = '';
+    if (carousel.scrollLeft <= 0) {
+      // jumped into the lastClone on the left → snap to real last
+      carousel.scrollLeft = count * slideWidth;
+    } else if (carousel.scrollLeft >= (count + 1) * slideWidth) {
+      // jumped into the firstClone on the right → snap to real first
+      carousel.scrollLeft = slideWidth;
     }
-    // if we somehow scroll before the first slide, jump to the end
-    else if (carousel.scrollLeft <= 1) {
-      carousel.style.scrollBehavior = 'auto';
-      carousel.scrollLeft = maxScrollLeft;
-      carousel.style.scrollBehavior = '';
-    }
+
+    carousel.style.scrollBehavior = hadSmooth;
   });
 
-  // auto‑scroll + pause on hover
+  // 4) Auto‑scroll + pause on hover
   let isHovering = false;
   carousel.addEventListener('mouseenter', () => isHovering = true);
   carousel.addEventListener('mouseleave', () => isHovering = false);
   (function autoScroll() {
-    if (!isHovering) carousel.scrollLeft += 0.5;
+    if (!isHovering) {
+      carousel.scrollBy({ left: 0.5, behavior: 'smooth' });
+    }
     requestAnimationFrame(autoScroll);
   })();
 
-  // drag‑to‑scroll (desktop)
+  // 5) Drag‑to‑scroll (desktop)
   let isDown = false, startX, scrollStart;
   carousel.addEventListener('mousedown', e => {
     isDown = true;
@@ -284,7 +293,7 @@ setInterval(animateLogo, 12000);
     carousel.scrollLeft = scrollStart - walk;
   });
 
-  // modal/pop‑up (unchanged)
+  // 6) Modal logic (unchanged)
   const modal    = document.getElementById('slide-modal');
   const imgEl    = document.getElementById('modal-image');
   const titleEl  = document.getElementById('modal-title');
@@ -294,6 +303,7 @@ setInterval(animateLogo, 12000);
   const nextBtn  = document.getElementById('modal-next');
   let currentIdx = 0;
 
+  // Note: we still refer to the ORIGINAL slides array for indexing
   slides.forEach((slide, i) => slide.addEventListener('click', () => {
     currentIdx = i;
     openModal(i);
