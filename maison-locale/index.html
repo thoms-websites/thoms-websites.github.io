@@ -242,20 +242,33 @@ setInterval(animateLogo, 12000);
   carousel.scrollLeft = W;
   carousel.style.scrollBehavior = 'smooth';
 
-  // 3) Wrap the instant you cross the real ends
+  // 3) Wrap the instant you cross into a clone, but only once per crossing
+  let isWrapping = false;
   carousel.addEventListener('scroll', () => {
+    if (isWrapping) return;           // we’re already mid‑wrap, ignore
     const pos = carousel.scrollLeft;
-    // temporarily disable smooth so our jump is invisible
-    carousel.style.scrollBehavior = 'auto';
 
+    // if we’ve scrolled into the left clone…
     if (pos <= 0) {
-      // jumped into the left clone → go to real last
-      carousel.scrollLeft = count * W;
+      isWrapping = true;
+      carousel.style.scrollBehavior = 'auto';
+      carousel.scrollLeft = count * W;  // jump to real last
     }
+    // if we’ve scrolled into the right clone…
     else if (pos >= (count + 1) * W) {
-      // jumped into the *firstClone* on the right → go to real first
-      carousel.scrollLeft = W;
+      isWrapping = true;
+      carousel.style.scrollBehavior = 'auto';
+      carousel.scrollLeft = W;          // jump to real first
     }
+
+    if (isWrapping) {
+      // next paint: restore smooth and clear the lock
+      requestAnimationFrame(() => {
+        carousel.style.scrollBehavior = 'smooth';
+        isWrapping = false;
+      });
+    }
+  });
 
     // re‑enable smooth on next frame
     requestAnimationFrame(() => {
