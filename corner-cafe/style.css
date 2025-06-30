@@ -203,3 +203,16 @@ footer a:hover {
   overflow: hidden;
 }
 
+@media (max-width: 600px) {
+  .contact-form {
+    width: 90%;
+    max-width: 400px;
+    margin: 2rem auto 4rem;
+  }
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
