@@ -91,18 +91,11 @@ body {
   transform: scaleX(1);
 }
 
-/* MOBILE NAV */
+/* ───── REMOVE NAV ON MOBILE ───── */
 @media(max-width: 768px) {
-  .nav-toggle { display: block; }
+  .nav-toggle,
   .menu {
-    display: none;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  /* ← add this: show the menu when .open is toggled */
-  .menu.open {
-    display: flex;
+    display: none !important;
   }
 }
 
