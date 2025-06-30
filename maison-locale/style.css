@@ -187,7 +187,7 @@ body.loaded .parallax-hero {
 /* HIDE/SHOW SITE CONTENT */
 .site-content {
   opacity: 0;
-  transition: opacity 0.5s ease 2.6s;
+  transition: opacity 0.5s ease 1.5s;
 }
 .site-content.loaded {
   opacity: 1;
@@ -225,6 +225,9 @@ body.loaded .parallax-hero {
   overflow-y: visible;    /* let slides grow vertically on hover */
   position: relative;
   cursor: grab;
+  scroll-snap-type: x mandatory;   
+  touch-action: pan-x;       /* only allow horizontal swipes */
+  overflow-y: hidden;        /* prevent vertical bounce */
 }
 .special-carousel.dragging { cursor: grabbing; }
 .special-carousel::-webkit-scrollbar { display: none; }
@@ -239,10 +242,11 @@ body.loaded .parallax-hero {
   border: 2px solid #000;
   border-radius: 8px;
   overflow: hidden;
+  scroll-snap-align: center; /* center each slide on release */
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
-    border-width 0.3s ease;   /* ← add */
+    border-width 0.3s ease;   /* ← add */   
 }
 .slide-img {
   height: 180px;
