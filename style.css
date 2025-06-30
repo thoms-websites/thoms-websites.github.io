@@ -294,7 +294,6 @@ body {
   font-size: 1.4rem;
   color: #222;
   /* only titles are underlined */
-  text-decoration: underline;
   white-space: nowrap;        /* force one line */
 }
 
