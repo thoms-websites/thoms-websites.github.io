@@ -397,3 +397,26 @@ body {
   color: #222;
   font-weight: 600;
 }
+
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;       /* center everything */
+    gap: 0.5rem;              /* add a bit of breathing room */
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    flex: none;               /* reset flex:1 so they don’t stretch */
+    width: 100%;              /* each takes full width */
+    margin: 0.25rem 0;        /* vertical spacing */
+  }
+
+  .footer-right .back-to-top {
+    /* optionally move “back to top” below the rest */
+    margin-top: 0.5rem;
+    display: inline-block;
+  }
+}
+
