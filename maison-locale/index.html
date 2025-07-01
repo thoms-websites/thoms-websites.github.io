@@ -263,19 +263,23 @@ setInterval(animateLogo, 12000);
     });
   });
 
-  // 4) Auto‑scroll + pause on hover
+// 4) Auto‑scroll + pause on hover via setInterval
   let isHovering = false;
-  carousel.addEventListener('mouseenter', () => isHovering = true);
-  carousel.addEventListener('mouseleave', () => isHovering = false);
-(function autoScroll() {
-  const isDesktop = window.innerWidth > 768;
-  const delta = isDesktop ? 0.15 : 0.5;    // tiny step on desktop
-  if (!isHovering) {
-    // manual scroll so it’s exactly `delta` px per frame
-    carousel.scrollLeft += delta;
-  }
-  requestAnimationFrame(autoScroll);
-})();
+let autoTimer;
+function startAutoScroll() {
+  const delta = window.innerWidth > 768 ? 0.3 : 0.5; // slower on desktop
+  // clear any existing
+  clearInterval(autoTimer);
+  autoTimer = setInterval(() => {
+    if (!isHovering) {
+      carousel.scrollLeft += delta;
+    }
+  }, 30); // ~33 ticks/sec → ~10px/sec on desktop
+}
+startAutoScroll();
+// restart if the user resizes the window
+window.addEventListener('resize', startAutoScroll);
+  });
 
   // 5) Drag‑to‑scroll (desktop)
   let isDown = false, startX, startScroll;
