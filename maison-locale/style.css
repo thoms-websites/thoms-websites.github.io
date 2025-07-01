@@ -220,13 +220,14 @@ body.loaded .parallax-hero {
 /* Carousel container */
 .special-carousel {
   display: flex;
+  white-space: nowrap;
   gap: 1rem;
-  overflow-x: scroll;      /* allow horizontal scrolling */
-  position: relative;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  touch-action: pan-x;
+  will-change: transform;
   cursor: grab;
-  scroll-snap-type: x mandatory;   
-  touch-action: pan-x;       /* only allow horizontal swipes */
-  overflow-y: hidden;        /* prevent vertical bounce */
 }
 .special-carousel.dragging { cursor: grabbing; }
 .special-carousel::-webkit-scrollbar { display: none; }
