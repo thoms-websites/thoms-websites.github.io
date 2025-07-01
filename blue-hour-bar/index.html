@@ -36,7 +36,7 @@
       <li><a href="#book" data-en="Book" data-fr="Réserver"></a></li>
     </ul>
   </nav>
-  
+
   <!-- LANGUAGE SWITCH -->
   <div class="lang-switch">
     <button id="to-en" class="active" data-en="EN" data-fr="EN"></button>
@@ -62,7 +62,7 @@
     <div class="carousel">
       <div class="slides-container">
         <div class="slide" data-en="Live Jazz • Wed 8–11 pm" data-fr="Jazz en live • Mer 20h–23h"></div>
-        <div class="slide" data-en="Karaoke Fridays • 9 pm–12 am" data-fr="Karaoké le vendredi • 21h–00h"></div>
+        <div class="slide" data-en="Karaoke Fridays • 9 pm–12 am" data-fr="Karaoké Fridays • 21h–00h"></div>
         <div class="slide" data-en="Mixology Class • 1st Mon 7 pm" data-fr="Atelier mixologie • 1er lun. 19h"></div>
       </div>
     </div>
@@ -80,7 +80,79 @@
       <button data-filter="wine" data-en="Wine" data-fr="Vins"></button>
     </div>
     <div class="drink-grid">
-      <!-- items omitted for brevity -->
+      <!-- Cocktails -->
+      <div class="menu-item" data-type="cocktail">
+        <img src="margarita.jpg" alt="Margarita" loading="lazy" />
+        <div class="menu-item-content">
+          <h3 data-en="Margarita" data-fr="Margarita"></h3>
+          <p data-en="Tequila, triple sec, lime" data-fr="Tequila, triple sec, citron vert"></p>
+        </div>
+      </div>
+      <div class="menu-item" data-type="cocktail">
+        <img src="blue-lagoon.jpg" alt="Blue Lagoon" loading="lazy" />
+        <div class="menu-item-content">
+          <h3 data-en="Blue Lagoon" data-fr="Lagon Bleu"></h3>
+          <p data-en="Vodka, blue curaçao, lemonade" data-fr="Vodka, curaçao bleu, limonade"></p>
+        </div>
+      </div>
+      <div class="menu-item" data-type="cocktail">
+        <img src="negroni.jpg" alt="Negroni" loading="lazy" />
+        <div class="menu-item-content">
+          <h3 data-en="Negroni" data-fr="Negroni"></h3>
+          <p data-en="Campari, gin, sweet vermouth" data-fr="Campari, gin, vermouth doux"></p>
+        </div>
+      </div>
+      <div class="menu-item" data-type="cocktail">
+        <img src="old-fashioned.jpg" alt="Old Fashioned" loading="lazy" />
+        <div class="menu-item-content">
+          <h3 data-en="Old Fashioned" data-fr="Old Fashioned"></h3>
+          <p data-en="Bourbon, sugar, bitters" data-fr="Bourbon, sucre, bitters"></p>
+        </div>
+      </div>
+      <!-- Beers -->
+      <div class="menu-item" data-type="beer">
+        <img src="craft-beer.jpg" alt="Craft Beer" loading="lazy" />
+        <div class="menu-item-content">
+          <h3 data-en="Craft Beer" data-fr="Bière artisanale"></h3>
+          <p data-en="Local brewery special" data-fr="Spécial brasserie locale"></p>
+        </div>
+      </div>
+      <div class="menu-item" data-type="beer">
+        <img src="ale.jpg" alt="Ale" loading="lazy" />
+        <div class="menu-item-content">
+          <h3 data-en="Ale" data-fr="Ale"></h3>
+          <p data-en="Rich amber ale" data-fr="Ale ambrée riche"></p>
+        </div>
+      </div>
+      <div class="menu-item" data-type="beer">
+        <img src="guinness.jpg" alt="Guinness" loading="lazy" />
+        <div class="menu-item-content">
+          <h3 data-en="Guinness" data-fr="Guinness"></h3>
+          <p data-en="Classic stout" data-fr="Stout classique"></p>
+        </div>
+      </div>
+      <!-- Wines -->
+      <div class="menu-item" data-type="wine">
+        <img src="white-wine.jpg" alt="White Wine" loading="lazy" />
+        <div class="menu-item-content">
+          <h3 data-en="White Wine" data-fr="Vin Blanc"></h3>
+          <p data-en="Crisp chardonnay" data-fr="Chardonnay vif"></p>
+        </div>
+      </div>
+      <div class="menu-item" data-type="wine">
+        <img src="red-wine.jpg" alt="Red Wine" loading="lazy" />
+        <div class="menu-item-content">
+          <h3 data-en="Red Wine" data-fr="Vin Rouge"></h3>
+          <p data-en="Full-bodied merlot" data-fr="Merlot corsé"></p>
+        </div>
+      </div>
+      <div class="menu-item" data-type="wine">
+        <img src="prosecco.jpg" alt="Prosecco" loading="lazy" />
+        <div class="menu-item-content">
+          <h3 data-en="Prosecco" data-fr="Prosecco"></h3>
+          <p data-en="Light sparkling" data-fr="Pétillant léger"></p>
+        </div>
+      </div>
     </div>
     <a href="menu.pdf" target="_blank" rel="noopener" class="pdf-btn" data-en="View Menu (PDF)" data-fr="Voir le menu (PDF)"></a>
   </section>
@@ -88,7 +160,14 @@
   <!-- BOOKING FORM -->
   <section id="book" class="section book-section">
     <h2 data-en="Book Your Night" data-fr="Réservez votre soirée"></h2>
-    <!-- form omitted -->
+    <form action="javascript:void(0)" method="post" class="booking-form">
+      <input type="text" name="name" placeholder="" data-en-placeholder="Your name" data-fr-placeholder="Votre nom" required />
+      <input type="email" name="email" placeholder="" data-en-placeholder="Your email" data-fr-placeholder="Votre email" required />
+      <textarea name="message" rows="4" placeholder="" data-en-placeholder="Your request..." data-fr-placeholder="Votre demande..." required></textarea>
+      <input type="text" name="hp_field" class="sr-only" placeholder="Leave this blank" />
+      <button type="submit" data-en="Send Inquiry" data-fr="Envoyer la demande"></button>
+    </form>
+    <p class="form-success" aria-live="polite"></p>
   </section>
 
   <!-- BACK TO TOP -->
@@ -96,45 +175,124 @@
 
   <!-- STICKY FOOTER -->
   <footer class="social-footer">
-    <!-- footer omitted -->
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p class="footer-address">123 Twilight Avenue, Paris, FR</p>
+      </div>
+      <div class="footer-center">
+        <p>&copy; 2025 The Blue Hour Bar</p>
+      </div>
+      <div class="footer-right">
+        <!-- Instagram -->
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5z"/>
+            <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/>
+            <circle cx="17.5" cy="6.5" r="1"/>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">         <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.325v21.351C0 23.4.6 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116C23.4 24 24 23.4 24 22.675V1.325C24 .6 23.4 0 22.675 0z"/></svg>
+        </a>
+      </div>
+    </div>
   </footer>
 
   <!-- Scripts -->
   <script>
-    // ... existing functions ...
+    // Off-canvas toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const offcanvas = document.querySelector('.offcanvas');
+    navToggle.onclick = e => { e.stopPropagation(); offcanvas.classList.toggle('open'); };
+    document.addEventListener('click', e => {
+      if (offcanvas.classList.contains('open') && !offcanvas.contains(e.target) && e.target !== navToggle) {
+        offcanvas.classList.remove('open');
+      }
+    });
 
-    // Drink of the Day
-    window.addEventListener('load', () => {
-      const items = [...document.querySelectorAll('.menu-item')];
-      const day = new Date().getDate();
-      const featured = items[day % items.length];
-      const type = featured.getAttribute('data-type');
-      const titleEn = featured.querySelector('h3').getAttribute('data-en');
-      const titleFr = featured.querySelector('h3').getAttribute('data-fr');
-      const typeNames = {
-        en: { cocktail: 'Cocktail', beer: 'Beer', wine: 'Wine' },
-        fr: { cocktail: 'cocktail', beer: 'bière', wine: 'vin' }
-      };
-      const suffix = { en: 'of the Day', fr: 'du jour' };
-      const lang = document.getElementById('to-fr').classList.contains('active') ? 'fr' : 'en';
-      const badge = document.createElement('div');
-      badge.className = 'featured-badge';
-      badge.setAttribute('data-en', `${titleEn} - ${typeNames.en[type]} of the Day`);
-      badge.setAttribute('data-fr', `${titleFr} - ${typeNames.fr[type]} du jour`);
-      badge.textContent = badge.getAttribute(`data-${lang}`);
-      featured.append(badge);
-      featured.classList.add('featured');
-
-      // update badge on language switch
-      document.getElementById('to-en').addEventListener('click', () => {
-        badge.textContent = badge.getAttribute('data-en');
-      });
-      document.getElementById('to-fr').addEventListener('click', () => {
-        badge.textContent = badge.getAttribute('data-fr');
+    // Drink filter + fade-in/out animation + active state
+    document.querySelectorAll('.drink-filters button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.drink-filters button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const type = btn.dataset.filter;
+        document.querySelectorAll('.drink-grid .menu-item').forEach(item => {
+          if (type === 'all' || item.dataset.type === type) { item.style.display = 'flex'; requestAnimationFrame(() => item.style.opacity = 1);
+          } else { item.style.opacity = 0; setTimeout(() => item.style.display = 'none', 300); }
+        });
       });
     });
 
-    // ... remaining scripts ...
+    // Carousel controls, dots & scroll-snap
+    const slidesContainer = document.querySelector('.slides-container');
+    const slides = Array.from(slidesContainer.children);
+    const dotsContainer = document.querySelector('.carousel-dots');
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button'); dot.type = 'button'; dot.className = i===0?'dot active':'dot'; dot.dataset.index=i; dotsContainer.append(dot);
+      dot.addEventListener('click', e => { e.preventDefault(); slidesContainer.children[i].scrollIntoView({ behavior: 'smooth', inline: 'center' }); });
+    });
+    slidesContainer.addEventListener('scroll', debounce(() => {
+      const center = slidesContainer.scrollLeft + slidesContainer.offsetWidth/2;
+      slides.forEach((slide,i)=> { const slideCenter=slide.offsetLeft+slide.offsetWidth/2; if(Math.abs(center-slideCenter)<slide.offsetWidth/2){ document.querySelector('.dot.active').classList.remove('active'); dotsContainer.children[i].classList.add('active'); } });
+    },100));
+    function debounce(fn,wait){let t;return(...args)=>{clearTimeout(t);t=setTimeout(()=>fn.apply(this,args),wait);};}
+
+    // Tilt effect
+    document.querySelectorAll('.menu-item').forEach(item=>{
+      item.addEventListener('mousemove', e=>{const r=item.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-0.5,y=(e.clientY-r.top)/r.height-0.5;item.style.transform=`rotateX(${ -y*5 }deg) rotateY(${ x*5 }deg) scale(1.02)`;});
+      item.addEventListener('mouseleave',()=>item.style.transform='');
+    });
+
+    // Booking form
+    const bookingForm = document.querySelector('.booking-form');
+    const successMsg = document.querySelector('.form-success');
+    bookingForm.addEventListener('submit', e=>{e.preventDefault(); if(bookingForm.hp_field.value!=='')return; bookingForm.style.display='none'; successMsg.textContent='Thanks! Your inquiry has been sent.';});
+
+    // Back-to-top
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll',()=> backToTop.classList.toggle('visible', window.scrollY>window.innerHeight/2));
+    backToTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+    // Drink of the Day with translation
+    window.addEventListener('load', () => {
+      const items = document.querySelectorAll('.menu-item');
+      const day = new Date().getDate();
+      const featured = items[day % items.length];
+      const type = featured.dataset.type;
+      const h3 = featured.querySelector('h3');
+      const titleEn = h3.dataset.en;
+      const titleFr = h3.dataset.fr;
+      const typeNamesEn = { cocktail: 'Cocktail', beer: 'Beer', wine: 'Wine' };
+      const typeNamesFr = { cocktail: 'cocktail', beer: 'bière', wine: 'vin' };
+      const badge = document.createElement('div'); badge.className='featured-badge';
+      badge.dataset.en = `${titleEn} - ${typeNamesEn[type]} of the Day`;
+      badge.dataset.fr = `${titleFr} - ${typeNamesFr[type]} du jour`;
+      const lang = document.getElementById('to-fr').classList.contains('active') ? 'fr' : 'en';
+      badge.textContent = badge.dataset[lang];
+      featured.append(badge); featured.classList.add('featured');
+      document.getElementById('to-en').addEventListener('click', () => badge.textContent = badge.dataset.en);
+      document.getElementById('to-fr').addEventListener('click', () => badge.textContent = badge.dataset.fr);
+    });
+
+    // Flicker logo
+    document.addEventListener('DOMContentLoaded', () => {
+      const logo = document.querySelector('.logo-text');
+      const delay = Math.random() * 3;
+      logo.style.animationDelay = `${delay}s`;
+    });
+
+    // Language switch
+    const toEn = document.getElementById('to-en');
+    const toFr = document.getElementById('to-fr');
+    function switchLang(lang) {
+      toEn.classList.toggle('active', lang==='en'); toFr.classList.toggle('active', lang==='fr');
+      document.querySelectorAll('[data-en]').forEach(el=>el.textContent=el.getAttribute(`data-${lang}`));
+      document.querySelectorAll('[data-en-placeholder]').forEach(input=>input.placeholder=input.getAttribute(`data-${lang}-placeholder`));
+    }
+    toEn.addEventListener('click', ()=>switchLang('en'));
+    toFr.addEventListener('click', ()=>switchLang('fr'));
+    switchLang('en');
   </script>
 </body>
 </html>
