@@ -225,124 +225,123 @@ setInterval(animateLogo, 12000);
 
 // 3) Carousel & modal logic (unchanged, namespaced in an IIFE):
 ;(function() {
-window.addEventListener('load', () => {
-  const carousel = document.getElementById('special-carousel');
-  const originals = Array.from(carousel.children);
-  const count = originals.length;
+const carousel   = document.getElementById('special-carousel');
+const originals  = Array.from(carousel.children);      // your real slides
+const count      = originals.length;
+const W          = originals[0].getBoundingClientRect().width;
 
-  const W = originals[0].getBoundingClientRect().width;
-
-  // Triplicate slides
-  originals.forEach(slide => {
-    carousel.appendChild(slide.cloneNode(true));
-  });
-  originals.slice().reverse().forEach(slide => {
-    carousel.insertBefore(slide.cloneNode(true), carousel.firstChild);
-  });
-
-  // Scroll to center
-  carousel.scrollLeft = count * W;
-  carousel.style.scrollBehavior = 'smooth';
-
-  // Infinite scroll loop
-  carousel.addEventListener('scroll', () => {
-    const pos = carousel.scrollLeft;
-    if (pos < W) {
-      carousel.style.scrollBehavior = 'auto';
-      carousel.scrollLeft += count * W;
-    } else if (pos > count * 2 * W) {
-      carousel.style.scrollBehavior = 'auto';
-      carousel.scrollLeft -= count * W;
-    }
-    requestAnimationFrame(() => {
-      carousel.style.scrollBehavior = 'smooth';
-    });
-  });
-
-  // Auto-scroll with pause on hover
-  let isHovering = false;
-  carousel.addEventListener('mouseenter', () => isHovering = true);
-  carousel.addEventListener('mouseleave', () => isHovering = false);
-
-  let autoTimer;
-  function startAutoScroll() {
-    const delta = window.innerWidth > 768 ? 0.3 : 0.5;
-    clearInterval(autoTimer);
-    autoTimer = setInterval(() => {
-      if (!isHovering) {
-        carousel.scrollLeft += delta;
-      }
-    }, 30);
-  }
-  startAutoScroll();
-  window.addEventListener('resize', startAutoScroll);
-
-  // Drag-to-scroll
-  let isDown = false, startX, startScroll;
-  carousel.addEventListener('mousedown', e => {
-    isDown = true;
-    carousel.classList.add('dragging');
-    startX = e.pageX - carousel.offsetLeft;
-    startScroll = carousel.scrollLeft;
-  });
-  ['mouseup', 'mouseleave'].forEach(evt =>
-    carousel.addEventListener(evt, () => {
-      isDown = false;
-      carousel.classList.remove('dragging');
-    })
-  );
-  carousel.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - carousel.offsetLeft;
-    carousel.scrollLeft = startScroll - (x - startX) * 1.5;
-  });
+// 1) Triplicate: prepend a clone of every slide, then append a clone of every slide
+originals.forEach(slide => {
+carousel.appendChild(slide.cloneNode(true));
+});
+originals.slice().reverse().forEach(slide => {
+carousel.insertBefore(slide.cloneNode(true), carousel.firstChild);
 });
 
+// 2) Jump into the middle copy
+carousel.scrollLeft = count * W;
+carousel.style.scrollBehavior = 'smooth';
 
+// 3) Whenever you wander into the left or right buffer, teleport you back
+carousel.addEventListener('scroll', () => {
+const pos = carousel.scrollLeft;
+
+// into left buffer?
+if (pos < W) {
+carousel.style.scrollBehavior = 'auto';
+carousel.scrollLeft += count * W;
+}
+// into right buffer?
+else if (pos > count * 2 * W) {
+carousel.style.scrollBehavior = 'auto';
+carousel.scrollLeft -= count * W;
+}
+
+// re‑enable smooth on the very next frame
+requestAnimationFrame(() => {
+carousel.style.scrollBehavior = 'smooth';
+});
+});
+
+// 4) Auto‑scroll + pause on hover
+let isHovering = false;
+carousel.addEventListener('mouseenter', () => isHovering = true);
+carousel.addEventListener('mouseleave', () => isHovering = false);
+(function autoScroll() {
+if (!isHovering) carousel.scrollBy({ left: 0.5, behavior: 'smooth' });
+requestAnimationFrame(autoScroll);
+})();
+
+// 5) Drag‑to‑scroll (desktop)
+let isDown = false, startX, startScroll;
+carousel.addEventListener('mousedown', e => {
+isDown = true;
+carousel.classList.add('dragging');
+startX      = e.pageX - carousel.offsetLeft;
+startScroll = carousel.scrollLeft;
+});
+['mouseup','mouseleave'].forEach(evt =>
+carousel.addEventListener(evt, () => {
+isDown = false;
+carousel.classList.remove('dragging');
+})
+);
+carousel.addEventListener('mousemove', e => {
+if (!isDown) return;
+e.preventDefault();
+const x = e.pageX - carousel.offsetLeft;
+carousel.scrollLeft = startScroll - (x - startX) * 1.5;
+});
+
+  // ─── MODAL LOGIC (unchanged) ────────────────────────────────────────
   // ─── MODAL LOGIC (fixed) ────────────────────────────────────────
   // Use the originals[] array, not the clones
-  const modal    = document.getElementById('slide-modal');
-  const imgEl    = document.getElementById('modal-image');
-  const titleEl  = document.getElementById('modal-title');
-  const descEl   = document.getElementById('modal-desc');
-  const closeBtn = document.getElementById('close-modal');
-  const prevBtn  = document.getElementById('modal-prev');
-  const nextBtn  = document.getElementById('modal-next');
+const modal    = document.getElementById('slide-modal');
+const imgEl    = document.getElementById('modal-image');
+const titleEl  = document.getElementById('modal-title');
+const descEl   = document.getElementById('modal-desc');
+const closeBtn = document.getElementById('close-modal');
+const prevBtn  = document.getElementById('modal-prev');
+const nextBtn  = document.getElementById('modal-next');
+  let currentIdx = 0;
   let   currentIdx = 0;
 
+  slides.forEach((slide, i) =>
   // Attach click handlers to each real slide
   originals.forEach((slide, i) => {
-    slide.addEventListener('click', () => {
-      currentIdx = i;
-      openModal(i);
+slide.addEventListener('click', () => {
+currentIdx = i;
+openModal(i);
+    })
+  );
     });
   });
 
-  function openModal(i) {
+function openModal(i) {
+    const s = slides[i];
     const s = originals[i];
-    imgEl.src           = s.dataset.img;
-    titleEl.textContent = s.querySelector('h3').textContent;
-    descEl.textContent  = s.dataset.desc;
-    modal.classList.add('open');
-  }
+imgEl.src           = s.dataset.img;
+titleEl.textContent = s.querySelector('h3').textContent;
+descEl.textContent  = s.dataset.desc;
+modal.classList.add('open');
+}
 
-  prevBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    currentIdx = (currentIdx - 1 + count) % count;
-    openModal(currentIdx);
-  });
+prevBtn.addEventListener('click', e => {
+e.stopPropagation();
+currentIdx = (currentIdx - 1 + count) % count;
+openModal(currentIdx);
+});
 
-  nextBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    currentIdx = (currentIdx + 1) % count;
-    openModal(currentIdx);
-  });
+nextBtn.addEventListener('click', e => {
+e.stopPropagation();
+currentIdx = (currentIdx + 1) % count;
+openModal(currentIdx);
+});
 
-  closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-  modal.addEventListener('click', e => {
-    if (e.target === modal) modal.classList.remove('open');
-  });
+closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+modal.addEventListener('click', e => {
+if (e.target === modal) modal.classList.remove('open');
+});
 })();
 </script>
 
