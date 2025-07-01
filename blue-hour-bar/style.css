@@ -352,6 +352,29 @@ body.bar-body::after {
 .footer-right a:hover svg {
   transform: scale(1.2); fill: #0cc;
 }
+
+.lang-switch {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 60;
+  background: rgba(0,0,0,0.6);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.lang-switch button {
+  background: none;
+  border: none;
+  color: #0ff;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+.lang-switch button.active {
+  background: #0ff;
+  color: #000;
+}
+
 /* larger icons on big screens */
 @media (min-width: 1200px) {
   .footer-right a svg { width: 32px; height: 32px; }
