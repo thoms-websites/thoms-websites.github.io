@@ -345,5 +345,33 @@ function debounce(fn, wait) {
       logo.style.animationIterationCount = 'infinite';
     });
   </script>
+
+  <script>
+  const toEn = document.getElementById('to-en');
+  const toFr = document.getElementById('to-fr');
+
+  function switchLang(lang) {
+    // update toggle styles
+    toEn.classList.toggle('active', lang === 'en');
+    toFr.classList.toggle('active', lang === 'fr');
+
+    // all spans with data-en/data-fr
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.textContent = el.getAttribute(`data-${lang}`);
+    });
+
+    // all placeholders
+    document.querySelectorAll('[data-en-placeholder]').forEach(input => {
+      input.placeholder = input.getAttribute(`data-${lang}-placeholder`);
+    });
+  }
+
+  toEn.addEventListener('click', () => switchLang('en'));
+  toFr.addEventListener('click', () => switchLang('fr'));
+
+  // initialize based on default
+  switchLang('en');
+</script>
+
 </body>
 </html>
