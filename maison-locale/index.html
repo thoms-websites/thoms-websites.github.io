@@ -223,86 +223,84 @@ document.querySelector('.site-content').classList.add('loaded');
 setInterval(animateLogo, 12000);
 });
 
-// 3) Carousel & modal logic (unchanged, namespaced in an IIFE):
-;(function() {
-const carousel   = document.getElementById('special-carousel');
-const originals  = Array.from(carousel.children);      // your real slides
-const count      = originals.length;
-const W          = originals[0].getBoundingClientRect().width;
+// Updated Carousel JS with improvements
+(function() {
+  const carousel   = document.getElementById('special-carousel');
+  const originals  = Array.from(carousel.children);
+  const count      = originals.length;
 
-// 1) Triplicate: prepend a clone of every slide, then append a clone of every slide
-originals.forEach(slide => {
-carousel.appendChild(slide.cloneNode(true));
-});
-originals.slice().reverse().forEach(slide => {
-carousel.insertBefore(slide.cloneNode(true), carousel.firstChild);
-});
+  // Helper to get updated slide width
+  function getSlideWidth() {
+    return originals[0].getBoundingClientRect().width;
+  }
 
-// 2) Jump into the middle copy
-carousel.scrollLeft = count * W;
-carousel.style.scrollBehavior = 'smooth';
+  // Triplicate slides: append clones and prepend clones
+  originals.forEach(slide => carousel.appendChild(slide.cloneNode(true)));
+  originals.slice().reverse().forEach(slide => carousel.insertBefore(slide.cloneNode(true), carousel.firstChild));
 
-// 3) Whenever you wander into the left or right buffer, teleport you back
-carousel.addEventListener('scroll', () => {
-const pos = carousel.scrollLeft;
+  // Jump to middle copy after all images load
+  window.addEventListener('load', () => {
+    carousel.scrollLeft = count * getSlideWidth();
+  });
 
-// into left buffer?
-if (pos < W) {
-carousel.style.scrollBehavior = 'auto';
-carousel.scrollLeft += count * W;
-}
-// into right buffer?
-else if (pos > count * 2 * W) {
-carousel.style.scrollBehavior = 'auto';
-carousel.scrollLeft -= count * W;
-}
+  // Handle buffer jumping with dynamic width
+  carousel.addEventListener('scroll', () => {
+    const W = getSlideWidth();
+    const pos = carousel.scrollLeft;
 
-// re‑enable smooth on the very next frame
-requestAnimationFrame(() => {
-carousel.style.scrollBehavior = 'smooth';
-});
-});
-
-// 4) Auto-scroll using setInterval (cross-browser consistent)
-let isHovering = false;
-carousel.addEventListener('mouseenter', () => isHovering = true);
-carousel.addEventListener('mouseleave', () => isHovering = false);
-
-function startAutoScroll() {
-  const delta = window.innerWidth > 768 ? 0.3 : 0.5; // slower on desktop
-  return setInterval(() => {
-    if (!isHovering) {
-      carousel.scrollLeft += delta;
+    if (pos < W) {
+      carousel.style.scrollBehavior = 'auto';
+      carousel.scrollLeft += count * W;
+    } else if (pos > count * 2 * W) {
+      carousel.style.scrollBehavior = 'auto';
+      carousel.scrollLeft -= count * W;
     }
-  }, 30); // roughly 33fps
-}
 
-let scrollInterval = startAutoScroll();
-window.addEventListener('resize', () => {
-  clearInterval(scrollInterval);
-  scrollInterval = startAutoScroll();
-});
+    requestAnimationFrame(() => {
+      carousel.style.scrollBehavior = 'smooth';
+    });
+  });
 
-// 5) Drag‑to‑scroll (desktop)
-let isDown = false, startX, startScroll;
-carousel.addEventListener('mousedown', e => {
-isDown = true;
-carousel.classList.add('dragging');
-startX      = e.pageX - carousel.offsetLeft;
-startScroll = carousel.scrollLeft;
-});
-['mouseup','mouseleave'].forEach(evt =>
-carousel.addEventListener(evt, () => {
-isDown = false;
-carousel.classList.remove('dragging');
-})
-);
-carousel.addEventListener('mousemove', e => {
-if (!isDown) return;
-e.preventDefault();
-const x = e.pageX - carousel.offsetLeft;
-carousel.scrollLeft = startScroll - (x - startX) * 1.5;
-});
+  // Auto-scroll with dynamic width
+  let isHovering = false;
+  carousel.addEventListener('mouseenter', () => isHovering = true);
+  carousel.addEventListener('mouseleave', () => isHovering = false);
+
+  function startAutoScroll() {
+    return setInterval(() => {
+      if (!isHovering) {
+        const delta = window.innerWidth > 768 ? 0.3 : 0.5;
+        carousel.scrollLeft += delta;
+      }
+    }, 30);
+  }
+
+  let scrollInterval = startAutoScroll();
+  window.addEventListener('resize', () => {
+    clearInterval(scrollInterval);
+    scrollInterval = startAutoScroll();
+  });
+
+  // Drag-to-scroll (desktop only)
+  let isDown = false, startX, startScroll;
+  carousel.addEventListener('mousedown', e => {
+    isDown = true;
+    carousel.classList.add('dragging');
+    startX = e.pageX - carousel.offsetLeft;
+    startScroll = carousel.scrollLeft;
+  });
+  ['mouseup','mouseleave'].forEach(evt =>
+    carousel.addEventListener(evt, () => {
+      isDown = false;
+      carousel.classList.remove('dragging');
+    })
+  );
+  carousel.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - carousel.offsetLeft;
+    carousel.scrollLeft = startScroll - (x - startX) * 1.5;
+  });
 
 // ─── MODAL LOGIC (fixed) ────────────────────────────────────────
 // Use the originals[] array, not the clones
