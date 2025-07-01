@@ -230,9 +230,12 @@ setInterval(animateLogo, 12000);
   const count      = originals.length;
 
   // Helper to get updated slide width
-  function getSlideWidth() {
-    return originals[0].getBoundingClientRect().width;
-  }
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    carousel.scrollLeft = count * getSlideWidth();
+    console.log("ScrollLeft after delay:", carousel.scrollLeft);
+  }, 200); // give layout a moment to stabilize
+});
 
   // Triplicate slides: append clones and prepend clones
   originals.forEach(slide => carousel.appendChild(slide.cloneNode(true)));
