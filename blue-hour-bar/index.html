@@ -80,7 +80,6 @@
       <button data-filter="wine" data-en="Wine" data-fr="Vins"></button>
     </div>
     <div class="drink-grid">
-      <!-- Cocktails -->
       <div class="menu-item" data-type="cocktail">
         <img src="margarita.jpg" alt="Margarita" loading="lazy" />
         <div class="menu-item-content">
@@ -109,7 +108,6 @@
           <p data-en="Bourbon, sugar, bitters" data-fr="Bourbon, sucre, bitters"></p>
         </div>
       </div>
-      <!-- Beers -->
       <div class="menu-item" data-type="beer">
         <img src="craft-beer.jpg" alt="Craft Beer" loading="lazy" />
         <div class="menu-item-content">
@@ -131,7 +129,6 @@
           <p data-en="Classic stout" data-fr="Stout classique"></p>
         </div>
       </div>
-      <!-- Wines -->
       <div class="menu-item" data-type="wine">
         <img src="white-wine.jpg" alt="White Wine" loading="lazy" />
         <div class="menu-item-content">
@@ -210,7 +207,109 @@
       }
     });
 
-    /* ... rest of existing scripts ... */
+    // Drink filter + fade-in/out animation + active state
+    document.querySelectorAll('.drink-filters button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.drink-filters button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const type = btn.dataset.filter;
+        document.querySelectorAll('.drink-grid .menu-item').forEach(item => {
+          if (type === 'all' || item.dataset.type === type) {
+            item.style.display = 'flex';
+            requestAnimationFrame(() => item.style.opacity = 1);
+          } else {
+            item.style.opacity = 0;
+            setTimeout(() => item.style.display = 'none', 300);
+          }
+        });
+      });
+    });
+
+    // Carousel controls, dots & scroll-snap
+    const slidesContainer = document.querySelector('.slides-container');
+    const slides = Array.from(slidesContainer.children);
+    const dotsContainer = document.querySelector('.carousel-dots');
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = i === 0 ? 'dot active' : 'dot';
+      dot.dataset.index = i;
+      dotsContainer.append(dot);
+
+      dot.addEventListener('click', e => {
+        e.preventDefault();
+        slidesContainer.children[i].scrollIntoView({ behavior: 'smooth', inline: 'center' });
+      });
+    });
+
+    slidesContainer.addEventListener('scroll', debounce(() => {
+      const center = slidesContainer.scrollLeft + slidesContainer.offsetWidth / 2;
+      slides.forEach((slide, i) => {
+        const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+        if (Math.abs(center - slideCenter) < slide.offsetWidth / 2) {
+          document.querySelector('.dot.active').classList.remove('active');
+          dotsContainer.children[i].classList.add('active');
+        }
+      });
+    }, 100));
+
+    function debounce(fn, wait) {
+      let t;
+      return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn.apply(this, args), wait);
+      };
+    }
+
+    // Tilt effect on hover for drinks
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('mousemove', e => {
+        const rect = item.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        item.style.transform = `rotateX(${-y * 5}deg) rotateY(${x * 5}deg) scale(1.02)`;
+      });
+      item.addEventListener('mouseleave', () => {
+        item.style.transform = '';
+      });
+    });
+
+    // Inline form submission with success message + honeypot
+    const bookingForm = document.querySelector('.booking-form');
+    const successMsg = document.querySelector('.form-success');
+    bookingForm.addEventListener('submit', e => {
+      e.preventDefault();
+      if (bookingForm.hp_field.value !== '') return; // spam
+      bookingForm.style.display = 'none';
+      successMsg.textContent = 'Thanks! Your inquiry has been sent.';
+    });
+
+    // Back-to-top button
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > window.innerHeight / 2);
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Drink of the Day
+    window.addEventListener('load', () => {
+      const items = document.querySelectorAll('.menu-item');
+      const day = new Date().getDate();
+      const idx = day % items.length;
+      const featured = items[idx];
+      const badge = document.createElement('div'); badge.className = 'featured-badge';
+      badge.textContent = featured.querySelector('h3').textContent + ' - ' + (featured.getAttribute('data-type').charAt(0).toUpperCase() + featured.getAttribute('data-type').slice(1)) + ' of the Day';
+      featured.append(badge);
+      featured.classList.add('featured');
+    });
+
+    // Flicker logo
+    document.addEventListener('DOMContentLoaded', () => {
+      const logo = document.querySelector('.logo-text');
+      const delay = Math.random() * 3;
+      logo.style.animationDelay = `${delay}s`;
+    });
   </script>
 
   <script>
@@ -220,18 +319,11 @@
     function switchLang(lang) {
       toEn.classList.toggle('active', lang === 'en');
       toFr.classList.toggle('active', lang === 'fr');
-
-      document.querySelectorAll('[data-en]').forEach(el => {
-        el.textContent = el.getAttribute(`data-${lang}`);
-      });
-      document.querySelectorAll('[data-en-placeholder]').forEach(input => {
-        input.placeholder = input.getAttribute(`data-${lang}-placeholder`);
-      });
+      document.querySelectorAll('[data-en]').forEach(el => el.textContent = el.getAttribute(`data-${lang}`));
+      document.querySelectorAll('[data-en-placeholder]').forEach(input => input.placeholder = input.getAttribute(`data-${lang}-placeholder`));
     }
-
     toEn.addEventListener('click', () => switchLang('en'));
     toFr.addEventListener('click', () => switchLang('fr'));
-
     switchLang('en');
   </script>
 
