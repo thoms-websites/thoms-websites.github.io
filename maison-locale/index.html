@@ -263,22 +263,25 @@ carousel.style.scrollBehavior = 'smooth';
 });
 });
 
-// 4) Auto‑scroll + pause on hover
+// 4) Auto-scroll using setInterval (cross-browser consistent)
 let isHovering = false;
 carousel.addEventListener('mouseenter', () => isHovering = true);
 carousel.addEventListener('mouseleave', () => isHovering = false);
-  (function autoScroll() {
-    if (!isHovering) carousel.scrollBy({ left: 0.5, behavior: 'smooth' });
-    requestAnimationFrame(autoScroll);
-  })();
-(function autoScroll() {
-const isDesktop = window.innerWidth > 768;
-const delta = isDesktop ? 0.2 : 0.5;  // slower on desktop
-if (!isHovering) {
-carousel.scrollBy({ left: delta, behavior: 'smooth' });
+
+function startAutoScroll() {
+  const delta = window.innerWidth > 768 ? 0.3 : 0.5; // slower on desktop
+  return setInterval(() => {
+    if (!isHovering) {
+      carousel.scrollLeft += delta;
+    }
+  }, 30); // roughly 33fps
 }
-requestAnimationFrame(autoScroll);
-})();
+
+let scrollInterval = startAutoScroll();
+window.addEventListener('resize', () => {
+  clearInterval(scrollInterval);
+  scrollInterval = startAutoScroll();
+});
 
 // 5) Drag‑to‑scroll (desktop)
 let isDown = false, startX, startScroll;
