@@ -267,7 +267,13 @@ carousel.style.scrollBehavior = 'smooth';
 let isHovering = false;
 carousel.addEventListener('mouseenter', () => isHovering = true);
 carousel.addEventListener('mouseleave', () => isHovering = false);
+  (function autoScroll() {
+    if (!isHovering) carousel.scrollBy({ left: 0.5, behavior: 'smooth' });
+    requestAnimationFrame(autoScroll);
+  })();
 (function autoScroll() {
+if (!isHovering) carousel.scrollBy({ left: 0.5, behavior: 'smooth' });
+requestAnimationFrame(autoScroll);
   const isDesktop = window.innerWidth > 768;
   const delta = isDesktop ? 0.2 : 0.5;  // slower on desktop
   if (!isHovering) {
@@ -297,6 +303,9 @@ const x = e.pageX - carousel.offsetLeft;
 carousel.scrollLeft = startScroll - (x - startX) * 1.5;
 });
 
+  // ─── MODAL LOGIC (unchanged) ────────────────────────────────────────
+  // ─── MODAL LOGIC (fixed) ────────────────────────────────────────
+  // Use the originals[] array, not the clones
 // ─── MODAL LOGIC (fixed) ────────────────────────────────────────
 // Use the originals[] array, not the clones
 const modal    = document.getElementById('slide-modal');
@@ -306,17 +315,28 @@ const descEl   = document.getElementById('modal-desc');
 const closeBtn = document.getElementById('close-modal');
 const prevBtn  = document.getElementById('modal-prev');
 const nextBtn  = document.getElementById('modal-next');
+  let currentIdx = 0;
+  let   currentIdx = 0;
 let   currentIdx = 0;
 
+  slides.forEach((slide, i) =>
+  // Attach click handlers to each real slide
+  originals.forEach((slide, i) => {
 // Attach click handlers to each real slide
 originals.forEach((slide, i) => {
 slide.addEventListener('click', () => {
 currentIdx = i;
 openModal(i);
+    })
+  );
+    });
+  });
 });
 });
 
 function openModal(i) {
+    const s = slides[i];
+    const s = originals[i];
 const s = originals[i];
 imgEl.src           = s.dataset.img;
 titleEl.textContent = s.querySelector('h3').textContent;
