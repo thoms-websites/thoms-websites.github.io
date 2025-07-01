@@ -222,7 +222,6 @@ body.loaded .parallax-hero {
   display: flex;
   gap: 1rem;
   overflow-x: scroll;      /* allow horizontal scrolling */
-  overflow-y: visible;    /* let slides grow vertically on hover */
   position: relative;
   cursor: grab;
   scroll-snap-type: x mandatory;   
