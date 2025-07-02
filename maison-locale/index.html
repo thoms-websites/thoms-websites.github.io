@@ -228,7 +228,11 @@ setInterval(animateLogo, 12000);
   const carousel   = document.getElementById('special-carousel');
   const originals  = Array.from(carousel.children);
   const count      = originals.length;
-  const getW       = () => originals[0].getBoundingClientRect().width;
+  const getW = () => {
+    const slideW = originals[0].getBoundingClientRect().width;
+    const gap    = parseFloat(getComputedStyle(carousel).gap) || 0;
+    return slideW + gap;
+  };
 
   // ─── triplicate & buffer‑jump logic (unchanged) ────────────────────
   originals.forEach(s => carousel.appendChild(s.cloneNode(true)));
