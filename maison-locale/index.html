@@ -248,42 +248,30 @@ setInterval(animateLogo, 12000);
     carousel.style.scrollSnapType = on ? 'x mandatory' : 'none';
   }
 
-// ——— 4) AUTO‑SCROLL + PAUSE + SNAP‑TOGGLE ———
-let isHovering = false;
-carousel.addEventListener('mouseenter', () => {
-  isHovering = true;
-  setSnap(true);    // turn snapping back on when they hover
-});
-carousel.addEventListener('mouseleave', () => {
-  isHovering = false;
-  setSnap(false);   // turn snapping off during auto‑scroll
-});
+  // ——— 4) AUTO‑SCROLL + PAUSE —───
+  let isHovering = false;
+  carousel.addEventListener('mouseenter', () => isHovering = true);
+  carousel.addEventListener('mouseleave', () => isHovering = false);
 
-// define speed up front
-let speed = window.innerWidth > 768 ? 0.3 : 0.5;
-window.addEventListener('resize', () => {
-  speed = window.innerWidth > 768 ? 0.3 : 0.5;
-});
+  // tweak these to adjust speed:
+  const frameMs = 16;               // ~60fps
+  let delta = window.innerWidth > 768 ? 1 : 0.6; // px/frame
 
-// start with snapping off
-setSnap(false);
+  window.addEventListener('resize', () => {
+    delta = window.innerWidth > 768 ? 1 : 0.6;
+  });
 
-// your infinite loop
-function autoScroll() {
-  if (!isHovering) {
-    carousel.scrollLeft += speed;
+  // clear any prior interval (just in case)
+  let scrollTimer = setInterval(() => {
+    if (!isHovering) {
+      carousel.scrollLeft += delta;
 
-    // replicate your buffer‐jump logic inline
-    const W = getW();
-    if (carousel.scrollLeft < W) {
-      carousel.scrollLeft += count * W;
-    } else if (carousel.scrollLeft > 2 * count * W) {
-      carousel.scrollLeft -= count * W;
+      // inline buffer‑jump (same as before)
+      const W = getW(), pos = carousel.scrollLeft;
+      if (pos < W)      carousel.scrollLeft += count * W;
+      else if (pos > 2 * count * W) carousel.scrollLeft -= count * W;
     }
-  }
-  requestAnimationFrame(autoScroll);
-}
-autoScroll();
+  }, frameMs);
 
 // 5) Drag‑to‑scroll (desktop)
 let isDown = false, startX, startScroll;
