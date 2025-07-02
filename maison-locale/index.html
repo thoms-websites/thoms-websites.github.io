@@ -263,22 +263,25 @@ carousel.style.scrollBehavior = 'smooth';
 });
 });
 
-// 4) Auto‑scroll + pause on hover
+// 4) Auto‑scroll + pause on hover (cross‑browser)
 let isHovering = false;
 carousel.addEventListener('mouseenter', () => isHovering = true);
 carousel.addEventListener('mouseleave', () => isHovering = false);
-  (function autoScroll() {
-    if (!isHovering) carousel.scrollBy({ left: 0.5, behavior: 'smooth' });
-    requestAnimationFrame(autoScroll);
-  })();
-(function autoScroll() {
-  const isDesktop = window.innerWidth > 768;
-  const delta = isDesktop ? 0.2 : 0.5;  // slower on desktop
-  if (!isHovering) {
-    carousel.scrollBy({ left: delta, behavior: 'smooth' });
-  }
-  requestAnimationFrame(autoScroll);
-})();
+
+// clear any existing interval
+let autoScrollInt;
+function startAutoScroll() {
+  clearInterval(autoScrollInt);
+  // on desktop ~ 5px every 50ms → ~100px/sec
+  const delta = window.innerWidth > 768 ? 5 : 3;
+  autoScrollInt = setInterval(() => {
+    if (!isHovering) {
+      carousel.scrollLeft += delta;
+    }
+  }, 50);
+}
+startAutoScroll();
+window.addEventListener('resize', startAutoScroll);
 
 // 5) Drag‑to‑scroll (desktop)
 let isDown = false, startX, startScroll;
