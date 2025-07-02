@@ -249,21 +249,32 @@ window.addEventListener('load', () => {
     carousel.style.scrollBehavior = 'smooth';
   });
 
-  // auto‑scroll (after images have laid out)
-  let hover = false;
-  carousel.addEventListener('mouseenter', ()=> hover = true);
-  carousel.addEventListener('mouseleave', ()=> hover = false);
+  // ——— SIMPLE AUTO-SCROLL LOOP ———
+  let isHovering = false;
+  carousel.addEventListener('mouseenter', () => isHovering = true);
+  carousel.addEventListener('mouseleave', () => isHovering = false);
 
-  let autoInt;
-  const startAuto = () => {
-    clearInterval(autoInt);
-    const delta = window.innerWidth > 768 ? 5 : 3; // tweak px/tick
-    autoInt = setInterval(() => {
-      if (!hover) carousel.scrollLeft += delta;
-    }, 50); // tweak ms/tick
-  };
-  startAuto();
-  window.addEventListener('resize', startAuto);
+  // base speed in px/frame (tweak to taste)
+  let speed = window.innerWidth > 768 ? 0.3 : 0.5;
+  window.addEventListener('resize', () => {
+    speed = window.innerWidth > 768 ? 0.3 : 0.5;
+  });
+
+  function autoScroll() {
+    if (!isHovering) {
+      carousel.scrollLeft += speed;
+
+      // re-use your buffer-jump logic inline:
+      const W = getW();
+      if (carousel.scrollLeft < W) {
+        carousel.scrollLeft += count * W;
+      } else if (carousel.scrollLeft > 2 * count * W) {
+        carousel.scrollLeft -= count * W;
+      }
+    }
+    requestAnimationFrame(autoScroll);
+  }
+  autoScroll();
 
 // 5) Drag‑to‑scroll (desktop)
 let isDown = false, startX, startScroll;
