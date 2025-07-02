@@ -293,9 +293,8 @@ body.loaded .parallax-hero {
   to   { transform: scale(1); opacity: 1; }
 }
 .slide:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  border-width: 4px;           /* ↑ double the border on hover */
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
 }
 
 /* Prev/Next */
