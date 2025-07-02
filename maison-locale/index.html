@@ -249,32 +249,35 @@ window.addEventListener('load', () => {
     carousel.style.scrollBehavior = 'smooth';
   });
 
-  // ——— SIMPLE AUTO-SCROLL LOOP ———
-  let isHovering = false;
-  carousel.addEventListener('mouseenter', () => isHovering = true);
-  carousel.addEventListener('mouseleave', () => isHovering = false);
+// ——— MUTING SCROLL‑SNAP DURING AUTO‑SCROLL ———
+function setSnap(enabled) {
+  carousel.style.scrollSnapType = enabled ? 'x mandatory' : 'none';
+}
 
-  // base speed in px/frame (tweak to taste)
-  let speed = window.innerWidth > 768 ? 0.3 : 0.5;
-  window.addEventListener('resize', () => {
-    speed = window.innerWidth > 768 ? 0.3 : 0.5;
-  });
+let isHovering = false;
+carousel.addEventListener('mouseenter', () => {
+  isHovering = true;
+  setSnap(true);       // re‑enable snap when user hovers
+});
+carousel.addEventListener('mouseleave', () => {
+  isHovering = false;
+  setSnap(false);      // disable snap during auto‑scroll
+});
 
-  function autoScroll() {
-    if (!isHovering) {
-      carousel.scrollLeft += speed;
+// start with snapping off
+setSnap(false);
 
-      // re-use your buffer-jump logic inline:
-      const W = getW();
-      if (carousel.scrollLeft < W) {
-        carousel.scrollLeft += count * W;
-      } else if (carousel.scrollLeft > 2 * count * W) {
-        carousel.scrollLeft -= count * W;
-      }
-    }
-    requestAnimationFrame(autoScroll);
+function autoScroll() {
+  if (!isHovering) {
+    carousel.scrollLeft += speed;
+    // buffer‑jump logic…
+    const W = getW();
+    if (carousel.scrollLeft < W)        carousel.scrollLeft += count * W;
+    else if (carousel.scrollLeft > 2 * count * W) carousel.scrollLeft -= count * W;
   }
-  autoScroll();
+  requestAnimationFrame(autoScroll);
+}
+autoScroll();
 
 // 5) Drag‑to‑scroll (desktop)
 let isDown = false, startX, startScroll;
