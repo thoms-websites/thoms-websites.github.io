@@ -5,44 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thom Creates Websites</title>
 
-  <!-- Meta & Open Graph -->
+  <!-- Meta & Open Graph for SEO & Social Sharing -->
   <meta name="description" content="I build vibrant, responsive websites for cafés, bars & restaurants that stand out—and bring in customers." />
   <meta property="og:title" content="Thom Creates Websites" />
   <meta property="og:description" content="Crafting immersive online experiences for cafés, bars & restaurants." />
   <meta property="og:image" content="https://thoms-websites.github.io/website-pp.png" />
-  <meta property="og:url"   content="https://thoms-websites.github.io/" />
-  <meta property="og:type"  content="website" />
+  <meta property="og:url" content="https://thoms-websites.github.io/" />
+  <meta property="og:type" content="website" />
 
-  <!-- Fonts & Styles -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@500&display=swap"
-    rel="stylesheet"
-  />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@500&family=Fira+Code&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 
   <!-- Favicon -->
   <link rel="icon" href="website-pp.png" />
 </head>
-
 <body id="top">
+
+  <!-- RESPONSIVE NAVIGATION -->
   <header class="main-nav">
     <div class="logo">Thom Creates Websites</div>
     <button id="lang-toggle" class="lang-toggle" aria-label="Toggle language">FR</button>
     <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
     <ul class="menu">
-      <li><a href="#about"   data-i18n-key="nav.about">About Me</a></li>
-      <li><a href="#skills"  data-i18n-key="nav.skills">Skills</a></li>
-      <li><a href="#demos"   data-i18n-key="nav.demos">Demo Projects</a></li>
-      <li><a href="#contact" data-i18n-key="nav.contact">Let's Chat</a></li>
+      <li><a href="#about"         data-i18n-key="nav.about">About Me</a></li>
+      <li><a href="#skills"        data-i18n-key="nav.skills">Skills</a></li>
+      <li><a href="#demos"         data-i18n-key="nav.demos">Demo Projects</a></li>
+      <li><a href="#contact"       data-i18n-key="nav.contact">Let's Chat</a></li>
     </ul>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="blob blob-top"    aria-hidden="true"></div>
+    <div class="blob blob-top" aria-hidden="true"></div>
     <div class="hero-content">
       <img src="website-pp.png" alt="Thom’s Photo" class="hero-photo" loading="lazy" />
-      <h1 class="hero-title"      data-i18n-key="hero.title">Hi, I’m Thom</h1>
-      <p class="hero-subtitle"    data-i18n-key="hero.subtitle">
+      <h1 class="hero-title" data-i18n-key="hero.title">Hi, I’m Thom</h1>
+      <p class="hero-subtitle" data-i18n-key="hero.subtitle">
         I build vibrant, responsive websites for cafés, bars &amp; restaurants that stand out—and bring in customers.
       </p>
     </div>
@@ -50,113 +51,241 @@
   </section>
 
   <main>
-    <section id="about" class="about diagonal-section">
-      <h2 data-i18n-key="about.title">About Me</h2>
-      <p data-i18n-key="about.p1">I’m Thom, a self‑taught web developer from New Zealand now based in Paris…</p>
-      <p data-i18n-key="about.p2">My demo portfolio includes a minimalist café page with smooth parallax…</p>
+
+    <!-- ABOUT ME -->
+    <section id="about" class="about scroll-target diagonal-section">
+      <h2 class="section-title" data-i18n-key="about.title">About Me</h2>
+      <p data-i18n-key="about.p1">
+        I’m Thom, a self‑taught web developer from New Zealand now based in Paris. I’ve noticed that my friends and I always choose venues where we can preview the website, soak up the vibe and check an up‑to‑date menu before we go. My goal is to modernise small cafés, bars and restaurants by crafting simple sites that reflect each business’s atmosphere and follow the owner’s guidelines.
+      </p>
+      <p data-i18n-key="about.p2">
+        My demo portfolio includes a minimalist café page with smooth parallax scrolling, a restaurant showcase with an interactive image gallery and embedded reservation form, and a moody bar site featuring English and French versions via a language toggle. Every project is built from scratch with semantic HTML, modern CSS (Flexbox and Grid) and JavaScript for carousels, menus and forms. I host and version everything on GitHub and deploy instantly through GitHub Pages. I’ve also used Python to automate finding local businesses on Google Maps that lack a website, so I can offer them a straightforward, pixel‑perfect online presence.
+      </p>
     </section>
 
+    <!-- SKILLS -->
     <section id="skills" class="skills-section diagonal-section">
       <div class="container">
         <h2 data-i18n-key="skills.title">Skills</h2>
         <div class="skills-grid">
-          <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 logo"><p>HTML5</p></div>
-          <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"   alt="CSS3 logo"><p>CSS3</p></div>
-          <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript logo"><p>JavaScript</p></div>
-          <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub logo"><p>GitHub</p></div>
-          <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo"><p>Python</p></div>
+          <!-- each card unchanged -->
+          <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 logo">
+            <p>HTML5</p>
+          </div>
+          <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 logo">
+            <p>CSS3</p>
+          </div>
+          <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript logo">
+            <p>JavaScript</p>
+          </div>
+          <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub logo">
+            <p>GitHub</p>
+          </div>
+          <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo">
+            <p>Python</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="demos" class="demos">
-      <h2 data-i18n-key="demos.title">Demo Projects</h2>
-      <div class="demo-grid">
-        <a href="https://thoms-websites.github.io/blue-hour-bar/" class="demo-card video-card" target="_blank" rel="noopener">
-          <video class="demo-media" src="bar-demo.mp4" poster="bar-demo.png" muted loop autoplay playsinline preload="none"></video>
-          <div class="demo-text">
-            <h3 data-i18n-key="demo.bar.title">Bar Demo</h3>
-            <p data-i18n-key="demo.bar.desc">Moody, elegant site with events & a French toggle</p>
-            <p class="demo-skills"><strong data-i18n-key="demo.bar.skills_label">Skills:</strong> <span data-i18n-key="demo.bar.skills">HTML • CSS • JavaScript</span></p>
-          </div>
-        </a>
+    <!-- DEMO PROJECTS -->
+<section id="demos" class="demos scroll-target">
+  <h2 class="section-title" data-i18n-key="demos.title">Demo Projects</h2>
+  <div class="demo-grid">
 
-        <a href="https://thoms-websites.github.io/maison-locale/" class="demo-card" target="_blank" rel="noopener">
-          <video class="demo-media" src="restaurant.mp4" poster="restaurant-demo.png" muted loop autoplay playsinline preload="none"></video>
-          <div class="demo-text">
-            <h3 data-i18n-key="demo.restaurant.title">Restaurant Demo</h3>
-            <p data-i18n-key="demo.restaurant.desc">Full-screen hero with menu and gallery</p>
-            <p class="demo-skills"><strong data-i18n-key="demo.restaurant.skills_label">Skills:</strong> <span data-i18n-key="demo.restaurant.skills">HTML • CSS • JavaScript</span></p>
-          </div>
-        </a>
-
-        <a href="https://thoms-websites.github.io/corner-cafe/" class="demo-card" target="_blank" rel="noopener">
-          <img class="demo-media" src="cafe-demo.png" alt="Café Demo screenshot">
-          <div class="demo-text">
-            <h3 data-i18n-key="demo.cafe.title">Café Demo</h3>
-            <p data-i18n-key="demo.cafe.desc">Minimalist café site with parallax scroll</p>
-            <p class="demo-skills"><strong data-i18n-key="demo.cafe.skills_label">Skills:</strong> <span data-i18n-key="demo.cafe.skills">HTML • CSS • JavaScript</span></p>
-          </div>
-        </a>
+    <!-- Bar Demo -->
+    <a href="https://thoms-websites.github.io/blue-hour-bar/"
+       class="demo-card video-card"
+       target="_blank" rel="noopener">
+      <video class="demo-media"
+             src="bar-demo.mp4"
+             poster="bar-demo.png"
+             muted loop autoplay playsinline preload="none">
+      </video>
+      <div class="demo-text">
+        <h3 data-i18n-key="demo.bar.title">Bar Demo</h3>
+        <p data-i18n-key="demo.bar.desc">
+          Moody, elegant site with events & a French toggle
+        </p>
+        <p class="demo-skills">
+          <strong data-i18n-key="demo.bar.skills_label">Skills:</strong>
+          <span data-i18n-key="demo.bar.skills">HTML • CSS • JavaScript</span>
+        </p>
       </div>
-    </section>
+    </a>
 
-    <section id="contact" class="contact diagonal-section">
-      <h2 data-i18n-key="contact.title">Let’s Chat</h2>
-      <p class="contact-intro spaced" data-i18n-key="contact.intro">Ready to bring your venue online?…</p>
+    <!-- Restaurant Demo -->
+    <a href="https://thoms-websites.github.io/maison-locale/"
+       class="demo-card"
+       target="_blank" rel="noopener">
+      <video class="demo-media"
+             src="restaurant.mp4"
+             poster="restaurant-demo.png"
+             muted loop autoplay playsinline preload="none">
+      </video>
+      <div class="demo-text">
+        <h3 data-i18n-key="demo.restaurant.title">Restaurant Demo</h3>
+        <p data-i18n-key="demo.restaurant.desc">
+          Full-screen hero with menu and gallery
+        </p>
+        <p class="demo-skills">
+          <strong data-i18n-key="demo.restaurant.skills_label">Skills:</strong>
+          <span data-i18n-key="demo.restaurant.skills">HTML • CSS • JavaScript</span>
+        </p>
+      </div>
+    </a>
+
+    <!-- Café Demo -->
+    <a href="https://thoms-websites.github.io/corner-cafe/"
+       class="demo-card"
+       target="_blank" rel="noopener">
+      <img class="demo-media" src="cafe-demo.png" alt="Café Demo screenshot">
+      <div class="demo-text">
+        <h3 data-i18n-key="demo.cafe.title">Café Demo</h3>
+        <p data-i18n-key="demo.cafe.desc">
+          Minimalist café site with parallax scroll
+        </p>
+        <p class="demo-skills">
+          <strong data-i18n-key="demo.cafe.skills_label">Skills:</strong>
+          <span data-i18n-key="demo.cafe.skills">HTML • CSS • JavaScript</span>
+        </p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact scroll-target diagonal-section">
+      <h2 class="section-title" data-i18n-key="contact.title">Let’s Chat</h2>
+      <p class="contact-intro spaced" data-i18n-key="contact.intro">
+        Ready to bring your venue online? Fill out the form below, and I’ll respond within 24 hours.
+      </p>
       <form action="https://formspree.io/f/mldbnvdn" method="POST" class="contact-form">
         <input type="text"    name="name"    data-i18n-key-placeholder="contact.name"    placeholder="Your name"    required>
         <input type="email"   name="email"   data-i18n-key-placeholder="contact.email"   placeholder="Your email"   required>
-        <textarea            name="message" data-i18n-key-placeholder="contact.message" placeholder="Tell me about your venue..." rows="5" required></textarea>
-        <button type="submit" class="btn" data-i18n-key="contact.send">Send Message</button>
+        <textarea             name="message" data-i18n-key-placeholder="contact.message" placeholder="Tell me about your venue..." rows="5" required></textarea>
+        <button type="submit" class="btn"     data-i18n-key="contact.send">Send Message</button>
       </form>
     </section>
+
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-left"><p>© <span id="year"></span> Thom Creates Websites</p></div>
+    <div class="footer-left">
+      <p>© <span id="year"></span> Thom Creates Websites</p>
+    </div>
     <div class="footer-center">
       <a href="#top" class="back-to-top" data-i18n-key="footer.top">Back to top ↑</a>
     </div>
     <div class="footer-right">
-      <p>📧 <a href="mailto:thom.creates.websites@gmail.com">thom.creates.websites@gmail.com</a></p>
+      <p>📧 <a href="mailto:thom.creates.websites@gmail.com" style="color:#222;">thom.creates.websites@gmail.com</a></p>
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Smooth scroll & Nav toggle -->
   <script>
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(a =>
-      a.addEventListener('click', e => {
+    // smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-      })
-    );
-
-    // Nav toggle
-    document.querySelector('.nav-toggle').addEventListener('click', () =>
-      document.querySelector('.menu').classList.toggle('open')
-    );
-
-    // Current year
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    // mobile nav toggle
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('.menu').classList.toggle('open');
+    });
+    // current year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
+  <!-- i18n toggle script -->
   <script>
-    // i18n translations
-    const translations = { /* …your en & fr maps… */ };
+    const translations = {
+      en: {
+        'nav.about':      'About Me',
+        'nav.skills':     'Skills',
+        'nav.demos':      'Demo Projects',
+        'nav.contact':    "Let's Chat",
+        'hero.title':     "Hi, I’m Thom",
+        'hero.subtitle':  "I build vibrant, responsive websites for cafés, bars & restaurants that stand out—and bring in customers.",
+        'about.title':    'About Me',
+        'about.p1':       "I’m Thom, a self‑taught web developer from New Zealand now based in Paris. I’ve noticed that my friends and I always choose venues where we can preview the website, soak up the vibe and check an up‑to‑date menu before we go. My goal is to modernise small cafés, bars and restaurants by crafting simple sites that reflect each business’s atmosphere and follow the owner’s guidelines.",
+        'about.p2':       "My demo portfolio includes a minimalist café page with smooth parallax scrolling, a restaurant showcase with an interactive image gallery and embedded reservation form, and a moody bar site featuring English and French versions via a language toggle. Every project is built from scratch with semantic HTML, modern CSS (Flexbox and Grid) and JavaScript for carousels, menus and forms. I host and version everything on GitHub and deploy instantly through GitHub Pages. I’ve also used Python to automate finding local businesses on Google Maps that lack a website, so I can offer them a straightforward, pixel‑perfect online presence.",
+        'skills.title':   'Skills',
+        'demos.title':    'Demo Projects',
+        'contact.title':  "Let’s Chat",
+        'contact.intro':  'Ready to bring your venue online? Fill out the form below, and I’ll respond within 24 hours.',
+        'contact.name':   'Your name',
+        'contact.email':  'Your email',
+        'contact.message':'Tell me about your venue...',
+        'contact.send':   'Send Message',
+        'footer.top':     'Back to top ↑',
+        'demo.bar.title':        'Bar Demo',
+        'demo.bar.desc':         'Moody, elegant site with events & a French toggle',
+        'demo.bar.skills_label': 'Skills:',
+        'demo.bar.skills':       'HTML • CSS • JavaScript',
+        'demo.restaurant.title':        'Restaurant Demo',
+        'demo.restaurant.desc':         'Full-screen hero with menu and gallery',
+        'demo.restaurant.skills_label': 'Skills:',
+        'demo.restaurant.skills':       'HTML • CSS • JavaScript',
+        'demo.cafe.title':        'Café Demo',
+        'demo.cafe.desc':         'Minimalist café site with parallax scroll',
+        'demo.cafe.skills_label': 'Skills:',
+        'demo.cafe.skills':       'HTML • CSS • JavaScript',        
+      },
+      fr: {
+        'nav.about':      'À propos',
+        'nav.skills':     'Compétences',
+        'nav.demos':      'Démos',
+        'nav.contact':    'Contact',
+        'hero.title':     'Bonjour, je suis Thom',
+        'hero.subtitle':  "Je crée des sites web dynamiques et responsives pour cafés, bars et restaurants qui se démarquent et attirent des clients.",
+        'about.title':    'À propos de moi',
+        'about.p1':       "Je suis Thom, développeur web autodidacte originaire de Nouvelle‑Zélande et désormais basé à Paris. J’ai remarqué que mes amis et moi choisissons toujours des lieux dont nous pouvons prévisualiser le site, ressentir l’ambiance et consulter un menu à jour avant de nous y rendre. Mon objectif est de moderniser les petits cafés, bars et restaurants en créant des sites simples qui reflètent l’atmosphère de chaque établissement et suivent les directives du propriétaire.",
+        'about.p2':       "Mon portfolio de démonstration comprend une page de café minimaliste avec un défilement parallax fluide, une vitrine de restaurant avec une galerie d’images interactive et un formulaire de réservation intégré, et un site de bar d’ambiance offrant des versions anglaise et française via un sélecteur de langue. Chaque projet est construit from scratch avec un HTML sémantique, du CSS moderne (Flexbox et Grid) et du JavaScript pour les carrousels, menus et formulaires. J’héberge et versionne tout sur GitHub et déploie instantanément via GitHub Pages. J’ai également utilisé Python pour automatiser la recherche d’entreprises locales sur Google Maps dépourvues de site Web, afin de leur proposer une présence en ligne simple et pixel‑parfaite.",
+        'skills.title':   'Compétences',
+        'demos.title':    'Démos',
+        'contact.title':  'Contactez‑moi',
+        'contact.intro':  "Prêt à mettre votre établissement en ligne ? Remplissez le formulaire ci‑dessous, je vous répondrai sous 24 h.",
+        'contact.name':   'Votre nom',
+        'contact.email':  'Votre e‑mail',
+        'contact.message':'Parlez‑moi de votre établissement...',
+        'contact.send':   'Envoyer',
+        'footer.top':     'Haut de page ↑',
+        'demo.bar.title':        'Démo Bar',
+        'demo.bar.desc':         'Site d’ambiance élégant avec événements et sélection FR',
+        'demo.bar.skills_label': 'Compétences :',
+        'demo.bar.skills':       'HTML • CSS • JavaScript',
+        'demo.restaurant.title':        'Démo Restaurant',
+        'demo.restaurant.desc':         'Héros plein écran avec menu et galerie',
+        'demo.restaurant.skills_label': 'Compétences :',
+        'demo.restaurant.skills':       'HTML • CSS • JavaScript',
+        'demo.cafe.title':        'Démo Café',
+        'demo.cafe.desc':         'Site café minimaliste avec défilement parallax',
+        'demo.cafe.skills_label': 'Compétences :',
+        'demo.cafe.skills':       'HTML • CSS • JavaScript',
+      }
+    };
 
     function applyTranslations(lang) {
       document.querySelectorAll('[data-i18n-key]').forEach(el => {
-        const t = translations[lang][el.dataset.i18nKey];
-        if (t) el.textContent = t;
+        const key = el.getAttribute('data-i18n-key');
+        if (translations[lang][key]) el.textContent = translations[lang][key];
       });
       document.querySelectorAll('[data-i18n-key-placeholder]').forEach(el => {
-        const t = translations[lang][el.dataset.i18nKeyPlaceholder];
-        if (t) el.placeholder = t;
+        const key = el.getAttribute('data-i18n-key-placeholder');
+        if (translations[lang][key]) el.placeholder = translations[lang][key];
       });
       document.documentElement.lang = lang;
-      document.getElementById('lang-toggle').textContent = lang === 'en' ? 'FR' : 'EN';
+      document.getElementById('lang-toggle').textContent = (lang === 'en' ? 'FR' : 'EN');
     }
 
     let currentLang = 'en';
@@ -166,5 +295,6 @@
     });
     applyTranslations(currentLang);
   </script>
+
 </body>
 </html>
