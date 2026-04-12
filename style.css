@@ -430,3 +430,76 @@ body {
     display: inline-block;
   }
 }
+
+/* 12/04/2026 */
+/* HERO CTA */
+.hero-cta {
+  margin-top: 20px;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #222;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #444;
+}
+
+.hero-note {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #eee;
+}
+
+/* PRICING */
+.pricing {
+  text-align: center;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 30px;
+}
+
+.price-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.price-card h3 {
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.price-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.price-card li {
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+/* DEMO INTRO */
+.demo-intro {
+  text-align: center;
+  color: #eee;
+  margin-bottom: 30px;
+}
