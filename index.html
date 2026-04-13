@@ -45,12 +45,12 @@
     <div class="logo">Thom Creates Websites</div>
 
 <ul class="menu" id="primary-menu">
-  <li><a href="#about" data-scroll-target="about" data-i18n-key="nav.about">Why it matters</a></li>
-  <li><a href="#proof" data-scroll-target="proof" data-i18n-key="nav.proof">Proof</a></li>
-  <li><a href="#skills" data-scroll-target="skills" data-i18n-key="nav.skills">Skills</a></li>
-  <li><a href="#pricing" data-scroll-target="pricing" data-i18n-key="nav.pricing">Pricing</a></li>
-  <li><a href="#demos" data-scroll-target="demos" data-i18n-key="nav.demos">Demo Projects</a></li>
-  <li><a href="#contact" data-scroll-target="contact" data-i18n-key="nav.contact">Let's Chat</a></li>
+  <li><a href="#about" data-i18n-key="nav.about">Why it matters</a></li>
+  <li><a href="#proof" data-i18n-key="nav.proof">Proof</a></li>
+  <li><a href="#skills" data-i18n-key="nav.skills">Skills</a></li>
+  <li><a href="#pricing" data-i18n-key="nav.pricing">Pricing</a></li>
+  <li><a href="#demos" data-i18n-key="nav.demos">Demo Projects</a></li>
+  <li><a href="#contact" data-i18n-key="nav.contact">Let's Chat</a></li>
 </ul>
 
 <div class="nav-actions">
@@ -77,7 +77,7 @@
       </p>
 
       <div class="hero-cta">
-        <a href="#contact" class="btn-primary" data-scroll-target="contact" data-i18n-key="hero.cta">Get your website</a>
+        <a href="#contact" class="btn-primary" data-i18n-key="hero.cta">Get your website</a>
         <p class="hero-note" data-i18n-key="hero.note">
           Starting from NZ$499. Free 15 minute call included.
         </p>
@@ -88,10 +88,10 @@
   </section>
 
   <!-- ABOUT ME -->
-  <section id="about" class="about scroll-target diagonal-section">
-    <h2 class="section-title" data-i18n-key="about.newtitle">
-      Why your venue needs a website
-    </h2>
+  <section class="about scroll-target diagonal-section">
+  <h2 id="about" class="section-title" data-i18n-key="about.newtitle">
+    Why your venue needs a website
+  </h2>
 
     <p data-i18n-key="about.newp1">
       Most people check a venue online before they go. If you do not have a website, they are relying on Google Maps or Instagram, which often does not show your menu, your atmosphere, or the full picture of your business.
@@ -107,10 +107,10 @@
   </section>
 
   <!-- PROOF -->
-  <section id="proof" class="proof diagonal-section">
-    <h2 class="section-title" data-i18n-key="proof.title">
-      No website? You are missing customers
-    </h2>
+  <section class="proof diagonal-section">
+  <h2 id="proof" class="section-title" data-i18n-key="proof.title">
+    No website? You are missing customers
+  </h2>
 
     <ul class="proof-list">
       <li data-i18n-key="proof.point1">
@@ -126,9 +126,9 @@
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" class="skills-section diagonal-section">
-    <div class="container">
-      <h2 data-i18n-key="skills.title">Skills</h2>
+  <section class="skills-section diagonal-section">
+  <div class="container">
+    <h2 id="skills" data-i18n-key="skills.title">Skills</h2>
       <div class="skills-grid">
         <div class="skill-card">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 logo">
@@ -155,8 +155,8 @@
   </section>
 
   <!-- PRICING -->
-  <section id="pricing" class="pricing diagonal-section">
-    <h2 class="section-title" data-i18n-key="pricing.title">Simple pricing</h2>
+  <section class="pricing diagonal-section">
+  <h2 id="pricing" class="section-title" data-i18n-key="pricing.title">Simple pricing</h2>
 
     <div class="pricing-grid">
       <div class="price-card">
@@ -195,8 +195,8 @@
   </section>
 
   <!-- DEMO PROJECTS -->
-  <section id="demos" class="demos scroll-target">
-    <h2 class="section-title" data-i18n-key="demos.title">Demo Projects</h2>
+  <section class="demos scroll-target">
+  <h2 id="demos" class="section-title" data-i18n-key="demos.title">Demo Projects</h2>
     <p class="demo-intro" data-i18n-key="demos.intro">
       These are example websites showing what your venue could look like.
     </p>
@@ -247,8 +247,8 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="contact scroll-target diagonal-section">
-    <h2 class="section-title" data-i18n-key="contact.title">Let’s Chat</h2>
+  <section class="contact scroll-target diagonal-section">
+  <h2 id="contact" class="section-title" data-i18n-key="contact.title">Let’s Chat</h2>
     <p class="contact-intro spaced" data-i18n-key="contact.intro">
       Want a website like this for your venue? Send a message and I will get back to you. I also offer a free 15 minute call.
     </p>
@@ -278,25 +278,7 @@
 <script>
   const navToggle = document.querySelector('.nav-toggle');
   const menu = document.querySelector('.menu');
-  const navLinks = document.querySelectorAll('[data-scroll-target]');
-
-  function getHeaderOffset() {
-    const header = document.querySelector('.main-nav');
-    return header ? header.offsetHeight : 0;
-  }
-
-  function scrollToSection(id) {
-    const target = document.getElementById(id);
-    if (!target) return;
-
-    const offset = getHeaderOffset();
-    const top = window.scrollY + target.getBoundingClientRect().top - offset;
-
-    window.scrollTo({
-      top,
-      behavior: 'smooth'
-    });
-  }
+  const navLinks = document.querySelectorAll('.menu a[href^="#"], .hero-cta a[href^="#"]');
 
   function closeMenu() {
     menu?.classList.remove('open');
@@ -309,12 +291,7 @@
   });
 
   navLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      const targetId = link.getAttribute('data-scroll-target');
-      if (!targetId) return;
-
-      e.preventDefault();
-      scrollToSection(targetId);
+    link.addEventListener('click', () => {
       closeMenu();
     });
   });
