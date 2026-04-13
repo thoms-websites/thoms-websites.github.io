@@ -402,26 +402,13 @@ body {
   background: rgba(255,255,255,0.98);
   border-radius: 12px;
   padding: 22px 18px;
-  border: 2px solid transparent;
   box-shadow: 0 8px 22px rgba(0,0,0,0.12);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .price-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.16);
-}
-
-.pricing-grid .price-card:nth-child(1):hover {
-  border-color: #3b82f6;
-}
-
-.pricing-grid .price-card:nth-child(2):hover {
-  border-color: #22c55e;
-}
-
-.pricing-grid .price-card:nth-child(3):hover {
-  border-color: #a855f7;
 }
 
 .price-card h3 {
