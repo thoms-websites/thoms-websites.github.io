@@ -44,19 +44,19 @@
   <header class="main-nav">
     <div class="logo">Thom Creates Websites</div>
 
-<ul class="menu">
-  <li><a href="#about" data-i18n-key="nav.about" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Why it matters</a></li>
-  <li><a href="#proof" data-i18n-key="nav.proof" onclick="document.getElementById('proof').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Proof</a></li>
-  <li><a href="#skills" data-i18n-key="nav.skills" onclick="document.getElementById('skills').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Skills</a></li>
-  <li><a href="#pricing" data-i18n-key="nav.pricing" onclick="document.getElementById('pricing').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Pricing</a></li>
-  <li><a href="#demos" data-i18n-key="nav.demos" onclick="document.getElementById('demos').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Demo Projects</a></li>
-  <li><a href="#contact" data-i18n-key="nav.contact" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Let's Chat</a></li>
+<ul class="menu" id="primary-menu">
+  <li><a href="#about" data-i18n-key="nav.about">Why it matters</a></li>
+  <li><a href="#proof" data-i18n-key="nav.proof">Proof</a></li>
+  <li><a href="#skills" data-i18n-key="nav.skills">Skills</a></li>
+  <li><a href="#pricing" data-i18n-key="nav.pricing">Pricing</a></li>
+  <li><a href="#demos" data-i18n-key="nav.demos">Demo Projects</a></li>
+  <li><a href="#contact" data-i18n-key="nav.contact">Let's Chat</a></li>
 </ul>
 
-    <div class="nav-actions">
-      <button id="lang-toggle" class="lang-toggle" aria-label="Toggle language" type="button">FR</button>
-      <button class="nav-toggle" aria-label="Toggle navigation" type="button">&#9776;</button>
-    </div>
+<div class="nav-actions">
+  <button id="lang-toggle" class="lang-toggle" aria-label="Toggle language" type="button">FR</button>
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="primary-menu" aria-expanded="false" type="button">&#9776;</button>
+</div>
   </header>
 
   <main>
@@ -277,11 +277,34 @@
   <!-- Smooth scroll & Nav toggle -->
 <script>
   const navToggle = document.querySelector('.nav-toggle');
-  if (navToggle) {
-    navToggle.addEventListener('click', () => {
-      document.querySelector('.menu')?.classList.toggle('open');
-    });
+  const menu = document.querySelector('.menu');
+  const navLinks = document.querySelectorAll('.menu a[href^="#"]');
+
+  function closeMenu() {
+    menu?.classList.remove('open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
   }
+
+  navToggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const targetId = link.getAttribute('href')?.slice(1);
+      const target = targetId ? document.getElementById(targetId) : null;
+      if (!target) return;
+
+      e.preventDefault();
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
+      closeMenu();
+    });
+  });
 
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
