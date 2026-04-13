@@ -38,7 +38,7 @@
 <body id="top">
 
   <header class="main-nav">
-    <a class="logo" href="#top">Thom Creates Websites</a>
+    <div class="logo">Thom Creates Websites</div>
 
     <nav id="site-nav" class="nav-links" aria-label="Primary navigation">
       <a href="#about" data-i18n-key="nav.about">About</a>
@@ -83,7 +83,7 @@
       <div class="blob blob-bottom" aria-hidden="true"></div>
     </section>
 
-    <section id="about" class="section-card diagonal-section">
+    <section id="about" class="about scroll-target diagonal-section">
       <h2 class="section-title" data-i18n-key="about.title">Why your venue needs a website</h2>
 
       <p data-i18n-key="about.p1">
@@ -99,27 +99,29 @@
       </p>
     </section>
 
-    <section id="proof" class="section-card diagonal-section proof">
-      <h2 class="section-title" data-i18n-key="proof.title">No website? You are missing customers</h2>
+    <section id="proof" class="proof scroll-target">
+      <div class="proof-inner">
+        <h2 class="section-title" data-i18n-key="proof.title">No website? You are missing customers</h2>
 
-      <p class="proof-lead" data-i18n-key="proof.lead">
-        BrightLocal found that 98% of consumers used the internet to find information about local businesses.
-      </p>
+        <p class="proof-lead" data-i18n-key="proof.lead">
+          BrightLocal found that 98% of consumers used the internet to find information about local businesses.
+        </p>
 
-      <ul class="proof-list">
-        <li data-i18n-key="proof.point1">
-          People check opening hours, location and reviews before they visit.
-        </li>
-        <li data-i18n-key="proof.point2">
-          A business’s own website is one of the most trusted places to find local business information.
-        </li>
-        <li data-i18n-key="proof.point3">
-          A proper website gives you one clear place to show your menu, vibe and contact details.
-        </li>
-      </ul>
+        <ul class="proof-list">
+          <li data-i18n-key="proof.point1">
+            People check opening hours, location and reviews before they visit.
+          </li>
+          <li data-i18n-key="proof.point2">
+            A business’s own website is one of the most trusted places to find local business information.
+          </li>
+          <li data-i18n-key="proof.point3">
+            A proper website gives you one clear place to show your menu, vibe and contact details.
+          </li>
+        </ul>
+      </div>
     </section>
 
-    <section id="pricing" class="section-card diagonal-section pricing">
+    <section id="pricing" class="pricing diagonal-section">
       <h2 class="section-title" data-i18n-key="pricing.title">Simple pricing</h2>
 
       <div class="pricing-grid">
@@ -158,42 +160,49 @@
       </div>
     </section>
 
-    <section id="skills" class="section-card diagonal-section skills-section">
-      <h2 class="section-title" data-i18n-key="skills.title">Skills</h2>
-
-      <div class="skills-grid">
-        <div class="skill-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 logo" />
-          <p>HTML5</p>
-        </div>
-        <div class="skill-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 logo" />
-          <p>CSS3</p>
-        </div>
-        <div class="skill-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript logo" />
-          <p>JavaScript</p>
-        </div>
-        <div class="skill-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub logo" />
-          <p>GitHub</p>
-        </div>
-        <div class="skill-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo" />
-          <p>Python</p>
+    <section id="skills" class="skills-section diagonal-section">
+      <div class="container">
+        <h2 data-i18n-key="skills.title">Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 logo">
+            <p>HTML5</p>
+          </div>
+          <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 logo">
+            <p>CSS3</p>
+          </div>
+          <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript logo">
+            <p>JavaScript</p>
+          </div>
+          <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub logo">
+            <p>GitHub</p>
+          </div>
+          <div class="skill-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo">
+            <p>Python</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="demos" class="demos diagonal-section">
+    <section id="demos" class="demos scroll-target">
       <h2 class="section-title section-title-light" data-i18n-key="demos.title">Demo Projects</h2>
       <p class="demo-intro" data-i18n-key="demos.intro">
         These are example websites showing what your venue could look like.
       </p>
 
       <div class="demo-grid">
-        <a href="https://thoms-websites.github.io/blue-hour-bar/" class="demo-card video-card" target="_blank" rel="noopener">
-          <video class="demo-media" src="bar-demo.mp4" poster="bar-demo.png" muted loop autoplay playsinline preload="none"></video>
+        <a href="https://thoms-websites.github.io/blue-hour-bar/"
+           class="demo-card video-card"
+           target="_blank" rel="noopener">
+          <video class="demo-media"
+                 src="bar-demo.mp4"
+                 poster="bar-demo.png"
+                 muted loop autoplay playsinline preload="none">
+          </video>
           <div class="demo-text">
             <h3 data-i18n-key="demo.bar.title">Bar Demo</h3>
             <p data-i18n-key="demo.bar.desc">
@@ -206,8 +215,14 @@
           </div>
         </a>
 
-        <a href="https://thoms-websites.github.io/maison-locale/" class="demo-card video-card" target="_blank" rel="noopener">
-          <video class="demo-media" src="restaurant.mp4" poster="restaurant-demo.png" muted loop autoplay playsinline preload="none"></video>
+        <a href="https://thoms-websites.github.io/maison-locale/"
+           class="demo-card video-card"
+           target="_blank" rel="noopener">
+          <video class="demo-media"
+                 src="restaurant.mp4"
+                 poster="restaurant-demo.png"
+                 muted loop autoplay playsinline preload="none">
+          </video>
           <div class="demo-text">
             <h3 data-i18n-key="demo.restaurant.title">Restaurant Demo</h3>
             <p data-i18n-key="demo.restaurant.desc">
@@ -220,8 +235,10 @@
           </div>
         </a>
 
-        <a href="https://thoms-websites.github.io/corner-cafe/" class="demo-card" target="_blank" rel="noopener">
-          <img class="demo-media" src="cafe-demo.png" alt="Café demo screenshot" />
+        <a href="https://thoms-websites.github.io/corner-cafe/"
+           class="demo-card"
+           target="_blank" rel="noopener">
+          <img class="demo-media" src="cafe-demo.png" alt="Café demo screenshot">
           <div class="demo-text">
             <h3 data-i18n-key="demo.cafe.title">Café Demo</h3>
             <p data-i18n-key="demo.cafe.desc">
@@ -236,36 +253,18 @@
       </div>
     </section>
 
-    <section id="contact" class="section-card diagonal-section contact">
+    <section id="contact" class="contact scroll-target diagonal-section">
       <h2 class="section-title" data-i18n-key="contact.title">Let's Chat</h2>
 
-      <p class="contact-intro" data-i18n-key="contact.intro">
+      <p class="contact-intro spaced" data-i18n-key="contact.intro">
         Want a website like this for your venue? Send a message or book a free 15 minute call.
       </p>
 
       <form action="https://formspree.io/f/mldbnvdn" method="POST" class="contact-form">
-        <input
-          type="text"
-          name="name"
-          data-i18n-key-placeholder="contact.name"
-          placeholder="Your name"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          data-i18n-key-placeholder="contact.email"
-          placeholder="Your email"
-          required
-        />
-        <textarea
-          name="message"
-          data-i18n-key-placeholder="contact.message"
-          placeholder="Tell me about your venue..."
-          rows="5"
-          required
-        ></textarea>
-        <button type="submit" class="btn-primary" data-i18n-key="contact.send">Send Message</button>
+        <input type="text" name="name" data-i18n-key-placeholder="contact.name" placeholder="Your name" required>
+        <input type="email" name="email" data-i18n-key-placeholder="contact.email" placeholder="Your email" required>
+        <textarea name="message" data-i18n-key-placeholder="contact.message" placeholder="Tell me about your venue..." rows="5" required></textarea>
+        <button type="submit" class="btn" data-i18n-key="contact.send">Send Message</button>
       </form>
     </section>
   </main>
@@ -274,25 +273,23 @@
     <div class="footer-left">
       <p>© <span id="year"></span> Thom Creates Websites</p>
     </div>
-
     <div class="footer-center"></div>
-
     <div class="footer-right">
-      <p>
-        📧
-        <a href="mailto:thom.creates.websites@gmail.com">thom.creates.websites@gmail.com</a>
-      </p>
+      <p>📧 <a href="mailto:thom.creates.websites@gmail.com" style="color:#222;">thom.creates.websites@gmail.com</a></p>
     </div>
   </footer>
 
   <script>
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (!target) return;
-
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerOffset = 110;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = window.pageYOffset + elementPosition - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
 
         const nav = document.getElementById('site-nav');
         const navToggle = document.querySelector('.nav-toggle');
