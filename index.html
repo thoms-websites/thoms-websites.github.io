@@ -278,31 +278,40 @@
 <script>
   const headerOffset = 120;
 
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('a[href^="#"]');
-    if (!link) return;
-
-    const hash = link.getAttribute('href');
+  function scrollToTarget(hash) {
     const target = document.querySelector(hash);
     if (!target) return;
-
-    e.preventDefault();
 
     const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
     window.scrollTo({
       top,
       behavior: 'smooth'
     });
+  }
 
-    const menu = document.querySelector('.menu');
-    if (menu && menu.classList.contains('open')) {
-      menu.classList.remove('open');
-    }
+  const navLinks = document.querySelectorAll('.menu a[href^="#"]');
+  const ctaLink = document.querySelector('.btn-primary[href^="#"]');
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToTarget(link.getAttribute('href'));
+    });
   });
 
-  document.querySelector('.nav-toggle').addEventListener('click', () => {
-    document.querySelector('.menu').classList.toggle('open');
-  });
+  if (ctaLink) {
+    ctaLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToTarget(ctaLink.getAttribute('href'));
+    });
+  }
+
+  const navToggle = document.querySelector('.nav-toggle');
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      document.querySelector('.menu')?.classList.toggle('open');
+    });
+  }
 
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
