@@ -44,14 +44,14 @@
   <header class="main-nav">
     <div class="logo">Thom Creates Websites</div>
 
-    <ul class="menu">
-      <li><a href="#about" data-i18n-key="nav.about">Why it matters</a></li>
-      <li><a href="#proof" data-i18n-key="nav.proof">Proof</a></li>
-      <li><a href="#pricing" data-i18n-key="nav.pricing">Pricing</a></li>
-      <li><a href="#skills" data-i18n-key="nav.skills">Skills</a></li>
-      <li><a href="#demos" data-i18n-key="nav.demos">Demo Projects</a></li>
-      <li><a href="#contact" data-i18n-key="nav.contact">Let's Chat</a></li>
-    </ul>
+<ul class="menu">
+  <li><a href="#about" data-i18n-key="nav.about" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Why it matters</a></li>
+  <li><a href="#proof" data-i18n-key="nav.proof" onclick="document.getElementById('proof').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Proof</a></li>
+  <li><a href="#pricing" data-i18n-key="nav.pricing" onclick="document.getElementById('pricing').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Pricing</a></li>
+  <li><a href="#skills" data-i18n-key="nav.skills" onclick="document.getElementById('skills').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Skills</a></li>
+  <li><a href="#demos" data-i18n-key="nav.demos" onclick="document.getElementById('demos').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Demo Projects</a></li>
+  <li><a href="#contact" data-i18n-key="nav.contact" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Let's Chat</a></li>
+</ul>
 
     <div class="nav-actions">
       <button id="lang-toggle" class="lang-toggle" aria-label="Toggle language" type="button">FR</button>
@@ -77,7 +77,7 @@
       </p>
 
       <div class="hero-cta">
-        <a href="#contact" class="btn-primary" data-i18n-key="hero.cta">Get your website</a>
+        <a href="#contact" class="btn-primary" data-i18n-key="hero.cta" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Get your website</a>
         <p class="hero-note" data-i18n-key="hero.note">
           Starting from NZ$499. Free 15 minute call included.
         </p>
@@ -275,45 +275,16 @@
   </footer>
 
   <!-- Smooth scroll & Nav toggle -->
-  <!-- Smooth scroll & Nav toggle -->
-  <script>
-    const headerOffset = 120;
-
-    function scrollToSection(hash) {
-      const target = document.querySelector(hash);
-      if (!target) return;
-
-      const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-      window.scrollTo({
-        top,
-        behavior: 'smooth'
-      });
-    }
-
-    document.querySelectorAll('.menu a[href^="#"], .hero-cta a[href^="#"]').forEach((link) => {
-      link.addEventListener('click', (e) => {
-        const hash = link.getAttribute('href');
-        if (!hash) return;
-
-        e.preventDefault();
-        scrollToSection(hash);
-
-        const menu = document.querySelector('.menu');
-        if (menu && menu.classList.contains('open')) {
-          menu.classList.remove('open');
-        }
-      });
+<script>
+  const navToggle = document.querySelector('.nav-toggle');
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      document.querySelector('.menu')?.classList.toggle('open');
     });
+  }
 
-    const navToggle = document.querySelector('.nav-toggle');
-    if (navToggle) {
-      navToggle.addEventListener('click', () => {
-        document.querySelector('.menu')?.classList.toggle('open');
-      });
-    }
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
   <!-- i18n toggle script -->
   <script>
