@@ -54,18 +54,18 @@
   <div class="hero-content">
     <img src="website-pp.png" alt="Thom’s Photo" class="hero-photo" loading="lazy" />
 
-    <h1 class="hero-title">
-      Websites for cafés, bars & restaurants
-    </h1>
+<h1 class="hero-title" data-i18n-key="hero.title">
+  Websites for cafés, bars & restaurants
+</h1>
 
-    <p class="hero-subtitle">
-      Get a clean, modern website that shows your menu, hours and vibe properly. Live in 7 days.
-    </p>
+<p class="hero-subtitle" data-i18n-key="hero.subtitle">
+  Get a clean, modern website that shows your menu, hours and vibe properly. Live in 7 days.
+</p>
 
-    <div class="hero-cta">
-      <a href="#contact" class="btn-primary">Get your website</a>
-      <p class="hero-note">Starting from NZ$499</p>
-    </div>
+<div class="hero-cta">
+  <a href="#contact" class="btn-primary" data-i18n-key="hero.cta">Get your website</a>
+  <p class="hero-note" data-i18n-key="hero.price">Starting from NZ$499</p>
+</div>
   </div>
 
   <div class="blob blob-bottom" aria-hidden="true"></div>
@@ -86,6 +86,26 @@
   <p>
     I am based in Wellington and started doing this while studying, focusing on small local businesses that do not yet have a proper website. Every site is built from scratch and designed to look great on mobile.
   </p>
+</section>
+
+      <!-- PROOF -->
+
+  <section class="proof diagonal-section">
+  <h2 class="section-title" data-i18n-key="proof.title">
+    No website? You are missing customers
+  </h2>
+
+  <ul class="proof-list">
+    <li data-i18n-key="proof.point1">
+      70%+ of people check a business online before visiting
+    </li>
+    <li data-i18n-key="proof.point2">
+      Instagram and Google Maps do not show the full picture of your venue
+    </li>
+    <li data-i18n-key="proof.point3">
+      A proper website helps customers see your menu, vibe and location clearly
+    </li>
+  </ul>
 </section>
 
     <!-- SKILLS -->
@@ -120,13 +140,13 @@
 
     <!-- PRICING -->
   <section id="pricing" class="pricing diagonal-section">
-  <h2 class="section-title">Simple pricing</h2>
+<h2 class="section-title" data-i18n-key="pricing.title">Simple pricing</h2>
 
   <div class="pricing-grid">
 
     <div class="price-card">
-      <h3>Starter</h3>
-      <p class="price">From NZ$499</p>
+<h3 data-i18n-key="pricing.starter">Starter</h3>
+<p class="price" data-i18n-key="pricing.starter.price">From NZ$499</p>
       <ul>
         <li>One-page website</li>
         <li>Menu, hours, location</li>
@@ -136,8 +156,8 @@
     </div>
 
     <div class="price-card">
-      <h3>Standard</h3>
-      <p class="price">From NZ$999</p>
+<h3 data-i18n-key="pricing.starter">Standard</h3>
+<p class="price" data-i18n-key="pricing.starter.price">From NZ$999</p>
       <ul>
         <li>Multi-page site</li>
         <li>Menu + gallery</li>
@@ -147,8 +167,8 @@
     </div>
 
     <div class="price-card">
-      <h3>Premium</h3>
-      <p class="price">From NZ$1499</p>
+<h3 data-i18n-key="pricing.starter">Premium</h3>
+<p class="price" data-i18n-key="pricing.starter.price">From NZ$1499</p>
       <ul>
         <li>Everything in Standard</li>
         <li>Custom features</li>
@@ -163,7 +183,7 @@
     <!-- DEMO PROJECTS -->
 <section id="demos" class="demos scroll-target">
   <h2 class="section-title" data-i18n-key="demos.title">Demo Projects</h2>
-  <p class="demo-intro">
+<p class="demo-intro" data-i18n-key="demos.intro">
   These are example websites showing what your venue could look like.
 </p>
   <div class="demo-grid">
@@ -233,9 +253,9 @@
     <!-- CONTACT -->
     <section id="contact" class="contact scroll-target diagonal-section">
       <h2 class="section-title" data-i18n-key="contact.title">Let’s Chat</h2>
-      <p class="contact-intro spaced">
-      Want a website like this for your venue? Send a message and I will get back to you.
-      </p>
+<p class="contact-intro spaced" data-i18n-key="contact.intro">
+  Want a website like this for your venue? Send a message and I will get back to you.
+</p>
       <form action="https://formspree.io/f/mldbnvdn" method="POST" class="contact-form">
         <input type="text"    name="name"    data-i18n-key-placeholder="contact.name"    placeholder="Your name"    required>
         <input type="email"   name="email"   data-i18n-key-placeholder="contact.email"   placeholder="Your email"   required>
@@ -283,15 +303,29 @@
         'nav.skills':     'Skills',
         'nav.demos':      'Demo Projects',
         'nav.contact':    "Let's Chat",
-        'hero.title':     "Hi, I’m Thom",
-        'hero.subtitle':  "I build vibrant, responsive websites for cafés, bars & restaurants that stand out—and bring in customers.",
+'hero.title': 'Websites for cafés, bars & restaurants',
+'hero.subtitle': 'Get a clean, modern website that shows your menu, hours and vibe properly. Live in 7 days.',
+'hero.cta': 'Get your website',
+'hero.price': 'Starting from NZ$499',
         'about.title':    'About Me',
         'about.p1':       "I’m Thom, a self‑taught web developer from New Zealand now based in Paris. I’ve noticed that my friends and I always choose venues where we can preview the website, soak up the vibe and check an up‑to‑date menu before we go. My goal is to modernise small cafés, bars and restaurants by crafting simple sites that reflect each business’s atmosphere and follow the owner’s guidelines.",
         'about.p2':       "My demo portfolio includes a minimalist café page with smooth parallax scrolling, a restaurant showcase with an interactive image gallery and embedded reservation form, and a moody bar site featuring English and French versions via a language toggle. Every project is built from scratch with semantic HTML, modern CSS (Flexbox and Grid) and JavaScript for carousels, menus and forms. I host and version everything on GitHub and deploy instantly through GitHub Pages. I’ve also used Python to automate finding local businesses on Google Maps that lack a website, so I can offer them a straightforward, pixel‑perfect online presence.",
         'skills.title':   'Skills',
+        'pricing.title': 'Simple pricing',
+'pricing.starter': 'Starter',
+'pricing.starter.price': 'From NZ$499',
+'pricing.standard': 'Standard',
+'pricing.standard.price': 'From NZ$999',
+'pricing.premium': 'Premium',
+'pricing.premium.price': 'From NZ$1499',
         'demos.title':    'Demo Projects',
+        'demos.intro': 'These are example websites showing what your venue could look like.',
+        'proof.title': 'No website? You are missing customers',
+'proof.point1': '70%+ of people check a business online before visiting',
+'proof.point2': 'Instagram and Google Maps do not show the full picture of your venue',
+'proof.point3': 'A proper website helps customers see your menu, vibe and location clearly',
         'contact.title':  "Let’s Chat",
-        'contact.intro':  'Ready to bring your venue online? Fill out the form below, and I’ll respond within 24 hours.',
+'contact.intro': 'Want a website like this for your venue? Send a message and I will get back to you.',
         'contact.name':   'Your name',
         'contact.email':  'Your email',
         'contact.message':'Tell me about your venue...',
@@ -315,15 +349,29 @@
         'nav.skills':     'Compétences',
         'nav.demos':      'Démos',
         'nav.contact':    'Contact',
-        'hero.title':     'Bonjour, je suis Thom',
-        'hero.subtitle':  "Je crée des sites web dynamiques et responsives pour cafés, bars et restaurants qui se démarquent et attirent des clients.",
+'hero.title': 'Sites web pour cafés, bars et restaurants',
+'hero.subtitle': 'Obtenez un site moderne qui montre votre menu, vos horaires et votre ambiance. En ligne en 7 jours.',
+'hero.cta': 'Créer mon site',
+'hero.price': 'À partir de 499 NZD',
         'about.title':    'À propos de moi',
         'about.p1':       "Je suis Thom, développeur web autodidacte originaire de Nouvelle‑Zélande et désormais basé à Paris. J’ai remarqué que mes amis et moi choisissons toujours des lieux dont nous pouvons prévisualiser le site, ressentir l’ambiance et consulter un menu à jour avant de nous y rendre. Mon objectif est de moderniser les petits cafés, bars et restaurants en créant des sites simples qui reflètent l’atmosphère de chaque établissement et suivent les directives du propriétaire.",
         'about.p2':       "Mon portfolio de démonstration comprend une page de café minimaliste avec un défilement parallax fluide, une vitrine de restaurant avec une galerie d’images interactive et un formulaire de réservation intégré, et un site de bar d’ambiance offrant des versions anglaise et française via un sélecteur de langue. Chaque projet est construit from scratch avec un HTML sémantique, du CSS moderne (Flexbox et Grid) et du JavaScript pour les carrousels, menus et formulaires. J’héberge et versionne tout sur GitHub et déploie instantanément via GitHub Pages. J’ai également utilisé Python pour automatiser la recherche d’entreprises locales sur Google Maps dépourvues de site Web, afin de leur proposer une présence en ligne simple et pixel‑parfaite.",
         'skills.title':   'Compétences',
+        'pricing.title': 'Tarifs simples',
+'pricing.starter': 'Starter',
+'pricing.starter.price': 'À partir de 499 NZD',
+'pricing.standard': 'Standard',
+'pricing.standard.price': 'À partir de 999 NZD',
+'pricing.premium': 'Premium',
+'pricing.premium.price': 'À partir de 1499 NZD',
         'demos.title':    'Démos',
+        'demos.intro': 'Voici des exemples de sites montrant à quoi pourrait ressembler le vôtre.',
+        'proof.title': 'Pas de site web ? Vous perdez des clients',
+'proof.point1': 'Plus de 70 % des clients vérifient un établissement en ligne avant de venir',
+'proof.point2': 'Instagram et Google Maps ne montrent pas toute votre activité',
+'proof.point3': 'Un site web permet de présenter clairement votre menu, votre ambiance et votre localisation',
         'contact.title':  'Contactez‑moi',
-        'contact.intro':  "Prêt à mettre votre établissement en ligne ? Remplissez le formulaire ci‑dessous, je vous répondrai sous 24 h.",
+       'contact.intro': 'Vous voulez un site comme celui-ci ? Envoyez un message et je vous répondrai.',
         'contact.name':   'Votre nom',
         'contact.email':  'Votre e‑mail',
         'contact.message':'Parlez‑moi de votre établissement...',
