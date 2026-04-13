@@ -114,9 +114,33 @@ body {
 
 /* keep mobile behaviour close to your original setup */
 @media (max-width: 768px) {
-  .nav-toggle,
+  .nav-toggle {
+    display: block;
+  }
+
   .menu {
-    display: none !important;
+    display: none;
+    position: absolute;
+    top: calc(100% - 6px);
+    right: 1rem;
+    left: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    z-index: 200;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+
+  .menu li a {
+    display: block;
+    padding: 0.9rem 1rem;
   }
 }
 
@@ -352,6 +376,86 @@ body {
   margin: 0;
   font-weight: bold;
   color: #333;
+}
+
+/* ========== PRICING SECTION ========== */
+.pricing {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+}
+
+.pricing .section-title {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.price-card {
+  background: rgba(255,255,255,0.98);
+  border-radius: 12px;
+  padding: 22px 18px;
+  border: 2px solid transparent;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.price-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.16);
+}
+
+.pricing-grid .price-card:nth-child(1):hover {
+  border-color: #3b82f6;
+}
+
+.pricing-grid .price-card:nth-child(2):hover {
+  border-color: #22c55e;
+}
+
+.pricing-grid .price-card:nth-child(3):hover {
+  border-color: #a855f7;
+}
+
+.price-card h3 {
+  font-size: 1.25rem;
+  color: #222;
+  margin-bottom: 0.45rem;
+}
+
+.price-card .price {
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.9rem;
+}
+
+.price-card ul {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.price-card li {
+  position: relative;
+  padding-left: 18px;
+  color: #333;
+  line-height: 1.45;
+}
+
+.price-card li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #222;
+  font-weight: 700;
 }
 
 /* ========== DEMOS SECTION ========== */
