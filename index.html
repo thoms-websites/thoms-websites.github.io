@@ -313,6 +313,12 @@
       document.querySelector('.menu').classList.toggle('open');
     });
 
+    document.querySelectorAll('.menu a[href^="#"], .btn-primary[href^="#"]').forEach((link) => {
+      link.addEventListener('click', () => {
+        document.querySelector('.menu').classList.remove('open');
+      });
+    });
+
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
