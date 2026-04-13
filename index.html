@@ -276,43 +276,6 @@
 
   <!-- Smooth scroll & Nav toggle -->
 <script>
-  function scrollCustom(id, position = 'top') {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    const headerOffset = 110;
-    const rect = el.getBoundingClientRect();
-    const scrollTop = window.scrollY;
-
-    let offset = 0;
-
-    if (position === 'top') {
-      offset = rect.top + scrollTop - headerOffset;
-    }
-
-    if (position === 'slightly-below') {
-      offset = rect.top + scrollTop - headerOffset + 40;
-    }
-
-    if (position === 'below-prev') {
-      offset = rect.top + scrollTop - headerOffset - 80;
-    }
-
-    if (position === 'center') {
-      offset =
-        rect.top +
-        scrollTop -
-        window.innerHeight / 2 +
-        el.offsetHeight / 2;
-    }
-
-    window.scrollTo({
-      top: offset,
-      behavior: 'smooth'
-    });
-  }
-
-  // mobile toggle stays the same
   const navToggle = document.querySelector('.nav-toggle');
   if (navToggle) {
     navToggle.addEventListener('click', () => {
