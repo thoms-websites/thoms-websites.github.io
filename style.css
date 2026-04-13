@@ -250,7 +250,7 @@ body {
   background: rgba(255,255,255,0.9);
   max-width: 800px;
   margin: 0 auto 40px;
-  border-radius: 8px;
+  border-radius: 0px;
 }
 
 .about .section-title {
@@ -280,7 +280,7 @@ body {
 .proof {
   max-width: 800px;
   margin: 0 auto 40px;
-  border-radius: 8px;
+  border-radius: 0px;
 }
 
 .proof .section-title {
@@ -407,21 +407,22 @@ body {
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
+.price-card:nth-child(1) {
+  --accent: #3b82f6;
+}
+
+.price-card:nth-child(2) {
+  --accent: #8b5cf6;
+}
+
+.price-card:nth-child(3) {
+  --accent: #f59e0b;
+}
+
 .price-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--accent);
   box-shadow: 0 12px 30px rgba(0,0,0,0.16);
-}
-
-.pricing-grid .price-card:nth-child(1):hover {
-  border-color: #cd7f32;
-}
-
-.pricing-grid .price-card:nth-child(2):hover {
-  border-color: #c0c0c0;
-}
-
-.pricing-grid .price-card:nth-child(3):hover {
-  border-color: #ffd700;
 }
 
 .price-card h3 {
@@ -432,19 +433,19 @@ body {
 
 .price-card .price {
   font-weight: 700;
-  color: #111;
+  color: var(--accent);
   margin-bottom: 0.9rem;
 }
 
 .price-card ul {
   list-style: none;
-  display: grid;
-  gap: 8px;
+  padding: 0;
 }
 
 .price-card li {
   position: relative;
   padding-left: 18px;
+  margin: 8px 0;
   color: #333;
   line-height: 1.45;
 }
@@ -454,7 +455,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  color: #222;
+  color: var(--accent);
   font-weight: 700;
 }
 
