@@ -15,260 +15,253 @@
     gtag('config', 'G-GF1NL04TXJ');
   </script>
 
+  <!-- Meta & Open Graph for SEO & Social Sharing -->
   <meta
     name="description"
-    content="Simple websites for cafés, bars and restaurants in Wellington, New Zealand. Live in 7 days. Free 15 minute call included."
+    content="I build vibrant, responsive websites for cafés, bars and restaurants that stand out and bring in customers."
   />
   <meta property="og:title" content="Thom Creates Websites" />
   <meta
     property="og:description"
-    content="Simple websites for cafés, bars and restaurants in Wellington, New Zealand. Live in 7 days."
+    content="Crafting immersive online experiences for cafés, bars and restaurants."
   />
   <meta property="og:image" content="https://thoms-websites.github.io/website-pp.png" />
   <meta property="og:url" content="https://thoms-websites.github.io/" />
   <meta property="og:type" content="website" />
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@500;700&display=swap"
-    rel="stylesheet"
-  />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@500&family=Fira+Code&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicon -->
   <link rel="icon" href="website-pp.png" />
 </head>
 <body id="top">
 
+  <!-- RESPONSIVE NAVIGATION -->
   <header class="main-nav">
     <div class="logo">Thom Creates Websites</div>
 
-    <nav id="site-nav" class="nav-links" aria-label="Primary navigation">
-      <a href="#about" data-i18n-key="nav.about">About</a>
-      <a href="#proof" data-i18n-key="nav.proof">Proof</a>
-      <a href="#pricing" data-i18n-key="nav.pricing">Pricing</a>
-      <a href="#skills" data-i18n-key="nav.skills">Skills</a>
-      <a href="#demos" data-i18n-key="nav.demos">Demo Projects</a>
-      <a href="#contact" data-i18n-key="nav.contact">Let's Chat</a>
-    </nav>
+    <ul class="menu">
+      <li><a href="#about" data-i18n-key="nav.about">About Me</a></li>
+      <li><a href="#proof" data-i18n-key="nav.proof">Proof</a></li>
+      <li><a href="#pricing" data-i18n-key="nav.pricing">Pricing</a></li>
+      <li><a href="#skills" data-i18n-key="nav.skills">Skills</a></li>
+      <li><a href="#demos" data-i18n-key="nav.demos">Demo Projects</a></li>
+      <li><a href="#contact" data-i18n-key="nav.contact">Let's Chat</a></li>
+    </ul>
 
     <div class="nav-actions">
-      <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Toggle language">FR</button>
-      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="site-nav" aria-expanded="false">
-        &#9776;
-      </button>
+      <button id="lang-toggle" class="lang-toggle" aria-label="Toggle language" type="button">FR</button>
+      <button class="nav-toggle" aria-label="Toggle navigation" type="button">&#9776;</button>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="blob blob-top" aria-hidden="true"></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob blob-top" aria-hidden="true"></div>
 
-      <div class="hero-content">
-        <img src="website-pp.png" alt="Thom’s photo" class="hero-photo" loading="lazy" />
+    <div class="hero-content">
+      <img src="website-pp.png" alt="Thom’s Photo" class="hero-photo" loading="lazy" />
 
-        <h1 class="hero-title" data-i18n-key="hero.title">
-          Websites for cafés, bars & restaurants
-        </h1>
+      <h1 class="hero-title" data-i18n-key="hero.title">
+        Websites for cafés, bars & restaurants
+      </h1>
 
-        <p class="hero-subtitle" data-i18n-key="hero.subtitle">
-          Get a clean, modern website that shows your menu, hours and vibe properly. Live in 7 days.
+      <p class="hero-subtitle" data-i18n-key="hero.subtitle">
+        Get a clean, modern website that shows your menu, hours and vibe properly. Live in 7 days.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary" data-i18n-key="hero.cta">Get your website</a>
+        <p class="hero-note" data-i18n-key="hero.note">
+          Starting from NZ$499. Free 15 minute call included.
         </p>
+      </div>
+    </div>
 
-        <div class="hero-cta">
-          <a href="#contact" class="btn-primary" data-i18n-key="hero.cta">Get your website</a>
-          <p class="hero-note" data-i18n-key="hero.note">
-            Starting from NZ$499. Free 15 minute call included.
-          </p>
+    <div class="blob blob-bottom" aria-hidden="true"></div>
+  </section>
+
+  <!-- ABOUT ME -->
+  <section id="about" class="about scroll-target diagonal-section">
+    <h2 class="section-title" data-i18n-key="about.newtitle">
+      Why your venue needs a website
+    </h2>
+
+    <p data-i18n-key="about.newp1">
+      Most people check a venue online before they go. If you do not have a website, they are relying on Google Maps or Instagram, which often does not show your menu, your atmosphere, or the full picture of your business.
+    </p>
+
+    <p data-i18n-key="about.newp2">
+      I build simple, modern websites for cafés, bars and restaurants so customers can quickly see your menu, your hours, your location and your vibe. The goal is straightforward: help more people choose your venue.
+    </p>
+
+    <p data-i18n-key="about.newp3">
+      I am based in Wellington and started doing this while studying, focusing on small local businesses that do not yet have a proper website. Every site is built from scratch and designed to look great on mobile.
+    </p>
+  </section>
+
+  <!-- PROOF -->
+  <section id="proof" class="proof diagonal-section">
+    <h2 class="section-title" data-i18n-key="proof.title">
+      No website? You are missing customers
+    </h2>
+
+    <ul class="proof-list">
+      <li data-i18n-key="proof.point1">
+        70%+ of people check a business online before visiting
+      </li>
+      <li data-i18n-key="proof.point2">
+        Instagram and Google Maps do not show the full picture of your venue
+      </li>
+      <li data-i18n-key="proof.point3">
+        A proper website helps customers see your menu, vibe and location clearly
+      </li>
+    </ul>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="skills-section diagonal-section">
+    <div class="container">
+      <h2 data-i18n-key="skills.title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 logo">
+          <p>HTML5</p>
+        </div>
+        <div class="skill-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 logo">
+          <p>CSS3</p>
+        </div>
+        <div class="skill-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript logo">
+          <p>JavaScript</p>
+        </div>
+        <div class="skill-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub logo">
+          <p>GitHub</p>
+        </div>
+        <div class="skill-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo">
+          <p>Python</p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="blob blob-bottom" aria-hidden="true"></div>
-    </section>
+  <!-- PRICING -->
+  <section id="pricing" class="pricing diagonal-section">
+    <h2 class="section-title" data-i18n-key="pricing.title">Simple pricing</h2>
 
-    <section id="about" class="about scroll-target diagonal-section">
-      <h2 class="section-title" data-i18n-key="about.title">Why your venue needs a website</h2>
-
-      <p data-i18n-key="about.p1">
-        Most people check a venue online before they go. If you do not have a website, they are relying on Google Maps or Instagram, which often does not show your menu, your atmosphere, or the full picture of your business.
-      </p>
-
-      <p data-i18n-key="about.p2">
-        I build simple, modern websites for cafés, bars and restaurants so customers can quickly see your menu, your hours, your location and your vibe. The goal is straightforward: help more people choose your venue.
-      </p>
-
-      <p data-i18n-key="about.p3">
-        I am based in Wellington and started doing this while studying, focusing on small local businesses that do not yet have a proper website. Every site is built from scratch and designed to look great on mobile.
-      </p>
-    </section>
-
-    <section id="proof" class="proof scroll-target">
-      <div class="proof-inner">
-        <h2 class="section-title" data-i18n-key="proof.title">No website? You are missing customers</h2>
-
-        <p class="proof-lead" data-i18n-key="proof.lead">
-          BrightLocal found that 98% of consumers used the internet to find information about local businesses.
-        </p>
-
-        <ul class="proof-list">
-          <li data-i18n-key="proof.point1">
-            People check opening hours, location and reviews before they visit.
-          </li>
-          <li data-i18n-key="proof.point2">
-            A business’s own website is one of the most trusted places to find local business information.
-          </li>
-          <li data-i18n-key="proof.point3">
-            A proper website gives you one clear place to show your menu, vibe and contact details.
-          </li>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3 data-i18n-key="pricing.starter">Starter</h3>
+        <p class="price" data-i18n-key="pricing.starter.price">From NZ$499</p>
+        <ul>
+          <li data-i18n-key="pricing.starter.f1">One-page website</li>
+          <li data-i18n-key="pricing.starter.f2">Menu, hours, location</li>
+          <li data-i18n-key="pricing.starter.f3">Mobile optimised</li>
+          <li data-i18n-key="pricing.starter.f4">Live in 7 days</li>
         </ul>
       </div>
-    </section>
 
-    <section id="pricing" class="pricing diagonal-section">
-      <h2 class="section-title" data-i18n-key="pricing.title">Simple pricing</h2>
-
-      <div class="pricing-grid">
-        <div class="price-card">
-          <h3 data-i18n-key="pricing.starter">Starter</h3>
-          <p class="price" data-i18n-key="pricing.starter.price">From NZ$499</p>
-          <ul>
-            <li data-i18n-key="pricing.starter.f1">One-page website</li>
-            <li data-i18n-key="pricing.starter.f2">Menu, hours, location</li>
-            <li data-i18n-key="pricing.starter.f3">Mobile optimised</li>
-            <li data-i18n-key="pricing.starter.f4">Live in 7 days</li>
-          </ul>
-        </div>
-
-        <div class="price-card featured">
-          <h3 data-i18n-key="pricing.standard">Standard</h3>
-          <p class="price" data-i18n-key="pricing.standard.price">From NZ$999</p>
-          <ul>
-            <li data-i18n-key="pricing.standard.f1">Multi-page site</li>
-            <li data-i18n-key="pricing.standard.f2">Menu + gallery</li>
-            <li data-i18n-key="pricing.standard.f3">Social links</li>
-            <li data-i18n-key="pricing.standard.f4">Contact / booking section</li>
-          </ul>
-        </div>
-
-        <div class="price-card">
-          <h3 data-i18n-key="pricing.premium">Premium</h3>
-          <p class="price" data-i18n-key="pricing.premium.price">From NZ$1499</p>
-          <ul>
-            <li data-i18n-key="pricing.premium.f1">Everything in Standard</li>
-            <li data-i18n-key="pricing.premium.f2">Custom features</li>
-            <li data-i18n-key="pricing.premium.f3">Multi-language if needed</li>
-            <li data-i18n-key="pricing.premium.f4">Ongoing updates optional</li>
-          </ul>
-        </div>
+      <div class="price-card">
+        <h3 data-i18n-key="pricing.standard">Standard</h3>
+        <p class="price" data-i18n-key="pricing.standard.price">From NZ$999</p>
+        <ul>
+          <li data-i18n-key="pricing.standard.f1">Multi-page site</li>
+          <li data-i18n-key="pricing.standard.f2">Menu + gallery</li>
+          <li data-i18n-key="pricing.standard.f3">Social links</li>
+          <li data-i18n-key="pricing.standard.f4">Contact / booking section</li>
+        </ul>
       </div>
-    </section>
 
-    <section id="skills" class="skills-section diagonal-section">
-      <div class="container">
-        <h2 data-i18n-key="skills.title">Skills</h2>
-        <div class="skills-grid">
-          <div class="skill-card">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 logo">
-            <p>HTML5</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 logo">
-            <p>CSS3</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript logo">
-            <p>JavaScript</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub logo">
-            <p>GitHub</p>
-          </div>
-          <div class="skill-card">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo">
-            <p>Python</p>
-          </div>
+      <div class="price-card">
+        <h3 data-i18n-key="pricing.premium">Premium</h3>
+        <p class="price" data-i18n-key="pricing.premium.price">From NZ$1499</p>
+        <ul>
+          <li data-i18n-key="pricing.premium.f1">Everything in Standard</li>
+          <li data-i18n-key="pricing.premium.f2">Custom features</li>
+          <li data-i18n-key="pricing.premium.f3">Multi-language (if needed)</li>
+          <li data-i18n-key="pricing.premium.f4">Ongoing updates optional</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO PROJECTS -->
+  <section id="demos" class="demos scroll-target">
+    <h2 class="section-title" data-i18n-key="demos.title">Demo Projects</h2>
+    <p class="demo-intro" data-i18n-key="demos.intro">
+      These are example websites showing what your venue could look like.
+    </p>
+
+    <div class="demo-grid">
+      <a href="https://thoms-websites.github.io/blue-hour-bar/" class="demo-card video-card" target="_blank" rel="noopener">
+        <video class="demo-media" src="bar-demo.mp4" poster="bar-demo.png" muted loop autoplay playsinline preload="none"></video>
+        <div class="demo-text">
+          <h3 data-i18n-key="demo.bar.title">Bar Demo</h3>
+          <p data-i18n-key="demo.bar.desc">
+            Moody, elegant site with events & a French toggle
+          </p>
+          <p class="demo-skills">
+            <strong data-i18n-key="demo.bar.skills_label">Skills:</strong>
+            <span data-i18n-key="demo.bar.skills">HTML • CSS • JavaScript</span>
+          </p>
         </div>
-      </div>
-    </section>
+      </a>
 
-    <section id="demos" class="demos scroll-target">
-      <h2 class="section-title section-title-light" data-i18n-key="demos.title">Demo Projects</h2>
-      <p class="demo-intro" data-i18n-key="demos.intro">
-        These are example websites showing what your venue could look like.
-      </p>
+      <a href="https://thoms-websites.github.io/maison-locale/" class="demo-card" target="_blank" rel="noopener">
+        <video class="demo-media" src="restaurant.mp4" poster="restaurant-demo.png" muted loop autoplay playsinline preload="none"></video>
+        <div class="demo-text">
+          <h3 data-i18n-key="demo.restaurant.title">Restaurant Demo</h3>
+          <p data-i18n-key="demo.restaurant.desc">
+            Full-screen hero with menu and gallery
+          </p>
+          <p class="demo-skills">
+            <strong data-i18n-key="demo.restaurant.skills_label">Skills:</strong>
+            <span data-i18n-key="demo.restaurant.skills">HTML • CSS • JavaScript</span>
+          </p>
+        </div>
+      </a>
 
-      <div class="demo-grid">
-        <a href="https://thoms-websites.github.io/blue-hour-bar/"
-           class="demo-card video-card"
-           target="_blank" rel="noopener">
-          <video class="demo-media"
-                 src="bar-demo.mp4"
-                 poster="bar-demo.png"
-                 muted loop autoplay playsinline preload="none">
-          </video>
-          <div class="demo-text">
-            <h3 data-i18n-key="demo.bar.title">Bar Demo</h3>
-            <p data-i18n-key="demo.bar.desc">
-              Moody, elegant showcase with events and language support
-            </p>
-            <p class="demo-skills">
-              <strong data-i18n-key="demo.bar.skills_label">Skills:</strong>
-              <span data-i18n-key="demo.bar.skills">HTML • CSS • JavaScript</span>
-            </p>
-          </div>
-        </a>
+      <a href="https://thoms-websites.github.io/corner-cafe/" class="demo-card" target="_blank" rel="noopener">
+        <img class="demo-media" src="cafe-demo.png" alt="Café Demo screenshot">
+        <div class="demo-text">
+          <h3 data-i18n-key="demo.cafe.title">Café Demo</h3>
+          <p data-i18n-key="demo.cafe.desc">
+            Minimalist café site with parallax scroll
+          </p>
+          <p class="demo-skills">
+            <strong data-i18n-key="demo.cafe.skills_label">Skills:</strong>
+            <span data-i18n-key="demo.cafe.skills">HTML • CSS • JavaScript</span>
+          </p>
+        </div>
+      </a>
+    </div>
+  </section>
 
-        <a href="https://thoms-websites.github.io/maison-locale/"
-           class="demo-card video-card"
-           target="_blank" rel="noopener">
-          <video class="demo-media"
-                 src="restaurant.mp4"
-                 poster="restaurant-demo.png"
-                 muted loop autoplay playsinline preload="none">
-          </video>
-          <div class="demo-text">
-            <h3 data-i18n-key="demo.restaurant.title">Restaurant Demo</h3>
-            <p data-i18n-key="demo.restaurant.desc">
-              Full-screen showcase with menu and gallery
-            </p>
-            <p class="demo-skills">
-              <strong data-i18n-key="demo.restaurant.skills_label">Skills:</strong>
-              <span data-i18n-key="demo.restaurant.skills">HTML • CSS • JavaScript</span>
-            </p>
-          </div>
-        </a>
+  <!-- CONTACT -->
+  <section id="contact" class="contact scroll-target diagonal-section">
+    <h2 class="section-title" data-i18n-key="contact.title">Let’s Chat</h2>
+    <p class="contact-intro spaced" data-i18n-key="contact.intro">
+      Want a website like this for your venue? Send a message and I will get back to you. I also offer a free 15 minute call.
+    </p>
 
-        <a href="https://thoms-websites.github.io/corner-cafe/"
-           class="demo-card"
-           target="_blank" rel="noopener">
-          <img class="demo-media" src="cafe-demo.png" alt="Café demo screenshot">
-          <div class="demo-text">
-            <h3 data-i18n-key="demo.cafe.title">Café Demo</h3>
-            <p data-i18n-key="demo.cafe.desc">
-              Minimalist café showcase with parallax scroll
-            </p>
-            <p class="demo-skills">
-              <strong data-i18n-key="demo.cafe.skills_label">Skills:</strong>
-              <span data-i18n-key="demo.cafe.skills">HTML • CSS • JavaScript</span>
-            </p>
-          </div>
-        </a>
-      </div>
-    </section>
+    <form action="https://formspree.io/f/mldbnvdn" method="POST" class="contact-form">
+      <input type="text" name="name" data-i18n-key-placeholder="contact.name" placeholder="Your name" required>
+      <input type="email" name="email" data-i18n-key-placeholder="contact.email" placeholder="Your email" required>
+      <textarea name="message" data-i18n-key-placeholder="contact.message" placeholder="Tell me about your venue..." rows="5" required></textarea>
+      <button type="submit" class="btn" data-i18n-key="contact.send">Send Message</button>
+    </form>
+  </section>
 
-    <section id="contact" class="contact scroll-target diagonal-section">
-      <h2 class="section-title" data-i18n-key="contact.title">Let's Chat</h2>
+</main>
 
-      <p class="contact-intro spaced" data-i18n-key="contact.intro">
-        Want a website like this for your venue? Send a message or book a free 15 minute call.
-      </p>
-
-      <form action="https://formspree.io/f/mldbnvdn" method="POST" class="contact-form">
-        <input type="text" name="name" data-i18n-key-placeholder="contact.name" placeholder="Your name" required>
-        <input type="email" name="email" data-i18n-key-placeholder="contact.email" placeholder="Your email" required>
-        <textarea name="message" data-i18n-key-placeholder="contact.message" placeholder="Tell me about your venue..." rows="5" required></textarea>
-        <button type="submit" class="btn" data-i18n-key="contact.send">Send Message</button>
-      </form>
-    </section>
-  </main>
-
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-left">
       <p>© <span id="year"></span> Thom Creates Websites</p>
@@ -279,42 +272,38 @@
     </div>
   </footer>
 
+  <!-- Smooth scroll & Nav toggle -->
   <script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const headerOffset = 110;
-          const elementPosition = target.getBoundingClientRect().top;
-          const offsetPosition = window.pageYOffset + elementPosition - headerOffset;
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }
+    const headerOffset = 115;
 
-        const nav = document.getElementById('site-nav');
-        const navToggle = document.querySelector('.nav-toggle');
-        if (nav.classList.contains('open')) {
-          nav.classList.remove('open');
-          navToggle.setAttribute('aria-expanded', 'false');
-        }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+
+        e.preventDefault();
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = window.pageYOffset + elementPosition - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       });
     });
 
-    const navToggle = document.querySelector('.nav-toggle');
-    const nav = document.getElementById('site-nav');
-
-    navToggle.addEventListener('click', () => {
-      const isOpen = nav.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', String(isOpen));
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('.menu').classList.toggle('open');
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
+  <!-- i18n toggle script -->
   <script>
     const translations = {
       en: {
-        'nav.about': 'About',
+        'nav.about': 'About Me',
         'nav.proof': 'Proof',
         'nav.pricing': 'Pricing',
         'nav.skills': 'Skills',
@@ -326,16 +315,17 @@
         'hero.cta': 'Get your website',
         'hero.note': 'Starting from NZ$499. Free 15 minute call included.',
 
-        'about.title': 'Why your venue needs a website',
-        'about.p1': 'Most people check a venue online before they go. If you do not have a website, they are relying on Google Maps or Instagram, which often does not show your menu, your atmosphere, or the full picture of your business.',
-        'about.p2': 'I build simple, modern websites for cafés, bars and restaurants so customers can quickly see your menu, your hours, your location and your vibe. The goal is straightforward: help more people choose your venue.',
-        'about.p3': 'I am based in Wellington and started doing this while studying, focusing on small local businesses that do not yet have a proper website. Every site is built from scratch and designed to look great on mobile.',
+        'about.newtitle': 'Why your venue needs a website',
+        'about.newp1': 'Most people check a venue online before they go. If you do not have a website, they are relying on Google Maps or Instagram, which often does not show your menu, your atmosphere, or the full picture of your business.',
+        'about.newp2': 'I build simple, modern websites for cafés, bars and restaurants so customers can quickly see your menu, your hours, your location and your vibe. The goal is straightforward: help more people choose your venue.',
+        'about.newp3': 'I am based in Wellington and started doing this while studying, focusing on small local businesses that do not yet have a proper website. Every site is built from scratch and designed to look great on mobile.',
 
         'proof.title': 'No website? You are missing customers',
-        'proof.lead': 'BrightLocal found that 98% of consumers used the internet to find information about local businesses.',
-        'proof.point1': 'People check opening hours, location and reviews before they visit.',
-        'proof.point2': 'A business’s own website is one of the most trusted places to find local business information.',
-        'proof.point3': 'A proper website gives you one clear place to show your menu, vibe and contact details.',
+        'proof.point1': '70%+ of people check a business online before visiting',
+        'proof.point2': 'Instagram and Google Maps do not show the full picture of your venue',
+        'proof.point3': 'A proper website helps customers see your menu, vibe and location clearly',
+
+        'skills.title': 'Skills',
 
         'pricing.title': 'Simple pricing',
         'pricing.starter': 'Starter',
@@ -356,31 +346,29 @@
         'pricing.premium.price': 'From NZ$1499',
         'pricing.premium.f1': 'Everything in Standard',
         'pricing.premium.f2': 'Custom features',
-        'pricing.premium.f3': 'Multi-language if needed',
+        'pricing.premium.f3': 'Multi-language (if needed)',
         'pricing.premium.f4': 'Ongoing updates optional',
-
-        'skills.title': 'Skills',
 
         'demos.title': 'Demo Projects',
         'demos.intro': 'These are example websites showing what your venue could look like.',
 
         'demo.bar.title': 'Bar Demo',
-        'demo.bar.desc': 'Moody, elegant showcase with events and language support',
+        'demo.bar.desc': 'Moody, elegant site with events & a French toggle',
         'demo.bar.skills_label': 'Skills:',
         'demo.bar.skills': 'HTML • CSS • JavaScript',
 
         'demo.restaurant.title': 'Restaurant Demo',
-        'demo.restaurant.desc': 'Full-screen showcase with menu and gallery',
+        'demo.restaurant.desc': 'Full-screen hero with menu and gallery',
         'demo.restaurant.skills_label': 'Skills:',
         'demo.restaurant.skills': 'HTML • CSS • JavaScript',
 
         'demo.cafe.title': 'Café Demo',
-        'demo.cafe.desc': 'Minimalist café showcase with parallax scroll',
+        'demo.cafe.desc': 'Minimalist café site with parallax scroll',
         'demo.cafe.skills_label': 'Skills:',
         'demo.cafe.skills': 'HTML • CSS • JavaScript',
 
-        'contact.title': "Let's Chat",
-        'contact.intro': 'Want a website like this for your venue? Send a message or book a free 15 minute call.',
+        'contact.title': 'Let’s Chat',
+        'contact.intro': 'Want a website like this for your venue? Send a message and I will get back to you. I also offer a free 15 minute call.',
         'contact.name': 'Your name',
         'contact.email': 'Your email',
         'contact.message': 'Tell me about your venue...',
@@ -399,16 +387,17 @@
         'hero.cta': 'Créer mon site',
         'hero.note': 'À partir de 499 NZD. Appel gratuit de 15 minutes inclus.',
 
-        'about.title': 'Pourquoi votre établissement a besoin d’un site web',
-        'about.p1': 'La plupart des clients regardent un établissement en ligne avant de venir. Sans site web, ils dépendent de Google Maps ou Instagram, qui ne montrent pas toujours votre menu, votre ambiance ou une vue complète de votre activité.',
-        'about.p2': 'Je crée des sites simples et modernes pour cafés, bars et restaurants afin que les clients puissent voir rapidement votre menu, vos horaires, votre localisation et votre ambiance. Le but est clair, aider plus de personnes à choisir votre établissement.',
-        'about.p3': 'Je suis basé à Wellington et j’ai commencé cette activité en parallèle de mes études, en me concentrant sur les petits établissements qui n’ont pas encore de site web. Chaque site est construit from scratch et pensé pour être beau sur mobile.',
+        'about.newtitle': 'Pourquoi votre établissement a besoin d’un site web',
+        'about.newp1': 'La plupart des clients regardent un établissement en ligne avant de venir. Sans site web, ils dépendent de Google Maps ou Instagram, qui ne montrent pas toujours votre menu, votre ambiance ou une vue complète de votre activité.',
+        'about.newp2': 'Je crée des sites simples et modernes pour cafés, bars et restaurants afin que les clients puissent voir rapidement votre menu, vos horaires, votre localisation et votre ambiance. Le but est clair: aider plus de personnes à choisir votre établissement.',
+        'about.newp3': 'Je suis basé à Wellington et j’ai commencé cette activité en parallèle de mes études, en me concentrant sur les petits établissements qui n’ont pas encore de site web. Chaque site est construit from scratch et pensé pour être beau sur mobile.',
 
         'proof.title': 'Pas de site web ? Vous perdez des clients',
-        'proof.lead': 'BrightLocal a constaté que 98% des consommateurs utilisent internet pour trouver des informations sur les commerces locaux.',
-        'proof.point1': 'Les gens vérifient les horaires, la localisation et les avis avant de venir.',
-        'proof.point2': 'Le site officiel d’un établissement est l’une des sources les plus fiables pour trouver des informations locales.',
-        'proof.point3': 'Un bon site vous donne un seul endroit clair pour montrer votre menu, votre ambiance et vos coordonnées.',
+        'proof.point1': 'Plus de 70 % des clients vérifient un établissement en ligne avant de venir',
+        'proof.point2': 'Instagram et Google Maps ne montrent pas toute votre activité',
+        'proof.point3': 'Un site web permet de présenter clairement votre menu, votre ambiance et votre localisation',
+
+        'skills.title': 'Compétences',
 
         'pricing.title': 'Tarifs simples',
         'pricing.starter': 'Starter',
@@ -429,51 +418,45 @@
         'pricing.premium.price': 'À partir de 1499 NZD',
         'pricing.premium.f1': 'Tout ce qui est inclus dans Standard',
         'pricing.premium.f2': 'Fonctionnalités personnalisées',
-        'pricing.premium.f3': 'Multi-langue si nécessaire',
+        'pricing.premium.f3': 'Multi-langue (si nécessaire)',
         'pricing.premium.f4': 'Mises à jour possibles',
-
-        'skills.title': 'Compétences',
 
         'demos.title': 'Démos',
         'demos.intro': 'Voici des exemples de sites montrant à quoi pourrait ressembler le vôtre.',
 
         'demo.bar.title': 'Démo Bar',
-        'demo.bar.desc': 'Vitrine élégante avec événements et support des langues',
-        'demo.bar.skills_label': 'Compétences :',
+        'demo.bar.desc': 'Site d’ambiance élégant avec événements et sélection FR',
+        'demo.bar.skills_label': 'Compétences:',
         'demo.bar.skills': 'HTML • CSS • JavaScript',
 
         'demo.restaurant.title': 'Démo Restaurant',
-        'demo.restaurant.desc': 'Vitrine plein écran avec menu et galerie',
-        'demo.restaurant.skills_label': 'Compétences :',
+        'demo.restaurant.desc': 'Héros plein écran avec menu et galerie',
+        'demo.restaurant.skills_label': 'Compétences:',
         'demo.restaurant.skills': 'HTML • CSS • JavaScript',
 
         'demo.cafe.title': 'Démo Café',
-        'demo.cafe.desc': 'Vitrine café minimaliste avec défilement parallax',
-        'demo.cafe.skills_label': 'Compétences :',
+        'demo.cafe.desc': 'Site café minimaliste avec défilement parallax',
+        'demo.cafe.skills_label': 'Compétences:',
         'demo.cafe.skills': 'HTML • CSS • JavaScript',
 
         'contact.title': 'Contact',
-        'contact.intro': 'Vous voulez un site comme celui-ci ? Envoyez un message ou réservez un appel gratuit de 15 minutes.',
+        'contact.intro': 'Vous voulez un site comme celui-ci ? Envoyez un message et je vous répondrai. J’offre aussi un appel gratuit de 15 minutes.',
         'contact.name': 'Votre nom',
         'contact.email': 'Votre e-mail',
         'contact.message': 'Parlez-moi de votre établissement...',
-        'contact.send': 'Envoyer le message'
+        'contact.send': 'Envoyer'
       }
     };
 
     function applyTranslations(lang) {
       document.querySelectorAll('[data-i18n-key]').forEach(el => {
         const key = el.getAttribute('data-i18n-key');
-        if (translations[lang][key]) {
-          el.textContent = translations[lang][key];
-        }
+        if (translations[lang][key]) el.textContent = translations[lang][key];
       });
 
       document.querySelectorAll('[data-i18n-key-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-key-placeholder');
-        if (translations[lang][key]) {
-          el.placeholder = translations[lang][key];
-        }
+        if (translations[lang][key]) el.placeholder = translations[lang][key];
       });
 
       document.documentElement.lang = lang;
