@@ -199,28 +199,25 @@ logoPath.style.fill             = '#d4af37';
 
 // 2) Draw + fill, then reveal site, repeating every 12s:
 function animateLogo(){
-logoPath.animate([
-{ strokeDashoffset: pathLength, fillOpacity: 0 },
-{ strokeDashoffset:          0, fillOpacity: 1 }
-], {
-duration: 2000,
-easing:   'ease-out',
-fill:     'forwards'
-});
+  logoPath.animate([
+    { strokeDashoffset: pathLength, fillOpacity: 0 },
+    { strokeDashoffset: 0, fillOpacity: 1 }
+  ], {
+    duration: 2000,
+    easing: 'ease-out',
+    fill: 'forwards'
+  });
 }
 
 window.addEventListener('load', () => {
-// initial run
-animateLogo();
+  animateLogo();
 
-// reveal the page after the first animation
-setTimeout(() => {
-document.body.classList.add('loaded');
-document.querySelector('.site-content').classList.add('loaded');
-}, 2000);
+  setTimeout(() => {
+    document.body.classList.add('loaded');
+    document.querySelector('.site-content').classList.add('loaded');
+  }, 2000);
 
-// loop every 12 s
-setInterval(animateLogo, 12000);
+  setInterval(animateLogo, 12000);
 });
 
 // Carousel Logic
@@ -229,6 +226,8 @@ setInterval(animateLogo, 12000);
   const originals = Array.from(carousel.children);
   const count     = originals.length;
 
+  let isDown = false;
+
   // full step = slide width + gap
   const getW = () => {
     const slideW = originals[0].getBoundingClientRect().width;
@@ -236,39 +235,35 @@ setInterval(animateLogo, 12000);
     return slideW + gap;
   };
 
-  // ─── 1) Triplicate ────────────────────────────────────────────────
+  // ─── Triplicate ────────────────────────────────────────────────
   originals.forEach(s => carousel.appendChild(s.cloneNode(true)));
-  originals.slice().reverse().forEach(s => carousel.insertBefore(s.cloneNode(true), carousel.firstChild));
+  originals.slice().reverse().forEach(s => 
+    carousel.insertBefore(s.cloneNode(true), carousel.firstChild)
+  );
 
-  // ─── 2) Re-attach click handlers to *every* slide ─────────────────
-  const allSlides = Array.from(carousel.children);
-  allSlides.forEach((slideEl, idx) => {
-    const origIndex = idx % count;
-    slideEl.addEventListener('click', () => {
-      if (hasDragged) {
-        hasDragged = false;
-        return;
-      }
-      openModal(origIndex);
-    });
-  });
+  let W = getW();
 
-  // ─── 3) Buffer‑jump math with a half‑step fuzzy threshold ─────────
-  const W = getW();
-  carousel.scrollLeft = count * W;
+  function resetPosition() {
+    W = getW();
+    carousel.scrollLeft = count * W;
+  }
+
+  resetPosition();
   carousel.style.scrollBehavior = 'smooth';
 
+  // ─── FIXED: safer infinite scroll ───────────────────────────────
   carousel.addEventListener('scroll', () => {
     if (isDown) return;
 
     const pos = carousel.scrollLeft;
 
-    if (pos < W * 0.5) {
+    if (pos <= W) {
       carousel.style.scrollBehavior = 'auto';
-      carousel.scrollLeft += count * W;
-    } else if (pos > 2 * count * W - W * 0.5) {
+      carousel.scrollLeft = pos + count * W;
+    } 
+    else if (pos >= (count * 2 * W) - W) {
       carousel.style.scrollBehavior = 'auto';
-      carousel.scrollLeft -= count * W;
+      carousel.scrollLeft = pos - count * W;
     }
 
     requestAnimationFrame(() => {
@@ -276,30 +271,26 @@ setInterval(animateLogo, 12000);
     });
   });
 
-  // ─── 4) AUTO‑SCROLL + PAUSE ───────────────────────────────────────
+  // ─── AUTO-SCROLL ────────────────────────────────────────────────
   let isHovering = false;
+
   carousel.addEventListener('mouseenter', () => isHovering = true);
   carousel.addEventListener('mouseleave', () => isHovering = false);
 
-  const frameMs = 16;                                // ~60fps
-  let delta = window.innerWidth > 768 ? 1 : 0.6;     // px/frame
+  let delta = window.innerWidth > 768 ? 1 : 0.6;
+
   window.addEventListener('resize', () => {
     delta = window.innerWidth > 768 ? 1 : 0.6;
+    resetPosition();
   });
 
-  let scrollTimer = setInterval(() => {
-    if (!isHovering) {
+  setInterval(() => {
+    if (!isHovering && !isDown) {
       carousel.scrollLeft += delta;
-
-      // inline fuzzy buffer‑jump:
-      const pos = carousel.scrollLeft;
-      if (pos < W * 0.5) carousel.scrollLeft += count * W;
-      else if (pos > 2 * count * W - W * 0.5) carousel.scrollLeft -= count * W;
     }
-  }, frameMs);
+  }, 16);
 
-  // ─── 5) Drag-to-scroll (desktop) ───────────────────────────────────
-  let isDown = false;
+  // ─── Drag-to-scroll ─────────────────────────────────────────────
   let startX = 0;
   let startScroll = 0;
   let hasDragged = false;
@@ -323,10 +314,7 @@ setInterval(animateLogo, 12000);
 
     const dx = e.clientX - startX;
 
-    if (Math.abs(dx) > 5) {
-      hasDragged = true;
-    }
-
+    if (Math.abs(dx) > 5) hasDragged = true;
     if (!hasDragged) return;
 
     e.preventDefault();
@@ -344,62 +332,44 @@ setInterval(animateLogo, 12000);
   carousel.addEventListener('pointerup', endDrag);
   carousel.addEventListener('pointercancel', endDrag);
   carousel.addEventListener('pointerleave', endDrag);
-  
-// ─── MODAL LOGIC (fixed) ────────────────────────────────────────
-// Use the originals[] array, not the clones
-const modal    = document.getElementById('slide-modal');
-const imgEl    = document.getElementById('modal-image');
-const titleEl  = document.getElementById('modal-title');
-const descEl   = document.getElementById('modal-desc');
-const closeBtn = document.getElementById('close-modal');
-const prevBtn  = document.getElementById('modal-prev');
-const nextBtn  = document.getElementById('modal-next');
-let   currentIdx = 0;
 
-function openModal(i) {
-const s = originals[i];
-imgEl.src           = s.dataset.img;
-titleEl.textContent = s.querySelector('h3').textContent;
-descEl.textContent  = s.dataset.desc;
-modal.classList.add('open');
-}
+  // ─── MODAL LOGIC ────────────────────────────────────────────────
+  const modal    = document.getElementById('slide-modal');
+  const imgEl    = document.getElementById('modal-image');
+  const titleEl  = document.getElementById('modal-title');
+  const descEl   = document.getElementById('modal-desc');
+  const closeBtn = document.getElementById('close-modal');
+  const prevBtn  = document.getElementById('modal-prev');
+  const nextBtn  = document.getElementById('modal-next');
+  let currentIdx = 0;
 
-prevBtn.addEventListener('click', e => {
-e.stopPropagation();
-currentIdx = (currentIdx - 1 + count) % count;
-openModal(currentIdx);
-});
+  function openModal(i) {
+    const s = originals[i];
+    imgEl.src           = s.dataset.img;
+    titleEl.textContent = s.querySelector('h3').textContent;
+    descEl.textContent  = s.dataset.desc;
+    modal.classList.add('open');
+  }
 
-nextBtn.addEventListener('click', e => {
-e.stopPropagation();
-currentIdx = (currentIdx + 1) % count;
-openModal(currentIdx);
-});
+  prevBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIdx = (currentIdx - 1 + count) % count;
+    openModal(currentIdx);
+  });
 
-closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-modal.addEventListener('click', e => {
-if (e.target === modal) modal.classList.remove('open');
-});
+  nextBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    currentIdx = (currentIdx + 1) % count;
+    openModal(currentIdx);
+  });
+
+  closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
+
 })();
 </script>
-
-<script>
-// MOBILE MENU TOGGLE
-document.addEventListener('DOMContentLoaded', () => {
-const menuLink = document.querySelector('.main-nav .dropdown > a');
-const simpleDropdown = document.querySelector('.main-nav .simple-dropdown');
-menuLink.addEventListener('click', e => {
-e.preventDefault();
-simpleDropdown.classList.toggle('open');
-});
-// Close when tapping outside
-document.addEventListener('click', e => {
-if (!e.target.closest('.main-nav .dropdown')) {
-simpleDropdown.classList.remove('open');
-}
-});
-});
-</script>
-
+  
 </body>
 </html>
