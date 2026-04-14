@@ -237,10 +237,6 @@ body.loaded .parallax-hero {
   user-select: none;
 }
 
-.special-carousel.dragging .slide {
-  pointer-events: none;
-}
-
 /* Slides */
 .slide {
   width: 300px;
