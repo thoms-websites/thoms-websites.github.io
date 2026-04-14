@@ -293,8 +293,7 @@ body.loaded .parallax-hero {
   to   { transform: scale(1); opacity: 1; }
 }
 .slide:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
+  transform: none;
 }
 .specials {
   padding-top: 2.5rem;
