@@ -232,6 +232,15 @@ body.loaded .parallax-hero {
 .special-carousel.dragging { cursor: grabbing; }
 .special-carousel::-webkit-scrollbar { display: none; }
 
+.special-carousel.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.special-carousel.dragging .slide {
+  pointer-events: none;
+}
+
 /* Slides */
 .slide {
   width: 300px;
