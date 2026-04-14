@@ -253,9 +253,10 @@ setInterval(animateLogo, 12000);
   carousel.style.scrollBehavior = 'smooth';
 
   carousel.addEventListener('scroll', () => {
+    if (isDown) return;
+
     const pos = carousel.scrollLeft;
 
-    // if you wander within half‑a‑step of either edge, teleport
     if (pos < W * 0.5) {
       carousel.style.scrollBehavior = 'auto';
       carousel.scrollLeft += count * W;
@@ -291,26 +292,46 @@ setInterval(animateLogo, 12000);
     }
   }, frameMs);
 
-  // ─── 5) Drag‑to‑scroll (desktop) ───────────────────────────────────
-  let isDown = false, startX, startScroll;
-  carousel.addEventListener('mousedown', e => {
+  // ─── 5) Drag-to-scroll (desktop) ───────────────────────────────────
+  let isDown = false;
+  let startX = 0;
+  let startScroll = 0;
+  let dragPointerId = null;
+
+  carousel.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'touch') return;
+
     isDown = true;
+    dragPointerId = e.pointerId;
     carousel.classList.add('dragging');
-    startX      = e.pageX - carousel.offsetLeft;
+    carousel.style.scrollBehavior = 'auto';
+
+    startX = e.clientX;
     startScroll = carousel.scrollLeft;
+
+    carousel.setPointerCapture?.(e.pointerId);
   });
-  ['mouseup','mouseleave'].forEach(evt =>
-    carousel.addEventListener(evt, () => {
-      isDown = false;
-      carousel.classList.remove('dragging');
-    })
-  );
-  carousel.addEventListener('mousemove', e => {
+
+  carousel.addEventListener('pointermove', (e) => {
     if (!isDown) return;
     e.preventDefault();
-    const x = e.pageX - carousel.offsetLeft;
-    carousel.scrollLeft = startScroll - (x - startX) * 1.5;
+
+    const walk = (e.clientX - startX) * 1.5;
+    carousel.scrollLeft = startScroll - walk;
   });
+
+  function endDrag() {
+    if (!isDown) return;
+
+    isDown = false;
+    dragPointerId = null;
+    carousel.classList.remove('dragging');
+    carousel.style.scrollBehavior = 'smooth';
+  }
+
+  carousel.addEventListener('pointerup', endDrag);
+  carousel.addEventListener('pointercancel', endDrag);
+  carousel.addEventListener('pointerleave', endDrag);
   
 // ─── MODAL LOGIC (fixed) ────────────────────────────────────────
 // Use the originals[] array, not the clones
