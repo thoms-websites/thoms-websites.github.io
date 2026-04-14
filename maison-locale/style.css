@@ -227,6 +227,7 @@ body.loaded .parallax-hero {
   touch-action: pan-x;
   will-change: transform;
   cursor: grab;
+  padding: 0.5rem 0;
 }
 .special-carousel.dragging { cursor: grabbing; }
 .special-carousel::-webkit-scrollbar { display: none; }
@@ -238,14 +239,14 @@ body.loaded .parallax-hero {
   display: flex;
   flex-direction: column;
   background: #fff;
-  border: 2px solid #000;
+  border: none;
+  box-shadow: inset 0 0 0 2px #000;
   border-radius: 8px;
   overflow: hidden;
-  scroll-snap-align: center; /* center each slide on release */
+  scroll-snap-align: center;
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-width 0.3s ease;   /* ← add */   
+    box-shadow 0.3s ease;
 }
 .slide-img {
   height: 180px;
@@ -295,6 +296,10 @@ body.loaded .parallax-hero {
 .slide:hover {
   transform: scale(1.05);
   transition: transform 0.3s ease;
+}
+.specials {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 /* Prev/Next */
