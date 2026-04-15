@@ -125,6 +125,7 @@ body {
   max-width: 1200px;
   margin: 6rem auto;      /* ↑ more separation top & bottom */
   padding: 0 1.5rem;
+  scroll-margin-top: 120px;
 }
 .section h2 {
   font-size: 2.5rem;
