@@ -343,6 +343,24 @@ window.addEventListener('load', () => {
   const nextBtn  = document.getElementById('modal-next');
   let currentIdx = 0;
 
+  // ✅ CLICK HANDLER (this is what was missing)
+  carousel.addEventListener('click', (e) => {
+    const slideEl = e.target.closest('.slide');
+    if (!slideEl || !carousel.contains(slideEl)) return;
+
+    if (hasDragged) {
+      hasDragged = false;
+      return;
+    }
+
+    const slides = Array.from(carousel.children);
+    const idx = slides.indexOf(slideEl);
+    if (idx === -1) return;
+
+    currentIdx = idx % count;
+    openModal(currentIdx);
+  });
+
   function openModal(i) {
     const s = originals[i];
     imgEl.src           = s.dataset.img;
