@@ -235,7 +235,7 @@ window.addEventListener('load', () => {
     return slideW + gap;
   };
 
-  // ─── Triplicate ────────────────────────────────────────────────
+  // Triplicate
   originals.forEach(s => carousel.appendChild(s.cloneNode(true)));
   originals.slice().reverse().forEach(s =>
     carousel.insertBefore(s.cloneNode(true), carousel.firstChild)
@@ -251,7 +251,7 @@ window.addEventListener('load', () => {
   resetPosition();
   carousel.style.scrollBehavior = 'smooth';
 
-  // ─── FIXED: safer infinite scroll ───────────────────────────────
+  // Safer infinite scroll
   carousel.addEventListener('scroll', () => {
     if (isDown) return;
 
@@ -270,7 +270,7 @@ window.addEventListener('load', () => {
     });
   });
 
-  // ─── AUTO-SCROLL ────────────────────────────────────────────────
+  // AUTO-SCROLL
   let isHovering = false;
 
   carousel.addEventListener('mouseenter', () => isHovering = true);
@@ -289,29 +289,28 @@ window.addEventListener('load', () => {
     }
   }, 16);
 
-  // ─── Drag-to-scroll ─────────────────────────────────────────────
+  // Drag-to-scroll
   let startX = 0;
   let startScroll = 0;
   let hasDragged = false;
 
-  carousel.addEventListener('pointerdown', (e) => {
-    if (e.pointerType === 'touch') return;
+  carousel.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return;
 
     isDown = true;
     hasDragged = false;
     carousel.classList.add('dragging');
     carousel.style.scrollBehavior = 'auto';
 
-    startX = e.clientX;
+    startX = e.pageX - carousel.offsetLeft;
     startScroll = carousel.scrollLeft;
-
-    carousel.setPointerCapture?.(e.pointerId);
   });
 
-  carousel.addEventListener('pointermove', (e) => {
+  carousel.addEventListener('mousemove', (e) => {
     if (!isDown) return;
 
-    const dx = e.clientX - startX;
+    const x = e.pageX - carousel.offsetLeft;
+    const dx = x - startX;
 
     if (Math.abs(dx) > 5) hasDragged = true;
     if (!hasDragged) return;
@@ -328,11 +327,10 @@ window.addEventListener('load', () => {
     carousel.style.scrollBehavior = 'smooth';
   }
 
-  carousel.addEventListener('pointerup', endDrag);
-  carousel.addEventListener('pointercancel', endDrag);
-  carousel.addEventListener('pointerleave', endDrag);
+  carousel.addEventListener('mouseup', endDrag);
+  carousel.addEventListener('mouseleave', endDrag);
 
-  // ─── MODAL LOGIC ────────────────────────────────────────────────
+  // MODAL LOGIC
   const modal = document.getElementById('slide-modal');
   const imgEl = document.getElementById('modal-image');
   const titleEl = document.getElementById('modal-title');
