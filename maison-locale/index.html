@@ -190,15 +190,15 @@ a quiet dinner or a celebration, we strive to make each visit unforgettable.
 <!-- all JS in one block -->
 <script>
 // 1) Setup stroke-dash + invisible fill:
-const logoPath   = document.getElementById('logo-path');
+const logoPath = document.getElementById('logo-path');
 const pathLength = logoPath.getTotalLength();
-logoPath.style.strokeDasharray  = pathLength;
+logoPath.style.strokeDasharray = pathLength;
 logoPath.style.strokeDashoffset = pathLength;
-logoPath.style.fillOpacity      = 0;
-logoPath.style.fill             = '#d4af37';
+logoPath.style.fillOpacity = 0;
+logoPath.style.fill = '#d4af37';
 
 // 2) Draw + fill, then reveal site, repeating every 12s:
-function animateLogo(){
+function animateLogo() {
   logoPath.animate([
     { strokeDashoffset: pathLength, fillOpacity: 0 },
     { strokeDashoffset: 0, fillOpacity: 1 }
@@ -222,22 +222,22 @@ window.addEventListener('load', () => {
 
 // Carousel Logic
 ;(function() {
-  const carousel  = document.getElementById('special-carousel');
+  const carousel = document.getElementById('special-carousel');
   const originals = Array.from(carousel.children);
-  const count     = originals.length;
+  const count = originals.length;
 
   let isDown = false;
 
   // full step = slide width + gap
   const getW = () => {
     const slideW = originals[0].getBoundingClientRect().width;
-    const gap    = parseFloat(getComputedStyle(carousel).gap) || 0;
+    const gap = parseFloat(getComputedStyle(carousel).gap) || 0;
     return slideW + gap;
   };
 
   // ─── Triplicate ────────────────────────────────────────────────
   originals.forEach(s => carousel.appendChild(s.cloneNode(true)));
-  originals.slice().reverse().forEach(s => 
+  originals.slice().reverse().forEach(s =>
     carousel.insertBefore(s.cloneNode(true), carousel.firstChild)
   );
 
@@ -260,8 +260,7 @@ window.addEventListener('load', () => {
     if (pos <= W) {
       carousel.style.scrollBehavior = 'auto';
       carousel.scrollLeft = pos + count * W;
-    } 
-    else if (pos >= (count * 2 * W) - W) {
+    } else if (pos >= (count * 2 * W) - W) {
       carousel.style.scrollBehavior = 'auto';
       carousel.scrollLeft = pos - count * W;
     }
@@ -334,40 +333,37 @@ window.addEventListener('load', () => {
   carousel.addEventListener('pointerleave', endDrag);
 
   // ─── MODAL LOGIC ────────────────────────────────────────────────
-  const modal    = document.getElementById('slide-modal');
-  const imgEl    = document.getElementById('modal-image');
-  const titleEl  = document.getElementById('modal-title');
-  const descEl   = document.getElementById('modal-desc');
+  const modal = document.getElementById('slide-modal');
+  const imgEl = document.getElementById('modal-image');
+  const titleEl = document.getElementById('modal-title');
+  const descEl = document.getElementById('modal-desc');
   const closeBtn = document.getElementById('close-modal');
-  const prevBtn  = document.getElementById('modal-prev');
-  const nextBtn  = document.getElementById('modal-next');
+  const prevBtn = document.getElementById('modal-prev');
+  const nextBtn = document.getElementById('modal-next');
   let currentIdx = 0;
-
-  // ✅ CLICK HANDLER (this is what was missing)
-  carousel.addEventListener('click', (e) => {
-    const slideEl = e.target.closest('.slide');
-    if (!slideEl || !carousel.contains(slideEl)) return;
-
-    if (hasDragged) {
-      hasDragged = false;
-      return;
-    }
-
-    const slides = Array.from(carousel.children);
-    const idx = slides.indexOf(slideEl);
-    if (idx === -1) return;
-
-    currentIdx = idx % count;
-    openModal(currentIdx);
-  });
 
   function openModal(i) {
     const s = originals[i];
-    imgEl.src           = s.dataset.img;
+    imgEl.src = s.dataset.img;
     titleEl.textContent = s.querySelector('h3').textContent;
-    descEl.textContent  = s.dataset.desc;
+    descEl.textContent = s.dataset.desc;
     modal.classList.add('open');
   }
+
+  const allSlides = Array.from(carousel.children);
+  allSlides.forEach((slideEl, idx) => {
+    const origIndex = idx % count;
+
+    slideEl.addEventListener('click', () => {
+      if (hasDragged) {
+        hasDragged = false;
+        return;
+      }
+
+      currentIdx = origIndex;
+      openModal(currentIdx);
+    });
+  });
 
   prevBtn.addEventListener('click', e => {
     e.stopPropagation();
